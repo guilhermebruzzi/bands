@@ -12,6 +12,6 @@ class HelpersTest(TestCase):
         self.assertEqual(slug, "whos-using-it")
 
     def get_slug_com_acento_test(self):
-        title = "Este é um outro teste ÉÁÃ"
+        title = u"Este é um outro teste éÃÂ"
         slug = get_slug(title)
         self.assertEqual(slug, "este-e-um-outro-teste-eaa")

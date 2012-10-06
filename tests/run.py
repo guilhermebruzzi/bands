@@ -15,10 +15,6 @@ def add_path():
 project_root = add_path()
 
 def import_folder(folder_name, ends_with=".py", base_path = None):
-    if base_path is None:
-        from sde import settings
-        base_path = settings.PATH
-
     full_path = os.path.join(base_path, folder_name)
 
     folder = os.path.abspath(full_path)
@@ -29,7 +25,7 @@ def import_folder(folder_name, ends_with=".py", base_path = None):
         if filename.endswith(ends_with) and not filename.startswith('.'):
             __import__(os.path.splitext(filename)[0], globals(), locals(),[], -1)
 
-import_folder(folder_name='whosusingit', base_path=project_root)
+import_folder(folder_name='bands', base_path=project_root)
 
 import app
 
