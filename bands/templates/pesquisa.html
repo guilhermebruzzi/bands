@@ -1,7 +1,11 @@
 {% extends "master.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Pesquisa{% endblock %}
 {% block content %}
     <h2>Pesquisa</h2>
-    <h3>{{ login }}</h3>
-    <h3>{{ idade }}</h3>
+    <img src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
+    <h3>{{ current_user.facebook_id }}</h3>
+    <h3>{{ current_user.name }}</h3>
+    <h3>{{ current_user.email }}</h3>
+
 {% endblock %}
+

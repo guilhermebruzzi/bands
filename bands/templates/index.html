@@ -1,5 +1,24 @@
 {% extends "master.html" %}
+
 {% block title %}Home{% endblock %}
+
 {% block content %}
-    <h2>Hello World</h2>
+    <article itemprop="about" class="descricao">
+    	<p class="problema">
+			Já percebeu como é difícil achar informações completas de uma banda na internet? Que tal conhecê-la desde a sua criação até os dias de hoje?
+    	</p>
+    	<p class="solucao">
+    		Bands é um IMDb para bandas e músicos.
+    		
+    		Estes teriam perfis completos, compostos por notas e reviews criados pelos fãs, seus integrantes, discografia, histórico completo incluindo shows e eventos que participaram e bandas relacionadas.
+    		Todo esse conteúdo é criado pelos fãs da própria banda e você mesmo pode contribuir.
+    		
+    		Fãs poderiam achar novas bandas que não conhecem além de viciarem nas que já conhecem.
+    		Músicos poderiam criar o seu próprio perfil para divulgar e até vender o conteúdo relevante da sua banda.
+    	</p>
+    	<p>
+    		Quer concorrer a contas Premium, ser avisado quando o site for lançado e ter vantagem nos sorteios que iremos fazer no inicio?
+    	</p>
+    	<a href="{{ url_for('login') }}" class="login-facebook">Faça login pelo Facebook</a>
+    </article>
 {% endblock %}
