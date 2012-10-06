@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <header><div class="header">
+
+            <h3>Bands</h3>
+
+        </div></header>
+        <section><div class="content">
+
+            {% block content %}{% endblock %}
+
+        </div></section>
+        <footer><div class="footer">
+
+            {% block footer %}
+                <p>&copy; Copyright 2012 by <a href="http://whosusing.it/">Bands</a>.</p>
+            {% endblock %}
+
+        </div></footer>
+    </div>
+</body>
