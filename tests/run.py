@@ -4,6 +4,7 @@
 import os
 import sys
 import nose
+from multiprocessing import Process
 
 def add_path():
     global project_root
@@ -13,6 +14,8 @@ def add_path():
     return project_root
 
 project_root = add_path()
+
+os.environ["MONGODB_DB"] = "bands_test"
 
 def import_folder(folder_name, ends_with=".py", base_path = None):
     full_path = os.path.join(base_path, folder_name)
@@ -26,8 +29,6 @@ def import_folder(folder_name, ends_with=".py", base_path = None):
             __import__(os.path.splitext(filename)[0], globals(), locals(),[], -1)
 
 import_folder(folder_name='bands', base_path=project_root)
-
-import app
 
 def run_tests():
     result = None
@@ -47,5 +48,4 @@ def run_tests():
         exit(1)
 
 if __name__ == '__main__':
-    #app.run()
     run_tests()

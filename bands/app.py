@@ -40,9 +40,8 @@ def facebook_authorized(resp):
 def get_facebook_oauth_token():
     return session.get('oauth_token')
 
-def run():
-    app.run(debug=True)
+def run(**config):
+    app.run(**config)
 
 if __name__ == '__main__':
-    """ roda em localhost:5000 a aplicacao """
     run()
