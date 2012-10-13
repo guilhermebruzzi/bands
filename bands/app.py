@@ -4,15 +4,27 @@
 import os
 from flask import Flask, redirect, url_for, session, request, render_template
 from config import app, facebook
-from helpers import get_or_create_user
+from helpers import get_or_create_user#, validate_answers, get_or_create_answers, get_or_create_questions
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/pesquisa/')
+#def add_answers(request, questions):
+#    (error, msg_error) = validate_answers(request)
+#    if request.method == 'POST' and not error:
+#        get_or_create_answers(request)
+#        return render_template('pesquisa_success.html', current_user=session['current_user'])
+#    elif error:
+#        return render_template('pesquisa.html', current_user=session['current_user'], questions=questions, msg_error=msg_error)
+#    return render_template('pesquisa.html', current_user=session['current_user'], questions=questions)
+
+@app.route('/pesquisa/', methods=['GET', 'POST'])
 def pesquisa():
-    return render_template("pesquisa.html", current_user=session['current_user'])
+#    questions_text = [""]
+#    questions = get_or_create_questions(questions_text)
+#    return add_answers(request, questions)
+    return render_template('pesquisa.html', current_user=session['current_user'])
 
 @app.route('/login/')
 def login(next_url=None):

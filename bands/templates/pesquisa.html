@@ -1,11 +1,27 @@
 {% extends "master.html" %}
 {% block title %}Pesquisa{% endblock %}
 {% block content %}
-    <h2>Pesquisa</h2>
-    <img src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
-    <h3>{{ current_user.facebook_id }}</h3>
-    <h3>{{ current_user.name }}</h3>
-    <h3>{{ current_user.email }}</h3>
+    <header itemscope itemtype="http://schema.org/Person">
+
+        <meta itemprop="email" content="{{ current_user.email }}" />
+        <img itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
+        <span itemprop="name" class="name">{{ current_user.name }}</span>
+
+    </header>
+    <section>
+        <p>
+            Quer concorrer a contas Premium, ser avisado quando o site for lançado e ter vantagem nos sorteios que iremos fazer no início?
+        </p>
+        <p>
+            Participe da nossa pesquisa.
+        </p>
+
+        <form method=post action="">
+            <input type=text value=Pergunta />
+            <input type=text value=Resposta />
+            <input type=submit value=Register />
+        </form>
+    </section>
 
 {% endblock %}
 

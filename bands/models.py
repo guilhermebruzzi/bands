@@ -13,6 +13,10 @@ class User(db.Document):
         url = 'http://graph.facebook.com/%s/picture'
         return url % self.facebook_id
 
-class Feedback(db.Document):
-    reposta = db.StringField(required=True)
-    user = db.ReferenceField(User, required=True, reverse_delete_rule=CASCADE, dbref=False)
+class Answer(db.EmbeddedDocument):
+    answer = db.StringField(required=True)
+    user = db.ReferenceField(User, required=True, dbref=False)
+
+class Question(db.Document):
+    question = db.StringField(required=True)
+    answers = db.ListField(EmbeddedDocumentField(Answer))

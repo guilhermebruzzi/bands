@@ -2,7 +2,7 @@
 
 import unicodedata
 import re
-from models import User, Feedback
+from models import User, Question
 from mongoengine.queryset import DoesNotExist
 
 def get_slug(title):
@@ -18,3 +18,5 @@ def get_or_create_user(data):
     except DoesNotExist:
         user = User.objects.create(facebook_id=data['id'], email=data['email'], name=data['name'])
     return user
+
+
