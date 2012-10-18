@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+{% block title %}Pesquisa{% endblock %}
+{% block content %}
+    <header itemscope itemtype="http://schema.org/Person">
+
+        <meta itemprop="email" content="{{ current_user.email }}" />
+        <img itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
+        <span itemprop="name" class="name">{{ current_user.name }}</span>
+
+    </header>
+    <section>
+    </section>
+
+{% endblock %}
+
