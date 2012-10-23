@@ -2,7 +2,7 @@
 #-*- coding:utf-8 -*-
 
 from unittest import TestCase
-from controllers import get_or_create_user, get_or_create_questions
+from controllers import get_or_create_user, get_or_create_questions, get_question, get_all_answers_from_question
 from models import User, Question
 
 class ControllersTest(TestCase):
@@ -18,7 +18,7 @@ class ControllersTest(TestCase):
         self.__delete_all__(User)
         self.__delete_all__(Question)
 
-    def get_or_create_user_maintain_object_test(self):
+    def get_or_create_users_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         self.__assert_user__(user_guilherme, self.data_user_guilherme)
 
@@ -37,6 +37,18 @@ class ControllersTest(TestCase):
 
         questions = get_or_create_questions(self.questions_txt)
         self.__assert_questions__(questions, self.questions_txt)
+
+    def get_question_and_his_answer_test(self):
+        question_txt = self.questions_txt[0]
+
+        question_mongo = get_or_create_questions(self.questions_txt)[0]
+
+        question = get_question(question_txt)
+        answers = get_all_answers_from_question(question_txt)
+
+        self.assertEqual(question.question, question_txt)
+        self.assertEqual(question.question, question_mongo.question)
+        self.assertEqual(question.answers, answers)
 
     def __assert_user__(self, user, user_data):
         self.assertEqual(user.facebook_id, user_data["id"])

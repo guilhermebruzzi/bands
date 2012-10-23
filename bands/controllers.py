@@ -20,17 +20,21 @@ def get_or_create_questions(questions_text):
     return questions
 
 
-def get_all_answer_from_question(question_text):
-    return Question.objects.filter(question=question_text).answers
-
 def get_question(question_text):
-    pass
+    return Question.objects.filter(question=question_text).first()
+
+
+def get_all_answers_from_question(question_text):
+    question = get_question(question_text)
+    return question.answers
+
 
 def validate_answers(data):
-    pass
+    return True
+
 
 def create_answers(data):
-    pass
+    print data
     #Para cada pergunta em data (dicionario com o que foi preenchido no formulario)
     # current_user = session["current_user"]
     # get_question(pergunta)
