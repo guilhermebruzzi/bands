@@ -8,9 +8,8 @@ from flaskext.mongoengine import MongoEngine
 
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
-bd_keys = ("MONGODB_DB", "MONGODB_USERNAME", "MONGODB_PASSWORD", "MONGODB_HOST", "MONGODB_PORT")
 
-for key in bd_keys:
+for key in app.config.keys():
     if os.environ.has_key(key):
         app.config[key] = os.environ[key]
 

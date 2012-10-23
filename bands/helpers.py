@@ -2,8 +2,7 @@
 
 import unicodedata
 import re
-from models import User, Question
-from mongoengine.queryset import DoesNotExist
+from flask import session
 
 def get_slug(title):
     slug = unicodedata.normalize('NFKD', unicode(title))
@@ -12,11 +11,8 @@ def get_slug(title):
     slug = re.sub(r'[-]+', '-', slug)
     return slug
 
-def get_or_create_user(data):
-    try:
-        user = User.objects.get(facebook_id=data['id'])
-    except DoesNotExist:
-        user = User.objects.create(facebook_id=data['id'], email=data['email'], name=data['name'])
-    return user
-
+def user_logged(session_instance=None):
+    if session_instance == None:
+        session_instance = session
+    return ('current_user' in session_instance.keys())
 
