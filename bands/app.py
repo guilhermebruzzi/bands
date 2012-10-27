@@ -3,10 +3,9 @@
 
 import os
 from flask import Flask, redirect, url_for, session, request, render_template
-from config import app, facebook
+from config import app, facebook, QUESTIONS_PESQUISA
 from helpers import user_logged
-from models import Answer
-from controllers import get_or_create_user, get_or_create_questions, validate_answers, create_answers
+from controllers import get_or_create_user, validate_answers, create_answers
 
 @app.route('/')
 def index():
@@ -21,18 +20,11 @@ def pesquisa():
 
     post_data = request.form
 
-    #  Apagar depois
-    questions = get_or_create_questions(["Teste?"])
-    answer = Answer(answer="Teste1", user=current_user)
-    questions[0].answers = [answer]
-    questions[0].save()
-    #  Apagar depois
-
     if request.method == 'POST':
         if validate_answers(post_data):
-            create_answers(post_data)
+            create_answers(post_data, current_user)
 
-    return render_template('pesquisa.html', current_user=current_user, questions=questions, post_data=post_data)
+    return render_template('pesquisa.html', current_user=current_user, questions=QUESTIONS_PESQUISA, post_data=post_data)
 
 @app.route('/login/')
 def login():

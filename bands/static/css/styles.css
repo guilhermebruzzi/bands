@@ -20,8 +20,18 @@ header h1 {
     padding-bottom: 45px;
 }
 
+section{
+    margin: 5px auto;
+}
+
+textarea {
+    resize: none;
+    width: 550px;
+    height: 220px;
+}
+
 .hidden{
-    visibility: hidden;
+    display: none !important;
 }
 
 footer {

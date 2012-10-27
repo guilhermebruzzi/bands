@@ -1,5 +1,6 @@
 {% extends "master.html" %}
 {% block title %}Pesquisa{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pesquisa.css') }}" />{% endblock %}
 {% block content %}
     <header itemscope itemtype="http://schema.org/Person">
 
@@ -8,7 +9,7 @@
         <span itemprop="name" class="name">{{ current_user.name }}</span>
 
     </header>
-    <section>
+    <section class="feedback">
         <p>
             Quer concorrer a contas Premium, ser avisado quando o site for lançado e ter vantagem nos sorteios que iremos fazer no início?
         </p>
@@ -18,21 +19,19 @@
 
         <form method=post action="">
 
-            <section class="question_main">
+            <section class="question-main">
 
-                <span class="question">Qual opção se enquadra melhor no seu perfil?</span>
+                <span class="question">Você é músico?</span>
 
-                <input id="answer_membro_de_banda" name="answer_main" class="answer_main" type="radio" value="membro_de_banda" />
-                <label for="answer_membro_de_banda">Sou integrante de uma banda.</label>
+                <div class="answer_main">
+                    <input id="answer_musico" data-class-name-to-show="musico" name="answer_main" class="answer_main" type="radio" value="musico" />
+                    <label for="answer_musico">Sim (membros de banda, músico independente ou músico sem banda)</label>
+                </div>
 
-                <input id="answer_musico_independente" name="answer_main" class="answer_main" type="radio" value="musico_independente" />
-                <label for="answer_musico_independente">Sou um músico independente.</label>
-
-                <input id="answer_musico_sem_banda" name="answer_main" class="answer_main" type="radio" value="musico_sem_banda" />
-                <label for="answer_musico_sem_banda">Sou músico, mas não tenho banda.</label>
-
-                <input id="answer_fa" name="answer_main" class="answer_main" type="radio" value="fa" />
-                <label for="answer_fa">Gosto de música, mas não sou músico.</label>
+                <div class="answer_main">
+                    <input id="answer_fa" data-class-name-to-show="fa" name="answer_main" class="answer_main" type="radio" value="fa" />
+                    <label for="answer_fa">Não.</label>
+                </div>
 
             </section>
 
@@ -40,19 +39,39 @@
             <section id="questions" class="questions hidden">
 
                 {% for question in questions %}
-                    {% set answer_value = question.answers[1] %}
-                    {% if post_data %}
-                        {% set answer_value = post_data.answers[loop.counter] %}
+                    {% set question_index = loop.index0 %}
+
+                    <span class="question {{ question.class_name }}">{{ question.question }}</span>
+
+                    {% if question.type == "textarea" %}
+
+                        <div class="answer">
+                            <textarea id="answers{{ question_index }}"
+                                      name="answers{{ question_index }}" class="{{ question.class_name }}"></textarea>
+                        </div>
+
+                    {% elif question.type == "checkbox_textarea" %}
+
+                        {% for answer in question.answers %}
+                            <div class="answer">
+                                <input type="checkbox" id="answers{{ question_index }}{{ loop.index0 }}"
+                                       name="answers{{ question_index }}" class="{{ question.class_name }}" value="{{ answer }}" />
+
+                                <label for="answers{{ question_index }}{{ loop.index0 }}" class="{{ question.class_name }}">{{ answer }}</label>
+                            </div>
+                        {% endfor %}
+
+                        <div class="answer">
+                            <label for="answers{{ question__index }}" class="{{ question.class_name }} label-outros">{{ question.outros }}</label>
+                            <textarea id="answers_outros{{ question_index }}" name="answers_outros{{ question_index }}"
+                                      class="{{ question.class_name }}"></textarea>
+                        </div>
+
                     {% endif %}
 
-                    <span class="question">{{- question.question -}}</span><br />
-                    {% for answer in question.answers %}
-                        <textarea id="answers{{ loop.counter0 }}" name="answers">{{ answer.answer }}</textarea>
-                    {%- endfor -%}
+                {% endfor %}
 
-                {%- endfor -%}
-
-                <input type=submit value="Enviar" />
+                <input type=submit value="Pronto, acabou." />
 
             </section>
         </form>

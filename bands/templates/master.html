@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        {% block css %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
         
     {% endblock %}
@@ -15,7 +16,7 @@
         <h3 itemprop="name">Bands</h3>
 
     </header>
-    <section>
+    <section class="container">
 
         {% block content %}{% endblock %}
 

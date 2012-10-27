@@ -1,11 +1,49 @@
-var answer_main_nodes = document.getElementsByClassName('answer_main')
+function showElementsOfAClass(className){
+    var classElements = document.querySelectorAll('.' + className);
+    for (var index = 0; index < classElements.length; index++){
+        var element = classElements[index];
+        element.classList.remove("hidden");
+    }
+}
 
-for (var answer_index = 0; answer_index < answer_main_nodes.length; answer_index++){
+function hideElementsOfAClass(className){
+    var classElements = document.querySelectorAll('.' + className);
+    for (var index = 0; index < classElements.length; index++){
+        var element = classElements[index];
+        element.classList.add("hidden");
+    }
+}
 
-    var answer_main_node = answer_main_nodes[answer_index]
+function toggleAllAnswers(classNameToShow){
+    var classesNames = ['musico', 'fa'];
 
-    answer_main_node.addEventListener('click', function(event) {
-        document.getElementById('questions').classList.remove("hidden")
-    }, false);
+    for (var classNameIndex in classesNames){
+        var className = classesNames[classNameIndex];
+
+        if(className == classNameToShow){
+            showElementsOfAClass(className);
+        }
+        else{
+            hideElementsOfAClass(className);
+        }
+    }
 
 }
+
+function showElements(event){
+    document.querySelector('#questions').classList.remove("hidden");
+    var classNameToShow = this.dataset.classNameToShow;
+    toggleAllAnswers(classNameToShow)
+}
+
+function main (){
+    var answerMainNodes = document.querySelectorAll('input.answer_main');
+
+    for (var answerIndex = 0; answerIndex < answerMainNodes.length; answerIndex++){
+        var answerMainNode = answerMainNodes[answerIndex];
+
+        answerMainNode.addEventListener('click', showElements, false);
+    }
+}
+
+main();
