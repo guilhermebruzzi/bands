@@ -1,4 +1,4 @@
-section.feedback{
+section.feedback, section.feedback-success{
     margin: auto;
 }
 
@@ -20,4 +20,12 @@ section.question-main span.question, section.questions span.question{
 
 section.questions input[type=submit]{
     margin: 10px auto;
+}
+
+section.feedback-success h2{
+    margin: 15px auto;
+}
+
+section.feedback-success h2.thank-you{
+    font-weight: bold;
 }

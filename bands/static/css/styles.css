@@ -110,3 +110,32 @@ footer a.new_link{
     text-decoration: none;
     white-space: nowrap;
 }
+
+/*Botão azul*/
+
+.shiny-blue {
+    background-color: #759AE9;
+    background-image: -moz-linear-gradient(center top , #759AE9 0%, #376FE0 50%, #1A5AD9 50%, #2463DE 100%);
+    border-color: #1F58CC #1B4DB3 #174299;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 2px 0 rgba(57, 140, 255, 0.8) inset;
+    color: #FFFFFF;
+    font: bold 12px/1 "helvetica neue",helvetica,arial,sans-serif;
+    padding: 7px 0;
+    text-shadow: 0 -1px 1px #1A5AD9;
+    width: 150px;
+    margin-top: 60px;
+}
+.shiny-blue:hover {
+    background-color: #5D89E8;
+    background-image: -moz-linear-gradient(center top , #5D89E8 0%, #2261E0 50%, #044BD9 50%, #0D53DE 100%);
+    cursor: pointer;
+}
+.shiny-blue:active {
+    border-color: #1B4DB3 #174299 #133780;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 5px 2px #1A47A0 inset, 0 1px 0 #EEEEEE;
+}

@@ -1,5 +1,6 @@
 {% extends "master.html" %}
 {% block title %}Pesquisa{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pesquisa.css') }}" />{% endblock %}
 {% block content %}
     <header itemscope itemtype="http://schema.org/Person">
 
@@ -8,7 +9,9 @@
         <span itemprop="name" class="name">{{ current_user.name }}</span>
 
     </header>
-    <section>
+    <section class="feedback-success">
+        <h2 class="thank-you">Obrigado por responder a pesquisa!</h2>
+        <h2>Em breve entraremos em contato para divulgarmos mais novidades sobre o site.</h2>
     </section>
 
 {% endblock %}

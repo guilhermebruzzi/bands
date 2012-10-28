@@ -13,6 +13,15 @@ app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku ac
 def index():
     return render_template("index.html")
 
+@app.route('/pesquisa-sucesso/', methods=['GET'])
+def pesquisa_sucesso():
+    if not user_logged():
+        return redirect(url_for('index'))
+
+    current_user=session['current_user']
+
+    return render_template('pesquisa_success.html', current_user=current_user)
+
 @app.route('/pesquisa/', methods=['GET', 'POST'])
 def pesquisa():
     if not user_logged():
@@ -25,6 +34,8 @@ def pesquisa():
     if request.method == 'POST':
         if validate_answers(post_data):
             create_answers(post_data, current_user)
+            return redirect(url_for('pesquisa_sucesso'))
+
 
     return render_template('pesquisa.html', current_user=current_user, questions=QUESTIONS_PESQUISA, post_data=post_data)
 

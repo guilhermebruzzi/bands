@@ -5,6 +5,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <!--[if lt IE 9]>
+         <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script> <!-- Para funcionar html5 no IE -->
+        <![endif]-->
         {% block css %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
         
