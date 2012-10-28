@@ -47,10 +47,12 @@ def create_answers(data, current_user):
 
         if QUESTIONS_PESQUISA[question_pesquisa_index]["class_name"] == data["answer_main"]:
 
-            if not type(data["answers%d" % question_pesquisa_index]) is list:
-                data["answers%d" % question_pesquisa_index] = [data["answers%d" % question_pesquisa_index]]
+            data_answers = data["answers%d" % question_pesquisa_index]
 
-            for answer in data["answers%d" % question_pesquisa_index]:
+            if not type(data["answers%d" % question_pesquisa_index]) is list:
+                data_answers = [data_answers]
+
+            for answer in data_answers:
                 answer_instance = Answer(answer=answer, user=current_user)
                 questions[question_index].answers.append(answer_instance)
 

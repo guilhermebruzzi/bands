@@ -5,3 +5,4 @@ https://github.com/sbook/flask-mongoengine/tarball/master
 ipdb==0.7
 nose==1.2.1
 nosexcover==1.0.7
+gunicorn==0.14.6

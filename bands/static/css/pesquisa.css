@@ -1,0 +1,23 @@
+section.feedback{
+    margin: auto;
+}
+
+section.questions div.answer label.label-outros {
+    display: inline-block;
+    width: 100%;
+    margin: 6px auto;
+}
+
+section.questions span.question{
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+section.question-main span.question, section.questions span.question{
+    font-weight: bold;
+}
+
+section.questions input[type=submit]{
+    margin: 10px auto;
+}

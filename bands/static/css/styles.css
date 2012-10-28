@@ -9,19 +9,33 @@ body {
 
 header {
     border-bottom: solid 1px #ccc;
+    margin-bottom: 15px;
 }
 
 header h1 {
     background: url('../img/logo.png') no-repeat;
-    width: 475px;
-    height: 68px;
+    width: 271px;
+    height: 118px;
     text-indent: -99999px;
-    margin: 80px auto 0 auto;
-    padding-bottom: 45px;
+    margin: 0px auto 0px auto;
+}
+
+h2{
+    font-size: 18px;
+    margin: 15px auto;
 }
 
 section{
     margin: 5px auto;
+}
+
+section.container p{
+    margin-bottom: 10px;
+    line-height: 22px;
+}
+
+section.container p b{
+    font-weight: bold;
 }
 
 textarea {
@@ -45,15 +59,54 @@ footer {
 }
 
 footer a {
-    color: #a71818;
+    color: #0374B8;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #c81d1d;
+    color: #3590C6;
 }
 
 footer a.new_link{
     font-weight: bold;
     font-size: 16px;
+}
+
+/* Facebook Button*/
+
+.btn-facebook:before {
+    background-position: 0 0;
+    border-right: 1px solid #465F94;
+    margin: 0 1em 0 -1em;
+}
+.btn-auth:before {
+    background: url('../img/facebook-icon.png') no-repeat scroll transparent;
+    content: "";
+    float: left;
+    height: 36px;
+    width: 36px;
+}
+.btn-auth.large {
+    font-size: 20px;
+    height: 36px;
+    line-height: 36px;
+}
+.btn-facebook {
+    background-color: #5872A7;
+    background-image: linear-gradient(#637BAD, #5872A7);
+    border-color: #29447E #29447E #1A356E;
+    box-shadow: 0 1px 0 #879AC0 inset;
+    color: #FFFFFF;
+}
+.btn-auth {
+    -moz-box-sizing: content-box;
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0 1em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
 }

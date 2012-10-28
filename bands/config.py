@@ -95,3 +95,6 @@ QUESTIONS_PESQUISA = [
         "outros": u"Dê outro(s) nome(s) que acharia interessante:"
     },
 ]
+
+def get_app():
+    return app

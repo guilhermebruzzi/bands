@@ -3,9 +3,11 @@
 
 import os
 from flask import Flask, redirect, url_for, session, request, render_template
-from config import app, facebook, QUESTIONS_PESQUISA
+from config import get_app, facebook, QUESTIONS_PESQUISA
 from helpers import user_logged
 from controllers import get_or_create_user, validate_answers, create_answers
+
+app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
 @app.route('/')
 def index():
