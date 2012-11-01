@@ -5,7 +5,7 @@ import os
 from flask import Flask, redirect, url_for, session, request, render_template
 from config import get_app, facebook, QUESTIONS_PESQUISA
 from helpers import user_logged
-from controllers import get_or_create_user, validate_answers, create_answers
+from controllers import get_or_create_user, validate_answers, save_answers
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -33,7 +33,7 @@ def pesquisa():
 
     if request.method == 'POST':
         if validate_answers(post_data):
-            create_answers(post_data, current_user)
+            save_answers(post_data, current_user)
             return redirect(url_for('pesquisa_sucesso'))
 
 

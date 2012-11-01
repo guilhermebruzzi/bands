@@ -36,8 +36,23 @@ def validate_answers(data):
 
     return False
 
+def __create_list_of_answers_for_a_question__(key, data, user, answers_original):
+    answers = []
+    if key in data.keys():
+        data_answers = data[key]
 
-def create_answers(data, current_user):
+        if not type(data_answers) is list:
+            data_answers = [data_answers]
+
+        for answer in data_answers:
+            if answer != "":
+                answer_instance = Answer(answer=answer, user=user)
+                if not answer_instance in answers_original:
+                    answers.append(answer_instance)
+
+    return answers
+
+def save_answers(data, current_user):
 
     questions = get_or_create_questions([question["question"] for question in QUESTIONS_PESQUISA if question["class_name"] == data["answer_main"]])
 
@@ -47,14 +62,15 @@ def create_answers(data, current_user):
 
         if QUESTIONS_PESQUISA[question_pesquisa_index]["class_name"] == data["answer_main"]:
 
-            data_answers = data["answers%d" % question_pesquisa_index]
+            answers_created = __create_list_of_answers_for_a_question__(key="answers%d" % question_pesquisa_index, data=data,
+                user=current_user, answers_original=questions[question_index].answers)
 
-            if not type(data["answers%d" % question_pesquisa_index]) is list:
-                data_answers = [data_answers]
+            questions[question_index].answers.extend(answers_created)
 
-            for answer in data_answers:
-                answer_instance = Answer(answer=answer, user=current_user)
-                questions[question_index].answers.append(answer_instance)
+            answers_outros_created = __create_list_of_answers_for_a_question__(key="answers_outros%d" % question_pesquisa_index, data=data,
+                user=current_user, answers_original=questions[question_index].answers)
+
+            questions[question_index].answers.extend(answers_outros_created)
 
             questions[question_index].save()
 
