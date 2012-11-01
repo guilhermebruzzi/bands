@@ -72,6 +72,28 @@ class ControllersTest(TestCase):
             answers_users=[("Answer0", user_guilherme)])
 
 
+    def get_all_answers_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        save_answers(self.valid_data1, user_guilherme)
+
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        save_answers(self.valid_data2, user_guto)
+
+        questions_and_all_answers = get_questions_and_all_answers()
+
+        self.assertIn("question", questions_and_all_answers[0].keys())
+        self.assertIn("answers", questions_and_all_answers[0].keys())
+
+        self.assertEqual(len(questions_and_all_answers), 5)
+
+        self.assertEqual(questions_and_all_answers[0]["answers"][0], "Answer0") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[0]["question"], u"Quais as suas bandas (ou músicos) favoritas?")
+        self.assertEqual(questions_and_all_answers[3]["answers"][0], "Answer3") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[3]["question"], u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?")
+        self.assertEqual(questions_and_all_answers[4]["answers"][1], "Answer_outros7-0, Answer_outros7-1") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[4]["question"], u"Que nome para esse produto você gosta mais?")
+
+
     def get_or_create_users_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         self.__assert_user__(user_guilherme, self.data_user_guilherme)

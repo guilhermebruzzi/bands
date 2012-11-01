@@ -2,16 +2,32 @@
 # -*- coding: utf-8 -*-
 
 import os
-from flask import Flask, redirect, url_for, session, request, render_template
+from flask import Flask, redirect, url_for, session, request, render_template, abort
 from config import get_app, facebook, QUESTIONS_PESQUISA
-from helpers import user_logged
-from controllers import get_or_create_user, validate_answers, save_answers
+from helpers import user_logged, prepare_post_data
+from controllers import get_or_create_user, validate_answers, save_answers, get_questions_and_all_answers
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
+
+@app.route('/resultados-gerais/<password>/', methods=['GET'])
+def resultados(password):
+    if not user_logged():
+        return redirect(url_for('index'))
+
+    current_user=session['current_user']
+
+    password_compare = os.environ["PASSWORD_RESULTS"] if os.environ.has_key("PASSWORD_RESULTS") else "kyb@1234"
+    if password == password_compare:
+        questions_and_all_answers = get_questions_and_all_answers()
+        return render_template('resultados_gerais.html', current_user=current_user,
+                                questions_and_all_answers=questions_and_all_answers)
+    else:
+        abort(404)
 
 @app.route('/')
 def index():
     return render_template("index.html")
+
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
 def pesquisa_sucesso():
@@ -22,6 +38,7 @@ def pesquisa_sucesso():
 
     return render_template('pesquisa_success.html', current_user=current_user)
 
+
 @app.route('/pesquisa/', methods=['GET', 'POST'])
 def pesquisa():
     if not user_logged():
@@ -29,7 +46,7 @@ def pesquisa():
 
     current_user=session['current_user']
 
-    post_data = request.form
+    post_data = prepare_post_data()
 
     if request.method == 'POST':
         if validate_answers(post_data):
@@ -37,7 +54,9 @@ def pesquisa():
             return redirect(url_for('pesquisa_sucesso'))
 
 
-    return render_template('pesquisa.html', current_user=current_user, questions=QUESTIONS_PESQUISA, post_data=post_data)
+    return render_template('pesquisa.html', current_user=current_user,
+                            questions=QUESTIONS_PESQUISA, post_data=post_data)
+
 
 @app.route('/login/')
 def login():
@@ -45,7 +64,8 @@ def login():
     return facebook.authorize(
         callback=facebook_url
     )
-    
+
+
 @app.route('/login/authorized/')
 @facebook.authorized_handler
 def facebook_authorized(resp):

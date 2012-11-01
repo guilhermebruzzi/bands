@@ -25,9 +25,29 @@ def get_question(question_text):
     return Question.objects.filter(question=question_text).first()
 
 
+
 def get_all_answers_from_question(question_text):
     question = get_question(question_text)
     return question.answers
+
+
+def __sort_and_make_unique_answers__(answers_instances):
+    answers = [answer.answer for answer in answers_instances]
+    answers = list(set(answers))
+    answers = sorted(answers)
+    return answers
+
+
+def get_questions_and_all_answers():
+    questions_and_all_answers = []
+    questions_text = []
+    for question_pesquisa in QUESTIONS_PESQUISA:
+        question_text = question_pesquisa["question"]
+        if not question_text in questions_text:
+            questions_text.append(question_text)
+            answers = __sort_and_make_unique_answers__(answers_instances=get_all_answers_from_question(question_text))
+            questions_and_all_answers.append({"question": question_text, "answers": answers})
+    return questions_and_all_answers
 
 
 def validate_answers(data):
@@ -35,6 +55,7 @@ def validate_answers(data):
         return True
 
     return False
+
 
 def __create_list_of_answers_for_a_question__(key, data, user, answers_original):
     answers = []
@@ -51,6 +72,7 @@ def __create_list_of_answers_for_a_question__(key, data, user, answers_original)
                     answers.append(answer_instance)
 
     return answers
+
 
 def save_answers(data, current_user):
 
@@ -75,4 +97,3 @@ def save_answers(data, current_user):
             questions[question_index].save()
 
             question_index += 1
-
