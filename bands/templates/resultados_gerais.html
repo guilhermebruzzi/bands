@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+{% block title %}Bands - Resultados Gerais{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/resultados_gerais.css') }}" />{% endblock %}
+{% block content %}
+    <header itemscope itemtype="http://schema.org/Person">
+
+        <meta itemprop="email" content="{{ current_user.email }}" />
+        <img itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
+        <span itemprop="name" class="name">{{ current_user.name }}</span>
+
+    </header>
+    <section class="resultados-gerais">
+        {% for question_and_all_answers in questions_and_all_answers %}
+            <h2>{{ question_and_all_answers.question }}</h2>
+            <ul>
+                {% for answer in question_and_all_answers.answers %}
+                    <li>{{ answer }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </section>
+
+{% endblock %}
+
