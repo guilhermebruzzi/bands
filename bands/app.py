@@ -9,6 +9,12 @@ from controllers import get_or_create_user, validate_answers, save_answers, get_
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
+
+@app.route('/google3d434de8eb17df82.html')
+def google_webmaster():
+    return render_template("google_web_master.html")
+
+
 @app.route('/resultados-gerais/<password>/', methods=['GET'])
 @need_to_be_admin
 def resultados(password):
