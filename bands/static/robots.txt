@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /pesquisa/
+Sitemap: http://www.bands.com.br/sitemap.xml

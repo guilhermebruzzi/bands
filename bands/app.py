@@ -2,12 +2,26 @@
 # -*- coding: utf-8 -*-
 
 import os
-from flask import Flask, redirect, url_for, session, request, render_template, abort
-from config import get_app, facebook, QUESTIONS_PESQUISA
+from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
+from config import get_app, facebook, QUESTIONS_PESQUISA, project_root
 from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin
 from controllers import get_or_create_user, validate_answers, save_answers, get_questions_and_all_answers
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
+
+
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    response = make_response(open('%s/bands/static/sitemap.xml' % project_root).read())
+    response.headers["Content-type"] = "text/plain"
+    return response
+
+
+@app.route('/robots.txt', methods=['GET'])
+def robots():
+    response = make_response(open('%s/bands/static/robots.txt' % project_root).read())
+    response.headers["Content-type"] = "text/plain"
+    return response
 
 
 @app.route('/google3d434de8eb17df82.html')

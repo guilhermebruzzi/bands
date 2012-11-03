@@ -1,10 +1,28 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 
 from flask import Flask
 from flaskext.oauth import OAuth
 from flaskext.mongoengine import MongoEngine
+
+def add_path():
+    global project_root
+    file_path = os.path.abspath(os.path.dirname(__file__))
+    project_root = os.path.abspath("%s/../" % file_path)
+    sys.path.insert(0, project_root)
+    return project_root
+
+project_root = add_path()
+
+def import_folder(folder_name, base_path = None):
+    full_path = os.path.join(base_path, folder_name)
+    folder = os.path.abspath(full_path)
+    sys.path.insert(0, folder)
+
+
+import_folder(folder_name='bands', base_path=project_root)
 
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
