@@ -31,7 +31,7 @@ QUESTIONS_PESQUISA = [
     {
         "class_name": "musico",
         "type": "checkbox_textarea",
-        "question": u"Quais as suas bandas (ou músicos) favoritas?",
+        "question": u"Quais as suas bandas ou músicos favoritos?",
         "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
         "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
     },
@@ -53,10 +53,10 @@ QUESTIONS_PESQUISA = [
         "class_name": "musico",
         "type": "checkbox_textarea",
         "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
-        "answers": [ u"Venda de ingressos",  u"Merchandising (roupas, acessórios, etc)", u"Histórico da banda",
+        "answers": [ u"Venda de ingressos",  u"Merchandising (cds, roupas, acessórios, etc)", u"Histórico da banda",
                      u"Divulgação de shows e eventos", u"Lista de Integrantes das bandas (atuais e ex-integrantes)",
                      u"Links para redes sociais e site oficial das bandas e músicos",
-                     u"Vídeos das bandas e músicos (shows e clipes)", u"Discografia das bandas e músicos",
+                     u"Vídeos das bandas e músicos (shows e clipes)", u"Músicas das bandas e músicos",
                      u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
                      u"Fãs podendo dar resenhas (pra banda, pro cd, pro show)" ],
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
@@ -71,7 +71,7 @@ QUESTIONS_PESQUISA = [
     {
         "class_name": "fa",
         "type": "checkbox_textarea",
-        "question": u"Quais as suas bandas (ou músicos) favoritas?",
+        "question": u"Quais as suas bandas ou músicos favoritos?",
         "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
         "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
     },
@@ -79,12 +79,12 @@ QUESTIONS_PESQUISA = [
         "class_name": "fa",
         "type": "checkbox_textarea",
         "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
-        "answers": [ u"Venda de ingressos",  u"Merchandising (roupas, acessórios, etc)", u"Histórico da banda",
+        "answers": [ u"Venda de ingressos",  u"Merchandising (cds, roupas, acessórios, etc)", u"Histórico da banda",
                      u"Divulgação de shows e eventos", u"Lista de Integrantes das bandas (atuais e ex-integrantes)",
                      u"Links para redes sociais e site oficial das bandas e músicos",
-                     u"Vídeos das bandas e músicos (shows e clipes)", u"Discografia das bandas e músicos",
+                     u"Vídeos das bandas e músicos (shows e clipes)", u"Músicas das bandas e músicos",
                      u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
-                     u"Fãs podendo dar resenhas (pra banda, pro cd, pro show)" ],
+                     u"Fãs podendo dar reviews (pra banda, pro cd, pro show)" ],
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
     },
     {

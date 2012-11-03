@@ -15,6 +15,7 @@ def add_path():
 project_root = add_path()
 
 os.environ["MONGODB_DB"] = "bands_test"
+os.environ["SECRET_KEY"] = "test key"
 
 def import_folder(folder_name, base_path = None):
     full_path = os.path.join(base_path, folder_name)

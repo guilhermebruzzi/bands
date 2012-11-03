@@ -18,4 +18,5 @@ run: clean
 	@python ${root_dir}/bands/app.py
 
 tests: clean
+	@rm coverage.xml nosetests.xml .coverage 
 	@python ${root_dir}/tests/run.py

@@ -6,6 +6,7 @@ section.questions div.answer label.label-outros {
     display: inline-block;
     width: 100%;
     margin: 6px auto;
+    font-weight: bold;
 }
 
 section.questions span.question{

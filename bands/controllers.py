@@ -41,6 +41,11 @@ def __sort_and_make_unique_answers__(answers_instances):
 def get_questions_and_all_answers():
     questions_and_all_answers = []
     questions_text = []
+
+    question_main_text = u"Você é músico?"
+    answers_main = __sort_and_make_unique_answers__(answers_instances=get_all_answers_from_question(question_main_text))
+    questions_and_all_answers.append({"question": question_main_text, "answers": answers_main})
+
     for question_pesquisa in QUESTIONS_PESQUISA:
         question_text = question_pesquisa["question"]
         if not question_text in questions_text:
@@ -74,11 +79,23 @@ def __create_list_of_answers_for_a_question__(key, data, user, answers_original)
     return answers
 
 
-def save_answers(data, current_user):
+def __save_answer_main__(data, current_user):
+    question_main = get_or_create_questions([u"Você é músico?"])[0]
 
-    questions = get_or_create_questions([question["question"] for question in QUESTIONS_PESQUISA if question["class_name"] == data["answer_main"]])
+    answer_main = __create_list_of_answers_for_a_question__(key="answer_main", data=data,
+        user=current_user, answers_original=question_main.answers)
+
+    question_main.answers.extend(answer_main)
+
+    question_main.save()
+
+
+def save_answers(data, current_user):
+    __save_answer_main__(data, current_user)
 
     question_index = 0
+
+    questions = get_or_create_questions([question["question"] for question in QUESTIONS_PESQUISA if question["class_name"] == data["answer_main"]])
 
     for question_pesquisa_index in range(len(QUESTIONS_PESQUISA)):
 

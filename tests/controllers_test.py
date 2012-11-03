@@ -54,18 +54,18 @@ class ControllersTest(TestCase):
         self.__assert_not_answers__(question=self.__get_question__(pos=6),
             answers_users=[("", user_guilherme)]) #  answers6 não estando presente
 
-        answers = get_all_answers_from_question(u"Quais as suas bandas (ou músicos) favoritas?")
+        answers = get_all_answers_from_question(self.__get_question__(pos=5))
         number_of_answers = len(answers)
         self.assertEqual(number_of_answers, 4) #  pos=0 (3 answers) + pos=5 (1 answer)
 
         # If i ask to save again, it has to maintain the number os answers
         save_answers(self.valid_data2, user_guto)
-        answers = get_all_answers_from_question(u"Quais as suas bandas (ou músicos) favoritas?")
+        answers = get_all_answers_from_question(self.__get_question__(pos=5))
         self.assertEqual(len(answers), number_of_answers)
 
         # If i ask to save with a different user, then they are different answers
         save_answers(self.valid_data2, user_guilherme)
-        answers = get_all_answers_from_question(u"Quais as suas bandas (ou músicos) favoritas?")
+        answers = get_all_answers_from_question(self.__get_question__(pos=5))
         self.assertEqual(len(answers), number_of_answers + 1)
 
         self.__assert_answers__(question=self.__get_question__(pos=5),
@@ -84,14 +84,14 @@ class ControllersTest(TestCase):
         self.assertIn("question", questions_and_all_answers[0].keys())
         self.assertIn("answers", questions_and_all_answers[0].keys())
 
-        self.assertEqual(len(questions_and_all_answers), 5)
+        self.assertEqual(len(questions_and_all_answers), 6)
 
-        self.assertEqual(questions_and_all_answers[0]["answers"][0], "Answer0") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[0]["question"], u"Quais as suas bandas (ou músicos) favoritas?")
-        self.assertEqual(questions_and_all_answers[3]["answers"][0], "Answer3") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[3]["question"], u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?")
-        self.assertEqual(questions_and_all_answers[4]["answers"][1], "Answer_outros7-0, Answer_outros7-1") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[4]["question"], u"Que nome para esse produto você gosta mais?")
+        self.assertEqual(questions_and_all_answers[1]["answers"][0], "Answer0") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[1]["question"], u"Quais as suas bandas ou músicos favoritos?")
+        self.assertEqual(questions_and_all_answers[4]["answers"][0], "Answer3") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[4]["question"], u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?")
+        self.assertEqual(questions_and_all_answers[5]["answers"][1], "Answer_outros7-0, Answer_outros7-1") #  alfabetic order
+        self.assertEqual(questions_and_all_answers[5]["question"], u"Que nome para esse produto você gosta mais?")
 
 
     def get_or_create_users_test(self):
