@@ -31,8 +31,7 @@ app.config.from_pyfile('app.cfg')
 
 for key in app.config.keys():
     if os.environ.has_key(key):
-        type_to_cast = type(app.config[key])
-        app.config[key] = type_to_cast(os.environ[key])
+        app.config[key] = os.environ[key]
 
 oauth = OAuth()
 
