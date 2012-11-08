@@ -20,3 +20,8 @@ run: clean
 tests: clean
 	@rm coverage.xml nosetests.xml .coverage 
 	@python ${root_dir}/tests/run.py
+
+aceitacao: clean
+	@make run &
+	@python ${root_dir}/aceitacao/splinter_test.py
+	@ps aux | awk '(make run && $$0 !~ /awk/){ system("kill -9 "$$2) }'

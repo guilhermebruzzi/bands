@@ -12,12 +12,17 @@ header {
     margin-bottom: 15px;
 }
 
-header h1 {
-    background: url('../img/logo.png') no-repeat;
-    width: 271px;
-    height: 118px;
+header h1.logo {
+    background: url('/static/img/logo.jpg') no-repeat;
+    width: 128px;
+    height: 100px;
     text-indent: -99999px;
-    margin: 0px auto 0px auto;
+    margin: 10px auto;
+}
+
+header h1.logo a{
+    display: block;
+    height: 100%;
 }
 
 h2{
@@ -59,12 +64,12 @@ footer {
 }
 
 footer a {
-    color: #0374B8;
+    color: #a00902;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #3590C6;
+    color: #d4312a;
 }
 
 footer a.new_link{

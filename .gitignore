@@ -33,3 +33,5 @@ pip-log.txt
 .idea
 coverage.xml
 nosetests.xml
+bands/static/.webassets-cache/
+

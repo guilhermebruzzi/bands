@@ -3,9 +3,11 @@
 import os
 import sys
 
+
 from flask import Flask
 from flaskext.oauth import OAuth
 from flaskext.mongoengine import MongoEngine
+from flask.ext import assets
 
 def add_path():
     global project_root
@@ -44,6 +46,8 @@ facebook = oauth.remote_app('facebook',
 )
 
 db = MongoEngine(app)
+assets = assets.Environment()
+assets.init_app(app)
 
 QUESTIONS_PESQUISA = [
     {

@@ -1,8 +1,12 @@
 Flask==0.9
+yuicompressor==2.4.7
 derpconf==0.3.0
 Flask-OAuth==0.11
+Flask-Assets==0.7
 https://github.com/sbook/flask-mongoengine/tarball/master
 ipdb==0.7
 nose==1.2.1
 nosexcover==1.0.7
 gunicorn==0.14.6
+splinter==0.4.8
+
