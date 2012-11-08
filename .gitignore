@@ -33,6 +33,5 @@ pip-log.txt
 .idea
 coverage.xml
 nosetests.xml
-bands/static/.webassets-cache/
-bands/static/css/gen/
-bands/static/js/gen/
+bands/static/.webassets-cache/*
+
