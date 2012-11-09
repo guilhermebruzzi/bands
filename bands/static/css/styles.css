@@ -85,7 +85,7 @@ footer a.new_link{
     margin: 0 1em 0 -1em;
 }
 .btn-auth:before {
-    background: url('../img/facebook-icon.png') no-repeat scroll transparent;
+    background: url('/static/img/facebook-icon.png') no-repeat scroll transparent;
     content: "";
     float: left;
     height: 36px;
