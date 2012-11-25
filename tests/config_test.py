@@ -4,7 +4,7 @@
 from unittest import TestCase
 from config import get_app
 
-class HelpersTest(TestCase):
+class ConfigTest(TestCase):
 
     def setUp(self):
         self.app = get_app()
@@ -19,4 +19,5 @@ class HelpersTest(TestCase):
         self.assertEqual(self.app.config['DEBUG'], True)
         self.assertEqual(self.app.config['FACEBOOK_APP_ID'], '288328027943629')
         self.assertEqual(self.app.config['FACEBOOK_APP_SECRET'], '84dac36688078a8029aad1dce9f42bb7')
+        self.assertEqual(self.app.config['ASSETS_DEBUG'], False)
 

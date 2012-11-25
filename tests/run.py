@@ -28,7 +28,7 @@ import_folder(folder_name='bands', base_path=project_root)
 def run_tests():
     result = None
     try:
-        params = ["nosetests", "--with-xcoverage", "--with-xunit", "--cover-package", ["tests"], "--match", "(?:^|[\b_\./-])[Tt]est"]
+        params = ["nosetests", "--with-xcoverage", "--with-xunit", "-w", "tests", "--cover-package", ["bands", "tests"], "--match", "(?:^|[\b_\./-])[Tt]est"]
         result = nose.run(argv=params)
 
     except Exception as e:
