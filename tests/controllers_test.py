@@ -66,6 +66,32 @@ class ControllersTest(TestCase):
                              "musico-solucao": [u""],
                              "musico-nome": [u"Bands"]}
 
+        self.old_question = [
+            {
+                "slug": "musico-favoritos",
+                "class_name": "musico",
+                "type": "checkbox_textarea",
+                "question": u"Quais as suas bandas ou músicos favoritos?",
+                "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
+                "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
+            }
+        ]
+
+        self.data_to_question_change = {
+            "musico-favoritos": [u"The Beatles", u"Chico Buarque"],
+        }
+
+        self.new_question = [
+            {
+                "slug": "musico-favoritos",
+                "class_name": "musico",
+                "type": "checkbox_textarea",
+                "question": u"Quais as suas bandas favoritas?",
+                "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
+                "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
+            }
+        ]
+
 
     def tearDown(self):
         self.__delete_all__(User)
@@ -109,6 +135,17 @@ class ControllersTest(TestCase):
         self.__assert_answers__("fa-favoritos", user_guto, u"Foo Fighters")
         self.__assert_answers__("fa-nome", user_guto, [u"Bands", "Outro nome, Mais um nome"])
         self.__assert_answers__("fa-nome_outros", user_guto, [])
+
+
+    def change_text_of_a_question_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        save_answers(self.data_to_question_change, user_guilherme, self.old_question)
+        question = get_question("musico-favoritos")
+        self.assertEqual(question.question, u"Quais as suas bandas ou músicos favoritos?")
+
+        save_answers(self.data_to_question_change, user_guilherme, self.new_question)
+        question = get_question("musico-favoritos")
+        self.assertEqual(question.question, u"Quais as suas bandas favoritas?")
 
 
     def dont_save_empty_answers_test(self):

@@ -109,7 +109,7 @@ def __save_question_answers__(question, data, current_user):
         __create_answers_for_question__(question=question, answers=data[key], user=current_user)
 
 
-def save_answers(data, current_user):
+def save_answers(data, current_user, *questions_lists):
     for key, value in data.items():
         for i in range(len(value)):
             if value[i] == "":
@@ -117,8 +117,11 @@ def save_answers(data, current_user):
         if len(value) == 0:
             del data[key]
 
-    for question in MAIN_QUESTIONS:
-        __save_question_answers__(question, data, current_user)
+    if len(questions_lists) == 0:
+        questions_lists = []
+        questions_lists.append(MAIN_QUESTIONS)
+        questions_lists.append(QUESTIONS_PESQUISA)
 
-    for question in QUESTIONS_PESQUISA:
-        __save_question_answers__(question, data, current_user)
+    for questions_list in questions_lists:
+        for question in questions_list:
+            __save_question_answers__(question, data, current_user)
