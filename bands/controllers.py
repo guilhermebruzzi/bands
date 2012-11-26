@@ -25,17 +25,22 @@ def get_random_users(max=8):
     return (users_random, len(users))
 
 
+def get_or_create_question(question_data):
+    try:
+        question = Question.objects.get(slug=question_data["slug"])
+        if question.question != question_data["question"]:
+            question.question = question_data["question"]
+            question.save()
+        return question
+    except DoesNotExist:
+        question = Question.objects.create(slug=question_data["slug"], question=question_data["question"])
+        return question
+
+
 def get_or_create_questions(questions_data):
     questions = []
     for question_data in questions_data:
-        try:
-            question = Question.objects.get(slug=question_data["slug"])
-            if question.question != question_data["question"]:
-                question.question = question_data["question"]
-                question.save()
-        except DoesNotExist:
-            question = Question.objects.create(slug=question_data["slug"], question=question_data["question"])
-        questions.append(question)
+        questions.append(get_or_create_question(question_data))
     return questions
 
 
@@ -74,33 +79,46 @@ def get_all_questions_and_all_answers():
 
 
 def validate_answers(data):
-    if "musico-ou-fa" in data.keys() and (data["musico-ou-fa"] == "musico" or data["musico-ou-fa"] == "fa"):
+    if "musico-ou-fa" in data.keys() and (data["musico-ou-fa"] == ["musico"] or data["musico-ou-fa"] == ["fa"]):
         return True
 
     return False
 
 
 def __create_answers_for_question__(question, answers, user):
+    questionModel = get_or_create_question(question)
+
     if not type(answers) is list:
         answers = [answers]
 
     for answer in answers:
         if answer != "":
             answer_instance = Answer(answer=answer, user=user)
-            if not answer_instance in question.answers:
-                question.answers.append(answer_instance)
+            if not answer_instance in questionModel.answers:
+                questionModel.answers.append(answer_instance)
 
-    question.save()
+    questionModel.save()
+
+
+def __save_question_answers__(question, data, current_user):
+    if question["slug"] in data.keys():
+        __create_answers_for_question__(question=question, answers=data[question["slug"]], user=current_user)
+
+    key = "%s%s" % (question["slug"], "_outros")
+    if key in data.keys():
+        __create_answers_for_question__(question=question, answers=data[key], user=current_user)
 
 
 def save_answers(data, current_user):
-    questions = get_or_create_questions(MAIN_QUESTIONS)
-    questions.extend(get_or_create_questions(QUESTIONS_PESQUISA))
+    for key, value in data.items():
+        for i in range(len(value)):
+            if value[i] == "":
+                del value[i]
+        if len(value) == 0:
+            del data[key]
 
-    for question in questions:
-        if question.slug in data.keys():
-            __create_answers_for_question__(question=question, answers=data[question.slug], user=current_user)
+    for question in MAIN_QUESTIONS:
+        __save_question_answers__(question, data, current_user)
 
-        key = "%s%s" % (question.slug, "_outros")
-        if key in data.keys():
-            __create_answers_for_question__(question=question, answers=data[key], user=current_user)
+    for question in QUESTIONS_PESQUISA:
+        __save_question_answers__(question, data, current_user)

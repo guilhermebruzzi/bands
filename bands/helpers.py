@@ -34,6 +34,4 @@ def prepare_post_data():
     post_data = {}
     for key in flask.request.form:
         post_data[key] = flask.request.form.getlist(key)
-        if len(post_data[key]) == 1:
-            post_data[key] = post_data[key][0]
     return post_data

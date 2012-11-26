@@ -11,34 +11,33 @@ class ControllersTest(TestCase):
     def setUp(self):
         self.data_user_guilherme = {"id": "bands2012", "email": "guibruzzi@gmail.com", "name": "Guilherme"}
         self.data_user_guto = {"id": "bands2013", "email": "guto@marzagao.com", "name": "Guto"}
-        self.__delete_all__(User)
 
-        self.questions_txt = ["Voce quer ser meu amigo?", "Voce me ama?"]
+        self.__delete_all__(User)
         self.__delete_all__(Question)
 
         self.invalid_vazio = {}
-        self.invalid_musico_fa_vazio = {"musico-ou-fa": "",
-                                        "some_slug": "Some value"}
-        self.invalid_musico_fa = {"musico-ou-fa": "invalid_option",
-                                  "some_slug": "Some value"}
+        self.invalid_musico_fa_vazio = {"musico-ou-fa": [""],
+                                        "some_slug": ["Some value"]}
+        self.invalid_musico_fa = {"musico-ou-fa": ["invalid_option"],
+                                  "some_slug": ["Some value"]}
 
-        self.valid_musico = {"musico-ou-fa": "musico",
+        self.valid_musico = {"musico-ou-fa": ["musico"],
                             "musico-favoritos": [u"The Beatles", u"Chico Buarque"],
-                            "musico-favoritos_outros": u"Cláudia Leitte, Turma do Balão Mágico",
-                            "musico-dificuldades": u"Vender os ingressos dos meus shows e eventos",
-                            "musico-dificuldades_outros": u"",
-                            "musico-solucao": u"",
-                            "musico-nome": u"Bands"}
+                            "musico-favoritos_outros": [u"Cláudia Leitte, Turma do Balão Mágico"],
+                            "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
+                            "musico-dificuldades_outros": [u""],
+                            "musico-solucao": [u""],
+                            "musico-nome": [u"Bands"]}
 
-        self.valid_fa = {"musico-ou-fa": "fa",
-                         "fa-favoritos": u"Foo Fighters",
-                         "fa-nome": "Bands",
-                         "fa-nome_outros": "Outro nome, Mais um nome"}
+        self.valid_fa = {"musico-ou-fa": ["fa"],
+                         "fa-favoritos": [u"Foo Fighters"],
+                         "fa-nome": ["Bands"],
+                         "fa-nome_outros": ["Outro nome, Mais um nome"]}
 
-        self.valid_update_fa = {"musico-ou-fa": "fa",
-                                "fa-favoritos": u"Chico Buarque",
-                                "fa-nome": "Know Your Band",
-                                "fa-nome_outros": "Outros nomes"}
+        self.valid_update_fa = {"musico-ou-fa": ["fa"],
+                                "fa-favoritos": [u"Chico Buarque"],
+                                "fa-nome": ["Know Your Band"],
+                                "fa-nome_outros": ["Outros nomes"]}
 
         self.questions = [
             {
@@ -59,6 +58,13 @@ class ControllersTest(TestCase):
             "fa-favoritos": [u"Foo Fighters"],
             "fa-nome": ["Bands", "Outro nome, Mais um nome"],
         }
+
+        self.empty_answers = {"musico-ou-fa": ["musico"],
+                             "musico-favoritos_outros": [u"Cláudia Leitte, Turma do Balão Mágico"],
+                             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
+                             "musico-dificuldades_outros": [u""],
+                             "musico-solucao": [u""],
+                             "musico-nome": [u"Bands"]}
 
 
     def tearDown(self):
@@ -103,6 +109,14 @@ class ControllersTest(TestCase):
         self.__assert_answers__("fa-favoritos", user_guto, u"Foo Fighters")
         self.__assert_answers__("fa-nome", user_guto, [u"Bands", "Outro nome, Mais um nome"])
         self.__assert_answers__("fa-nome_outros", user_guto, [])
+
+
+    def dont_save_empty_answers_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        save_answers(self.valid_musico, user_guilherme)
+        self.assertEqual(get_question("musico-favoritos_outros"), None)
+        self.assertEqual(get_question("musico-dificuldades_outros"), None)
+        self.assertEqual(get_question("musico-solucao"), None)
 
 
     def not_saving_duplicated_answers_test(self):
