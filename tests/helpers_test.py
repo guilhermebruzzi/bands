@@ -3,7 +3,7 @@
 
 import flask
 from unittest import TestCase
-from helpers import get_slug, user_logged, need_to_be_logged
+from helpers import get_slug, user_logged, need_to_be_logged, count_tags
 from config import get_app
 from models import User
 from app import app
@@ -17,6 +17,15 @@ class HelpersTest(TestCase):
 
         self.title_normal = "Whos Using It?"
         self.title_unicode = u"Este é um outro teste éÃÂ"
+
+        self.tags = {
+            "Foo Fighters": 60,
+            "The Beatles": 50,
+            "The Who": 40,
+            "Chico Buarque": 30,
+            "Madonna": 20,
+            "Los Hermanos": 5,
+        }
 
 
     def get_slug_test(self):
@@ -34,6 +43,28 @@ class HelpersTest(TestCase):
             self.assertFalse(user_logged())
             flask.session['current_user'] = self.guilherme_user
             self.assertTrue(user_logged())
+
+    def __get_tag_index__(self, tagclouds, label):
+        for index in range(len(tagclouds)):
+            if tagclouds[index]["label"] == label:
+                return index
+        return None
+
+    def count_tags_test(self):
+        tagclouds = count_tags(self.tags)
+        self.assertEqual(len(tagclouds), 6)
+
+        index = self.__get_tag_index__(tagclouds, "Foo Fighters")
+        self.assertNotEqual(index, None)
+        self.assertEqual(tagclouds[index]["size"], 6)
+
+        index = self.__get_tag_index__(tagclouds, "Chico Buarque")
+        self.assertNotEqual(index, None)
+        self.assertEqual(tagclouds[index]["size"], 3)
+
+        index = self.__get_tag_index__(tagclouds, "Los Hermanos")
+        self.assertNotEqual(index, None)
+        self.assertEqual(tagclouds[index]["size"], 0)
 
 
     def need_to_be_logged_test(self):

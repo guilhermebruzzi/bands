@@ -9,10 +9,10 @@
         <section class="users">
 
             <header class="users-in-bd">
-                <b>{{ total_users }} pessoas cadastradas!</b>
+                <span class="number-of-users">{{ total_users }} pessoas cadastradas!</span>
                 Seja mais um a <a href="{{ url_for('login') }}">conhecer</a>!
             </header>
-
+            <hr />
             <section class="users-body">
                 {% for user in users %}
 
@@ -28,7 +28,18 @@
 
                 {% endfor %}
             </section>
+        </section>
 
+        <section class="tagcloud">
+            <header class="bands-in-bd">
+                <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
+            </header>
+            <hr />
+            <section class="bands-body">
+                {% for tagcloud in tagclouds %}
+                    <a href="#" class="size size-{{ tagcloud.size }}">{{ tagcloud.label }}</a>
+                {% endfor %}
+            </section>
         </section>
 
     </section>

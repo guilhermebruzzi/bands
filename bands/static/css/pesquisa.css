@@ -1,9 +1,16 @@
 section.content header{
     background: none;
+    height: auto;
 }
 
 section.feedback, section.feedback-success{
     margin: auto;
+}
+
+section.feedback form{
+    display: block;
+    margin: auto;
+    width: 500px;
 }
 
 section.questions div.answer label.label-outros {

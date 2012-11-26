@@ -3,8 +3,8 @@
 
 import os
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
-from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
-from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin
+from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
+from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users
 
@@ -45,8 +45,9 @@ def resultados(password):
 
 @app.route('/')
 def index():
+    tagclouds = count_tags(TAGS)
     users_random, total_users = get_random_users()
-    return render_template("index.html", users=users_random, total_users=total_users)
+    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
