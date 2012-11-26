@@ -1,5 +1,7 @@
 #-*- coding:utf-8 -*-
 
+import random
+
 from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer
 from config import QUESTIONS_PESQUISA
@@ -11,6 +13,16 @@ def get_or_create_user(data):
     except DoesNotExist:
         user = User.objects.create(facebook_id=data['id'], email=data['email'], name=data['name'])
     return user
+
+def get_random_users(max=8):
+    users = User.objects.all()
+    users_random = []
+    if users:
+        for repeat in range(max):
+            user_random = random.choice(users)
+            user_random.name = user_random.name.split(" ")[0]
+            users_random.append(user_random)
+    return (users_random, len(users))
 
 
 def get_or_create_questions(questions_text):

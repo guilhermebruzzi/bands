@@ -9,7 +9,8 @@
             <link rel="stylesheet" href="{{ ASSET_URL }}" />
         {% endassets %}
 
-        <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png" />
 
         <!--[if lt IE 9]>
 		    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
@@ -21,27 +22,28 @@
     {% endblock %}
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
-    <header>
-
-        <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
-
-    </header>
     <section class="container">
+        <header>
 
-        {% block content %}{% endblock %}
+            <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
 
+        </header>
+        <section class="content">
+
+            {% block content %}{% endblock %}
+
+        </section>
+        <footer>
+
+            {% block footer %}
+                <p>&copy; Copyright 2012 by <a itemprop="url" href="http://www.bands.com.br/">Bands</a>.</p>
+                <span itemprop="author" itemscope itemtype="http://schema.org/Corporation">
+                    <meta itemprop="name" content="Bands" />
+               </span>
+            {% endblock %}
+
+        </footer>
     </section>
-    <footer>
-
-        {% block footer %}
-            <p>&copy; Copyright 2012 by <a itemprop="url" href="http://www.bands.com.br/">Bands</a>.</p>
-            <span itemprop="author" itemscope itemtype="http://schema.org/Corporation">
-            	<meta itemprop="name" content="Bands" />
-           </span>
-        {% endblock %}
-
-    </footer>
-
     {% assets filter="yui_js", output="js/gen/import-min.js",
         "js/google_analytics.js", "js/pesquisa.js" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
