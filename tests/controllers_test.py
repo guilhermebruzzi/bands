@@ -54,9 +54,9 @@ class ControllersTest(TestCase):
         self.expected_result = {
             "musico-ou-fa": ["musico", "fa"],
             "musico-favoritos": [u"The Beatles", u"Chico Buarque", u"Cláudia Leitte, Turma do Balão Mágico"],
-            "musico-dificuldades": u"Vender os ingressos dos meus shows e eventos",
-            "musico-nome": u"Bands",
-            "fa-favoritos": u"Foo Fighters",
+            "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
+            "musico-nome": [u"Bands"],
+            "fa-favoritos": [u"Foo Fighters"],
             "fa-nome": ["Bands", "Outro nome, Mais um nome"],
         }
 
@@ -124,7 +124,7 @@ class ControllersTest(TestCase):
 
         questions_and_answers = get_all_questions_and_all_answers()
 
-        for key, value in self.expected_result:
+        for key, value in self.expected_result.items():
             self.assertEqual(sorted(value), sorted(questions_and_answers[key]))
             del questions_and_answers[key]
 

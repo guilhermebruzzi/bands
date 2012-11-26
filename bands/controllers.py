@@ -49,20 +49,16 @@ def __sort_and_make_unique_answers__(answers_instances):
 
 
 def get_all_questions_and_all_answers():
-    questions_and_all_answers = []
-    questions_text = []
+    questions_and_answers = {}
+    questions = Question.objects.all()
 
-    question_main_text = u"Você é músico?"
-    answers_main = __sort_and_make_unique_answers__(answers_instances=get_all_answers_from_question(question_main_text))
-    questions_and_all_answers.append({"question": question_main_text, "answers": answers_main})
+    for question in questions:
+        answers = []
+        for answer in question.answers:
+            answers.append(answer.answer)
+        questions_and_answers[question.slug] = answers
 
-    for question_pesquisa in QUESTIONS_PESQUISA:
-        question_text = question_pesquisa["question"]
-        if not question_text in questions_text:
-            questions_text.append(question_text)
-            answers = __sort_and_make_unique_answers__(answers_instances=get_all_answers_from_question(question_text))
-            questions_and_all_answers.append({"question": question_text, "answers": answers})
-    return questions_and_all_answers
+    return questions_and_answers
 
 
 def validate_answers(data):

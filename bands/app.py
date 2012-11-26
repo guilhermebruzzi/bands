@@ -5,7 +5,7 @@ import os
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
 from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin
-from controllers import get_or_create_user, validate_answers, save_answers, get_questions_and_all_answers
+from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
