@@ -1,3 +1,7 @@
+section.content header{
+    background: none;
+}
+
 section.feedback, section.feedback-success{
     margin: auto;
 }

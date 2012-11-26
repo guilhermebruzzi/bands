@@ -1,28 +1,53 @@
-body {
+html, body,{
+    margin:0;
+    padding:0;
+    height: 100%;
     font-family: arial;
 }
 
 .container {
-    width: 940px;
+    position: relative;
+    height: auto !important;
+    height: 100%; /* IE6 */
+    min-height: 100%;
     margin: 0 auto;
+    padding: 0;
+}
+
+.content {
+    font-family: arial;
+    height: 100%;
+    margin: 0;
+    min-height: 500px;
+    padding: 0;
 }
 
 header {
-    border-bottom: solid 1px #ccc;
-    margin-bottom: 15px;
+    background-color: #9F0902;
+    height: 128px;
+    padding-top: 17px;
 }
 
 header h1.logo {
-    background: url('/static/img/logo.jpg') no-repeat;
-    width: 128px;
-    height: 100px;
     text-indent: -99999px;
-    margin: 10px auto;
+    margin: 0px auto;
 }
 
 header h1.logo a{
     display: block;
     height: 100%;
+}
+.btn-auth {
+    -moz-box-sizing: content-box;
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0 1em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 h2{
@@ -32,6 +57,7 @@ h2{
 
 ul{
     margin: 0px 0px;
+    padding: 0px 0px;
 }
 
 section{
@@ -58,22 +84,23 @@ textarea {
 }
 
 footer {
-    margin-top: 20px;
-    margin-bottom: 20px;
     text-align: center;
     font-size: 11px;
     line-height: 17px;
-    font-weight: bold;
-    color: #666;
+    color: #FFFFFF;
+    background-color: #9f0902;
+    height: 45px;
+    padding-top: 20px;
+    width: 100%;
 }
 
 footer a {
-    color: #a00902;
-    text-decoration: none;
+    color: #FFFFFF;
+    text-decoration: underline;
 }
 
 footer a:hover {
-    color: #d4312a;
+    font-weight: bold;
 }
 
 footer a.new_link{
@@ -89,7 +116,8 @@ footer a.new_link{
     margin: 0 1em 0 -1em;
 }
 .btn-auth:before {
-    background: url('/static/img/facebook-icon.png') no-repeat scroll transparent;
+    background: url('/static/img/sprite.png') no-repeat top left scroll transparent;
+    background-position: 0 0;
     content: "";
     float: left;
     height: 36px;
@@ -106,18 +134,7 @@ footer a.new_link{
     border-color: #29447E #29447E #1A356E;
     box-shadow: 0 1px 0 #879AC0 inset;
     color: #FFFFFF;
-}
-.btn-auth {
-    -moz-box-sizing: content-box;
-    border-radius: 2px 2px 2px 2px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0;
-    padding: 0 1em;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
+    margin-bottom: 35px;
 }
 
 /*Botão azul*/
@@ -147,4 +164,24 @@ footer a.new_link{
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 0 5px 2px #1A47A0 inset, 0 1px 0 #EEEEEE;
+}
+.facebook-icon, .icone-musicas, .logo{
+    background: url("/static/img/sprite.png") no-repeat top left;
+    display: block;
+}
+.facebook-icon{
+    background-position: 0 0;
+    width: 36px;
+    height: 36px;
+}
+.icone-musicas{
+    background-position: 0 -46px;
+    width: 65px;
+    height: 64px;
+    margin: auto
+}
+.logo{
+    background-position: 0 -120px;
+    width: 134px;
+    height: 111px;
 }

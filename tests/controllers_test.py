@@ -65,6 +65,26 @@ class ControllersTest(TestCase):
         self.__delete_all__(User)
         self.__delete_all__(Question)
 
+    def get_random_users_test(self, max=8):
+        users_random, len_users = get_random_users()
+        self.assertEqual(len(users_random), 0)
+        self.assertEqual(len_users, 0)
+
+        users = []
+        for user_id in range(10):
+            user = get_or_create_user(data={"id": "id%d" % user_id, "email": "user%d@gmail.com" % user_id, "name": "User %d" % user_id})
+            users.append(user)
+
+        users_random, len_users = get_random_users()
+
+        self.assertEqual(len(users_random), 8)
+        self.assertEqual(len_users, len(users))
+
+        self.assertEqual(users_random[0].name, "User")
+
+        for user_random in users_random:
+            self.assertIn(user_random.email, [user.email for user in users])
+
 
     def save_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)

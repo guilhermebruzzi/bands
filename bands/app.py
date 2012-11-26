@@ -5,7 +5,8 @@ import os
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
 from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin
-from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers
+from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
+    get_random_users
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -36,7 +37,7 @@ def resultados(password):
 
     password_compare = os.environ["PASSWORD_RESULTS"] if os.environ.has_key("PASSWORD_RESULTS") else "kyb@1234"
     if password == password_compare:
-        questions_and_all_answers = get_questions_and_all_answers()
+        questions_and_all_answers = get_all_questions_and_all_answers()
         return render_template('resultados_gerais.html', current_user=current_user,
                                 questions_and_all_answers=questions_and_all_answers)
     else:
@@ -44,7 +45,8 @@ def resultados(password):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    users_random, total_users = get_random_users()
+    return render_template("index.html", users=users_random, total_users=total_users)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])

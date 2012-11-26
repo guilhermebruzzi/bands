@@ -4,7 +4,7 @@
 from unittest import TestCase
 from config import get_app
 
-class HelpersTest(TestCase):
+class ConfigTest(TestCase):
 
     def setUp(self):
         self.app = get_app()
