@@ -1,0 +1,41 @@
+{% macro escreve_resposta(question) -%}
+
+    <span class="question {{ question.class_name }}">{{ question.question }}</span>
+
+    {% if question.type == "textarea" %}
+
+        <div class="answer">
+            <textarea id="{{ question.slug }}" name="{{ question.slug }}" class="{{ question.class_name }}"></textarea>
+        </div>
+
+    {% elif question.type == "checkbox_textarea" %}
+
+        {% for answer in question.answers %}
+            <div class="answer">
+                <input type="checkbox" id="{{ question.slug }}{{ loop.index0 }}"
+                       name="{{ question.slug }}" class="{{ question.class_name }}" value="{{ answer }}" />
+
+                <label for="{{ question.slug }}{{ loop.index0 }}" class="{{ question.class_name }}">{{ answer }}</label>
+            </div>
+        {% endfor %}
+
+        <div class="answer">
+            <label for="{{ question.slug }}_outros" class="{{ question.class_name }} label-outros">{{ question.outros }}</label>
+            <textarea id="{{ question.slug }}_outros" name="{{ question.slug }}_outros"
+                      class="{{ question.class_name }}"></textarea>
+        </div>
+
+    {% elif question.type == "radio" %}
+
+        {% for answer in question.answers %}
+            <div class="answer">
+                <input type="radio" id="{{ question.slug }}{{ loop.index0 }}"
+                       name="{{ question.slug }}" class="{{ question.class_name }}" value="{{ answer.value }}" />
+
+                <label for="{{ question.slug }}{{ loop.index0 }}" class="{{ question.class_name }}">{{ answer.label }}</label>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+{%- endmacro %}

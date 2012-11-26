@@ -16,18 +16,49 @@ class ControllersTest(TestCase):
         self.questions_txt = ["Voce quer ser meu amigo?", "Voce me ama?"]
         self.__delete_all__(Question)
 
-        self.invalid_data1 = {}
-        self.invalid_data2 = {"answer_main": "", "answers0": "Some value"}
-        self.invalid_data3 = {"answer_main": "invalid_option", "answers0": "Some value"}
+        self.invalid_vazio = {}
+        self.invalid_musico_fa_vazio = {"musico-ou-fa": "",
+                                        "some_slug": "Some value"}
+        self.invalid_musico_fa = {"musico-ou-fa": "invalid_option",
+                                  "some_slug": "Some value"}
 
-        self.valid_data1 = {"answer_main": "musico", "answers0": ["Answer0-0", "Answer0-1"],
-                            "answers_outros0": "Answer_outros0-0, Answer_outros0-1",
-                            "answers1": "Answer1",
-                            "answers_outros1": "Answer_outros1-0, Answer_outros1-1",
-                            "answers2": "Answer2", "answers3": "Answer3", "answers4": ""}
+        self.valid_musico = {"musico-ou-fa": "musico",
+                            "musico-favoritos": [u"The Beatles", u"Chico Buarque"],
+                            "musico-favoritos_outros": u"Cláudia Leitte, Turma do Balão Mágico",
+                            "musico-dificuldades": u"Vender os ingressos dos meus shows e eventos",
+                            "musico-dificuldades_outros": u"",
+                            "musico-solucao": u"",
+                            "musico-nome": u"Bands"}
 
-        self.valid_data2 = {"answer_main": "fa", "answers5": "Answer0", "answers7": "Answer2",
-                            "answers_outros7": "Answer_outros7-0, Answer_outros7-1"}
+        self.valid_fa = {"musico-ou-fa": "fa",
+                         "fa-favoritos": u"Foo Fighters",
+                         "fa-nome": "Bands",
+                         "fa-nome_outros": "Outro nome, Mais um nome"}
+
+        self.valid_update_fa = {"musico-ou-fa": "fa",
+                                "fa-favoritos": u"Chico Buarque",
+                                "fa-nome": "Know Your Band",
+                                "fa-nome_outros": "Outros nomes"}
+
+        self.questions = [
+            {
+                "slug": "first-question-slug",
+                "question": "first-question",
+            },
+            {
+                "slug": "second-question-slug",
+                "question": "second-question",
+            }
+        ]
+
+        self.expected_result = {
+            "musico-ou-fa": ["musico", "fa"],
+            "musico-favoritos": [u"The Beatles", u"Chico Buarque", u"Cláudia Leitte, Turma do Balão Mágico"],
+            "musico-dificuldades": u"Vender os ingressos dos meus shows e eventos",
+            "musico-nome": u"Bands",
+            "fa-favoritos": u"Foo Fighters",
+            "fa-nome": ["Bands", "Outro nome, Mais um nome"],
+        }
 
 
     def tearDown(self):
@@ -37,61 +68,68 @@ class ControllersTest(TestCase):
 
     def save_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
-
-        save_answers(self.valid_data1, user_guilherme)
-        self.__assert_answers__(question=self.__get_question__(pos=0),
-            answers_users=[("Answer0-0", user_guilherme), ("Answer0-1", user_guilherme),
-                           ("Answer_outros0-0, Answer_outros0-1", user_guilherme)])
-        self.__assert_not_answers__(question=self.__get_question__(pos=4),
-            answers_users=[("", user_guilherme)]) #  answers4: ""
+        save_answers(self.valid_musico, user_guilherme)
+        self.__assert_answers__("musico-ou-fa", user_guilherme, "musico")
+        self.__assert_answers__("musico-favoritos", user_guilherme, [u"The Beatles", u"Chico Buarque", u"Cláudia Leitte, Turma do Balão Mágico"])
+        self.__assert_answers__("musico-favoritos_outros", user_guilherme, [])
+        self.__assert_answers__("musico-dificuldades", user_guilherme, u"Vender os ingressos dos meus shows e eventos")
+        self.__assert_answers__("musico-dificuldades_outros", user_guilherme, [])
+        self.__assert_answers__("musico-solucao", user_guilherme, [])
+        self.__assert_answers__("musico-nome", user_guilherme, u"Bands")
 
         user_guto =  get_or_create_user(data=self.data_user_guto)
-        save_answers(self.valid_data2, user_guto)
-        self.__assert_answers__(question=self.__get_question__(pos=5),
-            answers_users=[("Answer0", user_guto)])
-        self.__assert_answers__(question=self.__get_question__(pos=7),
-            answers_users=[("Answer2", user_guto), ("Answer_outros7-0, Answer_outros7-1", user_guto)])
-        self.__assert_not_answers__(question=self.__get_question__(pos=6),
-            answers_users=[("", user_guilherme)]) #  answers6 não estando presente
+        save_answers(self.valid_fa, user_guto)
+        self.__assert_answers__("musico-ou-fa", user_guto, "fa")
+        self.__assert_answers__("fa-favoritos", user_guto, u"Foo Fighters")
+        self.__assert_answers__("fa-nome", user_guto, [u"Bands", "Outro nome, Mais um nome"])
+        self.__assert_answers__("fa-nome_outros", user_guto, [])
 
-        answers = get_all_answers_from_question(self.__get_question__(pos=5))
-        number_of_answers = len(answers)
-        self.assertEqual(number_of_answers, 4) #  pos=0 (3 answers) + pos=5 (1 answer)
 
-        # If i ask to save again, it has to maintain the number os answers
-        save_answers(self.valid_data2, user_guto)
-        answers = get_all_answers_from_question(self.__get_question__(pos=5))
-        self.assertEqual(len(answers), number_of_answers)
+    def not_saving_duplicated_answers_test(self):
+        user_guto =  get_or_create_user(data=self.data_user_guto)
+        save_answers(self.valid_fa, user_guto)
+        save_answers(self.valid_fa, user_guto)
 
-        # If i ask to save with a different user, then they are different answers
-        save_answers(self.valid_data2, user_guilherme)
-        answers = get_all_answers_from_question(self.__get_question__(pos=5))
-        self.assertEqual(len(answers), number_of_answers + 1)
+        answers = get_all_answers_from_question("fa-favoritos")
+        self.assertEqual(len(answers), 1)
 
-        self.__assert_answers__(question=self.__get_question__(pos=5),
-            answers_users=[("Answer0", user_guilherme)])
+
+    def saving_same_answer_from_different_users_test(self):
+        user_guto =  get_or_create_user(data=self.data_user_guto)
+        user_guilherme =  get_or_create_user(data=self.data_user_guilherme)
+
+        save_answers(self.valid_fa, user_guto)
+        save_answers(self.valid_fa, user_guilherme)
+
+        answers = get_all_answers_from_question("fa-favoritos")
+        self.assertEqual(len(answers), 2)
+
+
+    def saving_different_answers_from_same_user_test(self):
+        user_guto =  get_or_create_user(data=self.data_user_guto)
+
+        save_answers(self.valid_fa, user_guto)
+        save_answers(self.valid_update_fa, user_guto)
+
+        answers = get_all_answers_from_question("fa-favoritos")
+        self.assertEqual(len(answers), 2)
 
 
     def get_all_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
-        save_answers(self.valid_data1, user_guilherme)
+        save_answers(self.valid_musico, user_guilherme)
 
         user_guto = get_or_create_user(data=self.data_user_guto)
-        save_answers(self.valid_data2, user_guto)
+        save_answers(self.valid_fa, user_guto)
 
-        questions_and_all_answers = get_questions_and_all_answers()
+        questions_and_answers = get_all_questions_and_all_answers()
 
-        self.assertIn("question", questions_and_all_answers[0].keys())
-        self.assertIn("answers", questions_and_all_answers[0].keys())
+        for key, value in self.expected_result:
+            self.assertEqual(sorted(value), sorted(questions_and_answers[key]))
+            del questions_and_answers[key]
 
-        self.assertEqual(len(questions_and_all_answers), 6)
-
-        self.assertEqual(questions_and_all_answers[1]["answers"][0], "Answer0") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[1]["question"], u"Quais as suas bandas ou músicos favoritos?")
-        self.assertEqual(questions_and_all_answers[4]["answers"][0], "Answer3") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[4]["question"], u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?")
-        self.assertEqual(questions_and_all_answers[5]["answers"][1], "Answer_outros7-0, Answer_outros7-1") #  alfabetic order
-        self.assertEqual(questions_and_all_answers[5]["question"], u"Que nome para esse produto você gosta mais?")
+        for value in questions_and_answers.values():
+            self.assertEqual(value, [])
 
 
     def get_or_create_users_test(self):
@@ -106,62 +144,29 @@ class ControllersTest(TestCase):
 
 
     def get_or_create_questions_test(self):
-        questions = get_or_create_questions(self.questions_txt)
-        self.__assert_questions__(questions, self.questions_txt)
-
-        questions = Question.objects.all()
-        self.__assert_questions__(questions, self.questions_txt)
-
-        questions = get_or_create_questions(self.questions_txt)
-        self.__assert_questions__(questions, self.questions_txt)
-
-
-    def get_question_and_his_answer_test(self):
-        question_txt = self.questions_txt[0]
-
-        question_mongo = get_or_create_questions(self.questions_txt)[0]
-
-        question = get_question(question_txt)
-        answers = get_all_answers_from_question(question_txt)
-
-        self.assertEqual(question.question, question_txt)
-        self.assertEqual(question.question, question_mongo.question)
-        self.assertEqual(question.answers, answers)
+        get_or_create_questions(self.questions)
+        self.__assert_questions__(Question.objects.all(), self.questions)
 
 
     def validate_answers_test(self):
-        self.assertFalse(validate_answers(self.invalid_data1))
-        self.assertFalse(validate_answers(self.invalid_data2))
-        self.assertFalse(validate_answers(self.invalid_data3))
-        self.assertTrue(validate_answers(self.valid_data1))
-        self.assertTrue(validate_answers(self.valid_data2))
+        self.assertFalse(validate_answers(self.invalid_vazio))
+        self.assertFalse(validate_answers(self.invalid_musico_fa_vazio))
+        self.assertFalse(validate_answers(self.invalid_musico_fa))
+        self.assertTrue(validate_answers(self.valid_musico))
+        self.assertTrue(validate_answers(self.valid_fa))
 
 
-    def __get_question__(self, pos):
-        return QUESTIONS_PESQUISA[pos]["question"]
+    def __assert_answers__(self, slug, user, answers):
+        if not type(answers) is (list):
+            answers = [answers]
 
+        saved_answers = get_all_answers_from_question(slug, user)
+        for answer in answers:
+            answerModel = Answer(answer=answer, user=user)
+            self.assertIn(answerModel, saved_answers)
+            saved_answers.remove(answerModel)
 
-    def __get_answers_users_from_mongo__(self, question):
-        answers_users_from_mongo = []
-        answers_from_mongo = get_all_answers_from_question(question)
-        for answer_from_mongo in answers_from_mongo:
-            answer_user_from_mongo = (answer_from_mongo.answer, answer_from_mongo.user)
-            answers_users_from_mongo.append(answer_user_from_mongo)
-        return answers_users_from_mongo
-
-
-    def __assert_answers__(self, question, answers_users):
-        answers_users_from_mongo = self.__get_answers_users_from_mongo__(question)
-
-        for answer_user in answers_users:
-            self.assertIn(answer_user, answers_users_from_mongo)
-
-
-    def __assert_not_answers__(self, question, answers_users):
-        answers_users_from_mongo = self.__get_answers_users_from_mongo__(question)
-
-        for answer_user in answers_users:
-            self.assertNotIn(answer_user, answers_users_from_mongo)
+        self.assertEqual(len(saved_answers), 0)
 
 
     def __assert_user__(self, user, user_data):
@@ -171,10 +176,9 @@ class ControllersTest(TestCase):
         self.assertEqual(user.photo, 'http://graph.facebook.com/%s/picture' % user_data["id"])
 
 
-    def __assert_questions__(self, questions, questions_txt):
+    def __assert_questions__(self, questionsModel, questions):
         for question in questions:
-            self.assertIn(question.question, questions_txt)
-            self.assertEqual(question.answers, [])
+            self.assertIn(question["slug"], [questionModel.slug for questionModel in questionsModel])
 
 
     def __delete_all__(self,cls):

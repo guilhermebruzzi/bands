@@ -18,5 +18,6 @@ class Answer(db.EmbeddedDocument):
     user = db.ReferenceField(User, required=True, dbref=False)
 
 class Question(db.Document):
+    slug = db.StringField(required=True)
     question = db.StringField(required=True)
     answers = db.ListField(EmbeddedDocumentField(Answer))

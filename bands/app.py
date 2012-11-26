@@ -3,7 +3,7 @@
 
 import os
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
-from config import get_app, facebook, QUESTIONS_PESQUISA, project_root
+from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
 from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin
 from controllers import get_or_create_user, validate_answers, save_answers, get_questions_and_all_answers
 
@@ -68,7 +68,7 @@ def pesquisa():
             return redirect(url_for('pesquisa_sucesso'))
 
 
-    return render_template('pesquisa.html', current_user=current_user,
+    return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
                             questions=QUESTIONS_PESQUISA, post_data=post_data)
 
 

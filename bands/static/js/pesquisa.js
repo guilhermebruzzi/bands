@@ -32,7 +32,7 @@ function toggleAllAnswers(classNameToShow){
 
 function showElements(event){
     document.querySelector('#questions').classList.remove("hidden");
-    var classNameToShow = this.dataset.classNameToShow;
+    var classNameToShow = this.value;
     toggleAllAnswers(classNameToShow)
 }
 

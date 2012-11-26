@@ -49,8 +49,19 @@ db = MongoEngine(app)
 assets = assets.Environment()
 assets.init_app(app)
 
+MAIN_QUESTIONS = [
+    {
+        "slug": "musico-ou-fa",
+        "class_name": "answer_main",
+        "type": "radio",
+        "question": u"Você é músico?",
+        "answers": [ { "value": u"musico", "label": u"Sim" }, { "value": u"fa", "label": u"Não" } ]
+    },
+]
+
 QUESTIONS_PESQUISA = [
     {
+        "slug": "musico-favoritos",
         "class_name": "musico",
         "type": "checkbox_textarea",
         "question": u"Quais as suas bandas ou músicos favoritos?",
@@ -58,6 +69,7 @@ QUESTIONS_PESQUISA = [
         "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
     },
     {
+        "slug": "musico-dificuldades",
         "class_name": "musico",
         "type": "checkbox_textarea",
         "question": u"Quais dificuldades você enfrenta na sua banda?",
@@ -67,11 +79,13 @@ QUESTIONS_PESQUISA = [
         "outros": u"Nos diga quaisquer outras dificuldades:"
     },
     {
+        "slug": "musico-solucao",
         "class_name": "musico",
         "type": "textarea",
         "question": u"Atualmente, como você resolve os problemas que marcou acima?"
     },
     {
+        "slug": "musico-funcionalidades",
         "class_name": "musico",
         "type": "checkbox_textarea",
         "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
@@ -84,6 +98,7 @@ QUESTIONS_PESQUISA = [
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
     },
     {
+        "slug": "musico-nome",
         "class_name": "musico",
         "type": "checkbox_textarea",
         "question": u"Que nome para esse produto você gosta mais?",
@@ -91,6 +106,7 @@ QUESTIONS_PESQUISA = [
         "outros": u"Dê outro(s) nome(s) que acharia interessante:"
     },
     {
+        "slug": "fa-favoritos",
         "class_name": "fa",
         "type": "checkbox_textarea",
         "question": u"Quais as suas bandas ou músicos favoritos?",
@@ -98,6 +114,7 @@ QUESTIONS_PESQUISA = [
         "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
     },
     {
+        "slug": "fa-funcionalidades",
         "class_name": "fa",
         "type": "checkbox_textarea",
         "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
@@ -110,6 +127,7 @@ QUESTIONS_PESQUISA = [
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
     },
     {
+        "slug": "fa-nome",
         "class_name": "fa",
         "type": "checkbox_textarea",
         "question": u"Que nome para esse produto você gosta mais?",
