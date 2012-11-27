@@ -4,13 +4,14 @@ section.descricao{
     min-height: 100%;
     margin: 0px;
     display: inline-block;
-    position: relative;
+    vertical-align: top;
 }
 
 section.descricao article{
     width: 480px;
     float: right;
     margin-right: 20px;
+    font-size: 16px;
 }
 
 section.descricao article span.line{
@@ -83,19 +84,19 @@ section.descricao article.proposta span.line{
     font-weight: bold;
 }
 
-section.informacoes_existentes{
+section.informacoes-existentes{
     width: 44%;
     height: auto;
-    min-height: 870px;
+    min-height: 866px;
     background-color: #e4e4e4;
     float: right;
     margin: 0;
     padding: 0;
     display: inline-block;
-    position: relative;
+    vertical-align: top;
 }
 
-section.informacoes_existentes section.users, section.informacoes_existentes section.tagcloud{
+section.informacoes-existentes section.users, section.informacoes-existentes section.tagcloud{
     background-color: #FFFFFF;
     border: 1px solid #B8B8B8;
     border-radius: 8px 8px 8px 8px;
@@ -107,7 +108,7 @@ section.informacoes_existentes section.users, section.informacoes_existentes sec
     width: 310px;
 }
 
-section.informacoes_existentes section.users header.users-in-bd{
+section.informacoes-existentes section.users header.users-in-bd{
     background: none repeat scroll 0 0 transparent;
     font-size: 11px;
     height: auto;
@@ -116,46 +117,46 @@ section.informacoes_existentes section.users header.users-in-bd{
     text-align: center;
 }
 
-section.informacoes_existentes section.users header.users-in-bd a{
+section.informacoes-existentes section.users header.users-in-bd a{
     color: #D43129;
     text-decoration: none;
 }
 
-section.informacoes_existentes section.users header.users-in-bd a:hover{
+section.informacoes-existentes section.users header.users-in-bd a:hover{
     color: #870802;
 }
 
-section.informacoes_existentes section.users section.users-body{
+section.informacoes-existentes section.users section.users-body{
     margin: 0 auto;
     width: 280px;
 }
 
-section.informacoes_existentes section.users section.users-body div.user{
+section.informacoes-existentes section.users section.users-body div.user{
     float: left;
     margin: 10px 10px 0px 0px;
 }
 
-section.informacoes_existentes section.users section.users-body div.user div.user-body{
+section.informacoes-existentes section.users section.users-body div.user div.user-body{
     width: 60px;
 }
 
-section.informacoes_existentes section.users section.users-body div.user div.user-body span.user-name{
+section.informacoes-existentes section.users section.users-body div.user div.user-body span.user-name{
     font-size: 12px;
     display: inline-block;
     margin: 0px auto;
 }
 
-section.informacoes_existentes section.users hr, section.informacoes_existentes section.tagcloud hr{
+section.informacoes-existentes section.users hr, section.informacoes-existentes section.tagcloud hr{
     color: #EEEEEE;
 }
 
-section.informacoes_existentes .number-of-users, section.informacoes_existentes .number-of-bands{
+section.informacoes-existentes .number-of-users, section.informacoes-existentes .number-of-bands{
     font-weight: bold;
     text-decoration: underline;
     font-size: 11px;
 }
 
-section.informacoes_existentes section.tagcloud header.bands-in-bd{
+section.informacoes-existentes section.tagcloud header.bands-in-bd{
     background: none repeat scroll 0 0 transparent;
     height: auto;
     margin: 0 auto;
@@ -163,36 +164,36 @@ section.informacoes_existentes section.tagcloud header.bands-in-bd{
     text-align: center;
 }
 
-section.informacoes_existentes section.tagcloud section.bands-body{
+section.informacoes-existentes section.tagcloud section.bands-body{
     width: 310px;
 }
 
-section.informacoes_existentes section.tagcloud section.bands-body a{
+section.informacoes-existentes section.tagcloud section.bands-body a{
     color: #000000;
     text-decoration: none;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a:hover{
+section.informacoes-existentes section.tagcloud section.bands-body a:hover{
     color: #870802;
 }
 
-section.informacoes_existentes section.tagcloud section.bands-body a.size-0{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-0{
     font-size: 10px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-1{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-1{
     font-size: 12px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-2{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-2{
     font-size: 14px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-3{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-3{
     font-size: 16px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-4{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-4{
     font-size: 18px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-5{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-5{
     font-size: 18px;
 }
-section.informacoes_existentes section.tagcloud section.bands-body a.size-6{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-6{
     font-size: 20px;
 }

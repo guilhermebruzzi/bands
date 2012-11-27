@@ -36,7 +36,7 @@ function showElements(event){
     toggleAllAnswers(classNameToShow)
 }
 
-function main (){
+function main_pesquisa(){
     var answerMainNodes = document.querySelectorAll('input.answer_main');
 
     for (var answerIndex = 0; answerIndex < answerMainNodes.length; answerIndex++){
@@ -44,6 +44,7 @@ function main (){
 
         answerMainNode.addEventListener('click', showElements, false);
     }
+
 }
 
-main();
+main_pesquisa();

@@ -4,7 +4,53 @@
 
 {% block content %}
 
-    <section class="informacoes_existentes">
+    <section itemprop="about" id="descricao" class="descricao">
+        <article class="problema">
+            <span class="line line-strong">Já percebeu como é difícil conhecer a trajetória de uma banda na internet?</span>
+            <span class="line line-strong"><b>Bands</b> é uma maneira fácil e inovadora para conhecer bandas e músicos.</span>
+        </article>
+        <article class="solucao">
+            <span class="line">Aqui você verá conteúdo relevante das bandas e músícos que você gosta:</span>
+
+            <ul>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">História da banda</span>
+                </li>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">Integrantes e ex-integrantes</span>
+                </li>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">Álbuns e músicas</span>
+                </li>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">Shows e eventos</span>
+                </li>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">Notas e reviews criados pelos fãs</span>
+                </li>
+                <li>
+                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
+                    <span class="nome-conteudo">Bandas relacionadas</span>
+                </li>
+            </ul>
+
+        </article>
+        <article class="proposta">
+            <span class="line">E se você é músico, divulgue o trabalho da sua banda!</span>
+            <span class="line">Confira isso tudo e muito mais:</span>
+            <a href="{{ url_for('login') }}" class="btn-auth btn-facebook large login-facebook">
+                Faça login pelo
+                <b>Facebook</b>
+            </a>
+        </article>
+    </section>
+
+    <section id="informacoes-existentes" class="informacoes-existentes">
 
         <section class="users">
 
@@ -42,52 +88,6 @@
             </section>
         </section>
 
-    </section>
-
-    <section itemprop="about" class="descricao">
-    	<article class="problema">
-			<span class="line line-strong">Já percebeu como é difícil conhecer a trajetória de uma banda na internet?</span>
-            <span class="line line-strong"><b>Bands</b> é uma maneira fácil e inovadora para conhecer bandas e músicos.</span>
-    	</article>
-        <article class="solucao">
-            <span class="line">Aqui você verá conteúdo relevante das bandas e músícos que você gosta:</span>
-
-            <ul>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">História da banda</span>
-                </li>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">Integrantes e ex-integrantes</span>
-                </li>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">Álbuns e músicas</span>
-                </li>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">Shows e eventos</span>
-                </li>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">Notas e reviews criados pelos fãs</span>
-                </li>
-                <li>
-                    <div class="caixa-conteudo"> <span class="icone-musicas"></span> </div>
-                    <span class="nome-conteudo">Bandas relacionadas</span>
-                </li>
-            </ul>
-
-    	</article>
-    	<article class="proposta">
-            <span class="line">E se você é músico, divulgue o trabalho da sua banda!</span>
-            <span class="line">Confira isso tudo e muito mais:</span>
-            <a href="{{ url_for('login') }}" class="btn-auth btn-facebook large login-facebook">
-                Faça login pelo
-                <b>Facebook</b>
-            </a>
-    	</article>
     </section>
 
 {% endblock %}

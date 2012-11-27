@@ -1,10 +1,12 @@
 section.content header{
     background: none;
     height: auto;
+    font-size: 16px;
 }
 
 section.feedback, section.feedback-success{
     margin: auto;
+    font-size: 16px;
 }
 
 section.feedback form{
