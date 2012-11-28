@@ -10,6 +10,10 @@ from controllers import get_or_create_user, validate_answers, save_answers, get_
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
+@app.route('/migration', methods=['GET'])
+def migration():
+    from migration20121128 import run_migration
+    run_migration()
 
 @app.route('/sitemap.xml', methods=['GET'])
 def sitemap():
