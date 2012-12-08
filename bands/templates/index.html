@@ -50,7 +50,7 @@
 
             <header class="users-in-bd">
                 <span class="number-of-users">{{ total_users }} pessoas cadastradas!</span>
-                Seja mais um a <a onClick="_gaq.push(['_trackEvent', 'Login', 'Login Box', 'Usuarios Box']);"  href="{{ url_for('login') }}">conhecer</a>!
+                Seja mais um a <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Box', 'Usuarios Box']);">conhecer</a>!
             </header>
             <hr />
             <section class="users-body">
