@@ -7,7 +7,7 @@ WTForms==1.0.2
 Werkzeug==0.8.3
 coverage==3.5.3
 derpconf==0.3.0
-flask-mongoengine==0.6
+https://github.com/sbook/flask-mongoengine/tarball/master
 gunicorn==0.14.6
 httplib2==0.7.7
 ipdb==0.7
