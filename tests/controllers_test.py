@@ -97,7 +97,7 @@ class ControllersTest(TestCase):
         self.__delete_all__(User)
         self.__delete_all__(Question)
 
-    def get_random_users_test(self, max=8):
+    def get_random_users_test(self):
         users_random, len_users = get_random_users()
         self.assertEqual(len(users_random), 0)
         self.assertEqual(len_users, 0)
@@ -112,10 +112,38 @@ class ControllersTest(TestCase):
         self.assertEqual(len(users_random), 8)
         self.assertEqual(len_users, len(users))
 
-        self.assertEqual(users_random[0].name, "User")
+        self.assertEqual(users_random[0].name, "User") # Pega apenas o primeiro nome
+
+        users_emails = [user.email for user in users]
 
         for user_random in users_random:
-            self.assertIn(user_random.email, [user.email for user in users])
+            self.assertIn(user_random.email, users_emails)
+
+    def get_max_greater_than_number_of_users_test(self):
+        users = []
+        for user_id in range(7):
+            user = get_or_create_user(data={"id": "id%d" % user_id, "email": "user%d@gmail.com" % user_id, "name": "User %d" % user_id})
+            users.append(user)
+
+        users_random, len_users = get_random_users(max=8)
+
+        users_emails = [user.email for user in users_random]
+
+        self.assertEqual(len_users, 7)
+        self.assertEqual(len(users_emails), len_users)
+        self.assertEqual(len(users_emails), len(set(users_emails)))
+
+
+    def get_random_unique_users_test(self):
+        users = []
+        for user_id in range(21):
+            user = get_or_create_user(data={"id": "id%d" % user_id, "email": "user%d@gmail.com" % user_id, "name": "User %d" % user_id})
+            users.append(user)
+
+        users_random, len_users = get_random_users(max=20)
+
+        users_emails = [user.email for user in users_random]
+        self.assertEqual(len(users_emails), len(set(users_emails))) # Sem pessoas repetidas
 
 
     def save_answers_test(self):

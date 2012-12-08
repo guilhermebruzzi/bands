@@ -15,14 +15,22 @@ def get_or_create_user(data):
     return user
 
 def get_random_users(max=8):
-    users = User.objects.all()
-    users_random = []
+    users = [user for user in User.objects.all()]
+    users_random = set()
+    len_users = 0
     if users:
-        for repeat in range(max):
-            user_random = random.choice(users)
+        len_users = len(users)
+        if max >= len_users:
+            return (users, len_users)
+
+        for i in range(max): # repete max vezes
+            choice = random.choice(range(len(users)))
+            user_random = users[choice]
             user_random.name = user_random.name.split(" ")[0]
-            users_random.append(user_random)
-    return (users_random, len(users))
+            users_random.add(user_random)
+            del users[choice]
+
+    return (list(users_random), len_users)
 
 
 def get_or_create_question(question_data):
