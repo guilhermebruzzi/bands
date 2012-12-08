@@ -36,8 +36,10 @@ for key in app.config.keys():
                 app.config[key] = False
             else:
                 app.config[key] = True
+        elif type_of_config is int:
+            app.config[key] = int(os.environ[key])
         else:
-            app.config[key] = type_of_config(os.environ[key])
+            app.config[key] = os.environ[key]
 
 oauth = OAuth()
 
