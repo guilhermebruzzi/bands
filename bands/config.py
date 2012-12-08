@@ -3,7 +3,6 @@
 import os
 import sys
 
-
 from flask import Flask
 from flaskext.oauth import OAuth
 from flaskext.mongoengine import MongoEngine
@@ -29,6 +28,8 @@ import_folder(folder_name='bands', base_path=project_root)
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
 
+print "Primeiro output: \n", [(k,v) for k,v app.config.items()], "\n"
+
 for key in app.config.keys():
     if os.environ.has_key(key):
         type_of_config = type(app.config[key])
@@ -39,6 +40,8 @@ for key in app.config.keys():
                 app.config[key] = True
         else:
             app.config[key] = type_of_config(os.environ[key])
+
+print "Segundo output: \n", [(k,v) for k,v app.config.items()], "\n"
 
 oauth = OAuth()
 
