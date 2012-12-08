@@ -38,6 +38,27 @@ header h1.logo a{
     display: block;
     height: 100%;
 }
+
+header div.div-logo{
+    display: inline-block;
+    width: 50%;
+}
+
+header div.user-box-top{
+    display: inline-block;
+    text-align: center;
+    width: 40%;
+}
+
+header div.user-box-top a{
+    font-family: tahoma;
+    text-decoration: none;
+    color: white;
+}
+header div.user-box-top a:hover{
+    text-decoration: underline;
+}
+
 .btn-auth {
     -moz-box-sizing: content-box;
     border-radius: 2px 2px 2px 2px;

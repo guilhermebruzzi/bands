@@ -24,10 +24,19 @@
 <body itemscope itemtype="http://schema.org/WebPage">
     <section class="container">
         <header>
+            <div id="div-logo" class="div-logo">
+                <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
+            </div>
 
-            <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
+            <div id="user-box-top" class="user-box-top">
 
-            <a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);">Sair</a>
+                {# if user_logged() #}
+                <a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);"
+                    >Sair</a>
+                {# else 
+                    <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Login</a>
+                {% endif #}
+            </div>
 
         </header>
         <section class="content">
