@@ -4,7 +4,7 @@
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-	    {% assets filters="yui_css", output="css/gen/import-min.css",
+	    {% assets filter="yui_css", output="css/gen/import-min.css",
             "css/normalize.css", "css/styles.css", "css/index.css", "css/resultados_gerais.css", "css/pesquisa.css"  %}
             <link rel="stylesheet" href="{{ ASSET_URL }}" />
         {% endassets %}
@@ -44,7 +44,7 @@
 
         </footer>
     </section>
-    {% assets filters="yui_js", output="js/gen/import-min.js",
+    {% assets filter="yui_js", output="js/gen/import-min.js",
         "js/index.js", "js/pesquisa.js", "js/google_analytics.js" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
