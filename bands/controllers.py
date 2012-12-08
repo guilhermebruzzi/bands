@@ -68,7 +68,7 @@ def get_all_answers_from_question(slug, user=None):
     return []
 
 
-def __sort_and_make_unique_answers__(answers_instances):
+def sort_and_make_unique_answers(answers_instances):
     answers = [answer.answer for answer in answers_instances]
     answers = list(set(answers))
     answers = sorted(answers)

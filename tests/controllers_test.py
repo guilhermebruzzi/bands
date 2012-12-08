@@ -26,15 +26,15 @@ class ControllersTest(TestCase):
                             "musico-favoritos_outros": [u"Cláudia Leitte, Turma do Balão Mágico"],
                             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
                             "musico-dificuldades_outros": [u""],
-                            "musico-solucao": [u""],
-                            "musico-nome": [u"Bands"]}
+                            "musico-solucao": u"",
+                            "musico-nome": u"Bands"}
 
         self.valid_fa = {"musico-ou-fa": ["fa"],
                          "fa-favoritos": [u"Foo Fighters"],
                          "fa-nome": ["Bands"],
                          "fa-nome_outros": ["Outro nome, Mais um nome"]}
 
-        self.valid_update_fa = {"musico-ou-fa": ["fa"],
+        self.valid_update_fa = {"musico-ou-fa": "fa",
                                 "fa-favoritos": [u"Chico Buarque"],
                                 "fa-nome": ["Know Your Band"],
                                 "fa-nome_outros": ["Outros nomes"]}
@@ -231,6 +231,32 @@ class ControllersTest(TestCase):
 
         for value in questions_and_answers.values():
             self.assertEqual(value, [])
+
+
+    def sort_and_make_unique_answers_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        answer1 = Answer()
+        answer1.user = user_guilherme
+        answer1.answer = "First answer"
+
+        answer2 = Answer()
+        answer2.user = user_guilherme
+        answer2.answer = "Duplicated answer"
+
+        answer3 = Answer()
+        answer3.user = user_guto
+        answer3.answer = "Duplicated answer"
+
+        answer4 = Answer()
+        answer4.user = user_guto
+        answer4.answer = "Last test"
+
+        answer_instances = [answer1, answer2, answer3, answer4]
+        expected = ["Duplicated answer", "First answer", "Last test"]
+        self.assertEqual(sort_and_make_unique_answers(answer_instances), expected)
+
 
 
     def get_or_create_users_test(self):
