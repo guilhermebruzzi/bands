@@ -28,7 +28,7 @@ import_folder(folder_name='bands', base_path=project_root)
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
 
-print "Primeiro output: \n", [(k,v) for k,v app.config.items()], "\n"
+print "Primeiro output: \n", [(k,v) for k,v in app.config.items()], "\n"
 
 for key in app.config.keys():
     if os.environ.has_key(key):
@@ -41,7 +41,7 @@ for key in app.config.keys():
         else:
             app.config[key] = type_of_config(os.environ[key])
 
-print "Segundo output: \n", [(k,v) for k,v app.config.items()], "\n"
+print "Segundo output: \n", [(k,v) for k,v in app.config.items()], "\n"
 
 oauth = OAuth()
 
