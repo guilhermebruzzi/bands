@@ -81,6 +81,11 @@ def login():
         callback=facebook_url
     )
 
+@app.route('/logout/')
+@need_to_be_logged
+def logout():
+    del session['current_user']
+    return redirect(url_for('index'))
 
 @app.route('/login/authorized/')
 @facebook.authorized_handler

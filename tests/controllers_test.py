@@ -133,6 +133,8 @@ class ControllersTest(TestCase):
         self.assertEqual(len(users_emails), len_users)
         self.assertEqual(len(users_emails), len(set(users_emails)))
 
+        self.assertEqual(users_random[0].name, "User") # Pega apenas o primeiro nome
+
 
     def get_random_unique_users_test(self):
         users = []

@@ -21,6 +21,8 @@ def get_random_users(max=8):
     if users:
         len_users = len(users)
         if max >= len_users:
+            for user_index in range(len(users)):
+                users[user_index].name = users[user_index].name.split(" ")[0]
             return (users, len_users)
 
         for i in range(max): # repete max vezes
