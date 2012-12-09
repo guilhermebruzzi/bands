@@ -4,7 +4,7 @@
 import os
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
-from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags
+from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users
 
@@ -32,7 +32,7 @@ def google_webmaster():
 @app.route('/resultados-gerais/<password>/', methods=['GET'])
 @need_to_be_admin
 def resultados(password):
-    current_user = session['current_user']
+    current_user = get_current_user()
 
     password_compare = os.environ["PASSWORD_RESULTS"] if os.environ.has_key("PASSWORD_RESULTS") else "kyb@1234"
     if password == password_compare:
@@ -46,13 +46,14 @@ def resultados(password):
 def index():
     tagclouds = count_tags(TAGS)
     users_random, total_users = get_random_users()
-    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds)
+    current_user = get_current_user()
+    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds, current_user=current_user)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
 @need_to_be_logged
 def pesquisa_sucesso():
-    current_user = session['current_user']
+    current_user = get_current_user()
 
     return render_template('pesquisa_success.html', current_user=current_user)
 
@@ -60,7 +61,7 @@ def pesquisa_sucesso():
 @app.route('/pesquisa/', methods=['GET', 'POST'])
 @need_to_be_logged
 def pesquisa():
-    current_user = session['current_user']
+    current_user = get_current_user()
 
     post_data = prepare_post_data()
 

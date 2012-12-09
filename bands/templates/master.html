@@ -30,12 +30,11 @@
 
             <div id="user-box-top" class="user-box-top">
 
-                {# if user_logged() #}
-                <a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);"
-                    >Sair</a>
-                {# else 
+                {% if current_user %}
+                    <a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);">Sair</a>
+                {% else %}
                     <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Login</a>
-                {% endif #}
+                {% endif %}
             </div>
 
         </header>

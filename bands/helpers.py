@@ -4,6 +4,7 @@ import unicodedata
 import re
 import flask
 
+from flask import session
 
 def get_slug(title):
     slug = unicodedata.normalize('NFKD', unicode(title))
@@ -15,6 +16,14 @@ def get_slug(title):
 
 def user_logged():
     return ('current_user' in flask.session.keys())
+
+
+def get_current_user():
+    if user_logged():
+        return session['current_user']
+    else:
+        return None
+
 
 
 def need_to_be_logged(handler, path="/"):
