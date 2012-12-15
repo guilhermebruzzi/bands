@@ -11,10 +11,12 @@ function main_index(){
         var footer = document.querySelector('.container > footer');
         var footerHeight = footer.offsetHeight;
 
+        var margin = 10; // Dou um espaço pro footer
+
         var newHeight = viewportHeight - headerHeight - footerHeight;
 
-        informacoesExistentes.style.height = newHeight + "px";
-        descricao.style.height = newHeight + "px";
+        informacoesExistentes.style.height = newHeight + margin + "px";
+        descricao.style.height = newHeight + margin + "px";
     }
 }
 
