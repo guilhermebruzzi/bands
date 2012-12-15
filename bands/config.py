@@ -106,14 +106,6 @@ QUESTIONS_PESQUISA = [
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
     },
     {
-        "slug": "musico-nome",
-        "class_name": "musico",
-        "type": "checkbox_textarea",
-        "question": u"Que nome para esse produto você gosta mais?",
-        "answers": [ u"Bands", u"Bands.Info", u"Know Your Band", u"Bandpedia", u"Musicopedia", ],
-        "outros": u"Dê outro(s) nome(s) que acharia interessante:"
-    },
-    {
         "slug": "fa-favoritos",
         "class_name": "fa",
         "type": "checkbox_textarea",
@@ -133,15 +125,7 @@ QUESTIONS_PESQUISA = [
                      u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
                      u"Fãs podendo dar reviews (pra banda, pro cd, pro show)" ],
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
-    },
-    {
-        "slug": "fa-nome",
-        "class_name": "fa",
-        "type": "checkbox_textarea",
-        "question": u"Que nome para esse produto você gosta mais?",
-        "answers": [ u"Bands", u"Bands.Info", u"Know Your Band", u"Bandpedia", u"Musicopedia", ],
-        "outros": u"Dê outro(s) nome(s) que acharia interessante:"
-    },
+    }
 ]
 
 TAGS = {

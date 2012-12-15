@@ -1,8 +1,10 @@
-html, body,{
+html, body{
+    font-family: arial;
+    height: 100%;
+    height: auto;
     margin:0;
     padding:0;
-    height: 100%;
-    font-family: arial;
+    background-color: #9F0902;
 }
 
 .container {
@@ -12,6 +14,7 @@ html, body,{
     min-height: 100%;
     margin: 0 auto;
     padding: 0;
+    background-color: #FFFFFF;
 }
 
 .content {

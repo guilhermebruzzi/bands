@@ -5,7 +5,7 @@ section.descricao{
     margin: 0px;
     display: inline-block;
     vertical-align: top;
-    margin-bottom: 10px;
+    background-color: #FFFFFF;
 }
 
 @media (min-height: 800px){
