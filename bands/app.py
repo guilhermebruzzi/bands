@@ -4,12 +4,14 @@
 import os
 import urllib2
 import json
+import random
+
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
     get_musicians_from_opengraph
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users
+    get_random_users, get_all_answers_from_question
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -67,6 +69,24 @@ def pesquisa_sucesso():
 def pesquisa():
     current_user = get_current_user()
 
+    answers = get_all_answers_from_question("musico-favoritos")
+    answers.extend(get_all_answers_from_question("fa-favoritos"))
+
+    removidos = {}
+    bandas = []
+    for answer in answers:
+        bandas.append(answer.answer)
+        removidos[answer.answer] = False
+
+    bandasOrdenadas = []
+    while len(bandas) > 0:
+        tamanho = len(bandas)
+        indice = random.randint(0, tamanho - 1)
+        if not removidos[bandas[indice]]:
+            bandasOrdenadas.append(bandas[indice])
+            removidos[bandas[indice]] = True
+        del bandas[indice]
+
     post_data = prepare_post_data()
 
     if request.method == 'POST':
@@ -79,7 +99,7 @@ def pesquisa():
 #    musicians = get_musicians_from_opengraph(facebook_id, oauth_token)
 
     return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
-                            questions=QUESTIONS_PESQUISA, post_data=post_data)
+                            questions=QUESTIONS_PESQUISA, bandas=bandasOrdenadas, post_data=post_data)
 
 
 @app.route('/login/')

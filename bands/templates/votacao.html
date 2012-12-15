@@ -1,0 +1,22 @@
+{% macro votacao(lista) -%}
+
+    <div>
+        <ul class="lista">
+            {% set maximo = 15 %}
+            {% if lista|length < 15 %}
+                {% set maximo = lista|length %}
+            {% endif %}
+            {% for i in range(maximo) %}
+                <li>{{ lista[i] }}</li>
+            {% endfor %}
+        </ul>
+        <datalist id="bandas">
+            {% for item in lista %}
+                <option value="{{ item }}">
+            {% endfor %}
+        </datalist>
+        <input id="adicionar-item-votacao-text" type="text" list="bandas" />
+        <input id="adicionar-item-votacao-button" type="button" value="Adicionar" />
+    </div>
+
+{%- endmacro %}
