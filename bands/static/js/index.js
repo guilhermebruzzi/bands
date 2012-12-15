@@ -6,8 +6,6 @@ function main_index(){
 
     if(descricao && informacoesExistentes){ // Iguala as alturas (levando em conta a margem) se conseguiu pegá-los (página principal)
 
-        var descricaoMarginBottom = 10; // Mudar, se no CSS mudou
-
         var header = document.querySelector('.container > header');
         var headerHeight = header.offsetHeight;
         var footer = document.querySelector('.container > footer');
@@ -15,15 +13,8 @@ function main_index(){
 
         var newHeight = viewportHeight - headerHeight - footerHeight;
 
-        if(viewportHeight > 830){
-            informacoesExistentes.style.height = newHeight + "px"
-            descricao.style.height = newHeight + "px";
-            descricao.style.marginBottom = "0px";
-        }
-        else{
-            informacoesExistentes.style.height = newHeight + descricaoMarginBottom + "px";
-            descricao.style.height = newHeight + "px";
-        }
+        informacoesExistentes.style.height = newHeight + "px";
+        descricao.style.height = newHeight + "px";
     }
 }
 
