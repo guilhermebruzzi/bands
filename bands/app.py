@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import os
+import urllib2
+import json
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
-from helpers import user_logged, prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user
+from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
+    get_musicians_from_opengraph
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users
 
@@ -47,7 +50,8 @@ def index():
     tagclouds = count_tags(TAGS)
     users_random, total_users = get_random_users()
     current_user = get_current_user()
-    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds, current_user=current_user)
+    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds,
+        current_user=current_user)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
@@ -70,6 +74,9 @@ def pesquisa():
             save_answers(post_data, current_user)
             return redirect(url_for('pesquisa_sucesso'))
 
+#    facebook_id = session['current_user'].facebook_id
+#    oauth_token = get_facebook_oauth_token()[0]
+#    musicians = get_musicians_from_opengraph(facebook_id, oauth_token)
 
     return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
                             questions=QUESTIONS_PESQUISA, post_data=post_data)

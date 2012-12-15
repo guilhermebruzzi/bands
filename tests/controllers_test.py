@@ -26,18 +26,13 @@ class ControllersTest(TestCase):
                             "musico-favoritos_outros": [u"Cláudia Leitte, Turma do Balão Mágico"],
                             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
                             "musico-dificuldades_outros": [u""],
-                            "musico-solucao": u"",
-                            "musico-nome": u"Bands"}
+                            "musico-solucao": u""}
 
         self.valid_fa = {"musico-ou-fa": ["fa"],
-                         "fa-favoritos": [u"Foo Fighters"],
-                         "fa-nome": ["Bands"],
-                         "fa-nome_outros": ["Outro nome, Mais um nome"]}
+                         "fa-favoritos": [u"Foo Fighters"]}
 
         self.valid_update_fa = {"musico-ou-fa": "fa",
-                                "fa-favoritos": [u"Chico Buarque"],
-                                "fa-nome": ["Know Your Band"],
-                                "fa-nome_outros": ["Outros nomes"]}
+                                "fa-favoritos": [u"Chico Buarque"]}
 
         self.questions = [
             {
@@ -54,17 +49,14 @@ class ControllersTest(TestCase):
             "musico-ou-fa": ["musico", "fa"],
             "musico-favoritos": [u"The Beatles", u"Chico Buarque", u"Cláudia Leitte, Turma do Balão Mágico"],
             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
-            "musico-nome": [u"Bands"],
-            "fa-favoritos": [u"Foo Fighters"],
-            "fa-nome": ["Bands", "Outro nome, Mais um nome"],
+            "fa-favoritos": [u"Foo Fighters"]
         }
 
         self.empty_answers = {"musico-ou-fa": ["musico"],
                              "musico-favoritos_outros": [u"Cláudia Leitte, Turma do Balão Mágico"],
                              "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
                              "musico-dificuldades_outros": [u""],
-                             "musico-solucao": [u""],
-                             "musico-nome": [u"Bands"]}
+                             "musico-solucao": [u""]}
 
         self.old_question = [
             {
@@ -157,14 +149,11 @@ class ControllersTest(TestCase):
         self.__assert_answers__("musico-dificuldades", user_guilherme, u"Vender os ingressos dos meus shows e eventos")
         self.__assert_answers__("musico-dificuldades_outros", user_guilherme, [])
         self.__assert_answers__("musico-solucao", user_guilherme, [])
-        self.__assert_answers__("musico-nome", user_guilherme, u"Bands")
 
         user_guto =  get_or_create_user(data=self.data_user_guto)
         save_answers(self.valid_fa, user_guto)
         self.__assert_answers__("musico-ou-fa", user_guto, "fa")
         self.__assert_answers__("fa-favoritos", user_guto, u"Foo Fighters")
-        self.__assert_answers__("fa-nome", user_guto, [u"Bands", "Outro nome, Mais um nome"])
-        self.__assert_answers__("fa-nome_outros", user_guto, [])
 
 
     def change_text_of_a_question_test(self):
