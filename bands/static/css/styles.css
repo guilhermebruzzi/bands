@@ -1,8 +1,9 @@
-html, body,{
+html, body{
+    font-family: arial;
+    height: 100%;
+    height: auto;
     margin:0;
     padding:0;
-    height: 100%;
-    font-family: arial;
 }
 
 .container {
