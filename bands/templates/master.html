@@ -12,8 +12,9 @@
 
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png" />
 
-        <!--[if lt IE 9]>
-		    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+        <!--[if lt IE 10]>
+		    <script type="text/javascript" src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+		    <script type="text/javascript" src="{{ url_for('static', filename='js/modernizr-load.js') }}"></script>
         <![endif]-->
 
         {% block css %}{% endblock %}

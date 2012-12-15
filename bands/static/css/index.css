@@ -5,6 +5,13 @@ section.descricao{
     margin: 0px;
     display: inline-block;
     vertical-align: top;
+    margin-bottom: 10px;
+}
+
+@media (min-height: 800px){
+    section.descricao {
+        min-height: 660px;
+    }
 }
 
 section.descricao article{

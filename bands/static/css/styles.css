@@ -23,6 +23,12 @@ html, body,{
     font-size: 0;
 }
 
+@media (min-height: 800px){
+    .content {
+        min-height: 710px;
+    }
+}
+
 header {
     background-color: #9F0902;
     height: 128px;
@@ -111,7 +117,7 @@ footer {
     line-height: 17px;
     color: #FFFFFF;
     background-color: #9f0902;
-    height: 45px;
+    height: 64px;
     padding-top: 20px;
     width: 100%;
 }
