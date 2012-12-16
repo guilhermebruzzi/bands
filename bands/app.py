@@ -8,9 +8,9 @@ import json
 from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
-    get_musicians_from_opengraph
+    get_musicians_from_opengraph, get_slug
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users, get_top_bands, get_user_bands
+    get_random_users, get_top_bands, get_user_bands, get_or_create_band
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -62,6 +62,13 @@ def pesquisa_sucesso():
     bands = get_top_bands()
     bands_user = get_user_bands(user=current_user)
     return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
+
+@app.route('/add_band/', methods=['POST'])
+def add_band():
+    name = request.form['band']
+    user = request.form['user_facebook_id']
+    band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
+    return "%s\n%s" % (band.names[0], band.slug)
 
 
 @app.route('/pesquisa/', methods=['GET', 'POST'])
