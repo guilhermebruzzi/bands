@@ -66,9 +66,12 @@ def pesquisa_sucesso():
 @app.route('/add_band/', methods=['POST'])
 def add_band():
     name = request.form['band']
-    user = request.form['user_facebook_id']
-    band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
-    return "%s\n%s" % (band.names[0], band.slug)
+    user = get_current_user()
+
+    if user:
+        band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
+
+    return "%s\n%s" % (band.name, band.slug)
 
 
 @app.route('/pesquisa/', methods=['GET', 'POST'])

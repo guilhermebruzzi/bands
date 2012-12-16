@@ -1,6 +1,6 @@
 var httpRequest;
 
-function makeRequestAddBand(url, band, facebook_id) {
+function makeRequestAddBand(url, band) {
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
     } else if (window.ActiveXObject) { // IE
@@ -21,11 +21,10 @@ function makeRequestAddBand(url, band, facebook_id) {
     httpRequest.onreadystatechange = showNewBand;
     httpRequest.open('POST', url);
     httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpRequest.send('band=' + encodeURIComponent(band) + '&user_facebook_id=' + facebook_id);
+    httpRequest.send('band=' + encodeURIComponent(band));
 }
 
 var votacaoInput = document.querySelector('#adicionar-item-votacao-text');
-var facebookIdInput = document.querySelector('#user_facebook_id');
 
 function showNewBand() {
     if (httpRequest.readyState === 4) {
@@ -45,8 +44,7 @@ function showNewBand() {
 function adicionarItem() {
     var url_create_band = "/add_band/";
     var band = votacaoInput.value;
-    var facebook_id = facebookIdInput.value;
-    makeRequestAddBand(url_create_band, band, facebook_id)
+    makeRequestAddBand(url_create_band, band)
 }
 
 function enterPressed(e) {
