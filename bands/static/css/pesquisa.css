@@ -36,6 +36,18 @@ section.questions input[type=submit]{
     margin: 10px auto;
 }
 
+section.feedback-success{
+    margin-bottom: 50px;
+}
+
+section.feedback-success ul.list_bands_user_likes{
+    margin: 10px 0px;
+}
+
+section.feedback-success ul.list_bands_user_likes li{
+    list-style: disc;
+}
+
 section.feedback-success h2{
     margin: 15px auto;
 }

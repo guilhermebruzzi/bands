@@ -103,7 +103,7 @@ def facebook_authorized(resp):
         )
     session['oauth_token'] = (resp['access_token'], '')
     me = facebook.get('/me')
-    session['current_user'] = get_or_create_user(me.data)
+    session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
 
     return redirect(url_for('pesquisa'))
 

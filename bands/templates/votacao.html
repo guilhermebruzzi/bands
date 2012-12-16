@@ -1,21 +1,23 @@
 {% macro adiciona_bandas(bands, bands_user) -%}
 
     <div>
-        <ul class="bands">
+        <ul class="list_bands_user_likes">
             {% set maximo = 15 %}
             {% if bands|count < 15 %}
                 {% set maximo = bands|count %}
             {% endif %}
             {% for i in range(maximo) %}
-                <li>{{ bands[i] }}</li>
+                {% if not (bands[i] in bands_user) %}
+                    <li><input type="checkbox" value="{{ bands[i].slug }}" /> {{ bands[i].names[0] }}</li>
+                {% endif %}
             {% endfor %}
             {% for band in bands_user %}
-                <li>{{ band }}</li>
+                <li><input type="checkbox" checked="checked" value="{{ band.slug }}" /> {{ band.names[0] }}</li>
             {% endfor %}
         </ul>
         <datalist id="bandas">
             {% for band in bands %}
-                <option value="{{ band }}">
+                <option value="{{ band.names[0] }}">
             {% endfor %}
         </datalist>
         <input id="adicionar-item-votacao-text" type="text" list="bandas" />
