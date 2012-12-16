@@ -1,6 +1,7 @@
-{% macro adiciona_bandas(bands, bands_user) -%}
+{% macro adiciona_bandas(bands, bands_user, user) -%}
 
-    <div>
+    <div class="add_bands">
+        <input type="hidden" id="user_facebook_id" value="{{ user.facebook_id }}" />
         <ul class="list_bands_user_likes">
             {% set maximo = 15 %}
             {% if bands|count < 15 %}
