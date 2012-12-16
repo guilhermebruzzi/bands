@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from controllers import get_or_create_band, get_all_answers_from_question
+from helpers import get_slug
 
 def run_migration():
     answers = get_all_answers_from_question("musico-favoritos")
@@ -11,12 +12,12 @@ def run_migration():
         bandsList = answer.answer
         for bands in bandsList.split(","):
             for splited in bands.split('\n'):
-                band = splited.strip()
+                band = splited.strip().title()
                 if band:
                     data = {
-                        "slug": band,
+                        "slug": get_slug(band),
                         "name": band,
-                        "user": answer.user.facebook_id
+                        "user": answer.user
                     }
 
                     get_or_create_band(data)
