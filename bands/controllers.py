@@ -17,7 +17,7 @@ def get_or_create_user(data, oauth_token=None):
         if oauth_token: #  Se foi passado, é para buscar as bandas no facebook
             bands_facebook = get_musicians_from_opengraph(user.facebook_id, oauth_token)
             for band_facebook in bands_facebook:
-                get_or_create_band({"slug": band_facebook, "name": band_facebook, "user": user.facebook_id})
+                get_or_create_band({"slug": band_facebook, "name": band_facebook, "user": user})
     return user
 
 def get_or_create_band(data):
@@ -61,9 +61,9 @@ def get_top_bands(max=None): #  Sorteia bandas baseado na quantidade de votos de
 
     return bandasOrdenadas[0:max]
 
-def get_user_bands(facebook_id):
+def get_user_bands(user):
     bands = Band.objects.all()
-    return [band for band in bands if facebook_id in band.users]
+    return [band for band in bands if user in band.users]
 
 def get_random_users(max=8):
     users = [user for user in User.objects.all()]

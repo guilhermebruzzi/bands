@@ -26,4 +26,4 @@ class Band(db.Document):
     slug = db.StringField(required=True)
     name = db.StringField(required=True)
     aliases = db.ListField(StringField(required=True))
-    users = db.ListField(StringField(required=True))
+    users = db.ListField(ReferenceField(User, dbref=False))

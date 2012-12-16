@@ -8,16 +8,16 @@
             {% endif %}
             {% for i in range(maximo) %}
                 {% if not (bands[i] in bands_user) %}
-                    <li><input type="checkbox" value="{{ bands[i].slug }}" /> {{ bands[i].names[0] }}</li>
+                    <li><input type="checkbox" value="{{ bands[i].slug }}" /> {{ bands[i].name }}</li>
                 {% endif %}
             {% endfor %}
             {% for band in bands_user %}
-                <li><input type="checkbox" checked="checked" value="{{ band.slug }}" /> {{ band.names[0] }}</li>
+                <li><input type="checkbox" checked="checked" value="{{ band.slug }}" /> {{ band.name }}</li>
             {% endfor %}
         </ul>
         <datalist id="bandas">
             {% for band in bands %}
-                <option value="{{ band.names[0] }}">
+                <option value="{{ band.name }}">
             {% endfor %}
         </datalist>
         <input id="adicionar-item-votacao-text" type="text" list="bandas" />

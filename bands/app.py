@@ -60,7 +60,7 @@ def index():
 def pesquisa_sucesso():
     current_user = get_current_user()
     bands = get_top_bands()
-    bands_user = get_user_bands(facebook_id=current_user.facebook_id)
+    bands_user = get_user_bands(user=current_user)
     return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
 
 

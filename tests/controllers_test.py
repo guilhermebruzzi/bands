@@ -88,33 +88,27 @@ class ControllersTest(TestCase):
         self.beatles1 = {
             "slug": "beatles",
             "name": "The Beatles",
-            "user": self.data_user_guilherme["id"]
         }
         self.beatles2 = {
             "slug": "BeaTleS",
             "name": "Beatles",
-            "user": self.data_user_guto["id"]
         }
 
         self.cassia1 = {
             "slug": u"cassia-eller",
             "name": u"Cássia Eller",
-            "user": self.data_user_guilherme["id"]
         }
         self.cassia2 = {
             "slug": u"cássia Eller",
             "name": u"Cássia Eller",
-            "user": self.data_user_guto["id"]
         }
         self.cassia3 = {
             "slug": u"Cássia eller",
             "name": u"Cássia Eller",
-            "user": self.data_user_guto["id"]
         }
         self.cassia4 = {
             "slug": u"cassia Eller",
             "name": u"Cássia",
-            "user": self.data_user_guto["id"]
         }
 
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
@@ -127,11 +121,22 @@ class ControllersTest(TestCase):
         self.__delete_all__(Band)
 
     def get_or_create_band_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        self.beatles2['user'] = user_guto
+
+        self.cassia1['user'] = user_guilherme
+        self.cassia2['user'] = user_guto
+        self.cassia3['user'] = user_guto
+        self.cassia4['user'] = user_guto
+
         result = get_or_create_band(self.beatles1)
         self.assertEqual(self.beatles1['slug'], result.slug)
         self.assertEqual(self.beatles1['name'], result.name)
         self.assertIn(self.beatles1['name'], result.aliases)
-        self.assertIn(self.beatles1['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
         self.assertEqual(1, len(result.aliases))
         self.assertEqual(1, len(result.users))
 
@@ -139,7 +144,7 @@ class ControllersTest(TestCase):
         self.assertEqual(self.cassia1['slug'], result.slug)
         self.assertEqual(self.cassia1['name'], result.name)
         self.assertIn(self.cassia1['name'], result.aliases)
-        self.assertIn(self.cassia1['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
         self.assertEqual(1, len(result.aliases))
         self.assertEqual(1, len(result.users))
 
@@ -147,9 +152,9 @@ class ControllersTest(TestCase):
         self.assertEqual(self.beatles1['slug'], result.slug)
         self.assertEqual(self.beatles1['name'], result.name)
         self.assertIn(self.beatles1['name'], result.aliases)
-        self.assertIn(self.beatles1['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
         self.assertIn(self.beatles2['name'], result.aliases)
-        self.assertIn(self.beatles2['user'], result.users)
+        self.assertIn(user_guto, result.users)
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
@@ -157,8 +162,8 @@ class ControllersTest(TestCase):
         self.assertEqual(self.cassia1['slug'], result.slug)
         self.assertEqual(self.cassia1['name'], result.name)
         self.assertIn(self.cassia1['name'], result.aliases)
-        self.assertIn(self.cassia1['user'], result.users)
-        self.assertIn(self.cassia2['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
+        self.assertIn(user_guto, result.users)
         self.assertEqual(1, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
@@ -166,8 +171,8 @@ class ControllersTest(TestCase):
         self.assertEqual(self.cassia1['slug'], result.slug)
         self.assertEqual(self.cassia1['name'], result.name)
         self.assertIn(self.cassia1['name'], result.aliases)
-        self.assertIn(self.cassia1['user'], result.users)
-        self.assertIn(self.cassia2['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
+        self.assertIn(user_guto, result.users)
         self.assertEqual(1, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
@@ -175,8 +180,8 @@ class ControllersTest(TestCase):
         self.assertEqual(self.cassia1['slug'], result.slug)
         self.assertEqual(self.cassia1['name'], result.name)
         self.assertIn(self.cassia1['name'], result.aliases)
-        self.assertIn(self.cassia1['user'], result.users)
-        self.assertIn(self.cassia2['user'], result.users)
+        self.assertIn(user_guilherme, result.users)
+        self.assertIn(user_guto, result.users)
         self.assertIn(self.cassia4['name'], result.aliases)
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
@@ -187,12 +192,20 @@ class ControllersTest(TestCase):
         self.assertEqual(len(top_bands), 0)
 
     def get_top_bands_select_all_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        self.beatles2['user'] = user_guto
+
+        self.cassia1['user'] = user_guilherme
+        self.cassia2['user'] = user_guto
+
         beatles1 = get_or_create_band(self.beatles1)
-        for i in range(10):
-            facebook_id = "bands_facebook_id_%d" % i
-            beatles1.users.append(facebook_id)
-        beatles1.save()
+        get_or_create_band(self.beatles2)
+
         cassia1 = get_or_create_band(self.cassia1)
+        get_or_create_band(self.cassia2)
 
         top_bands = get_top_bands()
         top_bands_slug = [band.slug for band in top_bands]
@@ -402,15 +415,28 @@ class ControllersTest(TestCase):
 
     def get_user_bands_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        self.beatles2['user'] = user_guto
+        self.cassia1['user'] = user_guilherme
+
         get_or_create_band(self.beatles1)
+        get_or_create_band(self.beatles2)
         get_or_create_band(self.cassia1)
 
-        bands = get_user_bands(facebook_id=user_guilherme.facebook_id)
+        bands = get_user_bands(user=user_guilherme)
         bands_slug = [band.slug for band in bands]
 
         self.assertEqual(len(bands), 2)
         self.assertIn(self.beatles1["slug"], bands_slug)
         self.assertIn(self.cassia1["slug"], bands_slug)
+
+        bands = get_user_bands(user=user_guto)
+        bands_slug = [band.slug for band in bands]
+
+        self.assertEqual(len(bands), 1)
+        self.assertIn(self.beatles1["slug"], bands_slug)
 
 
     def get_or_create_questions_test(self):
