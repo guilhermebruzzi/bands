@@ -5,7 +5,7 @@ import random
 from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
-from helpers import get_musicians_from_opengraph
+from helpers import get_musicians_from_opengraph, get_slug
 
 
 def get_or_create_user(data, oauth_token=None):
@@ -21,13 +21,14 @@ def get_or_create_user(data, oauth_token=None):
     return user
 
 def get_or_create_band(data):
+    slug = get_slug(data['slug'])
     try:
-        band = Band.objects.get(slug=data['slug'])
+        band = Band.objects.get(slug=slug)
     except DoesNotExist:
-        band = Band.objects.create(slug=data['slug'])
+        band = Band.objects.create(slug=slug, name=data['name'])
 
-    if not data['name'] in band.names:
-        band.names.append(data['name'])
+    if not data['name'] in band.aliases:
+        band.aliases.append(data['name'])
 
     if not data['user'] in band.users:
         band.users.append(data['user'])
