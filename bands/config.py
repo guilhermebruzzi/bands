@@ -69,14 +69,6 @@ MAIN_QUESTIONS = [
 
 QUESTIONS_PESQUISA = [
     {
-        "slug": "musico-favoritos",
-        "class_name": "musico",
-        "type": "checkbox_textarea",
-        "question": u"Quais as suas bandas ou músicos favoritos?",
-        "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
-        "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
-    },
-    {
         "slug": "musico-dificuldades",
         "class_name": "musico",
         "type": "checkbox_textarea",
@@ -104,14 +96,6 @@ QUESTIONS_PESQUISA = [
                      u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
                      u"Fãs podendo dar resenhas (pra banda, pro cd, pro show)" ],
         "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
-    },
-    {
-        "slug": "fa-favoritos",
-        "class_name": "fa",
-        "type": "checkbox_textarea",
-        "question": u"Quais as suas bandas ou músicos favoritos?",
-        "answers": sorted([ u"The Beatles",  u"Foo Fighters", u"Los Hermanos", u"Chico Buarque", u"Madonna"]),
-        "outros": u"A lista acima contém as mais faladas aqui no site, digite outras que você gosta:"
     },
     {
         "slug": "fa-funcionalidades",
