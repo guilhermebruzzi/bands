@@ -1,18 +1,21 @@
-{% macro votacao(lista) -%}
+{% macro adiciona_bandas(bands, bands_user) -%}
 
     <div>
-        <ul class="lista">
+        <ul class="bands">
             {% set maximo = 15 %}
-            {% if lista|length < 15 %}
-                {% set maximo = lista|length %}
+            {% if bands|count < 15 %}
+                {% set maximo = bands|count %}
             {% endif %}
             {% for i in range(maximo) %}
-                <li>{{ lista[i] }}</li>
+                <li>{{ bands[i] }}</li>
+            {% endfor %}
+            {% for band in bands_user %}
+                <li>{{ band }}</li>
             {% endfor %}
         </ul>
         <datalist id="bandas">
-            {% for item in lista %}
-                <option value="{{ item }}">
+            {% for band in bands %}
+                <option value="{{ band }}">
             {% endfor %}
         </datalist>
         <input id="adicionar-item-votacao-text" type="text" list="bandas" />

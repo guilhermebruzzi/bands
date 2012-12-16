@@ -1,3 +1,4 @@
+{% import 'votacao.html' as votacao %}
 {% extends "master.html" %}
 {% block title %}Bands - Pesquisa Sucesso{% endblock %}
 {% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pesquisa.css') }}" />{% endblock %}
@@ -11,7 +12,8 @@
     </header>
     <section class="feedback-success">
         <h2 class="thank-you">Obrigado por responder a pesquisa!</h2>
-        <h2>Em breve entraremos em contato para divulgarmos mais novidades sobre o site.</h2>
+        <h2>Agora queremos saber se você lembra todas as bandas que você gosta:</h2>
+        {{ votacao.adiciona_bandas(bands, bands_user) }}
     </section>
 
 {% endblock %}

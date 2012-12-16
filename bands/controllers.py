@@ -5,13 +5,19 @@ import random
 from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
+from helpers import get_musicians_from_opengraph
 
 
-def get_or_create_user(data):
+def get_or_create_user(data, oauth_token=None):
     try:
         user = User.objects.get(facebook_id=data['id'])
     except DoesNotExist:
+        # Ao criar um usuário do facebook, eu importo as bandas favoritas dele
         user = User.objects.create(facebook_id=data['id'], email=data['email'], name=data['name'])
+        if oauth_token: #  Se foi passado, é para buscar as bandas no facebook
+            bands_facebook = get_musicians_from_opengraph(user.facebook_id, oauth_token)
+            for band_facebook in bands_facebook:
+                get_or_create_band({"slug": band_facebook, "name": band_facebook, "user": user.facebook_id})
     return user
 
 def get_or_create_band(data):
@@ -28,6 +34,35 @@ def get_or_create_band(data):
 
     band.save()
     return band
+
+def get_top_bands(max=None): #  Sorteia bandas baseado na quantidade de votos dela
+    bands = Band.objects.all()
+    if max == None:
+        max = len(bands)
+        if max == 0:
+            return []
+
+    removidos = {}
+    bandas = []
+    for band in bands:
+        for user in band.users:
+            bandas.append(band)
+            removidos[band.slug] = False
+
+    bandasOrdenadas = []
+    while len(bandas) > 0:
+        tamanho = len(bandas)
+        indice = random.randint(0, tamanho - 1)
+        if not removidos[bandas[indice].slug]:
+            bandasOrdenadas.append(bandas[indice])
+            removidos[bandas[indice].slug] = True
+        del bandas[indice]
+
+    return bandasOrdenadas[0:max]
+
+def get_user_bands(facebook_id):
+    bands = Band.objects.all()
+    return [band for band in bands if facebook_id in band.users]
 
 def get_random_users(max=8):
     users = [user for user in User.objects.all()]

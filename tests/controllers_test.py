@@ -85,6 +85,21 @@ class ControllersTest(TestCase):
             }
         ]
 
+        self.beatles1 = {
+            "slug": "beatles",
+            "name": "The Beatles",
+            "user": self.data_user_guilherme["id"]
+        }
+
+        self.chico1 = {
+            "slug": "chico",
+            "name": "Chico",
+            "user": self.data_user_guilherme["id"]
+        }
+
+        self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
+        self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
+
 
     def tearDown(self):
         self.__delete_all__(User)
@@ -92,28 +107,15 @@ class ControllersTest(TestCase):
         self.__delete_all__(Band)
 
     def get_or_create_band_test(self):
-        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        result = get_or_create_band(self.beatles1)
+        self.assertEqual(result.slug, self.beatles1['slug'])
+        self.assertIn(self.beatles1['name'], result.names)
+        self.assertIn(self.beatles1['user'], result.users)
 
-        beatles1 = {
-            "slug": "beatles",
-            "name": "The Beatles",
-            "user": user_guilherme.facebook_id
-        }
-        chico1 = {
-            "slug": "chico",
-            "name": "Chico",
-            "user": user_guilherme.facebook_id
-        }
-
-        result = get_or_create_band(beatles1)
-        self.assertEqual(result.slug, beatles1['slug'])
-        self.assertIn(beatles1['name'], result.names)
-        self.assertIn(beatles1['user'], result.users)
-
-        result = get_or_create_band(chico1)
-        self.assertEqual(result.slug, chico1['slug'])
-        self.assertIn(chico1['name'], result.names)
-        self.assertIn(chico1['user'], result.users)
+        result = get_or_create_band(self.chico1)
+        self.assertEqual(result.slug, self.chico1['slug'])
+        self.assertIn(self.chico1['name'], result.names)
+        self.assertIn(self.chico1['user'], result.users)
 
         user_guto =  get_or_create_user(data=self.data_user_guto)
 
@@ -141,8 +143,8 @@ class ControllersTest(TestCase):
 
         result = get_or_create_band(beatles2)
         self.assertEqual(result.slug, beatles2['slug'])
-        self.assertIn(beatles1['name'], result.names)
-        self.assertIn(beatles1['user'], result.users)
+        self.assertIn(self.beatles1['name'], result.names)
+        self.assertIn(self.beatles1['user'], result.users)
         self.assertIn(beatles2['name'], result.names)
         self.assertIn(beatles2['user'], result.users)
         self.assertEqual(2, len(result.names))
@@ -150,28 +152,66 @@ class ControllersTest(TestCase):
 
         result = get_or_create_band(chico2)
         self.assertEqual(result.slug, chico2['slug'])
-        self.assertIn(chico1['name'], result.names)
-        self.assertIn(chico1['user'], result.users)
+        self.assertIn(self.chico1['name'], result.names)
+        self.assertIn(self.chico1['user'], result.users)
         self.assertIn(chico2['user'], result.users)
         self.assertEqual(1, len(result.names))
         self.assertEqual(2, len(result.users))
 
         result = get_or_create_band(chico3)
         self.assertEqual(result.slug, chico3['slug'])
-        self.assertIn(chico1['name'], result.names)
-        self.assertIn(chico1['user'], result.users)
+        self.assertIn(self.chico1['name'], result.names)
+        self.assertIn(self.chico1['user'], result.users)
         self.assertIn(chico2['user'], result.users)
         self.assertEqual(1, len(result.names))
         self.assertEqual(2, len(result.users))
 
         result = get_or_create_band(chico4)
         self.assertEqual(result.slug, chico4['slug'])
-        self.assertIn(chico1['name'], result.names)
+        self.assertIn(self.chico1['name'], result.names)
         self.assertIn(chico4['name'], result.names)
-        self.assertIn(chico1['user'], result.users)
+        self.assertIn(self.chico1['user'], result.users)
         self.assertIn(chico2['user'], result.users)
         self.assertEqual(2, len(result.names))
         self.assertEqual(2, len(result.users))
+
+    def get_top_bands_assert_empty_if_none_on_bd(self):
+        top_bands = get_top_bands()
+        self.assertEqual(len(top_bands), 0)
+
+    def get_top_bands_select_all_test(self):
+        beatles1 = get_or_create_band(self.beatles1)
+        for i in range(10):
+            facebook_id = "bands_facebook_id_%d" % i
+            beatles1.users.append(facebook_id)
+        beatles1.save()
+        chico1 = get_or_create_band(self.chico1)
+
+        top_bands = get_top_bands()
+        top_bands_slug = [band.slug for band in top_bands]
+
+        self.assertEqual(len(top_bands), 2)
+        self.assertIn(beatles1.slug, top_bands_slug)
+        self.assertIn(chico1.slug, top_bands_slug)
+
+    def get_top_bands_select_10_from_100(self):
+        all_bands = []
+        for i in range(100):
+            beatles_model = {
+                "slug": "beatles%d" % i,
+                "name": "The Beatles",
+                "user": self.data_user_guilherme["id"]
+            }
+            all_bands.append(get_or_create_band(beatles_model))
+
+        top_bands = get_top_bands(max=10)
+
+        self.assertEqual(len(top_bands), 10)
+
+        all_bands_slugs = [band.slug for band in all_bands]
+        for band in top_bands:
+            self.assertIn(band.slug, all_bands_slugs)
+
 
 
     def get_random_users_test(self):
@@ -337,11 +377,33 @@ class ControllersTest(TestCase):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         self.__assert_user__(user_guilherme, self.data_user_guilherme)
 
+        bands = Band.objects.all() #  Ao criar um usuário, vejo se ele inseriu bandas sem eu querer isso
+        self.assertEqual(len(bands), 0)
+
         user = User.objects.all()[0]
         self.__assert_user__(user, self.data_user_guilherme)
 
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         self.__assert_user__(user_guilherme, self.data_user_guilherme)
+
+    def get_or_create_user_and_his_bands(self):
+        get_or_create_user(data=self.guilherme_bruzzi_real_data_user, oauth_token=self.access_token)
+        bands = Band.objects.all()
+        self.assertGreater(len(bands), 0)
+        bands_names = [band.names[0] for band in bands]
+        self.assertIn("Foo Fighters", bands_names)
+
+    def get_user_bands_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        get_or_create_band(self.beatles1)
+        get_or_create_band(self.chico1)
+
+        bands = get_user_bands(facebook_id=user_guilherme.facebook_id)
+        bands_slug = [band.slug for band in bands]
+
+        self.assertEqual(len(bands), 2)
+        self.assertIn(self.beatles1["slug"], bands_slug)
+        self.assertIn(self.chico1["slug"], bands_slug)
 
 
     def get_or_create_questions_test(self):

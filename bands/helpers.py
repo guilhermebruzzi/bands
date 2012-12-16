@@ -5,6 +5,8 @@ import re
 import flask
 import json
 import urllib2
+import random
+
 
 from flask import session
 
@@ -25,12 +27,13 @@ def get_musicians_from_opengraph(facebook_id, oauth_token):
     musicians = get_json(url_to_get_musicians)
 
     musicians_names = []
-    while len(musicians["data"]) > 0:
-        for music in musicians["data"]:
-            if music["category"] == "Musician/band":
-                musicians_names.append(music["name"])
+    if "data" in musicians.keys():
+        while len(musicians["data"]) > 0:
+            for music in musicians["data"]:
+                if music["category"] == "Musician/band":
+                    musicians_names.append(music["name"])
 
-        musicians = get_json(musicians["paging"]["next"])
+            musicians = get_json(musicians["paging"]["next"])
     return musicians_names
 
 
