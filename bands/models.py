@@ -21,3 +21,8 @@ class Question(db.Document):
     slug = db.StringField(required=True)
     question = db.StringField(required=True)
     answers = db.ListField(EmbeddedDocumentField(Answer))
+
+class Band(db.Document):
+    slug = db.StringField(required=True)
+    names = db.ListField(StringField(required=True))
+    users = db.ListField(StringField(required=True))

@@ -3,7 +3,7 @@
 import random
 
 from mongoengine.queryset import DoesNotExist
-from models import User, Question, Answer
+from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
 
 
@@ -13,6 +13,21 @@ def get_or_create_user(data):
     except DoesNotExist:
         user = User.objects.create(facebook_id=data['id'], email=data['email'], name=data['name'])
     return user
+
+def get_or_create_band(data):
+    try:
+        band = Band.objects.get(slug=data['slug'])
+    except DoesNotExist:
+        band = Band.objects.create(slug=data['slug'])
+
+    if not data['name'] in band.names:
+        band.names.append(data['name'])
+
+    if not data['user'] in band.users:
+        band.users.append(data['user'])
+
+    band.save()
+    return band
 
 def get_random_users(max=8):
     users = [user for user in User.objects.all()]

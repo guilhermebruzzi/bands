@@ -4,7 +4,7 @@
 from unittest import TestCase
 from controllers import *
 from config import QUESTIONS_PESQUISA
-from models import User, Question, Answer
+from models import User, Question, Answer, Band
 
 class ControllersTest(TestCase):
 
@@ -14,6 +14,7 @@ class ControllersTest(TestCase):
 
         self.__delete_all__(User)
         self.__delete_all__(Question)
+        self.__delete_all__(Band)
 
         self.invalid_vazio = {}
         self.invalid_musico_fa_vazio = {"musico-ou-fa": [""],
@@ -88,6 +89,90 @@ class ControllersTest(TestCase):
     def tearDown(self):
         self.__delete_all__(User)
         self.__delete_all__(Question)
+        self.__delete_all__(Band)
+
+    def get_or_create_band_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+
+        beatles1 = {
+            "slug": "beatles",
+            "name": "The Beatles",
+            "user": user_guilherme.facebook_id
+        }
+        chico1 = {
+            "slug": "chico",
+            "name": "Chico",
+            "user": user_guilherme.facebook_id
+        }
+
+        result = get_or_create_band(beatles1)
+        self.assertEqual(result.slug, beatles1['slug'])
+        self.assertIn(beatles1['name'], result.names)
+        self.assertIn(beatles1['user'], result.users)
+
+        result = get_or_create_band(chico1)
+        self.assertEqual(result.slug, chico1['slug'])
+        self.assertIn(chico1['name'], result.names)
+        self.assertIn(chico1['user'], result.users)
+
+        user_guto =  get_or_create_user(data=self.data_user_guto)
+
+        beatles2 = {
+            "slug": "beatles",
+            "name": "Beatles",
+            "user": user_guto.facebook_id
+        }
+        chico2 = {
+            "slug": "chico",
+            "name": "Chico",
+            "user": user_guto.facebook_id
+        }
+        chico3 = {
+            "slug": "chico",
+            "name": "Chico",
+            "user": user_guto.facebook_id
+        }
+        chico4 = {
+            "slug": "chico",
+            "name": "Chico Buarque",
+            "user": user_guto.facebook_id
+        }
+
+
+        result = get_or_create_band(beatles2)
+        self.assertEqual(result.slug, beatles2['slug'])
+        self.assertIn(beatles1['name'], result.names)
+        self.assertIn(beatles1['user'], result.users)
+        self.assertIn(beatles2['name'], result.names)
+        self.assertIn(beatles2['user'], result.users)
+        self.assertEqual(2, len(result.names))
+        self.assertEqual(2, len(result.users))
+
+        result = get_or_create_band(chico2)
+        self.assertEqual(result.slug, chico2['slug'])
+        self.assertIn(chico1['name'], result.names)
+        self.assertIn(chico1['user'], result.users)
+        self.assertIn(chico2['user'], result.users)
+        self.assertEqual(1, len(result.names))
+        self.assertEqual(2, len(result.users))
+
+        result = get_or_create_band(chico3)
+        self.assertEqual(result.slug, chico3['slug'])
+        self.assertIn(chico1['name'], result.names)
+        self.assertIn(chico1['user'], result.users)
+        self.assertIn(chico2['user'], result.users)
+        self.assertEqual(1, len(result.names))
+        self.assertEqual(2, len(result.users))
+
+        result = get_or_create_band(chico4)
+        self.assertEqual(result.slug, chico4['slug'])
+        self.assertIn(chico1['name'], result.names)
+        self.assertIn(chico4['name'], result.names)
+        self.assertIn(chico1['user'], result.users)
+        self.assertIn(chico2['user'], result.users)
+        self.assertEqual(2, len(result.names))
+        self.assertEqual(2, len(result.users))
+
 
     def get_random_users_test(self):
         users_random, len_users = get_random_users()
