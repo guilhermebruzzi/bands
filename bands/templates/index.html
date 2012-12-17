@@ -73,25 +73,25 @@
         {% if mode == "tagcloud" %}
             <section class="tagcloud">
                 <header class="bands-in-bd">
-                    <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
+                    <span class="number-of-bands">{{ total }} bandas cadastradas!</span>
                 </header>
                 <hr />
                 <section class="bands-body">
-                    {% for tagcloud in tagclouds %}
-                        <a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ tagcloud.size }}">{{ tagcloud.label }}</a>
+                    {% for band in bands %}
+                        <a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ band.size }}">{{ band.label }}</a>
                     {% endfor %}
                 </section>
             </section>
         {% elif mode == "bandslist" %}
             <section class="bandslist">
                 <header class="bands-in-bd">
-                    <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
+                    <span class="number-of-bands">{{ total }} bandas cadastradas!</span>
                 </header>
                 <hr />
                 <section class="bands-body">
                     <ul>
-                        {% for tagcloud in tagclouds %}
-                            <li><a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ tagcloud.label }} - ({{ tagcloud.size }})</a></li>
+                        {% for band in bands %}
+                            <li><a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ band.label }} - ({{ band.size }})</a></li>
                         {% endfor %}
                     </ul>
                 </section>

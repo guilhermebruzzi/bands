@@ -6,7 +6,7 @@ from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
 from helpers import get_musicians_from_opengraph, get_slug
-
+from operator import itemgetter
 
 def get_or_create_user(data, oauth_token=None):
     try:
@@ -57,7 +57,24 @@ def unlike_band(slug, user):
 
     band.save()
 
-def get_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
+def get_top_bands(max=None):
+    bands = Band.objects.all()
+    if max == None:
+        max = len(bands)
+        if max == 0:
+            return []
+
+    top_bands = []
+
+    for band in bands:
+        top_bands.append({"label": band.name, "size": len(band.users)})
+
+    result = sorted(top_bands, key=itemgetter('size'), reverse=True)
+
+    return (result[0:max], len(bands))
+
+
+def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
     bands = Band.objects.all()
     if max == None:
         max = len(bands)

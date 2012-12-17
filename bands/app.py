@@ -10,7 +10,7 @@ from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, 
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
     get_musicians_from_opengraph, get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users, get_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band
+    get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -51,17 +51,21 @@ def index():
     mode = request.args.get('mode')
     users_random, total_users = get_random_users()
     current_user = get_current_user()
-    tagclouds = count_tags(TAGS)
 
-    return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds,
-        current_user=current_user, mode=mode)
+    if mode != "bandslist":
+        mode = "tagcloud"
+
+    bands, total = get_top_bands(15)
+
+    return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
+        current_user=current_user, mode=mode, total=total)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
 @need_to_be_logged
 def pesquisa_sucesso():
     current_user = get_current_user()
-    bands = get_top_bands(user=current_user)
+    bands = random_top_bands(user=current_user)
     bands_user = get_user_bands(user=current_user)
 
     return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)

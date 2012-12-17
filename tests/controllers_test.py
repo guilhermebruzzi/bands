@@ -216,8 +216,37 @@ class ControllersTest(TestCase):
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
+    def get_top_bands_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
 
-    def get_top_bands_ignoring_my_liked_bands_test(self):
+        self.beatles1['user'] = user_guilherme
+        beatles1 = get_or_create_band(self.beatles1)
+        top_bands, totalBands = get_top_bands()
+
+        self.assertEqual(len(top_bands), 1)
+        self.assertEqual(beatles1.name, top_bands[0]["label"])
+        self.assertEqual(1, top_bands[0]["size"])
+
+        self.beatles1['user'] = user_guto
+        beatles1 = get_or_create_band(self.beatles1)
+        top_bands, totalBands = get_top_bands()
+
+        self.assertEqual(len(top_bands), 1)
+        self.assertEqual(beatles1.name, top_bands[0]["label"])
+        self.assertEqual(2, top_bands[0]["size"])
+
+        self.cassia1['user'] = user_guilherme
+        cassia1 = get_or_create_band(self.cassia1)
+        top_bands, totalBands = get_top_bands()
+
+        self.assertEqual(len(top_bands), 2)
+        self.assertEqual(beatles1.name, top_bands[0]["label"])
+        self.assertEqual(2, top_bands[0]["size"])
+        self.assertEqual(cassia1.name, top_bands[1]["label"])
+        self.assertEqual(1, top_bands[1]["size"])
+
+    def random_top_bands_ignoring_my_liked_bands_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         user_guto = get_or_create_user(data=self.data_user_guto)
 
@@ -228,14 +257,14 @@ class ControllersTest(TestCase):
         self.cassia2['user'] = user_guto
 
         beatles1 = get_or_create_band(self.beatles1)
-        top_bands = get_top_bands(user=user_guto)
+        top_bands = random_top_bands(user=user_guto)
         top_bands_slug = [band.slug for band in top_bands]
 
         self.assertEqual(len(top_bands), 1)
         self.assertIn(beatles1.slug, top_bands_slug)
 
         cassia1 = get_or_create_band(self.cassia1)
-        top_bands = get_top_bands(user=user_guto)
+        top_bands = random_top_bands(user=user_guto)
         top_bands_slug = [band.slug for band in top_bands]
 
         self.assertEqual(len(top_bands), 2)
@@ -243,22 +272,22 @@ class ControllersTest(TestCase):
         self.assertIn(cassia1.slug, top_bands_slug)
 
         get_or_create_band(self.beatles2)
-        top_bands = get_top_bands(user=user_guto)
+        top_bands = random_top_bands(user=user_guto)
         top_bands_slug = [band.slug for band in top_bands]
 
         self.assertEqual(len(top_bands), 1)
         self.assertIn(cassia1.slug, top_bands_slug)
 
         get_or_create_band(self.cassia2)
-        top_bands = get_top_bands(user=user_guto)
+        top_bands = random_top_bands(user=user_guto)
         self.assertEqual(len(top_bands), 0)
 
 
-    def get_top_bands_assert_empty_if_none_on_bd_test(self):
-        top_bands = get_top_bands()
+    def random_top_bands_assert_empty_if_none_on_bd_test(self):
+        top_bands = random_top_bands()
         self.assertEqual(len(top_bands), 0)
 
-    def get_top_bands_select_all_test(self):
+    def random_top_bands_select_all_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         user_guto = get_or_create_user(data=self.data_user_guto)
 
@@ -274,14 +303,14 @@ class ControllersTest(TestCase):
         cassia1 = get_or_create_band(self.cassia1)
         get_or_create_band(self.cassia2)
 
-        top_bands = get_top_bands()
+        top_bands = random_top_bands()
         top_bands_slug = [band.slug for band in top_bands]
 
         self.assertEqual(len(top_bands), 2)
         self.assertIn(beatles1.slug, top_bands_slug)
         self.assertIn(cassia1.slug, top_bands_slug)
 
-    def get_top_bands_select_10_from_100_test(self):
+    def random_top_bands_select_10_from_100_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
 
         all_bands = []
@@ -293,7 +322,7 @@ class ControllersTest(TestCase):
             }
             all_bands.append(get_or_create_band(beatles_model))
 
-        top_bands = get_top_bands(max=10)
+        top_bands = random_top_bands(max=10)
 
         self.assertEqual(len(top_bands), 10)
 
