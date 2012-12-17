@@ -51,8 +51,9 @@ def index():
     tagclouds = count_tags(TAGS)
     users_random, total_users = get_random_users()
     current_user = get_current_user()
+    debug = app.config["DEBUG"]
     return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds,
-        current_user=current_user)
+        current_user=current_user, debug=debug)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
@@ -61,7 +62,8 @@ def pesquisa_sucesso():
     current_user = get_current_user()
     bands = get_top_bands()
     bands_user = get_user_bands(user=current_user)
-    return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
+    debug = app.config["DEBUG"]
+    return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user, debug=debug)
 
 
 @app.route('/band/add/', methods=['POST'])
@@ -98,8 +100,8 @@ def unlike():
 @need_to_be_logged
 def pesquisa():
     current_user = get_current_user()
-
     post_data = prepare_post_data()
+    debug = app.config["DEBUG"]
 
     if request.method == 'POST':
         if validate_answers(post_data):
@@ -107,7 +109,7 @@ def pesquisa():
             return redirect(url_for('pesquisa_sucesso'))
 
     return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
-                            questions=QUESTIONS_PESQUISA, post_data=post_data)
+                            questions=QUESTIONS_PESQUISA, post_data=post_data, debug=debug)
 
 
 @app.route('/login/')
