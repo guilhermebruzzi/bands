@@ -3,7 +3,6 @@
 
 from unittest import TestCase
 from controllers import *
-from config import QUESTIONS_PESQUISA
 from models import User, Question, Answer, Band
 
 class ControllersTest(TestCase):
@@ -217,7 +216,45 @@ class ControllersTest(TestCase):
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
-    def get_top_bands_assert_empty_if_none_on_bd(self):
+
+    def get_top_bands_ignoring_my_liked_bands_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        self.beatles2['user'] = user_guto
+
+        self.cassia1['user'] = user_guilherme
+        self.cassia2['user'] = user_guto
+
+        beatles1 = get_or_create_band(self.beatles1)
+        top_bands = get_top_bands(user=user_guto)
+        top_bands_slug = [band.slug for band in top_bands]
+
+        self.assertEqual(len(top_bands), 1)
+        self.assertIn(beatles1.slug, top_bands_slug)
+
+        cassia1 = get_or_create_band(self.cassia1)
+        top_bands = get_top_bands(user=user_guto)
+        top_bands_slug = [band.slug for band in top_bands]
+
+        self.assertEqual(len(top_bands), 2)
+        self.assertIn(beatles1.slug, top_bands_slug)
+        self.assertIn(cassia1.slug, top_bands_slug)
+
+        get_or_create_band(self.beatles2)
+        top_bands = get_top_bands(user=user_guto)
+        top_bands_slug = [band.slug for band in top_bands]
+
+        self.assertEqual(len(top_bands), 1)
+        self.assertIn(cassia1.slug, top_bands_slug)
+
+        get_or_create_band(self.cassia2)
+        top_bands = get_top_bands(user=user_guto)
+        self.assertEqual(len(top_bands), 0)
+
+
+    def get_top_bands_assert_empty_if_none_on_bd_test(self):
         top_bands = get_top_bands()
         self.assertEqual(len(top_bands), 0)
 
@@ -244,13 +281,15 @@ class ControllersTest(TestCase):
         self.assertIn(beatles1.slug, top_bands_slug)
         self.assertIn(cassia1.slug, top_bands_slug)
 
-    def get_top_bands_select_10_from_100(self):
+    def get_top_bands_select_10_from_100_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+
         all_bands = []
         for i in range(100):
             beatles_model = {
                 "slug": "beatles%d" % i,
                 "name": "The Beatles",
-                "user": self.data_user_guilherme["id"]
+                "user": user_guilherme
             }
             all_bands.append(get_or_create_band(beatles_model))
 
@@ -421,11 +460,11 @@ class ControllersTest(TestCase):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         self.__assert_user__(user_guilherme, self.data_user_guilherme)
 
-    def get_or_create_user_and_his_bands(self):
+    def get_or_create_user_and_his_bands_test(self):
         get_or_create_user(data=self.guilherme_bruzzi_real_data_user, oauth_token=self.access_token)
         bands = Band.objects.all()
         self.assertGreater(len(bands), 0)
-        bands_names = [band.names[0] for band in bands]
+        bands_names = [band.aliases[0] for band in bands]
         self.assertIn("Foo Fighters", bands_names)
 
     def get_user_bands_test(self):

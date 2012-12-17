@@ -57,7 +57,7 @@ def unlike_band(slug, user):
 
     band.save()
 
-def get_top_bands(max=None): #  Sorteia bandas baseado na quantidade de votos dela
+def get_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
     bands = Band.objects.all()
     if max == None:
         max = len(bands)
@@ -67,9 +67,10 @@ def get_top_bands(max=None): #  Sorteia bandas baseado na quantidade de votos de
     removidos = {}
     bandas = []
     for band in bands:
-        for user in band.users:
-            bandas.append(band)
-            removidos[band.slug] = False
+        if not user or not user in band.users:
+            for u in band.users:
+                bandas.append(band)
+                removidos[band.slug] = False
 
     bandasOrdenadas = []
     while len(bandas) > 0:
