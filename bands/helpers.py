@@ -8,7 +8,17 @@ import urllib2
 import random
 
 
-from flask import session
+from flask import session, render_template
+from config import get_app
+
+app = get_app()
+
+def render_template(url, **data):
+    if not "debug" in data.keys():
+        data["debug"] = app.config["DEBUG"]
+
+    return flask.render_template(url, **data)
+
 
 def get_slug(title):
     slug = unicodedata.normalize('NFKD', unicode(title))

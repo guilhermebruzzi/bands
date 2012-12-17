@@ -5,10 +5,10 @@ import os
 import urllib2
 import json
 
-from flask import Flask, redirect, url_for, session, request, render_template, abort, make_response
+from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
-    get_musicians_from_opengraph, get_slug
+    get_musicians_from_opengraph, get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, get_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band
 
@@ -51,9 +51,8 @@ def index():
     tagclouds = count_tags(TAGS)
     users_random, total_users = get_random_users()
     current_user = get_current_user()
-    debug = app.config["DEBUG"]
     return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds,
-        current_user=current_user, debug=debug)
+        current_user=current_user)
 
 
 @app.route('/pesquisa-sucesso/', methods=['GET'])
@@ -62,8 +61,8 @@ def pesquisa_sucesso():
     current_user = get_current_user()
     bands = get_top_bands()
     bands_user = get_user_bands(user=current_user)
-    debug = app.config["DEBUG"]
-    return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user, debug=debug)
+
+    return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
 
 
 @app.route('/band/add/', methods=['POST'])
@@ -101,7 +100,6 @@ def unlike():
 def pesquisa():
     current_user = get_current_user()
     post_data = prepare_post_data()
-    debug = app.config["DEBUG"]
 
     if request.method == 'POST':
         if validate_answers(post_data):
@@ -109,7 +107,7 @@ def pesquisa():
             return redirect(url_for('pesquisa_sucesso'))
 
     return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
-                            questions=QUESTIONS_PESQUISA, post_data=post_data, debug=debug)
+                            questions=QUESTIONS_PESQUISA, post_data=post_data)
 
 
 @app.route('/login/')

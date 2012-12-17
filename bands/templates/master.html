@@ -4,13 +4,10 @@
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-        {# Garantindo que todas as páginas passem a variável debug #}
-        {% if debug == True or debug == False %}
-            {% assets filter="yui_css", output="css/gen/import-min.css",
-                "css/normalize.css", "css/styles.css", "css/index.css", "css/resultados_gerais.css", "css/pesquisa.css"  %}
-                <link rel="stylesheet" href="{{ ASSET_URL }}" />
-            {% endassets %}
-        {% endif %}
+        {% assets filter="yui_css", output="css/gen/import-min.css",
+            "css/normalize.css", "css/styles.css", "css/index.css", "css/resultados_gerais.css", "css/pesquisa.css"  %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
 
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png" />
 
