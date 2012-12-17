@@ -77,9 +77,11 @@ function votacao() {
     var votacaoButton = document.querySelector('#adicionar-item-votacao-button');
     var itemCheckBoxes = document.querySelectorAll('.item-votacao');
 
-    votacaoButton.addEventListener("click", adicionarItem, false);
-    votacaoInput.addEventListener("keypress", enterPressed, false);
-    addListenerMarcacao(itemCheckBoxes)
+    if(votacaoButton){
+        votacaoButton.addEventListener("click", adicionarItem, false);
+        votacaoInput.addEventListener("keypress", enterPressed, false);
+        addListenerMarcacao(itemCheckBoxes)
+    }
 }
 
 votacao();
