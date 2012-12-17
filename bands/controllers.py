@@ -36,6 +36,27 @@ def get_or_create_band(data):
     band.save()
     return band
 
+def get_band(slug):
+    return Band.objects.filter(slug=slug).first()
+
+def like_band(slug, user):
+    band = get_band(slug)
+
+    if not user in band.users:
+        band.users.append(user)
+
+    band.save()
+
+def unlike_band(slug, user):
+    band = get_band(slug)
+
+    for i in range(len(band.users)):
+        if band.users[i] == user:
+            del band.users[i]
+            break
+
+    band.save()
+
 def get_top_bands(max=None): #  Sorteia bandas baseado na quantidade de votos dela
     bands = Band.objects.all()
     if max == None:

@@ -10,7 +10,7 @@ from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, 
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
     get_musicians_from_opengraph, get_slug
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users, get_top_bands, get_user_bands, get_or_create_band
+    get_random_users, get_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -63,15 +63,35 @@ def pesquisa_sucesso():
     bands_user = get_user_bands(user=current_user)
     return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
 
-@app.route('/add_band/', methods=['POST'])
+
+@app.route('/band/add/', methods=['POST'])
+@need_to_be_logged
 def add_band():
     name = request.form['band']
     user = get_current_user()
 
-    if user:
-        band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
-
+    band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
     return "%s\n%s" % (band.name, band.slug)
+
+
+@app.route('/band/like/', methods=['POST'])
+@need_to_be_logged
+def like():
+    slug = request.form['band']
+    user = get_current_user()
+
+    like_band(slug, user)
+    return 'liked'
+
+
+@app.route('/band/unlike/', methods=['POST'])
+@need_to_be_logged
+def unlike():
+    slug = request.form['band']
+    user = get_current_user()
+
+    unlike_band(slug, user)
+    return 'unliked'
 
 
 @app.route('/pesquisa/', methods=['GET', 'POST'])

@@ -1,6 +1,6 @@
 var httpRequest;
 
-function makeRequestAddBand(url, band) {
+function makeRequestBand(operation, band, callback) {
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
     } else if (window.ActiveXObject) { // IE
@@ -14,12 +14,15 @@ function makeRequestAddBand(url, band) {
             catch (e) {}
         }
     }
-
     if (!httpRequest) {
         return false;
     }
-    httpRequest.onreadystatechange = showNewBand;
-    httpRequest.open('POST', url);
+
+    if(callback) {
+        httpRequest.onreadystatechange = callback;
+    }
+
+    httpRequest.open('POST', "/band/" + operation);
     httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     httpRequest.send('band=' + encodeURIComponent(band));
 }
@@ -33,8 +36,9 @@ function showNewBand() {
             var band_name = response[0]
             var band_slug = response[1]
             var bands_list = document.querySelector('.list_bands_user_likes');
-            bands_list.innerHTML += '<li><input type="checkbox" checked="checked" value="' + band_slug + '" /> ' + band_name + '</li>';
+            bands_list.innerHTML += '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + band_slug + '" /> ' + band_name + '</li>';
             votacaoInput.value = "";
+            votacao();
         } else {
             console.log('There was a problem with the request.');
         }
@@ -42,9 +46,7 @@ function showNewBand() {
 }
 
 function adicionarItem() {
-    var url_create_band = "/add_band/";
-    var band = votacaoInput.value;
-    makeRequestAddBand(url_create_band, band)
+    makeRequestBand("add/", votacaoInput.value, showNewBand);
 }
 
 function enterPressed(e) {
@@ -53,10 +55,24 @@ function enterPressed(e) {
     }
 }
 
-function votacao(){
+function marcacaoItem() {
+    if (this.checked) {
+        makeRequestBand("like/", this.value);
+    } else {
+        makeRequestBand("unlike/", this.value);
+    }
+}
+
+function votacao() {
     var votacaoButton = document.querySelector('#adicionar-item-votacao-button');
+    var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+
     votacaoButton.addEventListener("click", adicionarItem, false);
     votacaoInput.addEventListener("keypress", enterPressed, false);
+
+    for (var i = 0; i < itemCheckBoxes.length; ++i) {
+        itemCheckBoxes[i].addEventListener("click", marcacaoItem, false);
+    }
 }
 
 votacao();

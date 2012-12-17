@@ -116,6 +116,41 @@ class ControllersTest(TestCase):
         self.__delete_all__(Question)
         self.__delete_all__(Band)
 
+    def like_band_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        get_or_create_band(self.beatles1)
+
+        result = get_band(self.beatles1['slug'])
+        like_band(result.slug, user_guto)
+
+        result = get_band(self.beatles1['slug'])
+        self.assertIn(user_guto, result.users)
+
+    def unlike_band_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        get_or_create_band(self.beatles1)
+
+        self.beatles1['user'] = user_guto
+        get_or_create_band(self.beatles1)
+
+        result = get_band(self.beatles1['slug'])
+        self.assertIn(user_guilherme, result.users)
+        self.assertIn(user_guto, result.users)
+
+        unlike_band(result.slug, user_guilherme)
+        result = get_band(self.beatles1['slug'])
+        self.assertNotIn(user_guilherme, result.users)
+
+        unlike_band(result.slug, user_guto)
+        result = get_band(self.beatles1['slug'])
+        self.assertNotIn(user_guto, result.users)
+
     def get_or_create_band_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         user_guto = get_or_create_user(data=self.data_user_guto)
