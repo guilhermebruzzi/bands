@@ -81,7 +81,7 @@ section.informacoes-existentes{
     vertical-align: top;
 }
 
-section.informacoes-existentes section.users, section.informacoes-existentes section.tagcloud{
+section.informacoes-existentes section.users, section.informacoes-existentes section.tagcloud, section.informacoes-existentes section.bandslist{
     background-color: #FFFFFF;
     border: 1px solid #B8B8B8;
     border-radius: 8px 8px 8px 8px;
@@ -131,7 +131,7 @@ section.informacoes-existentes section.users section.users-body div.user div.use
     margin: 0px auto;
 }
 
-section.informacoes-existentes section.users hr, section.informacoes-existentes section.tagcloud hr{
+section.informacoes-existentes section.users hr, section.informacoes-existentes section.tagcloud hr, section.informacoes-existentes section.bandslist hr{
     color: #EEEEEE;
 }
 
@@ -141,7 +141,7 @@ section.informacoes-existentes .number-of-users, section.informacoes-existentes 
     font-size: 11px;
 }
 
-section.informacoes-existentes section.tagcloud header.bands-in-bd{
+section.informacoes-existentes section.tagcloud header.bands-in-bd, section.informacoes-existentes section.bandslist header.bands-in-bd{
     background: none repeat scroll 0 0 transparent;
     height: auto;
     margin: 0 auto;
@@ -149,15 +149,15 @@ section.informacoes-existentes section.tagcloud header.bands-in-bd{
     text-align: center;
 }
 
-section.informacoes-existentes section.tagcloud section.bands-body{
+section.informacoes-existentes section.tagcloud section.bands-body, section.informacoes-existentes section.bandslist section.bands-body{
     width: 310px;
 }
 
-section.informacoes-existentes section.tagcloud section.bands-body a{
+section.informacoes-existentes section.tagcloud section.bands-body a, section.informacoes-existentes section.bandslist section.bands-body a{
     color: #000000;
     text-decoration: none;
 }
-section.informacoes-existentes section.tagcloud section.bands-body a:hover{
+section.informacoes-existentes section.tagcloud section.bands-body a:hover, section.informacoes-existentes section.bandslist section.bands-body a:hover{
     color: #870802;
 }
 
@@ -167,7 +167,7 @@ section.informacoes-existentes section.tagcloud section.bands-body a.size-0{
 section.informacoes-existentes section.tagcloud section.bands-body a.size-1{
     font-size: 12px;
 }
-section.informacoes-existentes section.tagcloud section.bands-body a.size-2{
+section.informacoes-existentes section.tagcloud section.bands-body a.size-2, section.informacoes-existentes section.bandslist section.bands-body a.band{
     font-size: 14px;
 }
 section.informacoes-existentes section.tagcloud section.bands-body a.size-3{

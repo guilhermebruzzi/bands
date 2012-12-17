@@ -82,6 +82,20 @@
                     {% endfor %}
                 </section>
             </section>
+        {% elif mode == "bandslist" %}
+            <section class="bandslist">
+                <header class="bands-in-bd">
+                    <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
+                </header>
+                <hr />
+                <section class="bands-body">
+                    <ul>
+                        {% for tagcloud in tagclouds %}
+                            <li><a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ tagcloud.label }} - ({{ tagcloud.size }})</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </section>
         {% endif %}
 
     </section>
