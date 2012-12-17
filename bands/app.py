@@ -52,7 +52,7 @@ def index():
     users_random, total_users = get_random_users()
     current_user = get_current_user()
 
-    if mode == "taglist":
+    if mode == "tagcloud":
         tagclouds = count_tags(TAGS)
     else:
         tagclouds = []
