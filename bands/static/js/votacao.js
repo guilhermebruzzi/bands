@@ -48,7 +48,9 @@ function showNewBand() {
 }
 
 function adicionarItem() {
-    makeRequestBand("add/", votacaoInput.value, showNewBand);
+    if(votacaoInput.value.trim() != "") {
+        makeRequestBand("add/", votacaoInput.value, showNewBand);
+    }
 }
 
 function enterPressed(e) {
