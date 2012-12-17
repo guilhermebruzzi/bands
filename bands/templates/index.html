@@ -70,17 +70,19 @@
             </section>
         </section>
 
-        <section class="tagcloud">
-            <header class="bands-in-bd">
-                <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
-            </header>
-            <hr />
-            <section class="bands-body">
-                {% for tagcloud in tagclouds %}
-                    <a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ tagcloud.size }}">{{ tagcloud.label }}</a>
-                {% endfor %}
+        {% if mode == "tagcloud" %}
+            <section class="tagcloud">
+                <header class="bands-in-bd">
+                    <span class="number-of-bands">{{ tagclouds|length }} bandas cadastradas!</span>
+                </header>
+                <hr />
+                <section class="bands-body">
+                    {% for tagcloud in tagclouds %}
+                        <a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ tagcloud.size }}">{{ tagcloud.label }}</a>
+                    {% endfor %}
+                </section>
             </section>
-        </section>
+        {% endif %}
 
     </section>
 

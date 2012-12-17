@@ -52,10 +52,10 @@ def index():
     users_random, total_users = get_random_users()
     current_user = get_current_user()
 
-    if mode == "tagcloud":
-        tagclouds = count_tags(TAGS)
-    else:
-        tagclouds = []
+    if mode != "bandslist":
+        mode = "tagcloud"
+
+    tagclouds = count_tags(TAGS)
 
     return render_template("index.html", users=users_random, total_users=total_users, tagclouds=tagclouds,
         current_user=current_user, mode=mode)
