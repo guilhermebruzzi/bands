@@ -38,7 +38,9 @@ function showNewBand() {
             var bands_list = document.querySelector('.list_bands_user_likes');
             bands_list.innerHTML += '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + band_slug + '" /> ' + band_name + '</li>';
             votacaoInput.value = "";
-            votacao();
+
+            var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+            addListenerMarcacao(itemCheckBoxes);
         } else {
             console.log('There was a problem with the request.');
         }
@@ -57,9 +59,17 @@ function enterPressed(e) {
 
 function marcacaoItem() {
     if (this.checked) {
+        this.setAttribute("checked", "checked");
         makeRequestBand("like/", this.value);
     } else {
+        this.removeAttribute("checked");
         makeRequestBand("unlike/", this.value);
+    }
+}
+
+function addListenerMarcacao(components) {
+    for (var i = 0; i < components.length; ++i) {
+        components[i].addEventListener("click", marcacaoItem, false);
     }
 }
 
@@ -69,10 +79,7 @@ function votacao() {
 
     votacaoButton.addEventListener("click", adicionarItem, false);
     votacaoInput.addEventListener("keypress", enterPressed, false);
-
-    for (var i = 0; i < itemCheckBoxes.length; ++i) {
-        itemCheckBoxes[i].addEventListener("click", marcacaoItem, false);
-    }
+    addListenerMarcacao(itemCheckBoxes)
 }
 
 votacao();
