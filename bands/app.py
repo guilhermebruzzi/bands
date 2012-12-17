@@ -52,10 +52,15 @@ def index():
     users_random, total_users = get_random_users()
     current_user = get_current_user()
 
+    max = 15
+    sort = True
+
     if mode != "bandslist":
         mode = "tagcloud"
+        max = 40
+        sort = False
 
-    bands, total = get_top_bands(15)
+    bands, total = get_top_bands(max, sort)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
         current_user=current_user, mode=mode, total=total)

@@ -222,7 +222,7 @@ class ControllersTest(TestCase):
 
         self.beatles1['user'] = user_guilherme
         beatles1 = get_or_create_band(self.beatles1)
-        top_bands, totalBands = get_top_bands()
+        top_bands, totalBands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 1)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
@@ -230,7 +230,7 @@ class ControllersTest(TestCase):
 
         self.beatles1['user'] = user_guto
         beatles1 = get_or_create_band(self.beatles1)
-        top_bands, totalBands = get_top_bands()
+        top_bands, totalBands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 1)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
@@ -238,7 +238,7 @@ class ControllersTest(TestCase):
 
         self.cassia1['user'] = user_guilherme
         cassia1 = get_or_create_band(self.cassia1)
-        top_bands, totalBands = get_top_bands()
+        top_bands, totalBands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 2)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
