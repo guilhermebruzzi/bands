@@ -57,7 +57,7 @@ def unlike_band(slug, user):
 
     band.save()
 
-def get_top_bands(max=None, sort=False):
+def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     bands = Band.objects.all()
     if max == None:
         max = len(bands)
@@ -65,9 +65,16 @@ def get_top_bands(max=None, sort=False):
             return []
 
     top_bands = []
+    top_band_size = 0;
 
     for band in bands:
         top_bands.append({"label": band.name, "size": len(band.users)})
+        if len(band.users) > top_band_size:
+            top_band_size = len(band.users)
+
+    if normalize and top_band_size != 0:
+        for band in top_bands:
+            band["size"] = int((maxSize * band["size"]) / top_band_size)
 
     if sort:
         result = sorted(top_bands, key=itemgetter('size'), reverse=True)

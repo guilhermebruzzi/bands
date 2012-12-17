@@ -54,13 +54,15 @@ def index():
 
     max = 15
     sort = True
+    normalize = False
 
     if mode != "bandslist":
         mode = "tagcloud"
         max = 40
         sort = False
+        normalize = True
 
-    bands, total = get_top_bands(max, sort)
+    bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
         current_user=current_user, mode=mode, total=total)
