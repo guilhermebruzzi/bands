@@ -7,6 +7,7 @@ from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
 from helpers import get_musicians_from_opengraph, get_slug
 from operator import itemgetter
+from random import shuffle
 
 def get_or_create_user(data, oauth_token=None):
     try:
@@ -72,16 +73,17 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
         if len(band.users) > top_band_size:
             top_band_size = len(band.users)
 
+    result = sorted(top_bands, key=itemgetter('size'), reverse=True)
+    result = result[0:max]
+
     if normalize and top_band_size != 0:
-        for band in top_bands:
+        for band in result:
             band["size"] = int((maxSize * band["size"]) / top_band_size)
 
-    if sort:
-        result = sorted(top_bands, key=itemgetter('size'), reverse=True)
-    else:
-        result = top_bands
+    if not sort:
+        shuffle(result)
 
-    return (result[0:max], len(bands))
+    return (result, len(bands))
 
 
 def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
