@@ -216,3 +216,14 @@ footer a.new_link{
     width: 134px;
     height: 111px;
 }
+
+section.feedback-success a{
+    display:block;
+    text-align: center;
+    margin-top: 0px;
+}
+
+section.feedback-success div {
+    margin: 30px auto;
+    width: 500px;
+}
