@@ -55,3 +55,8 @@ section.feedback-success h2{
 section.feedback-success h2.thank-you{
     font-weight: bold;
 }
+
+section.feedback-success div.add_bands{
+    margin: 30px auto;
+    width: 500px;
+}
