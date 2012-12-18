@@ -35,3 +35,6 @@ coverage.xml
 nosetests.xml
 bands/static/.webassets-cache/*
 
+#Ignorando os js e css minificados
+bands/css/gen
+bands/js/gen
