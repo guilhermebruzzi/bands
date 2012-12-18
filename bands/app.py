@@ -62,10 +62,7 @@ def index():
         sort = False
         normalize = True
 
-    #bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
-
-    bands = []
-    total = 0
+    bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
         current_user=current_user, mode=mode, total=total)
