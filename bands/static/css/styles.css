@@ -221,6 +221,7 @@ section.feedback-success a{
     display:block;
     text-align: center;
     margin-top: 0px;
+    text-decoration: none;
 }
 
 section.feedback-success div {
