@@ -67,7 +67,7 @@
 
         {% if mode == "tagcloud" %}
 
-            {% assets filter="yui_js", output="js/gen/import-min.js",
+            {% assets filter="yui_js", output="js/gen/import-min-experiment.js",
             "js/index.js", "js/pesquisa.js", "js/votacao.js", "js/google_analytics.js", "js/google_analytics_experiment.js" %}
                 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
             {% endassets %}
