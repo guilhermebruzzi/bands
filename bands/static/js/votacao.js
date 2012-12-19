@@ -92,7 +92,6 @@ function votacao() {
         votacaoButton.addEventListener("click", adicionarItem, false);
         votacaoInput.addEventListener("keypress", enterPressed, false);
         votacaoInput.addEventListener("focus", retiraFraseDefault, false);
-        votacaoInput.addEventListener('blur', colocaFraseDefault, false);
         addListenerMarcacao(itemCheckBoxes)
     }
 }
