@@ -33,7 +33,13 @@ section.question-main span.question, section.questions span.question{
 }
 
 section.questions input[type=submit]{
-    margin: 10px auto;
+    margin: 15px 0px;
+    display: block;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    height: 35px;
+    font-size: 18px;
 }
 
 section.feedback-success{
@@ -52,6 +58,15 @@ section.feedback-success h2{
     margin: 15px auto;
 }
 
+section.feedback-success input.adicionar-item-votacao-text{
+    width: 250px;
+    opacity: 0.6;
+}
+
+section.feedback-success input.adicionar-item-votacao-text:focus{
+    opacity: 1;
+}
+
 section.feedback-success h2.thank-you{
     font-weight: bold;
 }
@@ -59,4 +74,18 @@ section.feedback-success h2.thank-you{
 section.feedback-success div.add_bands{
     margin: 30px auto;
     width: 500px;
+}
+
+section.feedback-success div.add_bands input.add-btn{
+    font-size: 14px;
+    height: 30px;
+}
+
+section.feedback-success a.salvar-btn{
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    height: 21px;
+    font-size: 18px;
+    margin-left: 369px;
 }

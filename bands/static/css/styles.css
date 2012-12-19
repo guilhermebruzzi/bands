@@ -170,32 +170,36 @@ footer a.new_link{
 
 /*Botão azul*/
 
-.shiny-blue {
-    background-color: #759AE9;
-    background-image: -moz-linear-gradient(center top , #759AE9 0%, #376FE0 50%, #1A5AD9 50%, #2463DE 100%);
-    border-color: #1F58CC #1B4DB3 #174299;
-    border-radius: 4px 4px 4px 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 0 2px 0 rgba(57, 140, 255, 0.8) inset;
-    color: #FFFFFF;
-    font: bold 12px/1 "helvetica neue",helvetica,arial,sans-serif;
-    padding: 7px 0;
-    text-shadow: 0 -1px 1px #1A5AD9;
-    width: 150px;
-    margin-top: 60px;
-}
-.shiny-blue:hover {
-    background-color: #5D89E8;
-    background-image: -moz-linear-gradient(center top , #5D89E8 0%, #2261E0 50%, #044BD9 50%, #0D53DE 100%);
-    cursor: pointer;
-}
-.shiny-blue:active {
-    border-color: #1B4DB3 #174299 #133780;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 0 5px 2px #1A47A0 inset, 0 1px 0 #EEEEEE;
-}
+.shiny-red {
+    -moz-box-shadow:inset 0px 1px 0px 0px #d4302a;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #d4302a;
+    box-shadow:inset 0px 1px 0px 0px #d4302a;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d4302a), color-stop(1, #a00a02) );
+    background:-moz-linear-gradient( center top, #d4302a 5%, #a00a02 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4302a', endColorstr='#a00a02');
+    background-color:#d4302a;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #d4302a;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #a00a02;
+}.shiny-red:hover {
+     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a00a02), color-stop(1, #d4302a) );
+     background:-moz-linear-gradient( center top, #a00a02 5%, #d4302a 100% );
+     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a00a02', endColorstr='#d4302a');
+     background-color:#a00a02;
+ }.shiny-red:active {
+      position:relative;
+      top:1px;
+  }
+
 .facebook-icon, .icone-musicas, .logo{
     background: url("/static/img/sprite.png") no-repeat top left;
     display: block;
@@ -215,16 +219,4 @@ footer a.new_link{
     background-position: 0 -120px;
     width: 134px;
     height: 111px;
-}
-
-section.feedback-success a{
-    display:block;
-    text-align: center;
-    margin-top: 0px;
-    text-decoration: none;
-}
-
-section.feedback-success div {
-    margin: 30px auto;
-    width: 500px;
 }

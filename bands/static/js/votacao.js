@@ -75,13 +75,24 @@ function addListenerMarcacao(components) {
     }
 }
 
+function colocaFraseDefault(){
+    votacaoInput.value = "Nome da nova banda";
+}
+
+function retiraFraseDefault(){
+    votacaoInput.value = "";
+}
+
 function votacao() {
     var votacaoButton = document.querySelector('#adicionar-item-votacao-button');
     var itemCheckBoxes = document.querySelectorAll('.item-votacao');
 
     if(votacaoButton){
+        colocaFraseDefault();
         votacaoButton.addEventListener("click", adicionarItem, false);
         votacaoInput.addEventListener("keypress", enterPressed, false);
+        votacaoInput.addEventListener("focus", retiraFraseDefault, false);
+        votacaoInput.addEventListener('blur', colocaFraseDefault, false);
         addListenerMarcacao(itemCheckBoxes)
     }
 }
