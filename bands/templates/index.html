@@ -78,7 +78,7 @@
                 <hr />
                 <section class="bands-body">
                     {% for band in bands %}
-                        <a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ band.size }}">{{ band.label }}</a>
+                        <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'TagCloud']);" class="size size-{{ band.size }}">{{ band.label }}</a>
                     {% endfor %}
                 </section>
             </section>
@@ -91,7 +91,7 @@
                 <section class="bands-body">
                     <ul>
                         {% for band in bands %}
-                            <li><a href="#" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ band.label }} - ({{ band.size }})</a></li>
+                            <li><a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ band.label }} - ({{ band.size }})</a></li>
                         {% endfor %}
                     </ul>
                 </section>
