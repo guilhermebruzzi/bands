@@ -63,7 +63,7 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     if max == None:
         max = len(bands)
         if max == 0:
-            return []
+            return ([], 0)
 
     top_bands = []
     top_band_size = 0;

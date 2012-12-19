@@ -27,7 +27,8 @@ class ControllersTest(TestCase):
                             "musico-solucao": u""}
 
         self.valid_fa = {"musico-ou-fa": ["fa"],
-                         "fa-funcionalidades": [u"Venda de ingressos"]}
+                         "fa-funcionalidades": [u"Venda de ingressos"],
+                         "fa-funcionalidades_outros": [u"Outra funcionalidade"]}
 
         self.valid_update_fa = {"musico-ou-fa": "fa",
                                 "fa-funcionalidades": [u"Divulgação de shows e eventos"]}
@@ -46,7 +47,7 @@ class ControllersTest(TestCase):
         self.expected_result = {
             "musico-ou-fa": ["musico", "fa"],
             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
-            "fa-funcionalidades": [u"Venda de ingressos"]
+            "fa-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"]
         }
 
         self.empty_answers = {"musico-ou-fa": ["musico"],
@@ -217,12 +218,16 @@ class ControllersTest(TestCase):
         self.assertEqual(2, len(result.users))
 
     def get_top_bands_test(self):
+        bands, total_bands = get_top_bands()
+        self.assertEqual(bands, [])
+        self.assertEqual(total_bands, 0)
+
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         user_guto = get_or_create_user(data=self.data_user_guto)
 
         self.beatles1['user'] = user_guilherme
         beatles1 = get_or_create_band(self.beatles1)
-        top_bands, totalBands = get_top_bands(sort=True)
+        top_bands, total_bands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 1)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
@@ -230,7 +235,7 @@ class ControllersTest(TestCase):
 
         self.beatles1['user'] = user_guto
         beatles1 = get_or_create_band(self.beatles1)
-        top_bands, totalBands = get_top_bands(sort=True)
+        top_bands, total_bands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 1)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
@@ -238,13 +243,41 @@ class ControllersTest(TestCase):
 
         self.cassia1['user'] = user_guilherme
         cassia1 = get_or_create_band(self.cassia1)
-        top_bands, totalBands = get_top_bands(sort=True)
+        top_bands, total_bands = get_top_bands(sort=True)
 
         self.assertEqual(len(top_bands), 2)
+        self.assertEqual(total_bands, 2)
         self.assertEqual(beatles1.name, top_bands[0]["label"])
         self.assertEqual(2, top_bands[0]["size"])
         self.assertEqual(cassia1.name, top_bands[1]["label"])
         self.assertEqual(1, top_bands[1]["size"])
+
+    def get_top_bands_shuffle_and_normalized_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        for user_id in range(12):
+            user = get_or_create_user(data={"id": "id%d" % user_id, "email": "user%d@gmail.com" % user_id, "name": "User %d" % user_id})
+            self.beatles1['user'] = user
+            get_or_create_band(self.beatles1)
+
+        self.cassia1['user'] = user_guilherme
+        get_or_create_band(self.cassia1)
+        self.cassia1['user'] = user_guto
+        get_or_create_band(self.cassia1)
+
+        top_bands, total_bands = get_top_bands(sort=False, normalize=True)
+
+        top_bands_labels = [band["label"] for band in top_bands]
+        self.assertIn(self.beatles1["name"], top_bands_labels)
+        self.assertIn(self.cassia1["name"], top_bands_labels)
+
+        for band in top_bands:
+            if band["label"] == self.beatles1["name"]:
+                self.assertEqual(band["size"], 6)
+            else:
+                self.assertEqual(band["size"], 1)
+
 
     def random_top_bands_ignoring_my_liked_bands_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
@@ -390,7 +423,7 @@ class ControllersTest(TestCase):
         user_guto =  get_or_create_user(data=self.data_user_guto)
         save_answers(self.valid_fa, user_guto)
         self.__assert_answers__("musico-ou-fa", user_guto, "fa")
-        self.__assert_answers__("fa-funcionalidades", user_guto, u"Venda de ingressos")
+        self.__assert_answers__("fa-funcionalidades", user_guto, [u"Venda de ingressos", u"Outra funcionalidade"])
 
     def change_text_of_a_question_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
@@ -415,7 +448,7 @@ class ControllersTest(TestCase):
         save_answers(self.valid_fa, user_guto)
 
         answers = get_all_answers_from_question("fa-funcionalidades")
-        self.assertEqual(len(answers), 1)
+        self.assertEqual(len(answers), 2)
 
     def saving_same_answer_from_different_users_test(self):
         user_guto =  get_or_create_user(data=self.data_user_guto)
@@ -425,7 +458,7 @@ class ControllersTest(TestCase):
         save_answers(self.valid_fa, user_guilherme)
 
         answers = get_all_answers_from_question("fa-funcionalidades")
-        self.assertEqual(len(answers), 2)
+        self.assertEqual(len(answers), 4)
 
     def saving_different_answers_from_same_user_test(self):
         user_guto =  get_or_create_user(data=self.data_user_guto)
@@ -434,7 +467,7 @@ class ControllersTest(TestCase):
         save_answers(self.valid_update_fa, user_guto)
 
         answers = get_all_answers_from_question("fa-funcionalidades")
-        self.assertEqual(len(answers), 2)
+        self.assertEqual(len(answers), 3)
 
     def get_all_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
