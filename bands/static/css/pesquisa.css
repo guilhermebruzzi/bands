@@ -81,11 +81,16 @@ section.feedback-success div.add_bands input.add-btn{
     height: 30px;
 }
 
-section.feedback-success a.salvar-btn{
+section.feedback-success div.salvar-btn-div{
+    margin: 0px auto;
+    width: 500px;
+    height: 45px;
+}
+
+section.feedback-success div.salvar-btn-div a.salvar-btn{
     width: 150px;
     text-align: center;
     text-decoration: none;
     height: 21px;
     font-size: 18px;
-    margin-left: 369px;
 }
