@@ -482,8 +482,7 @@ class ControllersTest(TestCase):
             self.assertEqual(sorted(value), sorted(questions_and_answers[key]))
             del questions_and_answers[key]
 
-        for value in questions_and_answers.values():
-            self.assertEqual(value, [])
+        self.assertEqual(len(questions_and_answers), 0)
 
     def sort_and_make_unique_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
