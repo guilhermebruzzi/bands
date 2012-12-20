@@ -43,7 +43,11 @@ def get_musicians_from_opengraph(facebook_id, oauth_token):
                 if music["category"] == "Musician/band":
                     musicians_names.append(music["name"])
 
-            musicians = get_json(musicians["paging"]["next"])
+            if "paging" in musicians.keys() and "next" in musicians["paging"].keys():
+                musicians = get_json(musicians["paging"]["next"])
+            else:
+                break
+
     return musicians_names
 
 
