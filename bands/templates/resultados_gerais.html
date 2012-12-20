@@ -10,8 +10,20 @@
 
     </header>
     <section class="resultados-gerais">
+        <h1 class="label-resultados-gerais">Bandas (total de: {{ len_bands }}):</h1><br />
+        <ul>
+            {% for band in bands %}
+                <li>{{ band.label }} - {{ band.size }}</li>
+            {% endfor %}
+        </ul>
+        <br /><h1 class="label-resultados-gerais">Usuários (total de: {{ users|count }}):</h1><br />
+        {% for user in users %}
+            <img src="{{ user.photo }}" alt="{{ user.name }}" />
+            <strong>{{ user.name }} / {{ user.email }}</strong>
+        {% endfor %}
+        <br /><h1 class="label-resultados-gerais">Perguntas e Respostas:</h1><br />
         {% for question_and_all_answers in questions_and_all_answers %}
-            <h2>{{ question_and_all_answers.question }}</h2>
+            <h3>{{ question_and_all_answers.question.question }} <small>({{ question_and_all_answers.question.slug }})</small></h3>
             <ul>
                 {% for answer in question_and_all_answers.answers %}
                     <li>{{ answer }}</li>

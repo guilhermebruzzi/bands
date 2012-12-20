@@ -53,22 +53,6 @@ class HelpersTest(TestCase):
                 return index
         return None
 
-    def count_tags_test(self):
-        tagclouds = count_tags(self.tags)
-        self.assertEqual(len(tagclouds), 6)
-
-        index = self.__get_tag_index__(tagclouds, "Foo Fighters")
-        self.assertNotEqual(index, None)
-        self.assertEqual(tagclouds[index]["size"], 6)
-
-        index = self.__get_tag_index__(tagclouds, "Chico Buarque")
-        self.assertNotEqual(index, None)
-        self.assertEqual(tagclouds[index]["size"], 3)
-
-        index = self.__get_tag_index__(tagclouds, "Los Hermanos")
-        self.assertNotEqual(index, None)
-        self.assertEqual(tagclouds[index]["size"], 0)
-
     def get_musicians_from_opengraph_test(self):
         musicians = get_musicians_from_opengraph(self.guilherme_bruzzi_facebook_id, self.access_token)
         self.assertEqual(type(musicians), list)

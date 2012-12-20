@@ -1,3 +1,8 @@
+section.resultados-gerais{
+    font-size: 16px;
+    margin-top: 50px;
+}
+
 section.resultados-gerais h2{
     font-weight: bold;
     margin-top: 50px;
@@ -7,3 +12,9 @@ section.resultados-gerais ul li{
     list-style: disc;
     margin-left: 50px;
 }
+
+section.resultados-gerais img{
+    display: block;
+    float: left;
+}
+

@@ -21,6 +21,9 @@ def get_or_create_user(data, oauth_token=None):
                 get_or_create_band({"slug": band_facebook, "name": band_facebook, "user": user})
     return user
 
+def get_all_users():
+    return User.objects.order_by('-name')
+
 def get_or_create_band(data):
     slug = get_slug(data['slug'])
     try:
@@ -140,7 +143,7 @@ def get_random_users(max=8):
 def get_or_create_question(question_data):
     try:
         question = Question.objects.get(slug=question_data["slug"])
-        if question.question != question_data["question"]:
+        if "question" in question_data.keys() and question.question != question_data["question"]:
             question.question = question_data["question"]
             question.save()
         return question
@@ -185,7 +188,7 @@ def get_all_questions_and_all_answers():
         answers = []
         for answer in question.answers:
             answers.append(answer.answer)
-        questions_and_answers[question.slug] = answers
+        questions_and_answers[question.slug] = {"question": question, "answers": answers}
 
     return questions_and_answers
 

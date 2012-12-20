@@ -6,11 +6,12 @@ import urllib2
 import json
 
 from flask import Flask, redirect, url_for, session, request, abort, make_response
-from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, TAGS, project_root
-from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, count_tags, get_current_user, \
-    get_musicians_from_opengraph, get_slug, render_template
+from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
+from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_current_user, \
+    get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands
+    get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
+    get_all_users
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -41,8 +42,12 @@ def resultados(password):
     password_compare = os.environ["PASSWORD_RESULTS"] if os.environ.has_key("PASSWORD_RESULTS") else "kyb@1234"
     if password == password_compare:
         questions_and_all_answers = get_all_questions_and_all_answers()
+        users = get_all_users()
+        top_bands, len_bands = get_top_bands(sort=True)
         return render_template('resultados_gerais.html', current_user=current_user,
-                                questions_and_all_answers=questions_and_all_answers)
+                                questions_and_all_answers=questions_and_all_answers.values(),
+                                users=users,
+                                bands=top_bands, len_bands=len_bands)
     else:
         abort(404)
 

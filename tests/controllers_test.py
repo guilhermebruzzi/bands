@@ -26,6 +26,10 @@ class ControllersTest(TestCase):
                             "musico-dificuldades_outros": [u""],
                             "musico-solucao": u""}
 
+        self.valid_musico_funcionalidades = {"musico-funcionalidades": [u"Venda de ingressos"],
+                                             "musico-funcionalidades_outros": [u"Outra funcionalidade"]}
+
+
         self.valid_fa = {"musico-ou-fa": ["fa"],
                          "fa-funcionalidades": [u"Venda de ingressos"],
                          "fa-funcionalidades_outros": [u"Outra funcionalidade"]}
@@ -47,7 +51,15 @@ class ControllersTest(TestCase):
         self.expected_result = {
             "musico-ou-fa": ["musico", "fa"],
             "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
-            "fa-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"]
+            "fa-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"],
+            "musico-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"]
+        }
+
+        self.expected_result_all_question_and_answers_with_funcionalidades = {
+            "musico-ou-fa": ["musico", "fa"],
+            "musico-dificuldades": [u"Vender os ingressos dos meus shows e eventos"],
+            "fa-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"],
+            "musico-funcionalidades": [u"Venda de ingressos", u"Outra funcionalidade"],
         }
 
         self.empty_answers = {"musico-ou-fa": ["musico"],
@@ -472,6 +484,7 @@ class ControllersTest(TestCase):
     def get_all_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         save_answers(self.valid_musico, user_guilherme)
+        save_answers(self.valid_musico_funcionalidades, user_guilherme)
 
         user_guto = get_or_create_user(data=self.data_user_guto)
         save_answers(self.valid_fa, user_guto)
@@ -479,10 +492,13 @@ class ControllersTest(TestCase):
         questions_and_answers = get_all_questions_and_all_answers()
 
         for key, value in self.expected_result.items():
-            self.assertEqual(sorted(value), sorted(questions_and_answers[key]))
+            self.assertIn(key, questions_and_answers.keys())
+            self.assertEqual(sorted(value), sorted(questions_and_answers[key]["answers"]))
+            question = get_or_create_question({"slug": key})
+            self.assertEqual(question, questions_and_answers[key]["question"])
             del questions_and_answers[key]
 
-        self.assertEqual(len(questions_and_answers), 0)
+        self.assertEqual(len(questions_and_answers.values()), 0)
 
     def sort_and_make_unique_answers_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
@@ -556,6 +572,12 @@ class ControllersTest(TestCase):
     def get_or_create_questions_test(self):
         get_or_create_questions(self.questions)
         self.__assert_questions__(Question.objects.all(), self.questions)
+        first_question = get_or_create_question({"slug": "first-question-slug"})
+        self.assertEqual(first_question.question, "first-question")
+        self.assertEqual(first_question.slug, "first-question-slug")
+        first_question_new = get_or_create_question({"slug": "first-question-slug", "question": "first-question-new"})
+        self.assertEqual(first_question_new.question, "first-question-new")
+        self.assertEqual(first_question_new.slug, "first-question-slug")
 
     def validate_answers_test(self):
         self.assertFalse(validate_answers(self.invalid_vazio))
