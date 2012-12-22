@@ -1,4 +1,5 @@
 var httpRequest;
+var votacaoInputDefault = "Nome da nova banda";
 
 function makeRequestBand(operation, band, callback) {
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
@@ -48,7 +49,7 @@ function showNewBand() {
 }
 
 function adicionarItem() {
-    if(votacaoInput.value.trim() != "") {
+    if(votacaoInput.value.trim() != "" && votacaoInput.value.trim() != votacaoInputDefault) {
         makeRequestBand("add/", votacaoInput.value, showNewBand);
     }
 }
@@ -76,11 +77,13 @@ function addListenerMarcacao(components) {
 }
 
 function colocaFraseDefault(){
-    votacaoInput.value = "Nome da nova banda";
+    votacaoInput.value = votacaoInputDefault;
 }
 
 function retiraFraseDefault(){
-    votacaoInput.value = "";
+    if(votacaoInput.value == votacaoInputDefault){
+        votacaoInput.value = "";
+    }
 }
 
 function votacao() {
