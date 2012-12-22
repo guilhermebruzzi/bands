@@ -94,9 +94,12 @@ function enterPressed(e) {
 }
 
 function adicionaEmSugestaoDeBandas(bandSlug, bandName){
-    bandasSugeridas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, false);
-    var itemCheckBoxes = document.querySelectorAll('.item-votacao');
-    addListenerMarcacao(itemCheckBoxes);
+    sugestao = document.querySelector("ul.list_bands_user_likes div#bandas-sugeridas li input.item-votacao[value=" + bandSlug + "]");
+    if(!sugestao) {
+        bandasSugeridas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, false);
+        var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+        addListenerMarcacao(itemCheckBoxes);
+    }
 }
 
 function bandasRelacionadas() {
