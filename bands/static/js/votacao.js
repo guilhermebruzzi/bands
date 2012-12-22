@@ -99,17 +99,22 @@ function adicionaEmSugestaoDeBandas(bandSlug, bandName){
         bandasSugeridas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, false);
         var itemCheckBoxes = document.querySelectorAll('.item-votacao');
         addListenerMarcacao(itemCheckBoxes);
+        return true;
     }
+    return false;
 }
 
 function bandasRelacionadas() {
     if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
             var response = httpRequest.responseText.split("\n");
-            for (var i = 0; i < response.length - 1; i += 2) {
+            var counter = 0;
+            for (var i = 0; i < response.length - 1 && counter < 3; i += 2) {
                 var bandSlug = response[i];
                 var bandName = response[i + 1];
-                adicionaEmSugestaoDeBandas(bandSlug, bandName)
+                if(adicionaEmSugestaoDeBandas(bandSlug, bandName)) {
+                    counter++;
+                }
             }
             votacaoInput.value = "";
         } else {

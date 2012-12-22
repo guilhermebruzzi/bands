@@ -116,7 +116,7 @@ def unlike():
 @app.route('/band/related_bands/<slug>/', methods=['GET'])
 @need_to_be_logged
 def related_bands(slug):
-    related_bands = get_related_bands(get_band(slug), max=2, user=get_current_user())
+    related_bands = get_related_bands(get_band(slug), max=10, user=get_current_user())
     result = ""
 
     for slug in related_bands:
