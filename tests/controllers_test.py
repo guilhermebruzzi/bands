@@ -4,6 +4,7 @@
 from unittest import TestCase
 from controllers import *
 from models import User, Question, Answer, Band
+from bands.controllers import get_related_bands
 
 class ControllersTest(TestCase):
 
@@ -120,6 +121,11 @@ class ControllersTest(TestCase):
             "name": u"Cássia",
         }
 
+        self.coldplay1 = {
+            "slug": "coldplay",
+            "name": "Coldplay",
+        }
+
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
         self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
 
@@ -127,6 +133,50 @@ class ControllersTest(TestCase):
         self.__delete_all__(User)
         self.__delete_all__(Question)
         self.__delete_all__(Band)
+
+    def get_related_bands_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        self.beatles1['user'] = user_guilherme
+        beatles = get_or_create_band(self.beatles1)
+
+        self.cassia1['user'] = user_guto
+        cassia = get_or_create_band(self.cassia1)
+
+        self.assertEqual([], get_related_bands(band=beatles))
+        self.assertEqual([], get_related_bands(band=cassia))
+
+        self.beatles1['user'] = user_guto
+        beatles = get_or_create_band(self.beatles1)
+
+        self.assertEqual([beatles.slug], get_related_bands(band=cassia))
+        self.assertEqual([cassia.slug], get_related_bands(band=beatles))
+
+        self.coldplay1['user'] = user_guilherme
+        coldplay = get_or_create_band(self.coldplay1)
+
+        self.assertEqual([beatles.slug], get_related_bands(band=coldplay))
+        self.assertEqual([beatles.slug], get_related_bands(band=cassia))
+
+        related_bands = get_related_bands(band=beatles)
+        self.assertEqual(2, len(related_bands))
+        self.assertIn(cassia.slug, related_bands)
+        self.assertIn(coldplay.slug, related_bands)
+
+        self.coldplay1['user'] = user_guto
+        coldplay = get_or_create_band(self.coldplay1)
+
+        self.assertEqual([beatles.slug, cassia.slug], get_related_bands(band=coldplay))
+        self.assertEqual([beatles.slug], get_related_bands(band=coldplay, max=1))
+
+        self.assertEqual([coldplay.slug, cassia.slug], get_related_bands(band=beatles))
+        self.assertEqual([coldplay.slug], get_related_bands(band=beatles, max=1))
+
+        related_bands = get_related_bands(band=cassia)
+        self.assertEqual(2, len(related_bands))
+        self.assertIn(beatles.slug, related_bands)
+        self.assertIn(coldplay.slug, related_bands)
 
     def like_band_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
