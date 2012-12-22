@@ -178,6 +178,8 @@ class ControllersTest(TestCase):
         self.assertIn(beatles.slug, related_bands)
         self.assertIn(coldplay.slug, related_bands)
 
+        self.assertEqual([], get_related_bands(band=beatles, user=user_guto))
+
     def like_band_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
         user_guto = get_or_create_user(data=self.data_user_guto)

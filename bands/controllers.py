@@ -44,12 +44,13 @@ def get_or_create_band(data):
 def get_band(slug):
     return Band.objects.filter(slug=slug).first()
 
-def get_related_bands(band, max=None):
+def get_related_bands(band, max=None, user=None):
     bands = Band.objects.all()
     related_bands = {}
-    for user in band.users:
+    for currentUser in band.users:
         for currentBand in bands:
-            if user in currentBand.users and currentBand != band:
+            if currentUser in currentBand.users and currentBand != band and \
+                    (user is None or not user in currentBand.users):
                 if currentBand.slug in related_bands:
                     related_bands[currentBand.slug] += 1
                 else:
