@@ -211,7 +211,11 @@ class ControllersTest(TestCase):
 
         unlike_band(result.slug, user_guto)
         result = get_band(self.beatles1['slug'])
-        self.assertNotIn(user_guto, result.users)
+        bands = Band.objects.all()
+        self.assertEqual(result, None)
+        self.assertEqual(len(bands), 0)
+
+
 
     def get_or_create_band_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
