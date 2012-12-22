@@ -1,7 +1,7 @@
 var httpRequest;
 var votacaoInputDefault = "Nome da nova banda";
 
-function makeRequestBand(operation, band, callback) {
+function makeRequestBand(method, operation, band, callback) {
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
     } else if (window.ActiveXObject) { // IE
@@ -23,9 +23,14 @@ function makeRequestBand(operation, band, callback) {
         httpRequest.onreadystatechange = callback;
     }
 
-    httpRequest.open('POST', "/band/" + operation);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpRequest.send('band=' + encodeURIComponent(band));
+    httpRequest.open(method, "/band/" + operation);
+
+    if(method == 'POST') {
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.send('band=' + encodeURIComponent(band));
+    } else {
+        httpRequest.send();
+    }
 }
 
 var votacaoInput = document.querySelector('#adicionar-item-votacao-text');
@@ -36,8 +41,9 @@ function removeElement(node) {
     node.parentNode.removeChild(node);
 }
 
-function createLiItemVotacaoHTML(bandSlug, bandName){
-    return '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + bandSlug + '" /> ' + bandName + '</li>';
+function createLiItemVotacaoHTML(bandSlug, bandName, checked){
+    checkedAttribute = checked ? 'checked="checked"' : '';
+    return '<li><input type="checkbox" ' + checkedAttribute + ' class="item-votacao" value="' + bandSlug + '" /> ' + bandName + '</li>';
 }
 
 function mudaNumeroMinhasBandas(diff){
@@ -55,7 +61,7 @@ function incrementaNumeroMinhasBandas(){
 }
 
 function adicionaEmMinhasBandas(bandSlug, bandName){
-    minhasBandas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName);
+    minhasBandas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, true);
     var itemCheckBoxes = document.querySelectorAll('.item-votacao');
     addListenerMarcacao(itemCheckBoxes);
     incrementaNumeroMinhasBandas();
@@ -77,7 +83,7 @@ function showNewBand() {
 
 function adicionarItem() {
     if(votacaoInput.value.trim() != "" && votacaoInput.value.trim() != votacaoInputDefault) {
-        makeRequestBand("add/", votacaoInput.value, showNewBand);
+        makeRequestBand('POST', "add/", votacaoInput.value, showNewBand);
     }
 }
 
@@ -87,10 +93,33 @@ function enterPressed(e) {
     }
 }
 
+function adicionaEmSugestaoDeBandas(bandSlug, bandName){
+    bandasSugeridas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, false);
+    var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+    addListenerMarcacao(itemCheckBoxes);
+}
+
+function bandasRelacionadas() {
+    if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 200) {
+            var response = httpRequest.responseText.split("\n");
+            for (var i = 0; i < response.length - 1; i += 2) {
+                var bandSlug = response[i];
+                var bandName = response[i + 1];
+                adicionaEmSugestaoDeBandas(bandSlug, bandName)
+            }
+            votacaoInput.value = "";
+        } else {
+            console.log('There was a problem with the request.');
+        }
+    }
+}
+
 function marcacaoItem() {
     if (this.checked) {
         this.setAttribute("checked", "checked");
-        makeRequestBand("like/", this.value);
+        makeRequestBand('POST', "like/", this.value);
+        makeRequestBand('GET', "related_bands/" + this.value, this.value, bandasRelacionadas);
         if(this.parentNode.parentNode.id == bandasSugeridas.id) {
             var bandSlug = this.value;
             var bandName = this.parentNode.textContent.trim();
@@ -101,7 +130,7 @@ function marcacaoItem() {
         }
     } else {
         this.removeAttribute("checked");
-        makeRequestBand("unlike/", this.value);
+        makeRequestBand('POST', "unlike/", this.value);
         if(this.parentNode.parentNode.id == minhasBandas.id){
             decrementaNumeroMinhasBandas();
         }
