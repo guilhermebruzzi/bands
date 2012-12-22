@@ -50,8 +50,18 @@ section.feedback-success ul.list_bands_user_likes{
     margin: 10px 0px;
 }
 
+section.feedback-success ul.list_bands_user_likes div{
+    padding: 10px 0px;
+}
+
 section.feedback-success ul.list_bands_user_likes li{
-    list-style: disc;
+    list-style: none;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+section.feedback-success ul.list_bands_user_likes span.label-area-bandas{
+    display: block;
 }
 
 section.feedback-success h2{

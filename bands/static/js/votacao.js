@@ -29,19 +29,46 @@ function makeRequestBand(operation, band, callback) {
 }
 
 var votacaoInput = document.querySelector('#adicionar-item-votacao-text');
+var minhasBandas = document.querySelector('#minhas-bandas');
+var bandasSugeridas = document.querySelector('#bandas-sugeridas');
+
+function removeElement(node) {
+    node.parentNode.removeChild(node);
+}
+
+function createLiItemVotacaoHTML(bandSlug, bandName){
+    return '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + bandSlug + '" /> ' + bandName + '</li>';
+}
+
+function mudaNumeroMinhasBandas(diff){
+    var numeroMinhasBandas = document.querySelector('#numero-minhas-bandas');
+    var novoNumeroMinhasBandas = parseInt(numeroMinhasBandas.innerHTML, 10) + diff;
+    numeroMinhasBandas.innerHTML = novoNumeroMinhasBandas.toString();
+}
+
+function decrementaNumeroMinhasBandas(){
+    mudaNumeroMinhasBandas(-1);
+}
+
+function incrementaNumeroMinhasBandas(){
+    mudaNumeroMinhasBandas(1);
+}
+
+function adicionaEmMinhasBandas(bandSlug, bandName){
+    minhasBandas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName);
+    var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+    addListenerMarcacao(itemCheckBoxes);
+    incrementaNumeroMinhasBandas();
+}
 
 function showNewBand() {
     if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
             var response = httpRequest.responseText.split("\n");
-            var band_name = response[0]
-            var band_slug = response[1]
-            var bands_list = document.querySelector('.list_bands_user_likes');
-            bands_list.innerHTML += '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + band_slug + '" /> ' + band_name + '</li>';
+            var bandName = response[0]
+            var bandSlug = response[1]
+            adicionaEmMinhasBandas(bandSlug, bandName);
             votacaoInput.value = "";
-
-            var itemCheckBoxes = document.querySelectorAll('.item-votacao');
-            addListenerMarcacao(itemCheckBoxes);
         } else {
             console.log('There was a problem with the request.');
         }
@@ -64,9 +91,20 @@ function marcacaoItem() {
     if (this.checked) {
         this.setAttribute("checked", "checked");
         makeRequestBand("like/", this.value);
+        if(this.parentNode.parentNode.id == bandasSugeridas.id) {
+            var bandSlug = this.value;
+            var bandName = this.parentNode.textContent.trim();
+            removeElement(this.parentNode);
+            adicionaEmMinhasBandas(bandSlug, bandName);
+        } else { // Remarquei uma banda que estava em minhas bandas
+            incrementaNumeroMinhasBandas();
+        }
     } else {
         this.removeAttribute("checked");
         makeRequestBand("unlike/", this.value);
+        if(this.parentNode.parentNode.id == minhasBandas.id){
+            decrementaNumeroMinhasBandas();
+        }
     }
 }
 
