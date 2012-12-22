@@ -59,6 +59,9 @@ def unlike_band(slug, user):
             del band.users[i]
             break
 
+    if len(band.users) == 0:
+        band.delete()
+
     band.save()
 
 def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
