@@ -115,7 +115,6 @@ def unlike():
 
 @app.route('/band/related_bands/<slug>/', methods=['GET'])
 def related_bands(slug):
-    import ipdb; ipdb.set_trace()
     related_bands = get_related_bands(get_band(slug), 2)
     result = ""
 
