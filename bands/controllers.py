@@ -56,10 +56,12 @@ def get_related_bands(band, max=None, user=None):
                 else:
                     related_bands[currentBand.slug] = 1
 
-    result = sorted(related_bands.iteritems(), key=operator.itemgetter(1), reverse=True)
+    list = related_bands.items()
+    shuffle(list)
+    list.sort(key=lambda tup: tup[1], reverse=True)
 
     slugs = []
-    for tuple in result:
+    for tuple in list:
         slug, weight = tuple
         slugs.append(slug)
 
