@@ -1,4 +1,5 @@
 var httpRequest;
+var featureList;
 var votacaoInputDefault = "Nome da nova banda";
 
 function makeRequestBand(operation, band, callback) {
@@ -29,15 +30,16 @@ function makeRequestBand(operation, band, callback) {
 }
 
 var votacaoInput = document.querySelector('#adicionar-item-votacao-text');
-var minhasBandas = document.querySelector('#minhas-bandas');
-var bandasSugeridas = document.querySelector('#bandas-sugeridas');
+var minhasBandasList = document.querySelector('#minhas-bandas-list');
+var bandasSugeridasList = document.querySelector('#bandas-sugeridas-list');
+
 
 function removeElement(node) {
     node.parentNode.removeChild(node);
 }
 
 function createLiItemVotacaoHTML(bandSlug, bandName){
-    return '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + bandSlug + '" /> ' + bandName + '</li>';
+    return '<li><input type="checkbox" checked="checked" class="item-votacao" value="' + bandSlug + '" /> <span class="sort-search minhas-bandas-name">' + bandName + '</span></li>';
 }
 
 function mudaNumeroMinhasBandas(diff){
@@ -55,10 +57,12 @@ function incrementaNumeroMinhasBandas(){
 }
 
 function adicionaEmMinhasBandas(bandSlug, bandName){
-    minhasBandas.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName);
+    minhasBandasList.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName);
     var itemCheckBoxes = document.querySelectorAll('.item-votacao');
     addListenerMarcacao(itemCheckBoxes);
     incrementaNumeroMinhasBandas();
+    featureList = new List('minhas-bandas-itens', { valueNames: ['sort-search'] });
+    featureList.sort("sort-search", {"asc": true});
 }
 
 function showNewBand() {
@@ -91,7 +95,7 @@ function marcacaoItem() {
     if (this.checked) {
         this.setAttribute("checked", "checked");
         makeRequestBand("like/", this.value);
-        if(this.parentNode.parentNode.id == bandasSugeridas.id) {
+        if(this.parentNode.parentNode.id == bandasSugeridasList.id) {
             var bandSlug = this.value;
             var bandName = this.parentNode.textContent.trim();
             removeElement(this.parentNode);
@@ -102,7 +106,7 @@ function marcacaoItem() {
     } else {
         this.removeAttribute("checked");
         makeRequestBand("unlike/", this.value);
-        if(this.parentNode.parentNode.id == minhasBandas.id){
+        if(this.parentNode.parentNode.id == minhasBandasList.id){
             decrementaNumeroMinhasBandas();
         }
     }
@@ -115,7 +119,9 @@ function addListenerMarcacao(components) {
 }
 
 function colocaFraseDefault(){
-    votacaoInput.value = votacaoInputDefault;
+    if(votacaoInput.value.trim() == ""){
+        votacaoInput.value = votacaoInputDefault;
+    }
 }
 
 function retiraFraseDefault(){
@@ -133,7 +139,12 @@ function votacao() {
         votacaoButton.addEventListener("click", adicionarItem, false);
         votacaoInput.addEventListener("keypress", enterPressed, false);
         votacaoInput.addEventListener("focus", retiraFraseDefault, false);
-        addListenerMarcacao(itemCheckBoxes)
+        votacaoInput.addEventListener("blur", colocaFraseDefault, false);
+        addListenerMarcacao(itemCheckBoxes);
+
+        /* Plugin de procurar e ordenar */
+        featureList = new List('minhas-bandas-itens', { valueNames: ['sort-search'] });
+        featureList.sort("sort-search", {"asc": true});
     }
 }
 

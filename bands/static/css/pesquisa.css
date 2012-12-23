@@ -48,16 +48,43 @@ section.feedback-success{
 
 section.feedback-success ul.list_bands_user_likes{
     margin: 10px 0px;
+    font-size: 0px;
+    height: 400px;
 }
 
 section.feedback-success ul.list_bands_user_likes div{
     padding: 10px 0px;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+section.feedback-success ul.list_bands_user_likes div.minhas-bandas{
+    float: right;
+    width: 250px;
+}
+
+section.feedback-success ul.list_bands_user_likes div.minhas-bandas ul,
+section.feedback-success ul.list_bands_user_likes div.bandas-sugeridas ul{
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: block;
+    height: 400px;
+    width: 400px;
+    border: 1px solid #B8B8B8;
+    border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px;
+    margin-top: 10px;
+
+}
+section.feedback-success ul.list_bands_user_likes div.minhas-bandas input.search{
+    width: 200px;
 }
 
 section.feedback-success ul.list_bands_user_likes li{
     list-style: none;
     margin-left: 10px;
-    margin-top: 2px;
+    margin-top: 6px;
 }
 
 section.feedback-success ul.list_bands_user_likes span.label-area-bandas{
@@ -68,14 +95,6 @@ section.feedback-success h2{
     margin: 15px auto;
 }
 
-section.feedback-success input.adicionar-item-votacao-text{
-    width: 250px;
-    opacity: 0.6;
-}
-
-section.feedback-success input.adicionar-item-votacao-text:focus{
-    opacity: 1;
-}
 
 section.feedback-success h2.thank-you{
     font-weight: bold;
@@ -83,18 +102,42 @@ section.feedback-success h2.thank-you{
 
 section.feedback-success div.add_bands{
     margin: 30px auto;
-    width: 500px;
+    width: 700px;
 }
 
-section.feedback-success div.add_bands input.add-btn{
+section.feedback-success div.opcoes-adicionar-minhas-bandas{
+    font-size: 0px;
+    width: 450px;
+}
+
+section.feedback-success div.opcoes-adicionar-minhas-bandas input.adicionar-item-votacao-text{
+    width: 200px;
+    opacity: 0.6;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+section.feedback-success div.opcoes-adicionar-minhas-bandas input.adicionar-item-votacao-text:focus{
+    opacity: 1;
+}
+
+section.feedback-success div.opcoes-adicionar-minhas-bandas div.add_bands input.add-btn{
     font-size: 14px;
     height: 30px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 section.feedback-success div.salvar-btn-div{
     margin: 0px auto;
-    width: 500px;
+    width: 700px;
     height: 45px;
+    padding-top: 20px;
+    margin-top: 130px;
 }
 
 section.feedback-success div.salvar-btn-div a.salvar-btn{
@@ -103,4 +146,6 @@ section.feedback-success div.salvar-btn-div a.salvar-btn{
     text-decoration: none;
     height: 21px;
     font-size: 18px;
+    margin: 0px auto;
+    display: block;
 }
