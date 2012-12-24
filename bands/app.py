@@ -11,7 +11,7 @@ from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_
     get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
-    get_all_users
+    get_all_users, get_related_bands, get_band
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -111,6 +111,19 @@ def unlike():
 
     unlike_band(slug, user)
     return 'unliked'
+
+
+@app.route('/band/related_bands/<slug>/', methods=['GET'])
+@need_to_be_logged
+def related_bands(slug):
+    related_bands = get_related_bands(get_band(slug), max=10, user=get_current_user())
+    result = ""
+
+    for slug in related_bands:
+        result += slug + "\n"
+        result += get_band(slug).name + "\n"
+
+    return result
 
 
 @app.route('/pesquisa/', methods=['GET', 'POST'])

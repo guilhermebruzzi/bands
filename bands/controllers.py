@@ -1,6 +1,7 @@
 #-*- coding:utf-8 -*-
 
 import random
+import operator
 
 from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer, Band
@@ -43,6 +44,29 @@ def get_or_create_band(data):
 def get_band(slug):
     return Band.objects.filter(slug=slug).first()
 
+def get_related_bands(band, max=None, user=None):
+    bands = Band.objects.all()
+    related_bands = {}
+    for currentUser in band.users:
+        for currentBand in bands:
+            if currentUser in currentBand.users and currentBand != band and \
+                    (user is None or not user in currentBand.users):
+                if currentBand.slug in related_bands:
+                    related_bands[currentBand.slug] += 1
+                else:
+                    related_bands[currentBand.slug] = 1
+
+    list = related_bands.items()
+    shuffle(list)
+    list.sort(key=lambda tup: tup[1], reverse=True)
+
+    slugs = []
+    for tuple in list:
+        slug, weight = tuple
+        slugs.append(slug)
+
+    return slugs[0:max]
+
 def like_band(slug, user):
     band = get_band(slug)
 
@@ -66,11 +90,6 @@ def unlike_band(slug, user):
 
 def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     bands = Band.objects.all()
-    if max == None:
-        max = len(bands)
-        if max == 0:
-            return ([], 0)
-
     top_bands = []
     top_band_size = 0;
 
@@ -94,11 +113,6 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
 
 def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
     bands = Band.objects.all()
-    if max == None:
-        max = len(bands)
-        if max == 0:
-            return []
-
     removidos = {}
     bandas = []
     for band in bands:
