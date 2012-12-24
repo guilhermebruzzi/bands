@@ -1,6 +1,6 @@
 {% import 'votacao.html' as votacao %}
 {% extends "master.html" %}
-{% block title %}Bands - Pesquisa Sucesso{% endblock %}
+{% block title %}Bands - Minhas Bandas{% endblock %}
 {% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pesquisa.css') }}" />{% endblock %}
 {% block js_cima %}<script type="text/javascript" src="{{ url_for('static', filename='js/list-sort-search.js') }}"></script>{% endblock %}
 {% block content %}
@@ -17,7 +17,7 @@
         <h2 class="challenge">Você lembra de todas as bandas que gosta?</h2>
         {{ votacao.adiciona_bandas(bands, bands_user, current_user) }}
         <div class="salvar-btn-div">
-            <a href="/pesquisa-sucesso" class="shiny-red salvar-btn">Salvar</a>
+            <a href="{{ url_for('minhas_bandas') }}" class="shiny-red salvar-btn">Salvar</a>
         </div>
     </section>
 
