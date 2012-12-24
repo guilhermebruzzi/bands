@@ -26,14 +26,15 @@ def get_all_users():
     return User.objects.order_by('-name')
 
 def get_or_create_band(data):
+    name = data['name'].title()
     slug = get_slug(data['slug'])
     try:
         band = Band.objects.get(slug=slug)
     except DoesNotExist:
-        band = Band.objects.create(slug=slug, name=data['name'])
+        band = Band.objects.create(slug=slug, name=name)
 
-    if not data['name'] in band.aliases:
-        band.aliases.append(data['name'])
+    if not name in band.aliases:
+        band.aliases.append(name)
 
     if not data['user'] in band.users:
         band.users.append(data['user'])
