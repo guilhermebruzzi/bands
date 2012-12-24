@@ -11,7 +11,7 @@ from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_
     get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
-    get_all_users, get_related_bands, get_band
+    get_all_users, get_related_bands, get_band, get_user_answers
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -73,14 +73,16 @@ def index():
         current_user=current_user, mode=mode, total=total)
 
 
-@app.route('/pesquisa-sucesso/', methods=['GET'])
+@app.route('/minhas-bandas/', methods=['GET'])
 @need_to_be_logged
-def pesquisa_sucesso():
+def minhas_bandas():
     current_user = get_current_user()
     bands = random_top_bands(user=current_user)
     bands_user = get_user_bands(user=current_user)
+    thanks_msg = "Obrigado por responder a pesquisa!" if request.referrer and url_for("pesquisa") in request.referrer else ""
 
-    return render_template('pesquisa_success.html', current_user=current_user, bands=bands, bands_user=bands_user)
+    return render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user,
+                            thanks_msg=thanks_msg)
 
 
 @app.route('/band/add/', methods=['POST'])
@@ -135,7 +137,7 @@ def pesquisa():
     if request.method == 'POST':
         if validate_answers(post_data):
             save_answers(post_data, current_user)
-            return redirect(url_for('pesquisa_sucesso'))
+            return redirect(url_for('minhas_bandas'))
 
     return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
                             questions=QUESTIONS_PESQUISA, post_data=post_data)
@@ -166,7 +168,9 @@ def facebook_authorized(resp):
     me = facebook.get('/me')
     session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
 
-    return redirect(url_for('pesquisa'))
+    user_answers = get_user_answers(session['current_user']) #  if no answers given, go to feedback form
+    url = url_for('pesquisa') if len(user_answers) == 0 else url_for('minhas_bandas')
+    return redirect(url)
 
 
 @facebook.tokengetter

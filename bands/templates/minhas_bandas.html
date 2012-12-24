@@ -11,9 +11,10 @@
         <span itemprop="name" class="name">{{ current_user.name }}</span>
 
     </header>
-    <section class="feedback-success">
-        <h2 class="thank-you">Obrigado por responder a pesquisa!</h2>
-        <h2>Agora queremos saber se você lembra de todas as bandas que gosta:</h2>
+    <section class="minhas-bandas-section">
+        <h2 class="thank-you">{{ thanks_msg }}</h2>
+        <h2>Agora queremos saber:</h2>
+        <h2 class="challenge">Você lembra de todas as bandas que gosta?</h2>
         {{ votacao.adiciona_bandas(bands, bands_user, current_user) }}
         <div class="salvar-btn-div">
             <a href="/pesquisa-sucesso" class="shiny-red salvar-btn">Salvar</a>

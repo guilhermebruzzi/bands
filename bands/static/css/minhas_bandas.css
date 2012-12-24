@@ -1,0 +1,122 @@
+section.minhas-bandas-section{
+    margin: auto;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes{
+    margin: 10px 0px;
+    font-size: 0px;
+    height: 400px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div{
+    padding: 10px 0px;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div.minhas-bandas{
+    float: right;
+    width: 250px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div.minhas-bandas ul,
+section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: block;
+    height: 400px;
+    width: 400px;
+    border: 1px solid #B8B8B8;
+    border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px;
+    margin-top: 10px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
+    height: 490px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div.minhas-bandas input.search{
+    width: 200px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes li{
+    list-style: none;
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes span.label-area-bandas{
+    display: block;
+}
+
+section.minhas-bandas-section h2{
+    margin: 15px auto;
+}
+
+
+section.minhas-bandas-section h2.thank-you{
+    font-weight: bold;
+}
+
+section.minhas-bandas-section h2.challenge{
+    width: 380px;
+    margin: 0px auto;
+    font-style: italic;
+    font-weight: bold;
+    color: #9F0902;
+    border-bottom: 1px solid #a00a02;
+}
+
+section.minhas-bandas-section div.add_bands{
+    margin: 30px auto;
+    width: 700px;
+}
+
+section.minhas-bandas-section div.opcoes-adicionar-minhas-bandas{
+    font-size: 0px;
+    width: 450px;
+}
+
+section.minhas-bandas-section div.opcoes-adicionar-minhas-bandas input.adicionar-item-votacao-text{
+    width: 200px;
+    opacity: 0.6;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+section.minhas-bandas-section div.opcoes-adicionar-minhas-bandas input.adicionar-item-votacao-text:focus{
+    opacity: 1;
+}
+
+section.minhas-bandas-section div.opcoes-adicionar-minhas-bandas div.add_bands input.add-btn{
+    font-size: 14px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+section.minhas-bandas-section div.salvar-btn-div{
+    margin: 0px auto;
+    width: 700px;
+    height: 45px;
+    padding-top: 40px;
+    margin-top: 130px;
+}
+
+section.minhas-bandas-section div.salvar-btn-div a.salvar-btn{
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    height: 21px;
+    font-size: 18px;
+    margin: 0px auto;
+    display: block;
+}

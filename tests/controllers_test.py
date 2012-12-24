@@ -431,6 +431,34 @@ class ControllersTest(TestCase):
         for band in top_bands:
             self.assertIn(band.slug, all_bands_slugs)
 
+    def get_user_answers_empty_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        answers = get_user_answers(user_guilherme)
+        self.assertEqual(len(answers), 0)
+
+    def get_user_answers_from_music_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        save_answers(self.valid_musico, user_guilherme)
+        answers = get_user_answers(user_guilherme)
+        expected_answers = ["musico",
+                            self.expected_result["musico-dificuldades"][0],
+                            self.expected_result["musico-funcionalidades"][0],
+                            self.expected_result["musico-funcionalidades"][1]]
+        for answer in answers:
+            self.assertEqual(answer.user, user_guilherme)
+            self.assertIn(answer.answer, expected_answers)
+
+    def get_user_answers_from_fa_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        save_answers(self.valid_fa, user_guilherme)
+        answers = get_user_answers(user_guilherme)
+        expected_answers = ["fa",
+                            self.expected_result["fa-funcionalidades"][0],
+                            self.expected_result["fa-funcionalidades"][1]]
+        for answer in answers:
+            self.assertEqual(answer.user, user_guilherme)
+            self.assertIn(answer.answer, expected_answers)
+
     def get_random_users_test(self):
         users_random, len_users = get_random_users()
         self.assertEqual(len(users_random), 0)

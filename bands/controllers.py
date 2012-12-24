@@ -25,6 +25,15 @@ def get_or_create_user(data, oauth_token=None):
 def get_all_users():
     return User.objects.order_by('-name')
 
+def get_user_answers(user):
+    answers_from_user = []
+    questions = Question.objects.all()
+    for question in questions:
+        for answer in question.answers:
+            if answer.user == user:
+                answers_from_user.append(answer)
+    return answers_from_user
+
 def get_or_create_band(data):
     slug = get_slug(data['slug'])
     try:
