@@ -136,7 +136,7 @@ function marcacaoItem() {
         this.setAttribute("checked", "checked");
         makeRequestBand('POST', "like/", this.value);
         makeRequestBand('GET', "related_bands/" + this.value + "/", this.value, bandasRelacionadas);
-        if(this.parentNode.parentNode.id == bandasSugeridasList.id) {
+        if(bandasSugeridasList && this.parentNode.parentNode.id == bandasSugeridasList.id) {
             var bandSlug = this.value;
             var bandName = this.parentNode.textContent.trim();
             removeElement(this.parentNode);
