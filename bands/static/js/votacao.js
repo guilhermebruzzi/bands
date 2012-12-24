@@ -63,12 +63,16 @@ function incrementaNumeroMinhasBandas(){
 }
 
 function adicionaEmMinhasBandas(bandSlug, bandName){
-    minhasBandasList.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, true);
-    var itemCheckBoxes = document.querySelectorAll('.item-votacao');
-    addListenerMarcacao(itemCheckBoxes);
-    incrementaNumeroMinhasBandas();
-    featureList = new List('minhas-bandas-itens', { valueNames: ['sort-search'] });
-    featureList.sort("sort-search", {"asc": true});
+    minhaBanda = minhasBandasList.querySelector("li input.item-votacao[value=" + bandSlug + "]");
+
+    if(minhaBanda == null) {
+        minhasBandasList.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, true);
+        var itemCheckBoxes = document.querySelectorAll('.item-votacao');
+        addListenerMarcacao(itemCheckBoxes);
+        incrementaNumeroMinhasBandas();
+        featureList = new List('minhas-bandas-itens', { valueNames: ['sort-search'] });
+        featureList.sort("sort-search", {"asc": true});
+    }
 }
 
 function showNewBand() {

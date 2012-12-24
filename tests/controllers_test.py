@@ -126,6 +126,11 @@ class ControllersTest(TestCase):
             "name": "Coldplay",
         }
 
+        self.lower_letter_band = {
+            "slug": "a-banda-mais-bonita-da-cidade",
+            "name": "a bAnda maIs bonitA Da ciDade",
+            }
+
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
         self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
 
@@ -133,6 +138,13 @@ class ControllersTest(TestCase):
         self.__delete_all__(User)
         self.__delete_all__(Question)
         self.__delete_all__(Band)
+
+    def name_of_band_with_upper_letter_test(self):
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        self.lower_letter_band['user'] = user_guto
+        upper_letter_band = get_or_create_band(self.lower_letter_band)
+
+        self.assertEqual("A Banda Mais Bonita Da Cidade", upper_letter_band.name)
 
     def get_related_bands_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)
