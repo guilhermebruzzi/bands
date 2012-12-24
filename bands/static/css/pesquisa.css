@@ -75,8 +75,12 @@ section.feedback-success ul.list_bands_user_likes div.bandas-sugeridas ul{
     border-radius: 8px 8px 8px 8px;
     -webkit-border-radius: 8px;
     margin-top: 10px;
-
 }
+
+section.feedback-success ul.list_bands_user_likes div.bandas-sugeridas ul{
+    height: 490px;
+}
+
 section.feedback-success ul.list_bands_user_likes div.minhas-bandas input.search{
     width: 200px;
 }
@@ -136,7 +140,7 @@ section.feedback-success div.salvar-btn-div{
     margin: 0px auto;
     width: 700px;
     height: 45px;
-    padding-top: 20px;
+    padding-top: 40px;
     margin-top: 130px;
 }
 
