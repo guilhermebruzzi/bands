@@ -97,7 +97,7 @@ function adicionarItem() {
 
 function enterPressed(e) {
     if (e.keyCode == 13) {
-        adicionarItem();
+        setTimeout(adicionarItem, 50);
     }
 }
 
