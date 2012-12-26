@@ -39,6 +39,18 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
     height: 490px;
 }
 
+section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.bandas-sugeridas-mais-bandas{
+    text-decoration: none;
+    color: #9F0902;
+    font-size: 12px;
+    float: right;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.bandas-sugeridas-mais-bandas:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
 section.minhas-bandas-section ul.list_bands_user_likes div.minhas-bandas input.search{
     width: 200px;
 }
