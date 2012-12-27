@@ -27,16 +27,16 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
     overflow-x: hidden;
     overflow-y: auto;
     display: block;
-    height: 400px;
+    height: 430px;
     width: 400px;
     border: 1px solid #B8B8B8;
     border-radius: 8px 8px 8px 8px;
     -webkit-border-radius: 8px;
-    margin-top: 10px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
     height: 490px;
+    margin-top: 10px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.bandas-sugeridas-mais-bandas{
@@ -49,10 +49,6 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.ba
 section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.bandas-sugeridas-mais-bandas:hover{
     cursor: pointer;
     font-weight: bold;
-}
-
-section.minhas-bandas-section ul.list_bands_user_likes div.minhas-bandas input.search{
-    width: 200px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes li{

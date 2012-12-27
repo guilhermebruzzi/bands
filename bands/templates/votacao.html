@@ -19,7 +19,6 @@
             <div id="minhas-bandas" class="minhas-bandas">
                 <span class="label-area-bandas">Minhas bandas (<span id="numero-minhas-bandas">{{ bands_user|count }}</span>):</span>
                 <div id="minhas-bandas-itens" class="minhas-bandas-itens">
-                    <input class="search" placeholder="Procurar na lista abaixo" />
                     <ul id="minhas-bandas-list" class="list">
                         {% for band in bands_user %}
                             <li><input type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" /> <span class="sort-search minhas-bandas-name">{{ band.name }}</span></li>
