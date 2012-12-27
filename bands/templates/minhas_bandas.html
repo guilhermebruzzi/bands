@@ -16,9 +16,7 @@
         <h2>Agora queremos saber:</h2>
         <h2 class="challenge">Você lembra de todas as bandas que gosta?</h2>
         {{ votacao.adiciona_bandas(bands, bands_user, current_user) }}
-        <div class="salvar-btn-div">
-            <a href="{{ url_for('minhas_bandas') }}" class="shiny-red salvar-btn">Salvar</a>
-        </div>
+
     </section>
 
 {% endblock %}

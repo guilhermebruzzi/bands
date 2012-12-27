@@ -1,7 +1,7 @@
 section.minhas-bandas-section{
     margin: auto;
     font-size: 16px;
-    margin-bottom: 50px;
+    margin-bottom: 180px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes{
@@ -113,22 +113,4 @@ section.minhas-bandas-section div.opcoes-adicionar-minhas-bandas div.add_bands i
     height: 30px;
     display: inline-block;
     vertical-align: top;
-}
-
-section.minhas-bandas-section div.salvar-btn-div{
-    margin: 0px auto;
-    width: 700px;
-    height: 45px;
-    padding-top: 40px;
-    margin-top: 130px;
-}
-
-section.minhas-bandas-section div.salvar-btn-div a.salvar-btn{
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
-    height: 21px;
-    font-size: 18px;
-    margin: 0px auto;
-    display: block;
 }
