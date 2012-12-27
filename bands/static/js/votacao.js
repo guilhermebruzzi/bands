@@ -148,6 +148,7 @@ function marcacaoItem() {
         this.removeAttribute("checked");
         makeRequestBand('POST', "unlike/", this.value);
         if(this.parentNode.parentNode.id == minhasBandasList.id){
+            removeElement(this.parentNode);
             decrementaNumeroMinhasBandas();
         }
     }

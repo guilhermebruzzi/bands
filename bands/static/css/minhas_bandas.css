@@ -59,6 +59,15 @@ section.minhas-bandas-section ul.list_bands_user_likes li{
     margin-top: 6px;
 }
 
+section.minhas-bandas-section ul.list_bands_user_likes li input {
+    display: none;
+}
+
+section.minhas-bandas-section ul.list_bands_user_likes li label.banda-sugerida:hover,
+section.minhas-bandas-section ul.list_bands_user_likes li label.minha-banda:hover {
+    cursor: pointer;
+}
+
 section.minhas-bandas-section ul.list_bands_user_likes span.label-area-bandas{
     display: block;
 }

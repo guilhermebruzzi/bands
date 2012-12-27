@@ -11,7 +11,10 @@
                     <span class="label-area-bandas">Bandas sugeridas:</span>
                     <ul id="bandas-sugeridas-list">
                         {% for i in range(maximo) %}
-                            <li><input type="checkbox" class="item-votacao" value="{{ bands[i].slug }}" /> {{ bands[i].name }}</li>
+                            <li>
+                                <input id="{{ bands[i].slug }}" type="checkbox" class="item-votacao" value="{{ bands[i].slug }}" />
+                                <label for="{{ bands[i].slug }}" class="banda-sugerida">{{ bands[i].name }}</label>
+                            </li>
                         {% endfor %}
                     </ul>
                     <a href="" class="bandas-sugeridas-mais-bandas">mostrar outras bandas</a>
@@ -22,7 +25,10 @@
                 <div id="minhas-bandas-itens" class="minhas-bandas-itens">
                     <ul id="minhas-bandas-list" class="list">
                         {% for band in bands_user %}
-                            <li><input type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" /> <span class="sort-search minhas-bandas-name">{{ band.name }}</span></li>
+                            <li>
+                                <input id="{{ band.slug }}" type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" />
+                                <span class="sort-search minhas-bandas-name"><label for="{{ band.slug }}" class="minha-banda">{{ band.name }}</label></span>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
