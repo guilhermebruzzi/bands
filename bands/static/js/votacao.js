@@ -117,7 +117,7 @@ function bandasRelacionadas() {
         if (httpRequest.status === 200) {
             var response = httpRequest.responseText.split("\n");
             var counter = 0;
-            for (var i = 0; i < response.length - 1 && counter < 3; i += 2) {
+            for (var i = 0; i < response.length - 1 && counter < 1; i += 2) {
                 var bandSlug = response[i];
                 var bandName = response[i + 1];
                 if(adicionaEmSugestaoDeBandas(bandSlug, bandName)) {

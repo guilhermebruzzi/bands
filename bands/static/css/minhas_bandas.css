@@ -27,7 +27,7 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
     overflow-x: hidden;
     overflow-y: auto;
     display: block;
-    height: 430px;
+    height: 355px;
     width: 400px;
     border: 1px solid #B8B8B8;
     border-radius: 8px 8px 8px 8px;
@@ -35,7 +35,7 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas ul{
-    height: 490px;
+    height: 410px;
     margin-top: 10px;
 }
 
@@ -43,7 +43,9 @@ section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.ba
     text-decoration: none;
     color: #9F0902;
     font-size: 12px;
-    float: right;
+    position: relative;
+    top: -30px;
+    left: 15px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes div.bandas-sugeridas a.bandas-sugeridas-mais-bandas:hover{
