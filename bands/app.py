@@ -11,7 +11,7 @@ from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_
     get_slug, render_template
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
-    get_all_users, get_related_bands, get_band, get_user_answers
+    get_all_users, get_related_bands, get_band, get_user_answers, get_answers_and_counters_from_question
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -44,9 +44,11 @@ def resultados(password):
         questions_and_all_answers = get_all_questions_and_all_answers()
         users = get_all_users()
         top_bands, len_bands = get_top_bands(sort=True)
+        funcionalidades_fa = get_answers_and_counters_from_question(['fa-funcionalidades'])
+        funcionalidades_musico = get_answers_and_counters_from_question(['musico-funcionalidades'])
         return render_template('resultados_gerais.html', current_user=current_user,
                                 questions_and_all_answers=questions_and_all_answers.values(),
-                                users=users,
+                                users=users, funcionalidades_fa=funcionalidades_fa,funcionalidades_musico=funcionalidades_musico,
                                 bands=top_bands, len_bands=len_bands)
     else:
         abort(404)

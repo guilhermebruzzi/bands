@@ -199,6 +199,21 @@ def get_all_answers_from_question(slug, user=None):
         return answers
     return []
 
+def get_answers_and_counters_from_question(slugs):
+    answers = []
+
+    for slug in slugs:
+        answers.extend(get_all_answers_from_question(slug))
+
+    parcial = {}
+    for answer in answers:
+        if answer.answer in parcial.keys():
+            parcial[answer.answer] += 1
+        else:
+            parcial[answer.answer] = 1
+
+    resultado = parcial.items()
+    return sorted(resultado, key=lambda tup: tup[1], reverse=True)
 
 def sort_and_make_unique_answers(answers_instances):
     answers = [answer.answer for answer in answers_instances]

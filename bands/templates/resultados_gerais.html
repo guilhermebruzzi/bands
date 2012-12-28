@@ -30,6 +30,18 @@
                 {% endfor %}
             </ul>
         {% endfor %}
+        <br /><h1 class="label-resultados-gerais">Funcionalidades (Fã):</h1><br />
+        <ul>
+            {% for funcionalidade in funcionalidades_fa %}
+                <li>{{ funcionalidade[0] }}({{ funcionalidade[1] }})</li>
+            {% endfor %}
+        </ul>
+        <br /><h1 class="label-resultados-gerais">Funcionalidades (Músico):</h1><br />
+        <ul>
+            {% for funcionalidade in funcionalidades_musico %}
+                <li>{{ funcionalidade[0] }}({{ funcionalidade[1] }})</li>
+            {% endfor %}
+        </ul>
     </section>
 
 {% endblock %}
