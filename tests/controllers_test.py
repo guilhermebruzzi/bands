@@ -297,6 +297,15 @@ class ControllersTest(TestCase):
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
+    def get_or_create_band_passing_only_the_name_test(self):
+        band = get_or_create_band({"name": self.beatles1["name"]})
+        self.assertEqual(band.name, "The Beatles")
+        self.assertEqual(band.slug, "the-beatles")
+        self.assertEqual(len(band.aliases), 1)
+        self.assertEqual(band.aliases[0], "The Beatles")
+        self.assertEqual(len(band.users), 0)
+
+
     def get_top_bands_test(self):
         bands, total_bands = get_top_bands()
         self.assertEqual(bands, [])
