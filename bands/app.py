@@ -55,7 +55,6 @@ def resultados(password):
 
 @app.route('/', methods=['GET'])
 def index():
-    mode = request.args.get('mode')
     users_random, total_users = get_random_users()
     current_user = get_current_user()
 
@@ -63,16 +62,10 @@ def index():
     sort = True
     normalize = False
 
-    if mode != "bandslist":
-        mode = "tagcloud"
-        max = 40
-        sort = False
-        normalize = True
-
     bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
-        current_user=current_user, mode=mode, total=total)
+        current_user=current_user, total=total)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])
