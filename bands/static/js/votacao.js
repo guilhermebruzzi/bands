@@ -43,9 +43,23 @@ function removeElement(node) {
     node.parentNode.removeChild(node);
 }
 
-function createLiItemVotacaoHTML(bandSlug, bandName, checked){
+function createLiSugestaoHTML(bandSlug, bandName, checked){
     var checkedAttribute = checked ? 'checked="checked"' : '';
-    return '<li><input type="checkbox" ' + checkedAttribute + ' class="item-votacao" value="' + bandSlug + '" /> <span class="sort-search minhas-bandas-name">' + bandName + '</span></li>';
+    var votacaoHTML = '<li><input id="' + bandSlug + '" type="checkbox" ' + checkedAttribute + ' class="item-votacao" value="' + bandSlug + '" />';
+    votacaoHTML += '<label for="' + bandSlug + '" class="banda-sugerida">' + bandName;
+    votacaoHTML += '<label for="' + bandSlug + '" class="arrow-icon"></label>';
+    votacaoHTML += '</label></li>';
+    return votacaoHTML;
+}
+
+function createLiMinhasBandas(bandSlug, bandName, checked){
+    var checkedAttribute = checked ? 'checked="checked"' : '';
+    var votacaoHTML = '<li><input id="' + bandSlug + '" type="checkbox" ' + checkedAttribute + ' class="item-votacao" value="' + bandSlug + '" />';
+    votacaoHTML += '<span class="minhas-bandas-name">';
+    votacaoHTML += '<label for="' + bandSlug + '" class="remove-icon"></label>';
+    votacaoHTML += '<span class="sort-search minha-banda">' + bandName + '</span>';
+    votacaoHTML += '</span></li>';
+    return votacaoHTML;
 }
 
 function mudaNumeroMinhasBandas(diff){
@@ -66,7 +80,7 @@ function adicionaEmMinhasBandas(bandSlug, bandName){
     minhaBanda = minhasBandasList.querySelector("li input.item-votacao[value=" + bandSlug + "]");
 
     if(minhaBanda == null) {
-        minhasBandasList.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, true);
+        minhasBandasList.innerHTML += createLiMinhasBandas(bandSlug, bandName, true);
         var itemCheckBoxes = document.querySelectorAll('.item-votacao');
         addListenerMarcacao(itemCheckBoxes);
         incrementaNumeroMinhasBandas();
@@ -104,7 +118,7 @@ function enterPressed(e) {
 function adicionaEmSugestaoDeBandas(bandSlug, bandName){
     var sugestao = document.querySelector("ul.list_bands_user_likes div#bandas-sugeridas li input.item-votacao[value=" + bandSlug + "]");
     if(!sugestao) {
-        bandasSugeridasList.innerHTML += createLiItemVotacaoHTML(bandSlug, bandName, false);
+        bandasSugeridasList.innerHTML += createLiSugestaoHTML(bandSlug, bandName, false);
         var itemCheckBoxes = document.querySelectorAll('.item-votacao');
         addListenerMarcacao(itemCheckBoxes);
         return true;

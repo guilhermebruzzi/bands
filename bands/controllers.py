@@ -6,7 +6,8 @@ import operator
 from mongoengine.queryset import DoesNotExist
 from models import User, Question, Answer, Band
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
-from helpers import get_musicians_from_opengraph, get_slug
+from helpers import get_slug
+from facebook import get_musicians_from_opengraph
 from operator import itemgetter
 from random import shuffle
 
