@@ -4,85 +4,42 @@
 
 {% block content %}
 
-    <section itemprop="about" id="descricao" class="descricao">
-        <article class="problema">
-            <span class="line line-strong">Já percebeu como é difícil conhecer a trajetória de uma banda na internet?</span>
-            <span class="line line-strong"><b>Bands</b> é uma maneira fácil e inovadora para conhecer bandas e músicos.</span>
+    <section id="funcionalidades-home" class="funcionalidades-home">
+        <article id="cadastre-bandas" class="cadastre-bandas">
+            <span class="cadastre-bandas-icone"></span>
+            <h2>Cadastre Bandas</h2>
         </article>
-        <article class="solucao">
-            <span class="line">Aqui você verá conteúdos relevantes dos artistas que você gosta:</span>
 
+        <article id="siga-bandas" class="siga-bandas ">
+            <span class="siga-bandas-icone"></span>
+            <h2>Siga Bandas</h2>
+        </article>
+
+        <article id="acompanhe-shows" class="acompanhe-shows">
+            <span class="acompanhe-shows-icone"></span>
+            <h2>Acompanhe os Shows</h2>
+        </article>
+    </section>
+
+    <section id="area-show-home" class="area-show-home">
+
+        <article id="shows-local" class="shows-local">
+            <h2>Shows Locais</h2>
             <ul>
                 <li>
-                    <span class="nome-conteudo">História da banda</span>
-                </li>
-                <li>
-                    <span class="nome-conteudo">Integrantes e ex-integrantes</span>
-                </li>
-                <li>
-                    <span class="nome-conteudo">Álbuns e músicas</span>
-                </li>
-                <li>
-                    <span class="nome-conteudo">Shows e eventos</span>
-                </li>
-                <li>
-                    <span class="nome-conteudo">Notas e reviews criados pelos fãs</span>
-                </li>
-                <li>
-                    <span class="nome-conteudo">Bandas relacionadas</span>
+                    <a href="" class="item-lista-shows">
+                        <img src="http://userserve-ak.last.fm/serve/64s/70159212.png" />
+                        <span>Criolo</span>
+                        <span class="data-show">Sexta 11 de janeiro de 2013</span>
+                    </a>
                 </li>
             </ul>
 
         </article>
-        <article class="proposta">
-            <span class="line">E se você é músico, divulgue o trabalho da sua banda!</span>
-            <span class="line">Confira isso tudo e muito mais:</span>
-            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login']);" class="btn-auth btn-facebook large login-facebook">
-                Faça login pelo
-                <b>Facebook</b>
-            </a>
+
+        <article id="shows-populares" class="shows-populares">
+            <h2>Shows Populares</h2>
         </article>
-    </section>
-
-    <section id="informacoes-existentes" class="informacoes-existentes">
-
-        <section class="users">
-
-            <header class="users-in-bd">
-                <span class="number-of-users">{{ total_users }} pessoas cadastradas!</span>
-                Seja mais um a <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Box', 'Usuarios Box']);">conhecer</a>!
-            </header>
-            <hr />
-            <section class="users-body">
-                {% for user in users %}
-
-                    <div class="user" itemscope itemtype="http://schema.org/Person">
-
-                        <meta itemprop="email" content="{{ user.email }}" />
-                        <div class="user-body">
-                            <img itemprop="image" src="{{ user.photo }}" alt="foto do perfil do facebook" />
-                            <span itemprop="name" class="user-name">{{ user.name }}</span>
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-            </section>
-        </section>
-
-        <section class="bandslist">
-            <header class="bands-in-bd">
-                <span class="number-of-bands">{{ total }} bandas cadastradas!</span>
-            </header>
-            <hr />
-            <section class="bands-body">
-                <ul>
-                    {% for band in bands %}
-                        <li><a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'BandsList']);" class="band">{{ band.label }} - ({{ band.size }})</a></li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </section>
 
     </section>
 

@@ -4,7 +4,6 @@ html, body{
     height: auto;
     margin:0;
     padding:0;
-    background-color: #9F0902;
 }
 
 .container {
@@ -15,27 +14,30 @@ html, body{
     margin: 0 auto;
     padding: 0;
     background-color: #FFFFFF;
-}
+    }
 
 .content {
     font-family: arial;
-    height: 100%;
-    margin: 0;
-    min-height: 500px;
+    height: auto;
+    margin: 0 auto;
     padding: 0;
     font-size: 0;
-}
-
-@media (min-height: 800px){
-    .content {
-        min-height: 710px;
-    }
+    width: 960px;
 }
 
 header {
-    background-color: #9F0902;
     height: 128px;
     padding-top: 17px;
+    border-bottom: 1px solid rgba(66, 66, 66, 0.3);
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(242,242,242,1) 69%, rgba(247,247,247,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(69%,rgba(242,242,242,1)), color-stop(100%,rgba(247,247,247,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 69%,rgba(247,247,247,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 69%,rgba(247,247,247,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 69%,rgba(247,247,247,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(242,242,242,1) 69%,rgba(247,247,247,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-9 */
+
 }
 
 header h1.logo {
@@ -62,7 +64,7 @@ header div.user-box-top{
 header div.user-box-top a{
     font-family: tahoma;
     text-decoration: none;
-    color: white;
+    color: #9F0902;
 }
 header div.user-box-top a:hover{
     text-decoration: underline;
@@ -118,11 +120,11 @@ footer {
     text-align: center;
     font-size: 11px;
     line-height: 17px;
-    color: #FFFFFF;
-    background-color: #9f0902;
+    color: #9f0902;
     height: 64px;
-    padding-top: 20px;
-    width: 100%;
+    width: 960px;
+    border-top: 1px solid rgba(66, 66, 66, 0.3);
+    margin: 30px auto;
 }
 
 footer a {
