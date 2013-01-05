@@ -13,7 +13,7 @@
                         {% for i in range(maximo) %}
                             <li>
                                 <input id="{{ bands[i].slug }}" type="checkbox" class="item-votacao" value="{{ bands[i].slug }}" />
-                                <label for="{{ bands[i].slug }}" class="banda-sugerida">{{ bands[i].name }}</label>
+                                <label for="{{ bands[i].slug }}" class="banda-sugerida">{{ bands[i].name }}<label for="{{ bands[i].slug }}" class="arrow-icon"></label></label>
                             </li>
                         {% endfor %}
                     </ul>
@@ -27,7 +27,9 @@
                         {% for band in bands_user %}
                             <li>
                                 <input id="{{ band.slug }}" type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" />
-                                <span class="sort-search minhas-bandas-name"><label for="{{ band.slug }}" class="minha-banda">{{ band.name }}</label></span>
+                                <span class="minhas-bandas-name">
+                                    <label for="{{ band.slug }}" class="remove-icon"></label><span class="sort-search minha-banda">{{ band.name }}</span>
+                                </span>
                             </li>
                         {% endfor %}
                     </ul>

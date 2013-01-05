@@ -200,7 +200,7 @@ footer a.new_link{
       top:1px;
   }
 
-.facebook-icon, .icone-musicas, .logo{
+.facebook-icon, .icone-musicas, .logo, .arrow-icon, .remove-icon{
     background: url("/static/img/sprite.png") no-repeat top left;
     display: block;
 }
@@ -219,4 +219,16 @@ footer a.new_link{
     background-position: 0 -120px;
     width: 134px;
     height: 111px;
+}
+.arrow-icon{
+    background-position: -120px 0;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+.remove-icon{
+    background-position: -120px -16px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
 }
