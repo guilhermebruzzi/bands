@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
 from helpers import get_json
 
 def get_musicians_from_opengraph(facebook_id, oauth_token):

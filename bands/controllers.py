@@ -37,7 +37,7 @@ def get_user_answers(user):
 
 def get_or_create_band(data):
     name = data['name'].title()
-    slug = get_slug(data['slug'])
+    slug = get_slug(data['slug']) if "slug" in data else get_slug(data['name'])
     try:
         band = Band.objects.get(slug=slug)
     except DoesNotExist:
@@ -46,7 +46,7 @@ def get_or_create_band(data):
     if not name in band.aliases:
         band.aliases.append(name)
 
-    if not data['user'] in band.users:
+    if "user" in data and not data['user'] in band.users:
         band.users.append(data['user'])
 
     band.save()
