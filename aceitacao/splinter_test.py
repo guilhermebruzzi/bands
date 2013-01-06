@@ -11,7 +11,6 @@ class TestAceitacao(unittest.TestCase):
 
     def test_login_facebook(self):
         with Browser() as browser:
-            import ipdb; ipdb.set_trace()
             browser.visit('localhost:5000/')
             buttons = browser.find_by_css('.login-facebook')
             self.assertEqual(len(buttons), 1)
