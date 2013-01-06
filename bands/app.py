@@ -12,6 +12,7 @@ from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
     get_all_users, get_related_bands, get_band, get_user_answers, get_answers_and_counters_from_question
+from lastfm import get_next_shows
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -63,9 +64,11 @@ def index():
     normalize = False
 
     bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
+    artists = [band["label"] for band in bands]
+    shows = get_next_shows(artists, 1)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
-        current_user=current_user, total=total)
+        current_user=current_user, total=total, shows=shows)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])

@@ -32,7 +32,7 @@ def get_next_shows(artists, limit_per_artist=None):
         events_lastfm = artist_lastfm.get_upcoming_events()[:limit_per_artist]
         for event in events_lastfm:
             try:
-                events.append(get_show_info(event))
+                events.append((artist, get_show_info(event)))
             except pylast.WSError as e: #  Ignora eventos que não conseguiu pegar as informações
                 continue
     return events
