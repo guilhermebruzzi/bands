@@ -14,7 +14,7 @@ html, body{
     margin: 0 auto;
     padding: 0;
     background-color: #FFFFFF;
-    }
+}
 
 .content {
     font-family: arial;
@@ -128,7 +128,7 @@ footer {
 }
 
 footer a {
-    color: #FFFFFF;
+    color: #9F0902;
     text-decoration: underline;
 }
 
@@ -170,7 +170,7 @@ footer a.new_link{
     margin-bottom: 35px;
 }
 
-/*Botão azul*/
+/*Botão vermelho*/
 
 .shiny-red {
     -moz-box-shadow:inset 0px 1px 0px 0px #d4302a;
