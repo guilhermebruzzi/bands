@@ -1,15 +1,22 @@
 #-*- coding:utf-8 -*-
 
 import random
-import operator
+from operator import itemgetter
 
-from mongoengine.queryset import DoesNotExist
-from models import User, Question, Answer, Band
+from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned
+
+from models import User, Question, Answer, Band, Show, Location
 from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
 from helpers import get_slug
 from facebook import get_musicians_from_opengraph
-from operator import itemgetter
-from random import shuffle
+
+lastfm = None
+
+def get_lastfm_module():
+    global lastfm
+    if lastfm is None:
+        lastfm = __import__("lastfm")
+    return lastfm
 
 def get_or_create_user(data, oauth_token=None):
     try:
@@ -52,6 +59,54 @@ def get_or_create_band(data):
     band.save()
     return band
 
+def get_or_create_location(data):
+    slug = get_slug(data['slug']) if "slug" in data else get_slug(data['name'])
+    try:
+        location = Location.objects.get(slug=slug)
+    except DoesNotExist:
+        data["slug"] = slug
+        location = Location.objects.create(**data)
+
+    return location
+
+def get_or_create_show(data):
+    title = data['title'].title()
+    slug = get_slug(data['slug']) if "slug" in data else get_slug(data['title'])
+    try:
+        show = Show.objects.get(slug=slug)
+    except DoesNotExist:
+        show = Show.objects.create(slug=slug, title=title)
+
+    if "artists" in data and type(data["artists"]) is list:
+        for artist in data["artists"]:
+            if not artist.slug in show.artists_slug:
+                show.artists_slug.append(artist.slug)
+
+    if "location" in data:
+        show.location = get_or_create_location(data["location"])
+
+    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city"]
+    for key in keys_to_check:
+        if key in data:
+            setattr(show, key, data[key])
+
+    show.save()
+    return show
+
+def get_shows_from_bands(bands):
+    shows = []
+    for band in bands:
+        if len(bands.shows) == 0:
+            lastfm = get_lastfm_module()
+            lastfm.get_next_shows_subprocess(bands)
+        else:
+            shows.extend(band.shows)
+    return shows
+
+def get_shows_from_bands_by_city(city):
+    return Show.objects.filter(city=city)
+
+
 def get_band(slug):
     return Band.objects.filter(slug=slug).first()
 
@@ -68,7 +123,7 @@ def get_related_bands(band, max=None, user=None):
                     related_bands[currentBand.slug] = 1
 
     list = related_bands.items()
-    shuffle(list)
+    random.shuffle(list)
     list.sort(key=lambda tup: tup[1], reverse=True)
 
     slugs = []
@@ -117,7 +172,7 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
             band["size"] = int((maxSize * band["size"]) / top_band_size)
 
     if not sort:
-        shuffle(result)
+        random.shuffle(result)
 
     return (result, len(bands))
 

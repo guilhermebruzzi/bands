@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-from unittest import TestCase
+from base_test import BaseTest
+
 from controllers import *
 from models import User, Question, Answer, Band
 from bands.controllers import get_related_bands
 
-class ControllersTest(TestCase):
+class ControllersTest(BaseTest):
+
+    models = [User, Question, Band] #  A serem deletados a cada teste
 
     def setUp(self):
+        self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
+
         self.data_user_guilherme = {"id": "bands2012", "email": "guibruzzi@gmail.com", "name": "Guilherme"}
         self.data_user_guto = {"id": "bands2013", "email": "guto@marzagao.com", "name": "Guto"}
-
-        self.__delete_all__(User)
-        self.__delete_all__(Question)
-        self.__delete_all__(Band)
 
         self.invalid_vazio = {}
         self.invalid_musico_fa_vazio = {"musico-ou-fa": [""],
@@ -133,11 +134,6 @@ class ControllersTest(TestCase):
 
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
         self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
-
-    def tearDown(self):
-        self.__delete_all__(User)
-        self.__delete_all__(Question)
-        self.__delete_all__(Band)
 
     def name_of_band_with_upper_letter_test(self):
         user_guto = get_or_create_user(data=self.data_user_guto)
@@ -712,7 +708,3 @@ class ControllersTest(TestCase):
     def __assert_questions__(self, questionsModel, questions):
         for question in questions:
             self.assertIn(question["slug"], [questionModel.slug for questionModel in questionsModel])
-
-    def __delete_all__(self,cls):
-        for object in cls.objects:
-            object.delete()

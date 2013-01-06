@@ -1,30 +1,33 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-from unittest import TestCase
-from lastfm import get_next_shows
-from models import Band
+from base_test import BaseTest
 
-class FacebookTest(TestCase):
+from lastfm import save_next_shows
+from models import Band, Show, Location
+
+class FacebookTest(BaseTest):
+
+    models = [Band, Show, Location] #  A serem deletados a cada teste
 
     def setUp(self):
+        self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
+
         self.artists = ["Foo Fighters", "Los Hermanos", "Chico Buarque", "Muse"]
 
-    def get_next_shows_test(self):
-        shows = get_next_shows(self.artists, limit_per_artist=2)
+    def save_next_shows_test(self):
+        save_next_shows(self.artists, limit_per_artist=2)
+
+        shows = Show.objects.all()
+        locations = Location.objects.all()
+
         self.assertNotEqual(len(shows), 0)
+        self.assertNotEqual(len(locations), 0)
 
-        self.assertIn('artists', shows[0])
-        self.assertNotEqual(len(shows[0]['artists']), 0)
-        self.assertTrue(isinstance(shows[0]['artists'][0], Band), msg="Pega os artistas do lastfm como bandas nossas")
+        self.assertNotEqual(len(shows[0].artists), 0)
+        self.assertTrue(isinstance(shows[0].artists[0], Band), msg="Pega os artistas do lastfm como bandas nossas")
 
-        self.assertIn('attendance_count', shows[0])
-        self.assertEqual(int, type(shows[0]['attendance_count']))
+        self.assertTrue(isinstance(shows[0].location, Location), msg="Pega o local do lastfm como uma classe Location nossa")
 
-        self.assertIn('data', shows[0])
-        self.assertRegexpMatches(shows[0]['data'], r"(\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})")
-
-        self.assertIn('cover_image', shows[0])
-        self.assertIn('title', shows[0])
-        self.assertIn('description', shows[0])
+        self.assertRegexpMatches(shows[0].datetime, r"(\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})")
 
