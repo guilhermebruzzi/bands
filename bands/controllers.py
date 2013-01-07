@@ -112,7 +112,14 @@ def get_shows_from_bands(bands, limit_per_artist=None):
     return shows
 
 def get_shows_from_bands_by_city(city):
-    return Show.objects.filter(city=city)
+    lastfm = get_lastfm_module()
+    shows = lastfm.get_nearby_shows(city=city)
+    locations = Location.objects.filter(city=city)
+    shows_from_mongo = Show.objects.filter(location__in=locations)
+    for show_mongo in shows_from_mongo:
+        if not show_mongo in shows_from_mongo:
+            shows.append(show_mongo)
+    return shows
 
 
 def get_band(slug):

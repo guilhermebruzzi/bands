@@ -8,11 +8,11 @@ import json
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
 from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_current_user, \
-    get_slug, render_template
+    get_slug, render_template, get_client_ip, get_current_city
 from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
     get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
     get_all_users, get_related_bands, get_band, get_user_answers, get_answers_and_counters_from_question, \
-    get_shows_from_bands
+    get_shows_from_bands, get_shows_from_bands_by_city
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -66,11 +66,11 @@ def index():
     bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
     bands_objects = [band["band_object"] for band in bands]
     shows = get_shows_from_bands(bands_objects, 1)
-
-
+    current_city = get_current_city(ip=get_client_ip())
+    shows_locais = get_shows_from_bands_by_city(city=current_city)
 
     return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
-        current_user=current_user, total=total, shows=shows)
+        current_user=current_user, total=total, shows=shows, shows_locais=shows_locais)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])

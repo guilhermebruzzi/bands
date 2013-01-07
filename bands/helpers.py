@@ -7,7 +7,7 @@ import json
 import urllib2
 
 
-from flask import session, render_template
+from flask import session, render_template, request
 from config import get_app
 
 app = get_app()
@@ -18,6 +18,17 @@ def render_template(url, **data):
 
     return flask.render_template(url, **data)
 
+def get_client_ip():
+    if not request.headers.getlist("X-Forwarded-For"):
+        ip = request.remote_addr
+    else:
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    return ip
+
+def get_current_city(ip):
+    if ip == '127.0.0.1':
+        return 'rio+de+janeiro'
+    return urllib2.urlopen('http://api.hostip.info/get_html.php?ip=%s&position=true' % ip).read()
 
 def get_slug(title):
     slug = unicodedata.normalize('NFKD', unicode(title))

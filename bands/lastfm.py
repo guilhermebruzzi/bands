@@ -8,6 +8,7 @@ from multiprocessing import Process
 
 import pylast
 
+from helpers import get_json
 from controllers import get_or_create_band, get_or_create_show, get_or_create_location
 
 # You have to have your own unique two values for API_KEY and API_SECRET
@@ -28,7 +29,7 @@ def get_location_info(show):
     url = 'http://ws.audioscrobbler.com/2.0/?method=event.getinfo&event='
     url += show_id
     url += '&api_key='
-    url += show.network.api_key
+    url += network.api_key
     show_xml = urllib.urlopen(url).read()
     return get_or_create_location({
         'name': __get_tag_value__(show_xml, 'name'),
@@ -68,6 +69,38 @@ def save_next_shows(bands, limit_per_artist=None):
             except pylast.WSError as e: #  Ignora eventos que não conseguiu pegar as informações
                 continue
 
+def geo_getevents(city):
+    url = 'http://ws.audioscrobbler.com/2.0/?method=geo.getevents&location=%s' % city
+    url += '&api_key=%s' % network.api_key
+    url += '&format=json'
+    return get_json(url)["events"]["event"]
+
+def get_nearby_shows(city):
+    shows_json = geo_getevents(city)
+    shows = []
+    for show_json in shows_json:
+        artists = show_json['artists']['artist']
+        show_datetime = datetime.strptime(show_json['startDate'], '%a, %d %b %Y %H:%M:%S') #  From USA pattern to datetime
+        shows.append(
+            get_or_create_show({
+                'artists': [get_or_create_band({'name': artist}) for artist in artists],
+                'attendance_count': show_json['attendance'], #  number of people going
+                'cover_image': show_json['image'][2]['#text'], #  Large
+                'description': show_json['description'],
+                'datetime': datetime.strftime(show_datetime, '%d/%m/%Y %H:%M:%S'), #  From USA datetime to Brazil pattern
+                'title': show_json['title'],
+                'location': get_or_create_location({
+                    'name': show_json['venue']['name'],
+                    'city': show_json['venue']['location']['city'],
+                    'street': show_json['venue']['location']['street'],
+                    'postalcode': show_json['venue']['location']['postalcode'],
+                    'website': show_json['venue']['website'],
+                    'phonenumber': show_json['venue']['phonenumber'],
+                    'image': show_json["image"][2]["#text"], #  Large
+                })
+            })
+        )
+    return shows
 
 def get_next_shows_subprocess(bands, limit_per_artist=None):
     p = Process(target=save_next_shows, args=(bands, limit_per_artist))

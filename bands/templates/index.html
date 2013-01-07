@@ -30,13 +30,12 @@
         <article id="shows-local" class="shows-local">
             <h2>Shows Locais</h2>
             <ul>
-                {% for band, band_shows in shows %}
-                    {%- set show = band_shows[0] -%}
+                {% for show in shows_locais %}
                     <li>
                         <a href="#" class="item-lista-shows">
                             <img src="{{ show.cover_image }}" />
                             <span class="info-show">
-                                <span class="banda-show">{{ band.name }}</span>
+                                <span class="banda-show">{{ show.artists[0].name }}</span>
                                 <span class="data-show">{{ show.title }}</span>
                             </span>
                         </a>
