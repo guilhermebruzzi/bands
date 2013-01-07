@@ -1,13 +1,3 @@
-section.descricao{
-    width: 56%;
-    height: auto;
-    min-height: 100%;
-    margin: 0px;
-    display: inline-block;
-    vertical-align: top;
-    background-color: #FFFFFF;
-}
-
 /* Área de Funcionalidades */
 section.funcionalidades-home{
     margin-top: 30px;
@@ -65,15 +55,12 @@ section.funcionalidades-home article.acompanhe-shows{
 /* Área de Shows */
 
 section.area-show-home{
-    margin-top: 35px;
-    min-height: 450px;
     font-size: 0px;
+    margin: 30px auto;
 }
 
 section.area-show-home article.shows-local,
 section.area-show-home article.shows-populares{
-    border-bottom: 2px solid #9F0902;
-    height: 35px;
     width: 460px;
     display: inline-block ;
     vertical-align: top;
@@ -81,6 +68,7 @@ section.area-show-home article.shows-populares{
 
 section.area-show-home article h2{
     color: #9F0902;
+    border-bottom: 2px solid #9F0902;
 }
 
 section.area-show-home article.shows-populares{
@@ -92,8 +80,8 @@ section.area-show-home article ul{
 }
 
 section.area-show-home article ul li{
-    height: 64px;
-    margin-left: 5px;
+    height: 52px;
+    margin: 5px 5px;
 }
 
 section.area-show-home article ul li a.item-lista-shows{
@@ -102,16 +90,32 @@ section.area-show-home article ul li a.item-lista-shows{
     height: 100%;
     font-size: 11pt;
     color: black;
-    vertical-align: middle;
-
 }
 
-section.area-show-home article ul li a.item-lista-shows span{
-    top: 10px;
-    left: 75px;
-    position: absolute;
+section.area-show-home article ul li a.item-lista-shows img{
+    width:50px;
+    height:50px;
+    border: 1px solid #9F0902;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    float: left;
+    margin-right: 5px;
 }
 
-section.area-show-home article ul li a.item-lista-shows span.data-show{
-    top: 37px;
+section.area-show-home article ul li a.item-lista-shows span.info-show {
+    width: 393px;
+    height: 52px;
+    float: left;
+}
+
+section.area-show-home article ul li a.item-lista-shows span span.banda-show,
+section.area-show-home article ul li a.item-lista-shows span span.data-show {
+    display: inline-block;
+    width: 100%;
+    margin-top: 6px;
+    color: #9F0902;
+}
+
+section.area-show-home article ul li a.item-lista-shows span span.banda-show {
+    font-weight: bold;
 }

@@ -55,17 +55,20 @@ def save_show_info(show):
         'location': get_location_info(show)
     })
 
-def save_next_shows(artists, limit_per_artist=None):
-    for artist in artists:
-        artist_lastfm = network.get_artist(artist)
+def save_next_shows(bands, limit_per_artist=None):
+    for band in bands:
+        artist_lastfm = network.get_artist(band.name)
         events_lastfm = artist_lastfm.get_upcoming_events()[:limit_per_artist]
         for event in events_lastfm:
             try:
-                save_show_info(event)
+                show = save_show_info(event)
+                if not show in band.shows:
+                    band.shows.append(show)
+                    band.save()
             except pylast.WSError as e: #  Ignora eventos que não conseguiu pegar as informações
                 continue
 
 
-def get_next_shows_subprocess(artists, limit_per_artist=None):
-    p = Process(target=save_next_shows, args=(artists, limit_per_artist))
+def get_next_shows_subprocess(bands, limit_per_artist=None):
+    p = Process(target=save_next_shows, args=(bands, limit_per_artist))
     p.start()

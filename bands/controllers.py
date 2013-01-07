@@ -60,7 +60,10 @@ def get_or_create_band(data):
     return band
 
 def get_or_create_location(data):
-    slug = get_slug(data['slug']) if "slug" in data else get_slug(data['name'])
+    try:
+        slug = get_slug(data['slug']) if "slug" in data else get_slug(data['name'])
+    except UnicodeDecodeError:
+        slug = data['name']
     try:
         location = Location.objects.get(slug=slug)
     except DoesNotExist:
@@ -83,7 +86,10 @@ def get_or_create_show(data):
                 show.artists_slug.append(artist.slug)
 
     if "location" in data:
-        show.location = get_or_create_location(data["location"])
+        if isinstance(data["location"], Location): #  Um objeto location tambem pode ter sido passado
+            show.location = data["location"]
+        else:
+            show.location = get_or_create_location(data["location"])
 
     keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city"]
     for key in keys_to_check:
@@ -93,14 +99,16 @@ def get_or_create_show(data):
     show.save()
     return show
 
-def get_shows_from_bands(bands):
+def get_shows_from_bands(bands, limit_per_artist=None):
     shows = []
+    bands_to_get_shows = []
     for band in bands:
-        if len(bands.shows) == 0:
-            lastfm = get_lastfm_module()
-            lastfm.get_next_shows_subprocess(bands)
+        if len(band.shows) == 0:
+            bands_to_get_shows.append(band)
         else:
-            shows.extend(band.shows)
+            shows.append((band, band.shows[:limit_per_artist]))
+    lastfm = get_lastfm_module()
+    lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
     return shows
 
 def get_shows_from_bands_by_city(city):
@@ -160,7 +168,7 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     top_band_size = 0;
 
     for band in bands:
-        top_bands.append({"label": band.name, "size": len(band.users)})
+        top_bands.append({"label": band.name, "size": len(band.users), "band_object": band})
         if len(band.users) > top_band_size:
             top_band_size = len(band.users)
 

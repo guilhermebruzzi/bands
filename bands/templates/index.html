@@ -5,15 +5,19 @@
 {% block content %}
 
     <section id="funcionalidades-home" class="funcionalidades-home">
-        <article id="cadastre-bandas" class="cadastre-bandas">
-            <span class="cadastre-bandas-icone"></span>
-            <h2>Cadastre Bandas</h2>
-        </article>
+        <a href="{{ url_for('minhas_bandas') }}">
+            <article id="cadastre-bandas" class="cadastre-bandas">
+                <span class="cadastre-bandas-icone"></span>
+                <h2>Cadastre Bandas</h2>
+            </article>
+        </a>
 
-        <article id="siga-bandas" class="siga-bandas ">
-            <span class="siga-bandas-icone"></span>
-            <h2>Siga Bandas</h2>
-        </article>
+        <a href="{{ url_for('minhas_bandas') }}">
+            <article id="siga-bandas" class="siga-bandas ">
+                <span class="siga-bandas-icone"></span>
+                <h2>Siga Bandas</h2>
+            </article>
+        </a>
 
         <article id="acompanhe-shows" class="acompanhe-shows">
             <span class="acompanhe-shows-icone"></span>
@@ -26,19 +30,38 @@
         <article id="shows-local" class="shows-local">
             <h2>Shows Locais</h2>
             <ul>
-                <li>
-                    <a href="" class="item-lista-shows">
-                        <img src="http://userserve-ak.last.fm/serve/64s/70159212.png" />
-                        <span>Criolo</span>
-                        <span class="data-show">Sexta 11 de janeiro de 2013</span>
-                    </a>
-                </li>
+                {% for band, band_shows in shows %}
+                    {%- set show = band_shows[0] -%}
+                    <li>
+                        <a href="#" class="item-lista-shows">
+                            <img src="{{ show.cover_image }}" />
+                            <span class="info-show">
+                                <span class="banda-show">{{ band.name }}</span>
+                                <span class="data-show">{{ show.title }}</span>
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
 
         </article>
 
         <article id="shows-populares" class="shows-populares">
             <h2>Shows Populares</h2>
+            <ul>
+                {% for band, band_shows in shows %}
+                    {%- set show = band_shows[0] -%}
+                    <li>
+                        <a href="#" class="item-lista-shows">
+                            <img src="{{ show.cover_image }}" />
+                            <span class="info-show">
+                                <span class="banda-show">{{ band.name }}</span>
+                                <span class="data-show">{{ show.title }}</span>
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </article>
 
     </section>
