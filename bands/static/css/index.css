@@ -81,6 +81,7 @@ section.area-show-home article ul{
 
 section.area-show-home article ul li{
     height: 52px;
+    list-style: none outside none;
     margin: 5px 5px;
 }
 

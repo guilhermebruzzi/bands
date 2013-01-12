@@ -20,7 +20,7 @@ html, body{
 }
 
 header {
-    height: 128px;
+    height: 130px;
     padding-top: 17px;
     border-bottom: 1px solid rgba(66, 66, 66, 0.3);
     background: rgb(255,255,255); /* Old browsers */
@@ -46,7 +46,7 @@ header h1.logo a{
 
 header div.div-logo{
     display: inline-block;
-    width: 50%;
+    width: 55%;
 }
 
 header div.user-box-top{
@@ -60,8 +60,21 @@ header div.user-box-top a{
     text-decoration: none;
     color: #9F0902;
 }
+
 header div.user-box-top a:hover{
     text-decoration: underline;
+}
+
+header div.slogan-box{
+    height: 30px;
+    width: 546px;
+}
+
+header div.slogan-box span.slogan{
+    color: #9F0902;
+    font-weight: bold;
+    float: right;
+    font-size: 12px;
 }
 
 .btn-auth {
