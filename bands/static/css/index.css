@@ -60,10 +60,11 @@ section.area-show-home{
 }
 
 section.area-show-home article.shows-local,
-section.area-show-home article.shows-populares{
+section.area-show-home article.minhas-bandas-shows{
     width: 460px;
-    display: inline-block ;
+    display: inline-block;
     vertical-align: top;
+    font-size: 11pt;
 }
 
 section.area-show-home article h2{
@@ -71,52 +72,68 @@ section.area-show-home article h2{
     border-bottom: 2px solid #9F0902;
 }
 
-section.area-show-home article.shows-populares{
+section.area-show-home article.minhas-bandas-shows{
     float: right;
 }
 
 section.area-show-home article ul{
     position: relative;
+    border: 1px solid #B8B8B8;
+    border-radius: 8px 8px 8px 8px;
+    height: 715px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 460px;
 }
 
 section.area-show-home article ul li{
     height: 52px;
     list-style: none outside none;
-    margin: 5px 5px;
+    margin: 5px 5px 15px;
+}
+
+section.area-show-home article.cadastro span.explicacao{
+    color: #9F0902;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 section.area-show-home article ul li a.item-lista-shows{
     display: inline-block;
-    width: 100%;
+    font-size: 0;
     height: 100%;
-    font-size: 11pt;
-    color: black;
+    width: 100%;
 }
 
 section.area-show-home article ul li a.item-lista-shows img,
 section.area-show-home article ul li a.item-lista-shows span.img-default{
-    width:50px;
-    height:50px;
     border: 1px solid #9F0902;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
-    float: left;
-    margin-right: 5px;
+    border-radius: 5px 5px 5px 5px;
     display: inline-block;
+    height: 50px;
+    margin-right: 5px;
+    vertical-align: top;
+    width: 50px;
 }
 
 section.area-show-home article ul li a.item-lista-shows span.info-show {
-    width: 393px;
+    display: inline-block;
+    font-size: 11pt;
     height: 52px;
-    float: left;
+    vertical-align: top;
 }
 
 section.area-show-home article ul li a.item-lista-shows span span.banda-show,
 section.area-show-home article ul li a.item-lista-shows span span.data-show {
-    display: inline-block;
-    width: 100%;
-    margin-top: 6px;
     color: #9F0902;
+    display: inline-block;
+    margin-left: 56px;
+    margin-top: 6px;
+    position: relative;
+    top: -54px;
+    width: 398px;
 }
 
 section.area-show-home article ul li a.item-lista-shows span span.banda-show {
