@@ -33,7 +33,11 @@
                 {% for show in shows_locais %}
                     <li>
                         <a href="#" class="item-lista-shows">
-                            <img src="{{ show.cover_image }}" />
+                            {% if show.cover_image %}
+                                <img src="{{ show.cover_image }}" />
+                            {% else %}
+                                <span class="icone-musicas img-default"></span>
+                            {% endif %}
                             <span class="info-show">
                                 <span class="banda-show">{{ show.artists[0].name }}</span>
                                 <span class="data-show">{{ show.title }}</span>
@@ -52,7 +56,11 @@
                     {%- set show = band_shows[0] -%}
                     <li>
                         <a href="#" class="item-lista-shows">
-                            <img src="{{ show.cover_image }}" />
+                            {% if show.cover_image %}
+                                <img src="{{ show.cover_image }}" />
+                            {% else %}
+                                <span class="icone-musicas img-default"></span>
+                            {% endif %}
                             <span class="info-show">
                                 <span class="banda-show">{{ band.name }}</span>
                                 <span class="data-show">{{ show.title }}</span>

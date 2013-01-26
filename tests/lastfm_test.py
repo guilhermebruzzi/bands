@@ -3,11 +3,11 @@
 
 from base_test import BaseTest
 
-from lastfm import save_next_shows
+from lastfm import save_next_shows, get_nearby_shows
 from controllers import get_or_create_band
 from models import Band, Show, Location
 
-class FacebookTest(BaseTest):
+class LastFmTest(BaseTest):
 
     models = [Band, Show, Location] #  A serem deletados a cada teste
 
@@ -26,9 +26,12 @@ class FacebookTest(BaseTest):
         self.assertNotEqual(len(shows), 0)
         self.assertNotEqual(len(locations), 0)
 
-        self.assertNotEqual(len(shows[0].artists), 0)
-        self.assertTrue(isinstance(shows[0].artists[0], Band), msg="Pega os artistas do lastfm como bandas nossas")
+        self.__assert_shows__(shows, shows_titles=None)
 
-        self.assertTrue(isinstance(shows[0].location, Location), msg="Pega o local do lastfm como uma classe Location nossa")
+    def get_nearby_shows_test(self):
+        shows = get_nearby_shows(city="Rio de Janeiro")
+        shows_from_mongo = Show.objects.all()
 
-        self.assertRegexpMatches(shows[0].datetime, r"(\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})")
+        self.assertEqual(len(shows), len(shows_from_mongo))
+
+        self.__assert_shows__(shows, shows_titles=None)

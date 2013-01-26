@@ -70,6 +70,7 @@ def save_next_shows(bands, limit_per_artist=None):
                 continue
 
 def geo_getevents(city):
+    city = city.replace(" ", "+")
     url = 'http://ws.audioscrobbler.com/2.0/?method=geo.getevents&location=%s' % city
     url += '&api_key=%s' % network.api_key
     url += '&format=json'
@@ -80,6 +81,8 @@ def get_nearby_shows(city):
     shows = []
     for show_json in shows_json:
         artists = show_json['artists']['artist']
+        if not type(artists) is list:
+            artists = [artists]
         show_datetime = datetime.strptime(show_json['startDate'], '%a, %d %b %Y %H:%M:%S') #  From USA pattern to datetime
         shows.append(
             get_or_create_show({
