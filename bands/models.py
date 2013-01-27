@@ -66,6 +66,7 @@ class Show(db.Document):
     description = db.StringField(required=False)
     datetime = db.StringField(required=False)
     location = db.ReferenceField(Location, required=False, dbref=False)
+    website = db.StringField(required=False)
 
     artists_list = None
     @property

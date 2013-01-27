@@ -27,8 +27,11 @@ def get_client_ip():
 
 def get_current_city(ip):
     if ip == '127.0.0.1':
-        return 'rio+de+janeiro'
-    return urllib2.urlopen('http://api.hostip.info/get_html.php?ip=%s&position=true' % ip).read()
+        return 'Rio de Janeiro'
+    city = urllib2.urlopen('http://api.hostip.info/get_html.php?ip=%s&position=true' % ip).read()
+    if city:
+        return city
+    return 'Rio de Janeiro'
 
 def get_slug(title):
     slug = unicodedata.normalize('NFKD', unicode(title))

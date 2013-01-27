@@ -52,21 +52,18 @@ def resultados(password):
 
 @app.route('/', methods=['GET'])
 def index():
-    users_random, total_users = get_random_users()
     current_user = get_current_user()
-
-    max = 15
-    sort = True
-    normalize = False
-
-    bands, total = get_top_bands(max=max, sort=sort, normalize=normalize)
-    bands_objects = [band["band_object"] for band in bands]
-    shows = get_shows_from_bands(bands_objects, 1)
     current_city = get_current_city(ip=get_client_ip())
+
+    minhas_bandas_shows = []
+    if current_user:
+        minhas_bandas = get_user_bands(user=current_user)
+        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1)
+        minhas_bandas_shows = sorted(minhas_bandas_shows, key=lambda band_show: 0 if band_show[1][0].location.city==current_city else 1)
+
     shows_locais = get_shows_from_bands_by_city(city=current_city)
 
-    return render_template("index.html", users=users_random, total_users=total_users, bands=bands,
-        current_user=current_user, total=total, shows=shows, shows_locais=shows_locais)
+    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows, shows_locais=shows_locais)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])

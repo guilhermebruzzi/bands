@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
+from datetime import datetime
+
 from base_test import BaseTest
 
 from controllers import *
-from models import User, Question, Answer, Band
-from bands.controllers import get_related_bands
+from models import User, Question, Answer, Band, Show, Location
 
 class ControllersTest(BaseTest):
 
-    models = [User, Question, Band] #  A serem deletados a cada teste
+    models = [User, Question, Band, Show] #  A serem deletados a cada teste
 
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
@@ -543,6 +544,30 @@ class ControllersTest(BaseTest):
         self.assertEqual(len(bands), 1)
         self.assertIn(self.beatles1["slug"], bands_slug)
 
+    def get_shows_from_bands_by_city_test(self):
+        show_initial = get_or_create_show({
+            'artists': [get_or_create_band(self.beatles1)],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'), #  From USA datetime to Brazil pattern
+            'title': 'beatles show',
+            'location': get_or_create_location({
+                'name': 'casa do furby',
+                'city': 'Rio de Janeiro',
+                'street': '',
+                'postalcode': '',
+                'website': 'http://www.bands.com.br',
+                'phonenumber': '2222-2222',
+                'image': '', #  Large
+            })
+        })
+        self.__assert_shows__(shows=[show_initial], shows_titles=['Beatles Show'])
+        shows = get_shows_from_bands_by_city(city="Rio de Janeiro")
+        shows_from_mongo = Show.objects.all()
+
+        self.assertEqual(len(shows) + 1, len(shows_from_mongo))
+        self.__assert_shows__(shows_from_mongo, shows_titles=['Beatles Show'])
 
     def validate_answers_test(self):
         self.assertFalse(validate_answers(self.invalid_vazio))

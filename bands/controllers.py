@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 
+from datetime import datetime
 import random
 from operator import itemgetter
 
@@ -57,6 +58,9 @@ def get_or_create_band(data):
     if "user" in data and not data['user'] in band.users:
         band.users.append(data['user'])
 
+    if "image" in data and data['image']:
+        band.image = data['image']
+
     band.save()
     return band
 
@@ -92,7 +96,7 @@ def get_or_create_show(data):
         else:
             show.location = get_or_create_location(data["location"])
 
-    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city"]
+    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city", "website"]
     for key in keys_to_check:
         if key in data:
             setattr(show, key, data[key])
@@ -115,11 +119,14 @@ def get_shows_from_bands(bands, limit_per_artist=None):
 def get_shows_from_bands_by_city(city):
     lastfm = get_lastfm_module()
     shows = lastfm.get_nearby_shows(city=city)
+
     locations = Location.objects.filter(city=city)
-    shows_from_mongo = Show.objects.filter(location__in=locations)
+    shows_from_mongo = Show.objects.filter(location__in=locations, datetime__gte=str(datetime.now()))
     for show_mongo in shows_from_mongo:
         if not show_mongo in shows_from_mongo:
             shows.append(show_mongo)
+
+    shows.reverse() # shows cadastrados primeiro
     return shows
 
 def get_band(slug):

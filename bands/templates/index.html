@@ -31,11 +31,20 @@
             <h2>Shows Locais</h2>
             <ul>
                 {% for show in shows_locais %}
+                    {%- set band_name = show.artists[0].name -%}
+                    {%- set website = show.website -%}
+                    {% if not website %}
+                        {%- set website = show.location.website -%}
+                    {% endif %}
                     <li>
-                        <a href="#" class="item-lista-shows">
-                            <img src="{{ show.cover_image }}" />
+                        <a href="{{ website }}" target="_blank" class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band_name }} Show: {{ show.title }}']);">
+                            {% if show.cover_image %}
+                                <img src="{{ show.cover_image }}" />
+                            {% else %}
+                                <span class="icone-musicas img-default"></span>
+                            {% endif %}
                             <span class="info-show">
-                                <span class="banda-show">{{ show.artists[0].name }}</span>
+                                <span class="banda-show">{{ band_name }}</span>
                                 <span class="data-show">{{ show.title }}</span>
                             </span>
                         </a>
@@ -45,22 +54,47 @@
 
         </article>
 
-        <article id="shows-populares" class="shows-populares">
-            <h2>Shows Populares</h2>
+        <article id="minhas-bandas-shows" class="minhas-bandas-shows">
+            <h2>Shows das minhas bandas</h2>
+            {% if current_user %}
             <ul>
-                {% for band, band_shows in shows %}
-                    {%- set show = band_shows[0] -%}
-                    <li>
-                        <a href="#" class="item-lista-shows">
-                            <img src="{{ show.cover_image }}" />
-                            <span class="info-show">
-                                <span class="banda-show">{{ band.name }}</span>
-                                <span class="data-show">{{ show.title }}</span>
-                            </span>
-                        </a>
-                    </li>
-                {% endfor %}
+                {% if minhas_bandas_shows %}
+                    {% for band, band_shows in minhas_bandas_shows %}
+                        {%- set show = band_shows[0] -%}
+                        {%- set website = show.website -%}
+                        {% if not website %}
+                            {%- set website = show.location.website -%}
+                        {% endif %}
+                        <li>
+                            <a href="{{ website }}" target="_blank" class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                                {% if show.cover_image %}
+                                    <img src="{{ show.cover_image }}" />
+                                {% else %}
+                                    <span class="icone-musicas img-default"></span>
+                                {% endif %}
+                                <span class="info-show">
+                                    <span class="banda-show">{{ band.name }}</span>
+                                    <span class="data-show">{{ show.title }}</span>
+                                </span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <span class="explicacao">
+                        Nenhum show está cadastro no momento para as bandas que você gosta.
+                        <a href="">Tente novamente em 5 minutos, enquanto buscamos...</a>
+                    </span>
+                {% endif %}
             </ul>
+            {% else %}
+                <article class="cadastro">
+                    <span class="explicacao">Para ver os shows das suas bandas:</span>
+                    <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login', 'Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
+                        Faça login pelo
+                        <b>Facebook</b>
+                    </a>
+                </article>
+            {% endif %}
         </article>
 
     </section>
