@@ -10,7 +10,7 @@ from models import User, Question, Answer, Band, Show, Location
 
 class ControllersTest(BaseTest):
 
-    models = [User, Question, Band, Show] #  A serem deletados a cada teste
+    models = [User, Question, Band, Show, Location] #  A serem deletados a cada teste
 
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
@@ -135,6 +135,27 @@ class ControllersTest(BaseTest):
 
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
         self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
+
+        self.maracana_data = {
+            'name': "Maracana",
+            'city': u"Rio de Janeiro",
+            'street': "Maracana street",
+            'postalcode': "22010-010",
+            'website': "http://www.maracana.com.br",
+            'phonenumber': "(21)2222-2222",
+            'image': "http://www.maracana.com.br/large.png" #  Large
+        }
+        self.maracana_slug = "maracana"
+        self.morumbi_data = {
+            'name': "Morumbi",
+            'city': u"São Paulo",
+            'street': "SP street",
+            'postalcode': "22010-011",
+            'website': "http://www.morumbi.com.br",
+            'phonenumber': "(15)2222-2222",
+            'image': "http://www.morumbi.com.br/large.png" #  Large
+        }
+
 
     def name_of_band_with_upper_letter_test(self):
         user_guto = get_or_create_user(data=self.data_user_guto)
@@ -544,30 +565,98 @@ class ControllersTest(BaseTest):
         self.assertEqual(len(bands), 1)
         self.assertIn(self.beatles1["slug"], bands_slug)
 
+    def get_or_create_location_test(self):
+        maracana = get_or_create_location(self.maracana_data)
+        self.assertEqual(maracana.slug, self.maracana_slug)
+        locations = Location.objects.all()
+        self.assertEqual(len(locations), 1)
+        self.assertEqual(maracana, locations[0])
+
+    def get_or_create_show_test(self):
+        maracana = get_or_create_location(self.maracana_data)
+        show = get_or_create_show({
+            'artists': [get_or_create_band(self.beatles1)],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
+            'title': 'beatles show',
+            'website': "http://www.beatles.com",
+            'location': maracana
+        })
+
+        self.__assert_shows__(shows=[show], shows_titles=['Beatles Show'])
+        self.assertEqual(show.location, maracana)
+
+        shows = Show.objects.all()
+        self.assertEqual(len(shows), 1)
+
+        bands = Band.objects.all()
+        self.assertEqual(len(bands), 1)
+        self.assertEqual(len(bands[0].shows), 1)
+
+        self.assertEqual(bands[0].shows[0], show)
+
+    def get_shows_from_bands_test(self):
+        self.beatles1['user'] = get_or_create_user(data=self.data_user_guilherme)
+        beatles = get_or_create_band(self.beatles1)
+        self.cassia1['user'] = get_or_create_user(data=self.data_user_guto)
+        cassia = get_or_create_band(self.cassia1)
+
+        show1 = get_or_create_show({
+            'artists': [beatles, cassia],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
+            'title': 'beatles show',
+            'website': "http://www.beatles.com",
+            'location': get_or_create_location(self.morumbi_data)
+        })
+
+        show2 = get_or_create_show({
+            'artists': [cassia],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
+            'title': 'cassia show',
+            'website': "http://www.cassia.com",
+            'location': get_or_create_location(self.maracana_data)
+        })
+
+        bands_shows = get_shows_from_bands(bands=[beatles, cassia], limit_per_artist=1, city="Rio de Janeiro")
+        self.assertEqual(len(bands_shows), 2)
+        shows_from_mongo = Show.objects.all()
+        self.assertEqual(len(shows_from_mongo), 2)
+
+        self.assertEqual(bands_shows[0][0], beatles)
+        self.assertEqual(bands_shows[0][1][0], show1)
+
+        self.assertEqual(bands_shows[1][0], cassia)
+        self.assertEqual(bands_shows[1][1][0], show2)
+
+
+
     def get_shows_from_bands_by_city_test(self):
         show_initial = get_or_create_show({
             'artists': [get_or_create_band(self.beatles1)],
             'attendance_count': 2, #  number of people going
             'cover_image': '', #  Large
             'description': '',
-            'datetime': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'), #  From USA datetime to Brazil pattern
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
             'title': 'beatles show',
-            'location': get_or_create_location({
-                'name': 'casa do furby',
-                'city': 'Rio de Janeiro',
-                'street': '',
-                'postalcode': '',
-                'website': 'http://www.bands.com.br',
-                'phonenumber': '2222-2222',
-                'image': '', #  Large
-            })
+            'website': "http://www.beatles.com",
+            'location': get_or_create_location(self.maracana_data)
         })
         self.__assert_shows__(shows=[show_initial], shows_titles=['Beatles Show'])
+
         shows = get_shows_from_bands_by_city(city="Rio de Janeiro")
         shows_from_mongo = Show.objects.all()
 
-        self.assertEqual(len(shows) + 1, len(shows_from_mongo))
+        self.assertEqual(len(shows), len(shows_from_mongo))
         self.__assert_shows__(shows_from_mongo, shows_titles=['Beatles Show'])
+
 
     def validate_answers_test(self):
         self.assertFalse(validate_answers(self.invalid_vazio))

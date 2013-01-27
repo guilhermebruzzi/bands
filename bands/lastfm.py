@@ -51,7 +51,7 @@ def save_show_info(show):
         'attendance_count': show.get_attendance_count(), #  number of people going
         'cover_image': show.get_cover_image(),
         'description': show.get_description(),
-        'datetime': datetime.strftime(show_datetime, '%d/%m/%Y %H:%M:%S'), #  From USA datetime to Brazil pattern
+        'datetime_usa': datetime.strftime(show_datetime, '%Y-%m-%d %H:%M:%S'), #  From datetime to string
         'title': show.get_title(),
         'location': get_location_info(show)
     })
@@ -90,8 +90,9 @@ def get_nearby_shows(city):
                 'attendance_count': show_json['attendance'], #  number of people going
                 'cover_image': show_json['image'][2]['#text'], #  Large
                 'description': show_json['description'],
-                'datetime': datetime.strftime(show_datetime, '%d/%m/%Y %H:%M:%S'), #  From USA datetime to Brazil pattern
+                'datetime_usa': datetime.strftime(show_datetime, '%Y-%m-%d %H:%M:%S'), #  From datetime to string
                 'title': show_json['title'],
+                'website': show_json['website'],
                 'location': get_or_create_location({
                     'name': show_json['venue']['name'],
                     'city': show_json['venue']['location']['city'],

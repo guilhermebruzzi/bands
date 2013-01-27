@@ -2,7 +2,7 @@
 
 from datetime import datetime
 import random
-from operator import itemgetter
+from operator import itemgetter, attrgetter
 
 from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned
 
@@ -89,6 +89,9 @@ def get_or_create_show(data):
         for artist in data["artists"]:
             if not artist.slug in show.artists_slug:
                 show.artists_slug.append(artist.slug)
+                if not show in artist.shows:
+                    artist.shows.append(show)
+                    artist.save()
 
     if "location" in data:
         if isinstance(data["location"], Location): #  Um objeto location tambem pode ter sido passado
@@ -96,7 +99,7 @@ def get_or_create_show(data):
         else:
             show.location = get_or_create_location(data["location"])
 
-    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city", "website"]
+    keys_to_check = ["attendance_count", "cover_image", "description", "datetime_usa", "city", "website"]
     for key in keys_to_check:
         if key in data:
             setattr(show, key, data[key])
@@ -104,13 +107,25 @@ def get_or_create_show(data):
     show.save()
     return show
 
-def get_shows_from_bands(bands, limit_per_artist=None):
+def __sort_by_city_and_location__(city=None):
+    now = str(datetime.now())
+
+    if city:
+        return lambda show: ("0" + show.datetime_usa if show.location.city == city else show.datetime_usa) if show.datetime_usa[:10] >= now[:10] else ("9" + show.datetime_usa)
+
+    return lambda show: show.datetime if show.datetime[:10] >= now[:10] else "9" + show.datetime
+
+
+def get_shows_from_bands(bands, limit_per_artist=None, city=None):
+    """ bands: Uma lista de bandas nas quais pegará os limit_per_artist shows (default: None = todos os shows) e ordenará por city se for passado algo """
+
     shows = []
     bands_to_get_shows = []
     for band in bands:
         if len(band.shows) == 0:
             bands_to_get_shows.append(band)
         else:
+            band.shows = sorted(band.shows, key=__sort_by_city_and_location__(city=city))
             shows.append((band, band.shows[:limit_per_artist]))
     lastfm = get_lastfm_module()
     lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
@@ -121,12 +136,12 @@ def get_shows_from_bands_by_city(city):
     shows = lastfm.get_nearby_shows(city=city)
 
     locations = Location.objects.filter(city=city)
-    shows_from_mongo = Show.objects.filter(location__in=locations, datetime__gte=str(datetime.now()))
+    shows_from_mongo = Show.objects.filter(location__in=locations, datetime_usa__gte=str(datetime.now().date()))
     for show_mongo in shows_from_mongo:
-        if not show_mongo in shows_from_mongo:
+        if not show_mongo in shows:
             shows.append(show_mongo)
 
-    shows.reverse() # shows cadastrados primeiro
+    shows = sorted(shows, key=__sort_by_city_and_location__(city=city))
     return shows
 
 def get_band(slug):

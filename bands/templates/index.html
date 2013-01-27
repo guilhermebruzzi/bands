@@ -41,7 +41,11 @@
                             {% if show.cover_image %}
                                 <img src="{{ show.cover_image }}" />
                             {% else %}
-                                <span class="icone-musicas img-default"></span>
+                                {% if show.location.image %}
+                                    <img src="{{ show.cover_image }}" />
+                                {% else %}
+                                    <span class="icone-musicas img-default"></span>
+                                {% endif %}
                             {% endif %}
                             <span class="info-show">
                                 <span class="banda-show">{{ band_name }}</span>
@@ -66,11 +70,15 @@
                             {%- set website = show.location.website -%}
                         {% endif %}
                         <li>
-                            <a href="{{ website }}" target="_blank" class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                            <a href="{{ website }}" {% if website %} target="_blank" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
                                 {% if show.cover_image %}
                                     <img src="{{ show.cover_image }}" />
                                 {% else %}
-                                    <span class="icone-musicas img-default"></span>
+                                    {% if show.location.image %}
+                                        <img src="{{ show.cover_image }}" />
+                                    {% else %}
+                                        <span class="icone-musicas img-default"></span>
+                                    {% endif %}
                                 {% endif %}
                                 <span class="info-show">
                                     <span class="banda-show">{{ band.name }}</span>
@@ -81,8 +89,8 @@
                     {% endfor %}
                 {% else %}
                     <span class="explicacao">
-                        Nenhum show está cadastro no momento para as bandas que você gosta.
-                        <a href="">Tente novamente em 5 minutos, enquanto buscamos...</a>
+                        <p>Nenhum show está cadastro no momento para as bandas que você gosta.</p>
+                        <p><a href="">Tente novamente em 5 minutos, enquanto buscamos...</a></p>
                     </span>
                 {% endif %}
             </ul>

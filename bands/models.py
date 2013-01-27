@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import time
+from datetime import datetime
 from mongoengine import *
 from config import db
 
@@ -64,7 +66,7 @@ class Show(db.Document):
     attendance_count = db.IntField(min_value=0, required=False, default=0)
     cover_image = db.StringField(required=False)
     description = db.StringField(required=False)
-    datetime = db.StringField(required=False)
+    datetime_usa = db.StringField(required=False)
     location = db.ReferenceField(Location, required=False, dbref=False)
     website = db.StringField(required=False)
 
@@ -74,6 +76,10 @@ class Show(db.Document):
         if not self.artists_list is None:
             return self.artists_list
         return Band.objects.filter(slug__in=self.artists_slug)
+
+    @property
+    def datetime(self):
+        return datetime.strftime(datetime.strptime(self.datetime_usa[:19], "%Y-%m-%d %H:%M:%S"), '%d/%m/%Y %H:%M:%S')
 
     def __eq__(self, other):
         return self.slug == other.slug

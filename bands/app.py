@@ -2,14 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import os
-import urllib2
-import json
 
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     get_current_city
-from controllers import get_or_create_user, validate_answers, get_random_users, random_top_bands, get_user_bands, \
+from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo
 
@@ -58,8 +56,7 @@ def index():
     minhas_bandas_shows = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
-        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1)
-        minhas_bandas_shows = sorted(minhas_bandas_shows, key=lambda band_show: 0 if band_show[1][0].location.city==current_city else 1)
+        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
 
     shows_locais = get_shows_from_bands_by_city(city=current_city)
 
