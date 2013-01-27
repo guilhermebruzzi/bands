@@ -1,6 +1,6 @@
 {% import 'opcoes_resposta.html' as opcoes_resposta %}
 {% extends "master.html" %}
-{% block title %}Bands - Pesquisa{% endblock %}
+{% block title %}Bands - Cadastro{% endblock %}
 {% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pesquisa.css') }}" />{% endblock %}
 {% block content %}
     <header itemscope itemtype="http://schema.org/Person">
@@ -31,9 +31,11 @@
 
             <section id="questions" class="questions hidden">
 
-                {% for question in questions %}
-                    {{ opcoes_resposta.escreve_resposta(question) }}
-                {% endfor %}
+                <span class="question musico">Qual é o nome de sua banda?</span>
+
+                <div class="answer">
+                    <input type="text" id="banda" name="banda" class="musico" />
+                </div>
 
                 <input type=submit class="shiny-red" value="Salvar" />
 

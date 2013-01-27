@@ -18,3 +18,6 @@ section.resultados-gerais img{
     float: left;
 }
 
+section.resultados-gerais div.line {
+    height: 60px;
+}

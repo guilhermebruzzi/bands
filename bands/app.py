@@ -6,13 +6,12 @@ import urllib2
 import json
 
 from flask import Flask, redirect, url_for, session, request, abort, make_response
-from config import get_app, facebook, MAIN_QUESTIONS, QUESTIONS_PESQUISA, project_root
-from helpers import prepare_post_data, need_to_be_logged, need_to_be_admin, get_current_user, \
-    get_slug, render_template, get_client_ip, get_current_city
-from controllers import get_or_create_user, validate_answers, save_answers, get_all_questions_and_all_answers, \
-    get_random_users, random_top_bands, get_user_bands, get_or_create_band, like_band, unlike_band, get_top_bands, \
-    get_all_users, get_related_bands, get_band, get_user_answers, get_answers_and_counters_from_question, \
-    get_shows_from_bands, get_shows_from_bands_by_city
+from config import get_app, facebook, MAIN_QUESTIONS, project_root
+from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
+    get_current_city
+from controllers import get_or_create_user, validate_answers, get_random_users, random_top_bands, get_user_bands, \
+    get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
+    get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -42,15 +41,12 @@ def resultados(password):
 
     password_compare = os.environ["PASSWORD_RESULTS"] if os.environ.has_key("PASSWORD_RESULTS") else "kyb@1234"
     if password == password_compare:
-        questions_and_all_answers = get_all_questions_and_all_answers()
         users = get_all_users()
         top_bands, len_bands = get_top_bands(sort=True)
         funcionalidades_fa = get_answers_and_counters_from_question(['fa-funcionalidades'])
         funcionalidades_musico = get_answers_and_counters_from_question(['musico-funcionalidades'])
-        return render_template('resultados_gerais.html', current_user=current_user,
-                                questions_and_all_answers=questions_and_all_answers.values(),
-                                users=users, funcionalidades_fa=funcionalidades_fa,funcionalidades_musico=funcionalidades_musico,
-                                bands=top_bands, len_bands=len_bands)
+        return render_template('resultados_gerais.html', current_user=current_user, users=users, funcionalidades_fa=funcionalidades_fa,
+            funcionalidades_musico=funcionalidades_musico, bands=top_bands, len_bands=len_bands)
     else:
         abort(404)
 
@@ -132,15 +128,14 @@ def related_bands(slug):
 @need_to_be_logged
 def pesquisa():
     current_user = get_current_user()
-    post_data = prepare_post_data()
+    data = request.form
 
     if request.method == 'POST':
-        if validate_answers(post_data):
-            save_answers(post_data, current_user)
+        if validate_answers(data):
+            set_user_tipo(current_user, data["musico-ou-fa"])
             return redirect(url_for('minhas_bandas'))
 
-    return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS,
-                            questions=QUESTIONS_PESQUISA, post_data=post_data)
+    return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS, post_data=data)
 
 
 @app.route('/login/')
@@ -168,8 +163,7 @@ def facebook_authorized(resp):
     me = facebook.get('/me')
     session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
 
-    user_answers = get_user_answers(session['current_user']) #  if no answers given, go to feedback form
-    url = url_for('pesquisa') if len(user_answers) == 0 else url_for('minhas_bandas')
+    url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('pesquisa')
     return redirect(url)
 
 

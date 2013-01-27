@@ -7,6 +7,7 @@ class User(db.Document):
     facebook_id = db.StringField(required=True)
     email = db.StringField(required=True)
     name = db.StringField(required=True)
+    tipo = db.StringField(required=False)    # musico, fa, produtor, etc
 
     @property
     def photo(self):

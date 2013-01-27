@@ -3,8 +3,7 @@
 
 import flask
 from unittest import TestCase
-from helpers import get_slug, user_logged, need_to_be_logged, count_tags
-from config import get_app
+from helpers import get_slug, user_logged
 from models import User
 from app import app
 

@@ -77,38 +77,6 @@ QUESTIONS_PESQUISA = [
                      u"Vender os ingressos dos meus shows e eventos",
                      u"Vender os produtos da minha banda (álbuns, camisas, etc.)" ],
         "outros": u"Nos diga quaisquer outras dificuldades:"
-    },
-    {
-        "slug": "musico-solucao",
-        "class_name": "musico",
-        "type": "textarea",
-        "question": u"Atualmente, como você resolve os problemas que marcou acima?"
-    },
-    {
-        "slug": "musico-funcionalidades",
-        "class_name": "musico",
-        "type": "checkbox_textarea",
-        "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
-        "answers": [ u"Venda de ingressos",  u"Merchandising (cds, roupas, acessórios, etc)", u"Histórico da banda",
-                     u"Divulgação de shows e eventos", u"Lista de Integrantes das bandas (atuais e ex-integrantes)",
-                     u"Links para redes sociais e site oficial das bandas e músicos",
-                     u"Vídeos das bandas e músicos (shows e clipes)", u"Músicas das bandas e músicos",
-                     u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
-                     u"Fãs podendo dar resenhas (pra banda, pro cd, pro show)" ],
-        "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
-    },
-    {
-        "slug": "fa-funcionalidades",
-        "class_name": "fa",
-        "type": "checkbox_textarea",
-        "question": u"Quais as funcionalidades mais importantes que você gostaria que tivesse no site?",
-        "answers": [ u"Venda de ingressos",  u"Merchandising (cds, roupas, acessórios, etc)", u"Histórico da banda",
-                     u"Divulgação de shows e eventos", u"Lista de Integrantes das bandas (atuais e ex-integrantes)",
-                     u"Links para redes sociais e site oficial das bandas e músicos",
-                     u"Vídeos das bandas e músicos (shows e clipes)", u"Músicas das bandas e músicos",
-                     u"Fãs podendo dar nota (pra banda, pro cd, pro show)",
-                     u"Fãs podendo dar reviews (pra banda, pro cd, pro show)" ],
-        "outros": u"Nos diga quaisquer outras funcionalidades que acharia interessante ter no site:"
     }
 ]
 
