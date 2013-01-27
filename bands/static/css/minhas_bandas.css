@@ -6,6 +6,13 @@ section.minhas-bandas-section{
     margin-bottom: 180px;
 }
 
+section.minhas-bandas-show{
+    width: 268px;
+    margin: auto;
+    position: relative;
+    top: -35px;
+}
+
 section.minhas-bandas-section h2{
     margin: 15px auto;
 }
@@ -29,6 +36,8 @@ section.minhas-bandas-section h2.challenge{
 section.minhas-bandas-section div.add_bands{
     margin: 30px auto;
     width: 700px;
+    position: relative;
+    left: -76px;
 }
 
 section.minhas-bandas-section ul.list_bands_user_likes{

@@ -95,7 +95,7 @@ def get_or_create_show(data):
         else:
             show.location = get_or_create_location(data["location"])
 
-    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city"]
+    keys_to_check = ["attendance_count", "cover_image", "description", "datetime", "city", "website"]
     for key in keys_to_check:
         if key in data:
             setattr(show, key, data[key])
