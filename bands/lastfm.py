@@ -7,6 +7,7 @@ from datetime import datetime
 from multiprocessing import Process
 
 import pylast
+import mongoengine
 
 from helpers import get_json
 from controllers import get_or_create_band, get_or_create_show, get_or_create_location
@@ -66,7 +67,8 @@ def save_next_shows(bands, limit_per_artist=None):
                 if not show in band.shows:
                     band.shows.append(show)
                     band.save()
-            except pylast.WSError as e: #  Ignora eventos que não conseguiu pegar as informações
+            except (pylast.WSError, mongoengine.ValidationError) as e: #  Ignora eventos que não conseguiu pegar as informações
+                print e
                 continue
 
 def geo_getevents(city):
