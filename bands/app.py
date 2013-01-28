@@ -7,7 +7,7 @@ from flask import Flask, redirect, url_for, session, request, abort, make_respon
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     get_current_city
-from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
+from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, set_band_musician, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo
 
@@ -69,10 +69,8 @@ def minhas_bandas():
     current_user = get_current_user()
     bands = random_top_bands(user=current_user)
     bands_user = get_user_bands(user=current_user)
-    thanks_msg = "Obrigado por responder a pesquisa!" if request.referrer and url_for("pesquisa") in request.referrer else ""
 
-    return render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user,
-                            thanks_msg=thanks_msg)
+    return render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user)
 
 
 @app.route('/band/add/', methods=['POST'])
@@ -118,18 +116,22 @@ def related_bands(slug):
     return result
 
 
-@app.route('/pesquisa/', methods=['GET', 'POST'])
+@app.route('/cadastro/', methods=['GET', 'POST'])
 @need_to_be_logged
-def pesquisa():
+def cadastro():
     current_user = get_current_user()
     data = request.form
 
     if request.method == 'POST':
         if validate_answers(data):
             set_user_tipo(current_user, data["musico-ou-fa"])
+
+            band = get_band(get_slug(data["banda"]))
+            set_band_musician(band, current_user)
+
             return redirect(url_for('minhas_bandas'))
 
-    return render_template('pesquisa.html', current_user=current_user, main_questions=MAIN_QUESTIONS, post_data=data)
+    return render_template('cadastro.html', current_user=current_user, main_questions=MAIN_QUESTIONS, post_data=data)
 
 
 @app.route('/login/')
@@ -157,7 +159,7 @@ def facebook_authorized(resp):
     me = facebook.get('/me')
     session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
 
-    url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('pesquisa')
+    url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('cadastro')
     return redirect(url)
 
 

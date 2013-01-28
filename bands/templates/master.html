@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         {% assets filter="yui_css", output="css/gen/import-min.css",
-            "css/normalize.css", "css/styles.css", "css/index.css", "css/resultados_gerais.css", "css/pesquisa.css", "css/minhas_bandas.css"  %}
+            "css/normalize.css", "css/styles.css", "css/index.css", "css/resultados_gerais.css", "css/cadastro.css", "css/minhas_bandas.css"  %}
             <link rel="stylesheet" href="{{ ASSET_URL }}" />
         {% endassets %}
 
@@ -63,14 +63,14 @@
     {% if debug == True %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/pesquisa.js", "js/votacao.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
     {% elif debug == False %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/pesquisa.js", "js/votacao.js", "js/google_analytics.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/google_analytics.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 

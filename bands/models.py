@@ -93,6 +93,7 @@ class Band(db.Document):
     aliases = db.ListField(StringField(required=True))
     users = db.ListField(ReferenceField(User, dbref=False))
     shows = db.ListField(ReferenceField(Show, dbref=False))
+    musicians = db.ListField(ReferenceField(User, dbref=False))
 
     def __eq__(self, other):
         return self.slug == other.slug
