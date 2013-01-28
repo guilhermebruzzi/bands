@@ -17,7 +17,7 @@ section.funcionalidades-home article{
 
 section.funcionalidades-home article span{
     float: left;
-    background: url("/static/img/red-balls.jpg") no-repeat top left;
+    background: url("/static/img/icones-home.jpg") no-repeat top left;
     display: block;
     width: 50px;
     height: 50px;
@@ -29,11 +29,11 @@ section.funcionalidades-home article span.cadastre-bandas-icone{
 }
 
 section.funcionalidades-home article span.siga-bandas-icone{
-    background-position: -62px 0px;
+    background-position: -48px 0px;
 }
 
 section.funcionalidades-home article span.acompanhe-shows-icone{
-    background-position: -124px 0;
+    background-position: -100px 0;
 }
 
 section.funcionalidades-home article h2{
