@@ -119,7 +119,7 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None):
             band.shows = sorted(band.shows, key=__sort_by_city_and_location__(city=city))
             shows.append((band, band.shows[:limit_per_artist]))
     lastfm = get_lastfm_module()
-    lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
+    lastfm.save_next_shows(bands_to_get_shows, limit_per_artist)
     return shows
 
 def get_shows_from_bands_by_city(city):
