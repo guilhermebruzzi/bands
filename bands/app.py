@@ -59,7 +59,7 @@ def index():
         minhas_bandas = get_user_bands(user=current_user)
 #        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
 
-#    shows_locais = get_shows_from_bands_by_city(city=current_city)
+    shows_locais = get_shows_from_bands_by_city(city=current_city)
 
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows, shows_locais=shows_locais)
 
