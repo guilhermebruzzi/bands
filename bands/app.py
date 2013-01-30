@@ -51,13 +51,13 @@ def resultados(password):
 @app.route('/', methods=['GET'])
 def index():
     current_user = get_current_user()
-    current_city = get_current_city(ip=get_client_ip())
+    current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
 
     minhas_bandas_shows = []
-    shows_locais = []
+#    shows_locais = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
-#        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
+        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
 
     shows_locais = get_shows_from_bands_by_city(city=current_city)
 
