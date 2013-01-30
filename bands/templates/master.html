@@ -16,6 +16,10 @@
 		    <script type="text/javascript" src="{{ url_for('static', filename='js/modernizr-load.js') }}"></script>
         <![endif]-->
 
+        <meta property="og:image" content="{{ url_for('static', filename='img/logoBands.jpg') }}"/>
+        <meta property="og:description" content="Bands é uma maneira fácil e inovadora para conhecer bandas e músicos.
+Em bands.com.br você verá conteúdo relevante das bandas e músicos que você gosta."/>
+
         {% block css %}{% endblock %}
         {% block js_cima %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
