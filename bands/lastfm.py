@@ -64,8 +64,6 @@ def save_next_shows(bands, limit_per_artist=None):
         for event in events_lastfm:
             try:
                 show = save_show_info(event)
-                print band
-                print show
                 if not show in band.shows:
                     band.shows.append(show)
                     band.save()
