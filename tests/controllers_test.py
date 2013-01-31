@@ -6,11 +6,11 @@ from datetime import datetime
 from base_test import BaseTest
 
 from controllers import *
-from models import User, Question, Answer, Band, Show, Location
+from models import *
 
 class ControllersTest(BaseTest):
 
-    models = [User, Question, Band, Show, Location] #  A serem deletados a cada teste
+    models = [User, Question, Band, Show, Location, Newsletter] #  A serem deletados a cada teste
 
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
@@ -564,6 +564,27 @@ class ControllersTest(BaseTest):
 
         self.assertEqual(len(bands), 1)
         self.assertIn(self.beatles1["slug"], bands_slug)
+
+    def get_or_create_newsletter_test(self):
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+
+        newsletter1 = get_or_create_newsletter(option=False, user=user_guilherme, tipo="Meus Shows")
+        self.assertEqual(newsletter1.option, False)
+
+        newsletter2 = get_or_create_newsletter(option=True, user=user_guilherme, tipo="Meus Shows")
+        self.assertEqual(newsletter2.option, True)
+        self.assertEqual(newsletter1.user, newsletter2.user)
+
+        newsletter3 = get_or_create_newsletter(option=True, user=user_guto, tipo="Meus Shows")
+        self.assertNotEqual(newsletter2, newsletter3)
+        newsletter4 = get_or_create_newsletter(option=True, user=user_guto, tipo="Shows Locais")
+        self.assertNotEqual(newsletter3, newsletter4)
+
+        newsletter_from_mongo = Newsletter.objects.all()
+        self.assertEqual(len(newsletter_from_mongo), 3)
+        self.assertIn(newsletter3, newsletter_from_mongo)
+
 
     def get_or_create_location_test(self):
         maracana = get_or_create_location(self.maracana_data)

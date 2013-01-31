@@ -2,12 +2,11 @@
 
 from datetime import datetime
 import random
-from operator import itemgetter, attrgetter
+from operator import itemgetter
 
 from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned
 
-from models import User, Question, Answer, Band, Show, Location
-from config import QUESTIONS_PESQUISA, MAIN_QUESTIONS
+from models import User, Question, Band, Show, Location, Newsletter
 from helpers import get_slug
 from facebook import get_musicians_from_opengraph
 
@@ -33,6 +32,24 @@ def get_or_create_user(data, oauth_token=None):
 
 def get_all_users():
     return User.objects.order_by('-name')
+
+def newsletter_exists(tipo, user):
+    try:
+        newsletter = Newsletter.objects.get(user=user, tipo=tipo)
+        return True
+    except DoesNotExist:
+        return False
+
+def get_or_create_newsletter(tipo, user, option=None):
+    try:
+        newsletter = Newsletter.objects.get(user=user, tipo=tipo)
+        if option:
+            newsletter.option = option
+            newsletter.save()
+    except DoesNotExist:
+        newsletter = Newsletter.objects.create(user=user, option=option, tipo=tipo)
+
+    return newsletter
 
 
 def get_or_create_band(data):

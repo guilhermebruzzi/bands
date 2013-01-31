@@ -29,6 +29,13 @@
 
         <article id="shows-local" class="shows-local">
             <h2>Shows Locais</h2>
+            {% if not newsletter_locais %}
+                <div class="newsletter newsletter-shows-locais">
+                    <span class="question">Gostaria de receber novos shows locais por email?</span>
+                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: sim']);">Sim</a>
+                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: nao']);">Não</a>
+                </div>
+            {% endif %}
             <ul>
                 {% for show in shows_locais %}
                     {%- set band_name = show.artists[0].name -%}
@@ -60,7 +67,15 @@
 
         <article id="minhas-bandas-shows" class="minhas-bandas-shows">
             <h2>Shows das minhas bandas</h2>
+
             {% if current_user %}
+            {% if not newsletter_meus_shows %}
+                <div class="newsletter newsletter-meus-shows">
+                    <span class="question">Gostaria de receber os shows da sua banda por email?</span>
+                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
+                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
+                </div>
+            {% endif %}
             <ul>
                 {% if minhas_bandas_shows %}
                     {% for band, band_shows in minhas_bandas_shows %}

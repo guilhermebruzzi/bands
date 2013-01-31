@@ -9,7 +9,9 @@ from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_s
     get_current_city
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, set_band_musician, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
-    get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo
+    get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
+    newsletter_exists
+
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
@@ -54,14 +56,24 @@ def index():
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
 
     minhas_bandas_shows = []
-#    shows_locais = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
         minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
 
     shows_locais = get_shows_from_bands_by_city(city=current_city)
 
-    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows, shows_locais=shows_locais)
+    newsletter_locais = newsletter_exists(tipo="Shows Locais", user=current_user)
+    newsletter_meus_shows = newsletter_exists(tipo="Meus Shows", user=current_user)
+
+    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows, shows_locais=shows_locais,
+        newsletter_locais=newsletter_locais, newsletter_meus_shows=newsletter_meus_shows)
+
+@app.route('/newsletter/<option>', methods=['POST'])
+def salvar_newsletter(option):
+    current_user = get_current_user()
+    tipo = request.form['tipo']
+    option = option == "sim"
+    return get_or_create_newsletter(option=option, user=current_user, tipo=tipo)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])

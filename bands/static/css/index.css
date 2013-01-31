@@ -40,6 +40,15 @@ section.funcionalidades-home article h2{
     color: #9F0902;
 }
 
+.question{
+    color: #9F0902;
+}
+
+.answer{
+    display: inline-block;
+    margin: 20px 0px 20px 50px;
+}
+
 section.funcionalidades-home article.cadastre-bandas{
     margin-left: 0;
 }

@@ -22,6 +22,17 @@ class User(db.Document):
     def __unicode__(self):
         return self.name
 
+class Newsletter(db.Document):
+    option = db.BooleanField(required=True) #  Sim ou Nao
+    tipo = db.StringField(required=True)  # Shows Locais, Meus Shows, etc..
+    user = db.ReferenceField(User, required=True, dbref=False)
+
+    def __eq__(self, other):
+        return self.user == other.user and self.option == other.option and self.tipo == other.tipo
+
+    def __unicode__(self):
+        return u"%s - %s - %s" (self.user, self.tipo, u"Sim" if self.option else u"Não")
+
 class Answer(db.EmbeddedDocument):
     answer = db.StringField(required=True)
     user = db.ReferenceField(User, required=True, dbref=False)
