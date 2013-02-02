@@ -4,26 +4,28 @@
 
 {% block content %}
 
-    <section id="funcionalidades-home" class="funcionalidades-home">
-        <a href="{{ url_for('login') }}">
-            <article id="cadastre-bandas" class="cadastre-bandas">
-                <span class="cadastre-bandas-icone"></span>
-                <h2>Cadastre Bandas</h2>
-            </article>
-        </a>
+    {% if not current_user %}
+        <section id="funcionalidades-home" class="funcionalidades-home">
+            <a href="{{ url_for('login') }}">
+                <article id="cadastre-bandas" class="cadastre-bandas">
+                    <span class="cadastre-bandas-icone"></span>
+                    <h2>Cadastre Bandas</h2>
+                </article>
+            </a>
 
-        <a href="{{ url_for('login') }}">
-            <article id="siga-bandas" class="siga-bandas ">
-                <span class="siga-bandas-icone"></span>
-                <h2>Siga Bandas</h2>
-            </article>
-        </a>
+            <a href="{{ url_for('login') }}">
+                <article id="siga-bandas" class="siga-bandas ">
+                    <span class="siga-bandas-icone"></span>
+                    <h2>Siga Bandas</h2>
+                </article>
+            </a>
 
-        <article id="acompanhe-shows" class="acompanhe-shows">
-            <span class="acompanhe-shows-icone"></span>
-            <h2>Acompanhe os Shows</h2>
-        </article>
-    </section>
+            <article id="acompanhe-shows" class="acompanhe-shows">
+                <span class="acompanhe-shows-icone"></span>
+                <h2>Acompanhe os Shows</h2>
+            </article>
+        </section>
+    {% endif %}
 
     <section id="area-show-home" class="area-show-home">
 
