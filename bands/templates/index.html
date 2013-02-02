@@ -66,51 +66,57 @@
         </article>
 
         <article id="minhas-bandas-shows" class="minhas-bandas-shows">
-            <h2>Shows das minhas bandas</h2>
-
             {% if current_user %}
-            {% if not newsletter_meus_shows %}
-                <div class="newsletter newsletter-meus-shows">
-                    <span class="question">Gostaria de receber os shows das suas bandas por email?</span>
-                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
-                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
-                </div>
-            {% endif %}
-            <ul>
-                {% if minhas_bandas_shows %}
-                    {% for band, band_shows in minhas_bandas_shows %}
-                        {%- set show = band_shows[0] -%}
-                        {%- set website = show.website -%}
-                        {% if not website %}
-                            {%- set website = show.location.website -%}
-                        {% endif %}
-                        <li>
-                            <a href="{{ website }}" {% if website %} target="_blank" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
-                                {% if show.cover_image %}
-                                    <img src="{{ show.cover_image }}" />
-                                {% else %}
-                                    {% if show.location.image %}
+                <h2>Shows das minhas bandas</h2>
+                {% if not newsletter_meus_shows %}
+                    <div class="newsletter newsletter-meus-shows">
+                        <span class="question">Gostaria de receber os shows das suas bandas por email?</span>
+                        <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
+                        <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
+                    </div>
+                {% endif %}
+                <ul>
+                    {% if minhas_bandas_shows %}
+                        {% for band, band_shows in minhas_bandas_shows %}
+                            {%- set show = band_shows[0] -%}
+                            {%- set website = show.website -%}
+                            {% if not website %}
+                                {%- set website = show.location.website -%}
+                            {% endif %}
+                            <li>
+                                <a href="{{ website }}" {% if website %} target="_blank" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                                    {% if show.cover_image %}
                                         <img src="{{ show.cover_image }}" />
                                     {% else %}
-                                        <span class="icone-musicas img-default"></span>
+                                        {% if show.location.image %}
+                                            <img src="{{ show.cover_image }}" />
+                                        {% else %}
+                                            <span class="icone-musicas img-default"></span>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                                <span class="info-show">
-                                    <span class="banda-show">{{ band.name }}</span>
-                                    <span class="data-show">{{ show.title }} - {{ show.datetime }}</span>
-                                </span>
-                            </a>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <span class="explicacao">
-                        <p>Nenhum show está cadastro no momento para as bandas que você gosta.</p>
-                        <p><a href="">Tente novamente em 5 minutos, enquanto buscamos...</a></p>
-                    </span>
-                {% endif %}
-            </ul>
+                                    <span class="info-show">
+                                        <span class="banda-show">{{ band.name }}</span>
+                                        <span class="data-show">{{ show.title }} - {{ show.datetime }}</span>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <span class="explicacao">
+                            <p>Nenhum show está cadastro no momento para as bandas que você gosta.</p>
+                            <p><a href="">Tente novamente em 5 minutos, enquanto buscamos...</a></p>
+                        </span>
+                    {% endif %}
+                </ul>
             {% else %}
+                <h2>O que é o site Bands?</h2>
                 <article class="cadastro">
+
+                    <span class="explicacao texto-normal"> Para músicos que procuram mais fãs.</span>
+                    <span class="explicacao texto-normal"> E para fãs que querem conhecer melhor seus músicos e novos artistas.</span>
+                    <span class="explicacao texto-normal"> Bands é um site que é para conectar fãs e músicos.</span>
+                    <span class="explicacao texto-normal"> Atualmente contamos com serviços de cadastrar/seguir bandas e visualizar de seus shows.</span>
+
                     <span class="explicacao">Para ver os shows das suas bandas:</span>
                     <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login', 'Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
                         Faça login pelo
