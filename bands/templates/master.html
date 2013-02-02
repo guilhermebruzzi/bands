@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -40,27 +40,43 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
 
     <section class="container">
         <header>
-            <div id="div-logo" class="div-logo">
-                <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
-            </div>
+            <div id="div-topo" class="div-topo">
+                <span id="span-logo-slogan" class="span-logo-slogan">
+                    <span id="div-logo" class="div-logo">
+                        <h1 class="logo" itemprop="name"><a href="/">Bands</a></h1>
+                    </span>
 
-            <div class="fb-like-bands-page">
-                <div class="main-title resumos-semanais">Resumos de shows e bandas no fb:</div>
-                <div class="fb-like-box" data-href="http://www.facebook.com/bandsbr" data-width="292" data-show-faces="false" data-colorscheme="light" data-stream="false" data-header="true"></div>
-            </div>
 
-            <div id="user-box-top" class="user-box-top">
+                    <span class="slogan-box">
+                        <span class="slogan">Não só sobre música. Sobre músicos.</span>
+                    </span>
+                </span>
 
+                {% set classe_logado = "deslogado" %}
                 {% if current_user %}
-                    <a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);">Sair</a>
-                {% else %}
-                    <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Login</a>
+                    {% set classe_logado = "logado" %}
                 {% endif %}
+                <span id="user-box-top" class="user-box-top {{ classe_logado }}">
+
+                    {% if current_user %}
+                        <article>Bem-Vindo, {{ current_user.name }}</article>
+                        <span id="user-box-options" class="user-box-options">
+                            <img id="user-box-photo" class="user-box-photo" itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
+                            <img id="user-box-seta" class="user-box-seta" itemprop="image" src="../static/img/setaMenu.png" alt="seta para opções do menu do usuário" />
+                        </span>
+                        <div id="user-menu" class="user-menu invisivel">
+                            <ul id="menu-lista" class="menu-lista">
+                                <li><a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);">Sair</a></li>
+                            </ul>
+                        </div>
+
+                    {% else %}
+                        <article>Você não está conectado.</article>
+                        <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Faça Login pelo Facebook</a>
+                    {% endif %}
+                </span>
             </div>
 
-            <div class="slogan-box">
-                <span class="slogan">Não só sobre música. Sobre músicos.</span>
-            </div>
         </header>
         <section class="content">
 
@@ -82,14 +98,14 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
     {% if debug == True %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
     {% elif debug == False %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/google_analytics.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/google_analytics.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
