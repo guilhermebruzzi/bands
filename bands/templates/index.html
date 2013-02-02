@@ -32,8 +32,8 @@
             {% if not newsletter_locais %}
                 <div class="newsletter newsletter-shows-locais">
                     <span class="question">Gostaria de receber novos shows locais por email?</span>
-                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: sim']);">Sim</a>
-                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: nao']);">Não</a>
+                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: sim']);">Sim</a>
+                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: nao']);">Não</a>
                 </div>
             {% endif %}
             <ul>
@@ -71,9 +71,9 @@
             {% if current_user %}
             {% if not newsletter_meus_shows %}
                 <div class="newsletter newsletter-meus-shows">
-                    <span class="question">Gostaria de receber os shows da sua banda por email?</span>
-                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
-                    <a class="answer shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
+                    <span class="question">Gostaria de receber os shows das suas bandas por email?</span>
+                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
+                    <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
                 </div>
             {% endif %}
             <ul>

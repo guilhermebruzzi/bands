@@ -63,6 +63,14 @@ def get_or_create_band(data):
     if not name in band.aliases:
         band.aliases.append(name)
 
+    if "musician" in data and not data['musician'] in band.musicians:
+        band.musicians.append(data['musician'])
+        if not "user" in data:
+            band.users.append(data['musician'])
+        else:
+            if data['musician'] != data['user']:
+                band.users.append(data['musician'])
+
     if "user" in data and not data['user'] in band.users:
         band.users.append(data['user'])
 
@@ -124,7 +132,7 @@ def __sort_by_city_and_location__(city=None):
     return lambda show: show.datetime if show.datetime[:10] >= now[:10] else "9" + show.datetime
 
 
-def get_shows_from_bands(bands, limit_per_artist=None, city=None):
+def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=True):
     """ bands: Uma lista de bandas nas quais pegará os limit_per_artist shows (default: None = todos os shows) e ordenará por city se for passado algo """
 
     shows = []
@@ -134,9 +142,13 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None):
             bands_to_get_shows.append(band)
         else:
             band.shows = sorted(band.shows, key=__sort_by_city_and_location__(city=city))
-            shows.append((band, band.shows[:limit_per_artist]))
-    lastfm = get_lastfm_module()
-    lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
+            if band.shows[0].datetime_usa[:10] < str(datetime.now())[:10]: #  Se o primeiro show já aconteceu, quer dizer que todos já aconteceram, nesse caso, pega mais do lastfm
+                bands_to_get_shows.append(band)
+            else:
+                shows.append((band, band.shows[:limit_per_artist]))
+    if call_lastfm_if_dont_have_shows and len(bands_to_get_shows) > 0:
+        lastfm = get_lastfm_module()
+        lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
     return shows
 
 def get_shows_from_bands_by_city(city):
@@ -245,10 +257,6 @@ def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantida
 def get_user_bands(user):
     bands = Band.objects.all()
     return [band for band in bands if user in band.users]
-
-def set_band_musician(band, user):
-    band.musicians.append(user)
-    band.save()
 
 def get_random_users(max=8):
     users = [user for user in User.objects.all()]

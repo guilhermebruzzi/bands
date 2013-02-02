@@ -25,31 +25,37 @@ function makeRequestNewsletter(option, tipo, callback) {
     httpRequest.send('tipo=' + encodeURIComponent(tipo));
 }
 
-function confirmaLogado(){
+function opcaoNewsletter(){
+    var option = (this.innerHTML == "Sim") ? "sim" : "nao";
     var cadastro = document.querySelector(".cadastro");
     if(cadastro){ // Se tiver o elemento para fazer cadastro, é porque a pessoa não está logada
-        alert('É necessário fazer login (observe botão no quadro da direita) para receber shows no email');
-    }
-    else{
+        if(option == "sim"){
+            var fazerLogin = confirm("Para receber shows, é necessário efetuar login, deseja entrar no site agora (com o facebook isso é feito em apenas 1 clique)?");
+            if (fazerLogin)
+            {
+                window.location = "/login/";
+                return;
+            }
+        }
+        this.parentNode.style.display = "none";
+    } else{
         var tipo = "Meus Shows";
-        for(var i in this.classList){
-            var classe = this.classList[i];
+        for(var i in this.parentNode.classList){
+            var classe = this.parentNode.classList[i];
             if(classe == "newsletter-shows-locais"){
                 tipo = "Shows Locais";
             }
         }
-
-        var option = (this.innerHTML == "Sim") ? "sim" : "nao";
         makeRequestNewsletter(option, tipo);
         this.parentNode.style.display = "none";
     }
 }
 
 function main_index(){
-    var answers = document.querySelectorAll(".answer");
-    for(var i in answers){
+    var answers = document.querySelectorAll(".answer-principal");
+    for(var i = 0; i < answers.length; i++){
         var answer = answers[i];
-        answer.addEventListener("click", confirmaLogado, false);
+        answer.addEventListener("click", opcaoNewsletter, false);
     }
 }
 

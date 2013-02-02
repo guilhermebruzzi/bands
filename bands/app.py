@@ -7,26 +7,27 @@ from flask import Flask, redirect, url_for, session, request, abort, make_respon
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     get_current_city
-from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, set_band_musician, \
+from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
-    newsletter_exists
+    newsletter_exists, get_or_create_newsletter
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
-@app.route('/sitemap.xml', methods=['GET'])
-def sitemap():
-    response = make_response(open('%s/bands/static/sitemap.xml' % project_root).read())
+def __make_response_plain_text__(response_text):
+    response = make_response(response_text)
     response.headers["Content-type"] = "text/plain"
     return response
+
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    return __make_response_plain_text__(open('%s/bands/static/sitemap.xml' % project_root).read())
 
 
 @app.route('/robots.txt', methods=['GET'])
 def robots():
-    response = make_response(open('%s/bands/static/robots.txt' % project_root).read())
-    response.headers["Content-type"] = "text/plain"
-    return response
+    return __make_response_plain_text__(open('%s/bands/static/robots.txt' % project_root).read())
 
 
 @app.route('/google3d434de8eb17df82.html')
@@ -73,7 +74,8 @@ def salvar_newsletter(option):
     current_user = get_current_user()
     tipo = request.form['tipo']
     option = option == "sim"
-    return get_or_create_newsletter(option=option, user=current_user, tipo=tipo)
+    newsletter_answer = unicode(get_or_create_newsletter(option=option, user=current_user, tipo=tipo))
+    return __make_response_plain_text__(newsletter_answer)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])
@@ -139,8 +141,8 @@ def cadastro():
         if validate_answers(data):
             set_user_tipo(current_user, data["musico-ou-fa"])
 
-            band = get_band(get_slug(data["banda"]))
-            set_band_musician(band, current_user)
+            if data["banda"]:
+                get_or_create_band({"name": data["banda"], "musician": current_user})
 
             return redirect(url_for('minhas_bandas'))
 

@@ -31,7 +31,7 @@ class Newsletter(db.Document):
         return self.user == other.user and self.option == other.option and self.tipo == other.tipo
 
     def __unicode__(self):
-        return u"%s - %s - %s" (self.user, self.tipo, u"Sim" if self.option else u"Não")
+        return u"%s - %s - %s" % (self.user, self.tipo, u"Sim" if self.option else u"Não")
 
 class Answer(db.EmbeddedDocument):
     answer = db.StringField(required=True)

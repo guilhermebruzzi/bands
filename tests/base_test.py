@@ -16,6 +16,12 @@ class BaseTest(TestCase):
     def __delete_all_of_a_model__(self, model):
         model.drop_collection()
 
+    def __assert_band__(self, band, slug, user, musician):
+        self.assertEqual(band.slug, slug)
+        self.assertIn(musician, band.musicians)
+        self.assertIn(musician, band.users)
+        self.assertIn(user, band.users)
+
     def __assert_shows__(self, shows, shows_titles=None):
         self.assertNotEqual(len(shows), 0)
         if shows_titles:

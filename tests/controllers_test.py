@@ -315,6 +315,19 @@ class ControllersTest(BaseTest):
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
+    def get_or_create_band_with_musician_test(self):
+        """ Teste do fluxo do músico completar o seu cadastro no nosso site """
+
+        user_guilherme = get_or_create_user(data=self.data_user_guilherme)
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        los_bife = get_or_create_band({"name": "Los Bife", "musician": user_guilherme})
+        self.__assert_band__(band=los_bife, slug="los-bife", user=user_guilherme, musician=user_guilherme)
+        the_strokes = get_or_create_band({"name": "The Strokes", "musician": user_guilherme, "user": user_guto})
+        self.__assert_band__(band=the_strokes, slug="the-strokes", user=user_guto, musician=user_guilherme)
+        bands_from_mongo = Band.objects.all()
+        self.assertEqual(len(bands_from_mongo), 2)
+
+
     def get_or_create_band_passing_only_the_name_test(self):
         band = get_or_create_band({"name": self.beatles1["name"]})
         self.assertEqual(band.name, "The Beatles")
@@ -657,6 +670,38 @@ class ControllersTest(BaseTest):
         self.assertEqual(bands_shows[1][0], cassia)
         self.assertEqual(bands_shows[1][1][0], show2)
 
+    def get_shows_from_bands_all_in_the_past(self):
+        self.beatles1['user'] = get_or_create_user(data=self.data_user_guilherme)
+        beatles = get_or_create_band(self.beatles1)
+
+        show1 = get_or_create_show({
+            'artists': [beatles],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': "1991-03-20 10:00:00", #  From USA datetime to Brazil pattern
+            'title': 'beatles show',
+            'website': "http://www.beatles.com",
+            'location': get_or_create_location(self.morumbi_data)
+        })
+
+        show2 = get_or_create_show({
+            'artists': [beatles],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
+            'title': 'Beatles show 2',
+            'website': "http://www.beatles.com",
+            'location': get_or_create_location(self.maracana_data)
+        })
+
+        shows_from_mongo = Show.objects.all()
+        self.assertEqual(len(shows_from_mongo), 1)
+
+        shows = get_shows_from_bands(bands=[beatles], limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=False)
+        self.assertEqual(len(shows), 1)
+        self.assertEqual(shows[0], show2)
 
 
     def get_shows_from_bands_by_city_test(self):
