@@ -167,6 +167,7 @@ header .user-menu{
     top: 52px;
     right: 0px;
     width: 154px;
+    z-index:9999;
 }
 
 header .user-menu .menu-lista{
