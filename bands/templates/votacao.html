@@ -25,7 +25,7 @@
                 <div id="minhas-bandas-itens" class="minhas-bandas-itens">
                     <ul id="minhas-bandas-list" class="list">
                         {% for band in bands_user %}
-                            <li onClick="_gaq.push(['_trackEvent', 'Bands', 'Descurtir Banda em Minhas Bandas', 'Banda: {{ bands[i].name }}']);">
+                            <li onClick="_gaq.push(['_trackEvent', 'Bands', 'Descurtir Banda em Minhas Bandas', 'Banda: {{ band.name }}']);">
                                 <input id="{{ band.slug }}" type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" />
                                 <span class="minhas-bandas-name">
                                     <label for="{{ band.slug }}" class="remove-icon"></label><span class="sort-search minha-banda">{{ band.name }}</span>
