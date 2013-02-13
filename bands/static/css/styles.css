@@ -171,6 +171,7 @@ header .user-menu{
 }
 
 header .user-menu .menu-lista{
+    text-align: left;
     list-style: none;
 }
 
@@ -184,7 +185,7 @@ header .user-menu .menu-lista a{
     text-decoration: none;
     color: black;
     display: block;
-    padding: 4px 0;
+    padding: 4px;
 }
 
 header .user-menu .menu-lista a:hover{
