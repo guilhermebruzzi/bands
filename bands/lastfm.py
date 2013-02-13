@@ -56,6 +56,8 @@ def __get_shows__(url_shows):
                 })
             })
         )
+#    TODO: Logging de warning - if len(shows) == 0 :
+#        print url_shows
     return shows
 
 def get_nearby_shows(city):
@@ -66,8 +68,9 @@ def get_nearby_shows(city):
 def save_next_shows(bands, limit_per_artist=None):
     for band in bands:
         try:
-            params = {"method": "artist.getevents", "artist": band.name, "autocorrect": 1, "api_key": network.api_key, "format": "json"}
-            url = 'http://ws.audioscrobbler.com/2.0/?%s' % urllib.urlencode(params)
+            params = {"method": "artist.getevents", "artist": band.name, "autocorrect": '1', "api_key": network.api_key, "format": "json"}
+            params = urllib.urlencode(dict([k, v.encode('utf-8')] for k, v in params.items()))
+            url = 'http://ws.audioscrobbler.com/2.0/?%s' % params
         except UnicodeEncodeError as e:
             print e
             print params
