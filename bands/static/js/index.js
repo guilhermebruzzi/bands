@@ -37,7 +37,6 @@ function opcaoNewsletter(){
                 return;
             }
         }
-        this.parentNode.style.display = "none";
     } else{
         var tipo = "Meus Shows";
         for(var i in this.parentNode.classList){
@@ -47,8 +46,8 @@ function opcaoNewsletter(){
             }
         }
         makeRequestNewsletter(option, tipo);
-        this.parentNode.style.display = "none";
     }
+    this.parentNode.parentNode.style.display = "none";
 }
 
 function main_index(){
