@@ -68,12 +68,15 @@ section.area-show-home{
     margin: 30px auto;
 }
 
-section.area-show-home article.shows-local,
-section.area-show-home article.minhas-bandas-shows{
+section.area-show-home article.titulo-show{
     width: 460px;
     display: inline-block;
     vertical-align: top;
     font-size: 11pt;
+}
+
+section.area-show-home article.explicacao-site{
+    width: 100%;
 }
 
 section.area-show-home article h2{
@@ -151,4 +154,12 @@ section.area-show-home article ul li a.item-lista-shows span span.data-show {
 
 section.area-show-home article ul li a.item-lista-shows span span.banda-show {
     font-weight: bold;
+}
+
+.opcoes-procurar-bandas{
+    margin-bottom: 15px;
+}
+
+.fullwidth-textbox{
+    width: 65%;
 }

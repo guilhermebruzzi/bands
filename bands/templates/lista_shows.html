@@ -1,0 +1,23 @@
+{% macro escreve_show(analytics_action, band_name, show) -%}
+<li>
+    {%- set website = show.website -%}
+    {% if not website %}
+        {%- set website = show.location.website -%}
+    {% endif %}
+    <a href="{{ website }}" {% if website %} target="_blank" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', {{ analytics_action }}, 'Banda: {{ band_name }} Show: {{ show.title }}']);">
+        {% if show.cover_image %}
+            <img src="{{ show.cover_image }}" />
+        {% else %}
+            {% if show.location.image %}
+                <img src="{{ show.cover_image }}" />
+            {% else %}
+                <span class="icone-musicas img-default"></span>
+            {% endif %}
+        {% endif %}
+        <span class="info-show">
+            <span class="banda-show">{{ band_name }}</span>
+            <span class="data-show">{{ show.title }} - {{ show.datetime }}</span>
+        </span>
+    </a>
+</li>
+{%- endmacro %}

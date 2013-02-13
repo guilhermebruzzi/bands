@@ -1,3 +1,4 @@
+{% import 'lista_shows.html' as lista_shows %}
 {% extends "master.html" %}
 
 {% block title %}Bands - Home{% endblock %}
@@ -28,8 +29,26 @@
     {% endif %}
 
     <section id="area-show-home" class="area-show-home">
+        {% if not current_user %}
+            <article class="explicacao-site titulo-show">
+                <h2>O que é o site Bands?</h2>
+                <article class="cadastro">
 
-        <article id="shows-local" class="shows-local">
+                    <span class="explicacao texto-normal"> Para músicos que procuram mais fãs. E para fãs que querem conhecer melhor seus músicos e novos artistas.</span>
+                    <span class="explicacao texto-normal"> Bands é um site que é para conectar fãs e músicos.</span>
+                    <span class="explicacao texto-normal"> Atualmente contamos com serviços de cadastrar/seguir bandas e de visualizar seus shows.</span>
+
+                    <span class="explicacao">Para salvar bandas e shows que queira acompanhar:</span><br />
+                    <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login', 'Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
+                        Faça login pelo
+                        <b>Facebook</b>
+                    </a>
+                    <span class="explicacao">Se quiser ver agora os shows das bandas da sua cidade ou shows de alguma banda específica, confira as listas abaixo.</span>
+                </article>
+            </article>
+        {% endif %}
+
+        <article id="shows-local" class="shows-local titulo-show">
             <h2>Shows Locais</h2>
             {% if not newsletter_locais %}
                 <div class="newsletter newsletter-shows-locais">
@@ -43,33 +62,14 @@
             <ul>
                 {% for show in shows_locais %}
                     {%- set band_name = show.artists[0].name -%}
-                    {%- set website = show.website -%}
-                    {% if not website %}
-                        {%- set website = show.location.website -%}
-                    {% endif %}
-                    <li>
-                        <a href="{{ website }}" target="_blank" class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band_name }} Show: {{ show.title }}']);">
-                            {% if show.cover_image %}
-                                <img src="{{ show.cover_image }}" />
-                            {% else %}
-                                {% if show.location.image %}
-                                    <img src="{{ show.cover_image }}" />
-                                {% else %}
-                                    <span class="icone-musicas img-default"></span>
-                                {% endif %}
-                            {% endif %}
-                            <span class="info-show">
-                                <span class="banda-show">{{ band_name }}</span>
-                                <span class="data-show">{{ show.title }} - {{ show.datetime }}</span>
-                            </span>
-                        </a>
-                    </li>
+                    {%- set analytics_action = 'Ver show local' -%}
+                    {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
                 {% endfor %}
             </ul>
 
         </article>
 
-        <article id="minhas-bandas-shows" class="minhas-bandas-shows">
+        <article id="minhas-bandas-shows" class="minhas-bandas-shows titulo-show">
             {% if current_user %}
                 <h2>Shows das minhas bandas</h2>
                 {% if not newsletter_meus_shows %}
@@ -84,28 +84,10 @@
                 <ul>
                     {% if minhas_bandas_shows %}
                         {% for band, band_shows in minhas_bandas_shows %}
+                            {%- set band_name = band.name -%}
                             {%- set show = band_shows[0] -%}
-                            {%- set website = show.website -%}
-                            {% if not website %}
-                                {%- set website = show.location.website -%}
-                            {% endif %}
-                            <li>
-                                <a href="{{ website }}" {% if website %} target="_blank" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Ver show local', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
-                                    {% if show.cover_image %}
-                                        <img src="{{ show.cover_image }}" />
-                                    {% else %}
-                                        {% if show.location.image %}
-                                            <img src="{{ show.cover_image }}" />
-                                        {% else %}
-                                            <span class="icone-musicas img-default"></span>
-                                        {% endif %}
-                                    {% endif %}
-                                    <span class="info-show">
-                                        <span class="banda-show">{{ band.name }}</span>
-                                        <span class="data-show">{{ show.title }} - {{ show.datetime }}</span>
-                                    </span>
-                                </a>
-                            </li>
+                            {%- set analytics_action = 'Ver show das minhas bandas' -%}
+                            {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
                         {% endfor %}
                     {% else %}
                         <span class="explicacao">
@@ -115,20 +97,24 @@
                     {% endif %}
                 </ul>
             {% else %}
-                <h2>O que é o site Bands?</h2>
-                <article class="cadastro">
-
-                    <span class="explicacao texto-normal"> Para músicos que procuram mais fãs.</span>
-                    <span class="explicacao texto-normal"> E para fãs que querem conhecer melhor seus músicos e novos artistas.</span>
-                    <span class="explicacao texto-normal"> Bands é um site que é para conectar fãs e músicos.</span>
-                    <span class="explicacao texto-normal"> Atualmente contamos com serviços de cadastrar/seguir bandas e visualizar de seus shows.</span>
-
-                    <span class="explicacao">Para ver os shows das suas bandas:</span>
-                    <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login', 'Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
-                        Faça login pelo
-                        <b>Facebook</b>
-                    </a>
-                </article>
+                <h2>Shows das minhas bandas</h2>
+                <div class="opcoes-procurar-bandas">
+                    <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Nome da banda para ver próximo show" type="text" list="bandas" />
+                    <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" />
+                </div>
+                <datalist id="bandas">
+                    {% for band in all_bands %}
+                        <option value="{{ band.name }}" />
+                    {% endfor %}
+                </datalist>
+                <ul id="minhas-bandas-shows-nao-logado">
+                    {% for band, band_shows in top_shows %}
+                        {%- set band_name = band.name -%}
+                        {%- set show = band_shows[0] -%}
+                        {%- set analytics_action = 'Ver show das bandas que procurei' -%}
+                        {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
+                    {% endfor %}
+                </ul>
             {% endif %}
         </article>
 
