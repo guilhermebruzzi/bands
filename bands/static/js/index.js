@@ -54,8 +54,9 @@ function opcaoNewsletter(){
         }
     } else{
         var tipo = "Meus Shows";
-        for(var i in this.parentNode.classList){
-            var classe = this.parentNode.classList[i];
+        var parentNodeList = this.parentNode.parentNode.classList;
+        for(var i = 0; i < parentNodeList.length; i++){
+            var classe = parentNodeList[i];
             if(classe == "newsletter-shows-locais"){
                 tipo = "Shows Locais";
             }
@@ -102,8 +103,10 @@ function main_index(){
         answer.addEventListener("click", opcaoNewsletter, false);
     }
 
-    procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
-    procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+    if(procurarBandasText){
+        procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
+        procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+    }
 }
 
 main_index();
