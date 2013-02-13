@@ -87,7 +87,7 @@ def salvar_newsletter(option):
 def show_from_band(band_name):
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
     band = get_or_create_band({'name': band_name})
-    shows = get_shows_from_bands([band], 1, city=current_city)
+    shows = get_shows_from_bands([band], limit_per_artist=1, city=current_city, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=True)
     show = None
     if shows:
         show = shows[0][1][0] # Pegando apenas o objeto show da banda

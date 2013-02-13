@@ -133,11 +133,11 @@ header .user-box-seta-ao-contrario{
     transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
 }
 
-header .user-box-top .invisivel {
+.invisivel {
     display: none;
 }
 
-header .user-box-top .visivel {
+.visivel {
     display: block;
 }
 
@@ -357,4 +357,8 @@ footer a.new_link{
     display: inline-block;
     width: 16px;
     height: 16px;
+}
+
+.error{
+    color: red;
 }

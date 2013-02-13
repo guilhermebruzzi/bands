@@ -1,3 +1,5 @@
+var erroProcurarBandas = document.querySelector('#erro-procurar-bandas');
+
 function makeRequestServer(method, url, callback, params){
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
@@ -34,6 +36,14 @@ function makeRequestNewsletter(option, tipo, callback) {
     makeRequestServer("POST", "/newsletter/" + option, callback, params);
 }
 function makeRequestShowFromBand(bandName) {
+    if(_gaq){
+        _gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home']);
+    }
+    if(erroProcurarBandas.classList.contains("visivel")){
+        erroProcurarBandas.classList.remove("visivel");
+        erroProcurarBandas.classList.add("invisivel");
+    }
+    erroProcurarBandas.innerHTML = 'Não encontramos nenhum show de ' + bandName + ' num futuro próximo';
     makeRequestServer("GET", "/show_from_band/" + bandName, adicionarShowDaBanda);
 }
 
@@ -75,7 +85,10 @@ function adicionarShowDaBanda(){
                 minhasBandasShows.innerHTML += htmlShow;
             }
             else{
-
+                if(erroProcurarBandas.classList.contains("invisivel")){
+                    erroProcurarBandas.classList.remove("invisivel");
+                    erroProcurarBandas.classList.add("visivel");
+                }
             }
 
         } else {
