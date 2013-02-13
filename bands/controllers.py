@@ -164,11 +164,14 @@ def get_shows_from_bands_by_city(city):
     shows = sorted(shows, key=__sort_by_city_and_location__(city=city))
     return shows
 
+def get_all_bands():
+    return Band.objects.all()
+
 def get_band(slug):
     return Band.objects.filter(slug=slug).first()
 
 def get_related_bands(band, max=None, user=None):
-    bands = Band.objects.all()
+    bands = get_all_bands()
     related_bands = {}
     for currentUser in band.users:
         for currentBand in bands:
@@ -212,7 +215,7 @@ def unlike_band(slug, user):
     band.save()
 
 def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
-    bands = Band.objects.all()
+    bands = get_all_bands()
     top_bands = []
     top_band_size = 0;
 
@@ -234,7 +237,7 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     return (result, len(bands))
 
 def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
-    bands = Band.objects.all()
+    bands = get_all_bands()
     removidos = {}
     bandas = []
     for band in bands:
@@ -255,7 +258,7 @@ def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantida
     return bandasOrdenadas[0:max]
 
 def get_user_bands(user):
-    bands = Band.objects.all()
+    bands = get_all_bands()
     return [band for band in bands if user in band.users]
 
 def get_random_users(max=8):

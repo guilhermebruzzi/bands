@@ -10,7 +10,7 @@ from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_s
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
-    newsletter_exists, get_or_create_newsletter
+    newsletter_exists, get_or_create_newsletter, get_all_bands
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
@@ -46,8 +46,9 @@ def resultados(password):
         top_bands, len_bands = get_top_bands(sort=True)
         funcionalidades_fa = get_answers_and_counters_from_question(['fa-funcionalidades'])
         funcionalidades_musico = get_answers_and_counters_from_question(['musico-funcionalidades'])
-        return render_template('resultados_gerais.html', current_user=current_user, users=users, funcionalidades_fa=funcionalidades_fa,
-            funcionalidades_musico=funcionalidades_musico, bands=top_bands, len_bands=len_bands)
+        return render_template('resultados_gerais.html', current_user=current_user, users=users,
+            funcionalidades_fa=funcionalidades_fa, funcionalidades_musico=funcionalidades_musico,
+            bands=top_bands, len_bands=len_bands)
     else:
         abort(404)
 
@@ -66,8 +67,13 @@ def index():
     newsletter_locais = newsletter_exists(tipo="Shows Locais", user=current_user)
     newsletter_meus_shows = newsletter_exists(tipo="Meus Shows", user=current_user)
 
-    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows, shows_locais=shows_locais,
-        newsletter_locais=newsletter_locais, newsletter_meus_shows=newsletter_meus_shows)
+    all_bands = get_all_bands()
+    top_bands = get_top_bands(max=3, maxSize=10)[0]
+    top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
+
+    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
+        shows_locais=shows_locais, newsletter_locais=newsletter_locais, newsletter_meus_shows=newsletter_meus_shows,
+        all_bands=all_bands, top_shows=top_shows)
 
 @app.route('/newsletter/<option>', methods=['POST'])
 def salvar_newsletter(option):
@@ -76,6 +82,16 @@ def salvar_newsletter(option):
     option = option == "sim"
     newsletter_answer = unicode(get_or_create_newsletter(option=option, user=current_user, tipo=tipo))
     return __make_response_plain_text__(newsletter_answer)
+
+@app.route('/show_from_band/<band_name>', methods=['GET', 'POST'])
+def show_from_band(band_name):
+    current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
+    band = get_or_create_band({'name': band_name})
+    shows = get_shows_from_bands([band], 1, city=current_city)
+    show = None
+    if shows:
+        show = shows[0][1][0] # Pegando apenas o objeto show da banda
+    return render_template("show_de_uma_banda.html", band=band, show=show)
 
 
 @app.route('/minhas-bandas/', methods=['GET'])
