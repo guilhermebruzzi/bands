@@ -11,13 +11,13 @@
                     <span class="label-area-bandas">Bandas sugeridas:</span>
                     <ul id="bandas-sugeridas-list">
                         {% for i in range(maximo) %}
-                            <li>
+                            <li onClick="_gaq.push(['_trackEvent', 'Bands', 'Curtir Banda', 'Curtir Banda no Minhas Bandas']);">
                                 <input id="{{ bands[i].slug }}" type="checkbox" class="item-votacao" value="{{ bands[i].slug }}" />
                                 <label for="{{ bands[i].slug }}" class="banda-sugerida">{{ bands[i].name }}<label for="{{ bands[i].slug }}" class="arrow-icon"></label></label>
                             </li>
                         {% endfor %}
                     </ul>
-                    <a href="" class="bandas-sugeridas-mais-bandas">mostrar outras bandas</a>
+                    <a href="" class="bandas-sugeridas-mais-bandas" onClick="_gaq.push(['_trackEvent', 'Bands', 'Outras Bandas', 'Mostrar Outras Bandas no Minhas Bandas']);">mostrar outras bandas</a>
                 </div>
             {% endif %}
             <div id="minhas-bandas" class="minhas-bandas">
@@ -25,7 +25,7 @@
                 <div id="minhas-bandas-itens" class="minhas-bandas-itens">
                     <ul id="minhas-bandas-list" class="list">
                         {% for band in bands_user %}
-                            <li>
+                            <li onClick="_gaq.push(['_trackEvent', 'Bands', 'Descurtir Banda', 'Descurtir Banda no Minhas Bandas']);">
                                 <input id="{{ band.slug }}" type="checkbox" checked="checked" class="item-votacao" value="{{ band.slug }}" />
                                 <span class="minhas-bandas-name">
                                     <label for="{{ band.slug }}" class="remove-icon"></label><span class="sort-search minha-banda">{{ band.name }}</span>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="opcoes-adicionar-minhas-bandas">
                     <input id="adicionar-item-votacao-text" class="adicionar-item-votacao-text" type="text" list="bandas" />
-                    <input id="adicionar-item-votacao-button" class="shiny-red add-btn" type="button" value="Adicionar" />
+                    <input id="adicionar-item-votacao-button" class="shiny-red add-btn" type="button" value="Adicionar" onClick="_gaq.push(['_trackEvent', 'Bands', 'Adicionar Bandas', 'Adicionar Bandas no Minhas Bandas']);"/>
                 </div>
             </div>
         </ul>

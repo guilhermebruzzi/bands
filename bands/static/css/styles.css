@@ -125,6 +125,14 @@ header .user-box-top .user-box-options .user-box-seta{
     margin: 0px 5px 21px 3px;
 }
 
+header .user-box-seta-ao-contrario{
+    -moz-transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -webkit-transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -o-transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -ms-transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    transform: scale(1) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+}
+
 .invisivel {
     display: none;
 }
@@ -138,7 +146,7 @@ header .slogan-box{
 }
 
 header .user-welcome{
-    padding: 13px 0;
+    padding: 2px 0;
 }
 
 header .login-menu{

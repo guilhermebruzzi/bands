@@ -36,6 +36,9 @@ function makeRequestNewsletter(option, tipo, callback) {
     makeRequestServer("POST", "/newsletter/" + option, callback, params);
 }
 function makeRequestShowFromBand(bandName) {
+    if(_gaq){
+        _gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home']);
+    }
     if(erroProcurarBandas.classList.contains("visivel")){
         erroProcurarBandas.classList.remove("visivel");
         erroProcurarBandas.classList.add("invisivel");
