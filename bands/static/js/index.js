@@ -37,7 +37,7 @@ function makeRequestNewsletter(option, tipo, callback) {
 }
 function makeRequestShowFromBand(bandName) {
     if(typeof(_gaq) != "undefined"){
-        _gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home']);
+        _gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home: ' + bandName]);
     }
     if(erroProcurarBandas.classList.contains("visivel")){
         erroProcurarBandas.classList.remove("visivel");
