@@ -80,9 +80,9 @@ function adicionarShowDaBanda(){
     if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
             var htmlShow = httpRequest.responseText;
-            var minhasBandasShows = document.querySelector('#minhas-bandas-shows-nao-logado');
+            var minhasBandasShows = document.querySelector('#minhas-bandas-shows-lista');
             if(htmlShow){
-                minhasBandasShows.innerHTML += htmlShow;
+                minhasBandasShows.innerHTML = htmlShow + minhasBandasShows.innerHTML;
             }
             else{
                 if(erroProcurarBandas.classList.contains("invisivel")){

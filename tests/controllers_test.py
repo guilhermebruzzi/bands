@@ -315,6 +315,15 @@ class ControllersTest(BaseTest):
         self.assertEqual(2, len(result.aliases))
         self.assertEqual(2, len(result.users))
 
+    def get_or_create_band_with_none_as_user_test(self):
+        self.beatles1['user'] = None
+        result = get_or_create_band(self.beatles1)
+        self.assertEqual(self.beatles1['slug'], result.slug)
+        self.assertEqual(self.beatles1['name'], result.name)
+        self.assertIn(self.beatles1['name'], result.aliases)
+        self.assertEqual(1, len(result.aliases))
+        self.assertEqual(0, len(result.users))
+
     def get_or_create_band_with_musician_test(self):
         """ Teste do fluxo do músico completar o seu cadastro no nosso site """
 

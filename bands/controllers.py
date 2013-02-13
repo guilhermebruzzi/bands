@@ -63,7 +63,7 @@ def get_or_create_band(data):
     if not name in band.aliases:
         band.aliases.append(name)
 
-    if "musician" in data and not data['musician'] in band.musicians:
+    if "musician" in data and data['musician'] and not data['musician'] in band.musicians:
         band.musicians.append(data['musician'])
         if not "user" in data:
             band.users.append(data['musician'])
@@ -71,7 +71,7 @@ def get_or_create_band(data):
             if data['musician'] != data['user']:
                 band.users.append(data['musician'])
 
-    if "user" in data and not data['user'] in band.users:
+    if "user" in data and data['user'] and not data['user'] in band.users:
         band.users.append(data['user'])
 
     if "image" in data and data['image']:

@@ -144,6 +144,10 @@ section.area-show-home article ul{
     width: 460px;
 }
 
+section.area-show-home article .minhas-bandas-shows-lista{
+    height: 669px;
+}
+
 section.area-show-home article ul li{
     height: 52px;
     list-style: none outside none;

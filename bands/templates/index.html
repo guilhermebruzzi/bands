@@ -70,9 +70,8 @@
         </article>
 
         <article id="minhas-bandas-shows" class="minhas-bandas-shows titulo-show">
-            {% if current_user %}
                 <h2>Shows das minhas bandas</h2>
-                {% if not newsletter_meus_shows %}
+                {% if current_user and not newsletter_meus_shows %}
                     <div class="newsletter newsletter-meus-shows">
                         <span class="question">Gostaria de receber os shows das suas bandas por email?</span>
                         <div>
@@ -81,23 +80,6 @@
                         </div>
                     </div>
                 {% endif %}
-                <ul>
-                    {% if minhas_bandas_shows %}
-                        {% for band, band_shows in minhas_bandas_shows %}
-                            {%- set band_name = band.name -%}
-                            {%- set show = band_shows[0] -%}
-                            {%- set analytics_action = 'Ver show das minhas bandas' -%}
-                            {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
-                        {% endfor %}
-                    {% else %}
-                        <span class="explicacao">
-                            <p>Nenhum show está cadastro no momento para as bandas que você gosta.</p>
-                            <p><a href="">Tente novamente em 5 minutos, enquanto buscamos...</a></p>
-                        </span>
-                    {% endif %}
-                </ul>
-            {% else %}
-                <h2>Shows das minhas bandas</h2>
                 <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
                     <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Nome da banda para ver próximo show" type="text" list="bandas" />
                     <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" />
@@ -108,15 +90,30 @@
                         <option value="{{ band.name }}" />
                     {% endfor %}
                 </datalist>
-                <ul id="minhas-bandas-shows-nao-logado">
-                    {% for band, band_shows in top_shows %}
-                        {%- set band_name = band.name -%}
-                        {%- set show = band_shows[0] -%}
-                        {%- set analytics_action = 'Ver show das bandas que procurei' -%}
-                        {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
-                    {% endfor %}
+                <ul id="minhas-bandas-shows-lista" class="minhas-bandas-shows-lista">
+                    {% if current_user %}
+                        {% if minhas_bandas_shows %}
+                            {% for band, band_shows in minhas_bandas_shows %}
+                                {%- set band_name = band.name -%}
+                                {%- set show = band_shows[0] -%}
+                                {%- set analytics_action = 'Ver show das minhas bandas' -%}
+                                {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
+                            {% endfor %}
+                        {% else %}
+                            <span class="explicacao">
+                                <p>Nenhum show está cadastro no momento para as bandas que você gosta.</p>
+                                <p><a href="">Tente novamente em 5 minutos, enquanto buscamos...</a></p>
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        {% for band, band_shows in top_shows %}
+                            {%- set band_name = band.name -%}
+                            {%- set show = band_shows[0] -%}
+                            {%- set analytics_action = 'Ver show das top bandas' -%}
+                            {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
+                        {% endfor %}
+                    {% endif %}
                 </ul>
-            {% endif %}
         </article>
 
     </section>

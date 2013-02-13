@@ -85,8 +85,9 @@ def salvar_newsletter(option):
 
 @app.route('/show_from_band/<band_name>', methods=['GET', 'POST'])
 def show_from_band(band_name):
+    current_user = None # TODO: Adicionar em minhas bandas: get_current_user()
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
-    band = get_or_create_band({'name': band_name})
+    band = get_or_create_band({'slug': get_slug(band_name), 'name': band_name, 'user': current_user})
     shows = get_shows_from_bands([band], limit_per_artist=1, city=current_city, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=True)
     show = None
     if shows:
