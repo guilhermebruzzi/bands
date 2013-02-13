@@ -137,6 +137,14 @@ header .slogan-box{
     height: 30px;
 }
 
+header .user-welcome{
+    padding: 13px 0;
+}
+
+header .login-menu{
+    padding: 5px 0;
+}
+
 header .slogan-box .slogan{
     color: #9F0902;
     display: inline-block;
@@ -144,6 +152,37 @@ header .slogan-box .slogan{
     font-weight: bold;
 }
 
+header .user-menu{
+    background-color:#ededed;
+    border: 1px solid #9F0902 ;
+    position: absolute;
+    top: 52px;
+    right: 0px;
+    width: 154px;
+}
+
+header .user-menu .menu-lista{
+    list-style: none;
+}
+
+header .user-menu .menu-lista li{
+    margin: 3px;
+    display: block;
+    height: 21px;
+}
+
+header .user-menu .menu-lista a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 4px 0;
+}
+
+header .user-menu .menu-lista a:hover{
+    background-color: #9f0902;
+    color: white;
+    font-weight: bold;
+}
 
 
 .btn-auth {

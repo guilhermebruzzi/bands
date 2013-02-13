@@ -60,9 +60,9 @@ def index():
     minhas_bandas_shows = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
-        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
+        minhas_bandas_shows = [] #get_shows_from_bands(minhas_bandas, 1, city=current_city)
 
-    shows_locais = get_shows_from_bands_by_city(city=current_city)
+    shows_locais = [] #get_shows_from_bands_by_city(city=current_city)
 
     newsletter_locais = newsletter_exists(tipo="Shows Locais", user=current_user)
     newsletter_meus_shows = newsletter_exists(tipo="Meus Shows", user=current_user)

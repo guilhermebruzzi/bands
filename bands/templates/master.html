@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -59,20 +59,28 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
                 <span id="user-box-top" class="user-box-top {{ classe_logado }}">
 
                     {% if current_user %}
-                        <article>Bem-Vindo, {{ current_user.name }}</article>
+                        <div id="user-welcome" class="user-welcome">
+                            <article>Bem-Vindo,</article>
+                            <article><b>{{ current_user.name }}</b></article>
+                        </div>
                         <span id="user-box-options" class="user-box-options">
                             <img id="user-box-photo" class="user-box-photo" itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
                             <img id="user-box-seta" class="user-box-seta" itemprop="image" src="../static/img/setaMenu.png" alt="seta para opções do menu do usuário" />
                         </span>
+
                         <div id="user-menu" class="user-menu invisivel">
                             <ul id="menu-lista" class="menu-lista">
-                                <li><a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Master', 'Logout pela master page']);">Sair</a></li>
+                                <li><a href="{{ url_for('index') }}" onClick="_gaq.push(['_trackEvent', 'Home', 'Home Menu', 'Home pelo Menu']);">Home</a></li>
+                                <li><a href="{{ url_for('minhas_bandas') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Bands Menu', 'Minhas Bandas pelo Menu']);">Minhas Bandas</a></li>
+                                <li><a href="{{ url_for('logout') }}" onClick="_gaq.push(['_trackEvent', 'Logout', 'Logout Menu', 'Logout pelo Menu']);">Sair</a></li>
                             </ul>
                         </div>
 
                     {% else %}
-                        <article>Você não está conectado.</article>
-                        <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Faça Login pelo Facebook</a>
+                        <div id="login-menu" class="login-menu">
+                            <article>Você não está conectado.</article>
+                            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Faça Login pelo Facebook</a>
+                        </div>
                     {% endif %}
                 </span>
             </div>
@@ -98,14 +106,14 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
     {% if debug == True %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/user-voice.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
     {% elif debug == False %}
 
         {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/google_analytics.js" %}
+            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/google_analytics.js", "js/user-voice.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
