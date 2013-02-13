@@ -7,21 +7,21 @@
 
     {% if not current_user %}
         <section id="funcionalidades-home" class="funcionalidades-home">
-            <a href="{{ url_for('login') }}">
+            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Cadastre Bandas', 'Cadastre Bandas']);">
                 <article id="cadastre-bandas" class="cadastre-bandas">
                     <span class="cadastre-bandas-icone"></span>
                     <h2>Cadastre Bandas</h2>
                 </article>
             </a>
 
-            <a href="{{ url_for('login') }}">
+            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Siga Bandas', 'Siga Bandas']);">
                 <article id="siga-bandas" class="siga-bandas ">
                     <span class="siga-bandas-icone"></span>
                     <h2>Siga Bandas</h2>
                 </article>
             </a>
 
-            <article id="acompanhe-shows" class="acompanhe-shows">
+            <article id="acompanhe-shows" class="acompanhe-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Acompanhe Shows', 'Acompanhe os Shows']);">
                 <span class="acompanhe-shows-icone"></span>
                 <h2>Acompanhe os Shows</h2>
             </article>
@@ -100,7 +100,7 @@
                 <h2>Shows das minhas bandas</h2>
                 <div class="opcoes-procurar-bandas">
                     <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Nome da banda para ver próximo show" type="text" list="bandas" />
-                    <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" />
+                    <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" onClick="_gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home']);"/>
                 </div>
                 <datalist id="bandas">
                     {% for band in all_bands %}

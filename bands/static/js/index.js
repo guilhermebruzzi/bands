@@ -102,8 +102,10 @@ function main_index(){
         answer.addEventListener("click", opcaoNewsletter, false);
     }
 
-    procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
-    procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+    if(procurarBandasText){
+        procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
+        procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+    }
 }
 
 main_index();

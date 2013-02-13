@@ -3,13 +3,6 @@
 {% block title %}Bands - Minhas Bandas{% endblock %}
 {% block js_cima %}<script type="text/javascript" src="{{ url_for('static', filename='js/list-sort-search.js') }}"></script>{% endblock %}
 {% block content %}
-    <header itemscope itemtype="http://schema.org/Person">
-
-        <meta itemprop="email" content="{{ current_user.email }}" />
-        <img itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
-        <span itemprop="name" class="name">{{ current_user.name }}</span>
-
-    </header>
     <section class="minhas-bandas-section">
         <h2 class="challenge">Você lembra de todas as bandas que gosta?</h2>
         {{ votacao.adiciona_bandas(bands, bands_user, current_user) }}
