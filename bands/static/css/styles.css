@@ -125,11 +125,11 @@ header .user-box-top .user-box-options .user-box-seta{
     margin: 0px 5px 21px 3px;
 }
 
-header .user-box-top .invisivel {
+.invisivel {
     display: none;
 }
 
-header .user-box-top .visivel {
+.visivel {
     display: block;
 }
 
@@ -348,4 +348,8 @@ footer a.new_link{
     display: inline-block;
     width: 16px;
     height: 16px;
+}
+
+.error{
+    color: red;
 }

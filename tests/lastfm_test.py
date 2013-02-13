@@ -14,16 +14,17 @@ class LastFmTest(BaseTest):
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
 
-        self.artists = ["Foo Fighters", "Los Hermanos", "Chico Buarque", "Muse"]
+        self.artists = ["Franz Ferdinand", "Ivete Sangalo", "Chico Buarque", "Muse"]
         self.bands = [get_or_create_band({"name": artist}) for artist in self.artists]
 
     def save_next_shows_test(self):
-        save_next_shows(self.bands, limit_per_artist=1)
+        shows_returned = save_next_shows(self.bands)
 
         shows = Show.objects.all()
         locations = Location.objects.all()
 
         self.assertNotEqual(len(shows), 0)
+        self.assertNotEqual(len(shows_returned), len(shows))
         self.assertNotEqual(len(locations), 0)
 
         self.__assert_shows__(shows, shows_titles=None)

@@ -132,7 +132,7 @@ def __sort_by_city_and_location__(city=None):
     return lambda show: show.datetime if show.datetime[:10] >= now[:10] else "9" + show.datetime
 
 
-def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=True):
+def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=False):
     """ bands: Uma lista de bandas nas quais pegará os limit_per_artist shows (default: None = todos os shows) e ordenará por city se for passado algo """
 
     shows = []
@@ -148,7 +148,13 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
                 shows.append((band, band.shows[:limit_per_artist]))
     if call_lastfm_if_dont_have_shows and len(bands_to_get_shows) > 0:
         lastfm = get_lastfm_module()
-        lastfm.get_next_shows_subprocess(bands_to_get_shows, limit_per_artist)
+        if call_lastfm_without_subprocess:
+            shows_to_get = lastfm.save_next_shows(bands_to_get_shows)
+            for show in shows_to_get:
+                band = show.artists[0]
+                shows.append((band, band.shows[:limit_per_artist]))
+        else:
+            lastfm.get_next_shows_subprocess(bands_to_get_shows)
     return shows
 
 def get_shows_from_bands_by_city(city):

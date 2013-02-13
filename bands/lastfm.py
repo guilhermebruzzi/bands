@@ -65,7 +65,7 @@ def get_nearby_shows(city):
     url = 'http://ws.audioscrobbler.com/2.0/?%s' % urllib.urlencode(params)
     return __get_shows__(url)
 
-def save_next_shows(bands, limit_per_artist=None):
+def save_next_shows(bands):
     for band in bands:
         try:
             params = {"method": "artist.getevents", "artist": band.name, "autocorrect": '1', "api_key": network.api_key, "format": "json"}
@@ -74,8 +74,8 @@ def save_next_shows(bands, limit_per_artist=None):
         except UnicodeEncodeError as e:
             print e
             print params
-        __get_shows__(url)
+        return __get_shows__(url)
 
-def get_next_shows_subprocess(bands, limit_per_artist=None):
-    p = Process(target=save_next_shows, args=(bands, limit_per_artist))
+def get_next_shows_subprocess(bands):
+    p = Process(target=save_next_shows, args=(bands,))
     p.start()
