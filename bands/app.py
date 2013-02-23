@@ -6,7 +6,7 @@ import os
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
-    get_current_city
+    get_current_city, has_cookie_login, set_cookie_login, delete_cookie_login, user_logged
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
@@ -54,6 +54,9 @@ def resultados(password):
 
 @app.route('/', methods=['GET'])
 def index():
+    if has_cookie_login(request) and not user_logged():
+        return login(voltar_para_home="True")
+
     current_user = get_current_user()
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
 
@@ -102,7 +105,9 @@ def minhas_bandas():
     bands = random_top_bands(user=current_user)
     bands_user = get_user_bands(user=current_user)
 
-    return render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user)
+    resp = make_response(render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user))
+    set_cookie_login(resp)
+    return resp
 
 
 @app.route('/band/add/', methods=['POST'])
@@ -167,8 +172,8 @@ def cadastro():
 
 
 @app.route('/login/')
-def login():
-    facebook_url = url_for('facebook_authorized', _external=True)
+def login(voltar_para_home="False"):
+    facebook_url = url_for('facebook_authorized', voltar_para_home=voltar_para_home, _external=True)
     return facebook.authorize(
         callback=facebook_url
     )
@@ -177,7 +182,10 @@ def login():
 @need_to_be_logged
 def logout():
     del session['current_user']
-    return redirect(url_for('index'))
+    resp = redirect(url_for('index'))
+    if has_cookie_login(request):
+        delete_cookie_login(resp)
+    return resp
 
 @app.route('/login/authorized/')
 @facebook.authorized_handler
@@ -191,8 +199,11 @@ def facebook_authorized(resp):
     me = facebook.get('/me')
     session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
 
-    url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('cadastro')
-    return redirect(url)
+    next_url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('cadastro')
+    voltar_para_home = request.args.get('voltar_para_home') == "True"
+    if voltar_para_home:
+        next_url = url_for('index')
+    return redirect(next_url)
 
 
 @facebook.tokengetter

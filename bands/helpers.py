@@ -56,6 +56,16 @@ def get_current_user():
     else:
         return None
 
+def has_cookie_login(req):
+    is_user_logged = True if req.cookies.get('user_logged') else False
+    return is_user_logged
+
+def set_cookie_login(resp):
+    current_user = get_current_user()
+    resp.set_cookie('user_logged', current_user.facebook_id)
+
+def delete_cookie_login(resp):
+    resp.delete_cookie('user_logged')
 
 
 def need_to_be_logged(handler, path="/"):
@@ -63,12 +73,23 @@ def need_to_be_logged(handler, path="/"):
         if not user_logged():
             return flask.redirect(path)
         return handler(*args, **kwargs)
+
     wrapper.__name__ = handler.__name__
     return wrapper
 
 
 def need_to_be_admin(handler, path="/"):
-    return handler
+    def wrapper(*args, **kwargs):
+        if not user_logged():
+            return flask.redirect(path)
+        current_user = get_current_user()
+        admins_facebook_ids = ['100000387455926', '100000002085352', '1784830537', '100002399821369'] #  Dudu, Guilherme, Guto, Rodrigo
+        if not current_user.facebook_id in admins_facebook_ids:
+            return flask.redirect(path)
+        return handler(*args, **kwargs)
+
+    wrapper.__name__ = handler.__name__
+    return wrapper
 
 
 def prepare_post_data():
