@@ -42,56 +42,35 @@ section.funcionalidades-home article h2{
 
 .question{
     color: #9F0902;
+    font-family: arial;
+    font-size: 15px;
+    top: 22px;
+    position: relative;
 }
 
-.newsletter-shows-locais{
-    top: -21px;
-    left: 133px;
-    width: 350px;
-}
-
-.newsletter-meus-shows{
-    top: -21px;
-    left: 244px;
-    width: 310px;
+.icon {
+    background: url("/static/img/newsletter.jpg") no-repeat top left;
+    width: 50px;
+    height: 50px;
+    top: 8px;
+    position: relative;
 }
 
 .newsletter {
-    background: #ffffff;
-    border: 1px solid #4f4f4f;
-    padding: 10px;
-    height: 70px;
-    position: absolute;
-    z-index: 999;
-}
-.newsletter:after, .newsletter:before {
-    right: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
+    width: 100%;
+    border: 1px solid #808080;
+    height: 60px;
+
 }
 
-.newsletter:after {
-    border-color: rgba(255, 255, 255, 0);
-    border-right-color: #ffffff;
-    border-width: 8px;
-    top: 50%;
-    margin-top: -8px;
-}
-.newsletter:before {
-    border-color: rgba(79, 79, 79, 0);
-    border-right-color: #4f4f4f;
-    border-width: 9px;
-    top: 50%;
-    margin-top: -9px;
+.answer-principal {
+    top: 14px;
+    position: relative;
 }
 
-.answer-principal{
-    display: inline-block;
-    margin: 20px 0px 20px 50px;
+.newsletter span {
+    float: left;
+    margin: 0 10px;
 }
 
 section.funcionalidades-home article.cadastre-bandas{

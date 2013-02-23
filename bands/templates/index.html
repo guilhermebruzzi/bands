@@ -48,17 +48,17 @@
             </article>
         {% endif %}
 
+        {% if current_user and not newsletter %}
+            <div class="newsletter">
+                <span class="icon"></span>
+                <span class="question">Gostaria de receber novos shows por email?</span>
+                <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: sim']);">Sim</a></span>
+                <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: nao']);">Não</a></span>
+            </div>
+        {% endif %}
+
         <article id="shows-local" class="shows-local titulo-show">
             <h2>Shows Locais</h2>
-            {% if not newsletter_locais %}
-                <div class="newsletter newsletter-shows-locais">
-                    <span class="question">Gostaria de receber novos shows locais por email?</span>
-                    <div>
-                        <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: sim']);">Sim</a>
-                        <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show local', 'Show local: nao']);">Não</a>
-                    </div>
-                </div>
-            {% endif %}
             <ul>
                 {% for show in shows_locais %}
                     {%- set band_name = show.artists[0].name -%}
@@ -71,15 +71,6 @@
 
         <article id="minhas-bandas-shows" class="minhas-bandas-shows titulo-show">
                 <h2>Shows das minhas bandas</h2>
-                {% if current_user and not newsletter_meus_shows %}
-                    <div class="newsletter newsletter-meus-shows">
-                        <span class="question">Gostaria de receber novos shows por email?</span>
-                        <div>
-                            <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: sim']);">Sim</a>
-                            <a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Meu show', 'Meu show: nao']);">Não</a>
-                        </div>
-                    </div>
-                {% endif %}
                 <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
                     <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Nome da banda para ver próximo show" type="text" list="bandas" />
                     <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" />

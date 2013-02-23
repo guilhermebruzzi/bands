@@ -67,16 +67,14 @@ def index():
 
     shows_locais = get_shows_from_bands_by_city(city=current_city)
 
-    newsletter_locais = newsletter_exists(tipo="Shows Locais", user=current_user)
-    newsletter_meus_shows = newsletter_exists(tipo="Meus Shows", user=current_user)
+    newsletter = newsletter_exists(tipo="Shows", user=current_user)
 
     all_bands = get_all_bands()
     top_bands = get_top_bands(max=3, maxSize=10)[0]
     top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
 
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
-        shows_locais=shows_locais, newsletter_locais=newsletter_locais, newsletter_meus_shows=newsletter_meus_shows,
-        all_bands=all_bands, top_shows=top_shows)
+        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows)
 
 @app.route('/newsletter/<option>', methods=['POST'])
 def salvar_newsletter(option):
