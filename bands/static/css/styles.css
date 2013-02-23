@@ -116,6 +116,7 @@ header .user-box-top .user-box-options{
     top: 0;
     height: 52px;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 header .user-box-top .user-box-options .user-box-photo{
