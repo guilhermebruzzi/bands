@@ -6,7 +6,7 @@ import os
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
-    get_current_city, has_cookie_login, set_cookie_login, delete_cookie_login, user_logged
+    get_current_city, has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
@@ -55,7 +55,7 @@ def resultados(password):
 @app.route('/', methods=['GET'])
 def index():
     if has_cookie_login(request) and not user_logged():
-        return login(voltar_para_home="True")
+        make_login(oauth_token=get_cookie_login(request))
 
     current_user = get_current_user()
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
@@ -106,7 +106,7 @@ def minhas_bandas():
     bands_user = get_user_bands(user=current_user)
 
     resp = make_response(render_template('minhas_bandas.html', current_user=current_user, bands=bands, bands_user=bands_user))
-    set_cookie_login(resp)
+    set_cookie_login(resp, oauth_token=get_facebook_oauth_token()[0])
     return resp
 
 
@@ -172,8 +172,8 @@ def cadastro():
 
 
 @app.route('/login/')
-def login(voltar_para_home="False"):
-    facebook_url = url_for('facebook_authorized', voltar_para_home=voltar_para_home, _external=True)
+def login():
+    facebook_url = url_for('facebook_authorized', _external=True)
     return facebook.authorize(
         callback=facebook_url
     )
@@ -195,14 +195,10 @@ def facebook_authorized(resp):
             request.args['error_reason'],
             request.args['error_description']
         )
-    session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
-    session['current_user'] = get_or_create_user(me.data, oauth_token=resp['access_token'])
+
+    make_login(oauth_token=resp['access_token'])
 
     next_url = url_for('minhas_bandas') if session['current_user'].tipo else url_for('cadastro')
-    voltar_para_home = request.args.get('voltar_para_home') == "True"
-    if voltar_para_home:
-        next_url = url_for('index')
     return redirect(next_url)
 
 

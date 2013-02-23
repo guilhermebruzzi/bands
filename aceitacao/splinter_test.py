@@ -24,19 +24,26 @@ class TestAceitacao(unittest.TestCase):
             browser.find_by_id('salvar-cadastro').click()
         self.assertTrue(browser.url.startswith('http://localhost:5000/minhas-bandas'), msg=u"Entrou em minhas bandas corretamente após processo completo de login")
 
-    def test_cookie(self):
+    def test_login_logout(self):
         with Browser() as browser:
+            browser.driver.maximize_window()
             self.login_facebook(browser)
             browser.visit('http://localhost:5000/')
             button_login_fb = browser.find_by_css('.login-facebook')
-            self.assertEqual(button_login_fb, 0, msg=u"A pessoa está corretamente logada")
+            self.assertEqual(len(button_login_fb), 0, msg=u"A pessoa está corretamente logada")
             browser.find_by_id('user-box-options').click()
             browser.find_by_css('.menu-lista a')[2].click() #  Clicar no logout
+            browser.find_by_css('.login-facebook').click() # relogar
+            self.assertTrue(browser.url.startswith('http://localhost:5000/minhas-bandas'), msg=u"Entrou em minhas bandas corretamente após se relogar")
 
-        with Browser() as browser:
-            browser.visit('http://localhost:5000/')
-            button_login_fb = browser.find_by_css('.login-facebook')
-            self.assertEqual(button_login_fb, 0, msg=u"A pessoa está corretamente logada")
+#    def test_cookie(self):
+#        with Browser() as browser:
+#            browser.driver.maximize_window()
+#           TODO: Fazer funcionar esse broser add cookie
+#            browser.cookies.add({'user_logged': 'AAAEGO5mvMs0BAAwdRwykJhGCVIjOL6AhLXHtR1FfS1UCgFaYg7Qinqf55U8xKE6lwyjZBbrjcNKXn3l66vlzFa9oRtFRZBCOVSSICJvQZDZD'}) #  Oauth token de Meuteste de Aceitacao
+#            browser.visit('http://localhost:5000/')
+#            button_login_fb = browser.find_by_css('.login-facebook')
+#            self.assertEqual(len(button_login_fb), 0, msg=u"A pessoa está corretamente logada")
 
 
             

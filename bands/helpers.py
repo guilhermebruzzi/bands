@@ -6,11 +6,12 @@ import flask
 import json
 import urllib2
 
-
 from flask import session, render_template, request
 from config import get_app
 
 app = get_app()
+facebook_module = None
+controllers_module = None
 
 def render_template(url, **data):
     if not "debug" in data.keys():
@@ -57,16 +58,28 @@ def get_current_user():
         return None
 
 def has_cookie_login(req):
-    is_user_logged = True if req.cookies.get('user_logged') else False
-    return is_user_logged
+    return True if req.cookies.get('user_logged') else False
 
-def set_cookie_login(resp):
-    current_user = get_current_user()
-    resp.set_cookie('user_logged', current_user.facebook_id)
+def get_cookie_login(req):
+    return req.cookies.get('user_logged')
+
+def set_cookie_login(resp, oauth_token):
+    resp.set_cookie('user_logged', oauth_token)
 
 def delete_cookie_login(resp):
     resp.delete_cookie('user_logged')
 
+def make_login(oauth_token):
+    global facebook_module, controllers_module
+
+    if not facebook_module:
+        facebook_module = __import__("facebook")
+    if not controllers_module:
+        controllers_module = __import__("controllers")
+
+    session['oauth_token'] = (oauth_token, '')
+    me_data = facebook_module.get_facebook_data(oauth_token)
+    session['current_user'] = controllers_module.get_or_create_user(me_data, oauth_token=oauth_token)
 
 def need_to_be_logged(handler, path="/"):
     def wrapper(*args, **kwargs):

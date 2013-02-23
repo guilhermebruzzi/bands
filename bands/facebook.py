@@ -20,3 +20,7 @@ def get_musicians_from_opengraph(facebook_id, oauth_token):
                 break
 
     return musicians_names
+
+def get_facebook_data(oauth_token):
+    me = get_json("https://graph.facebook.com/me?access_token=%s" % oauth_token)
+    return me
