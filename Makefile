@@ -32,6 +32,9 @@ install:
 clean:
 	@find . -type f -name "*.pyc" -exec rm -rf {} \;
 
+kill_run:
+	@ps aux | awk '(make run && $$0 !~ /awk/){ system("kill -9 "$$2) }'
+
 run: clean
 	@python ${root_dir}/bands/app.py
 
@@ -41,6 +44,4 @@ tests: clean
 	@python ${root_dir}/tests/run.py
 
 aceitacao: clean
-	@make run &
 	@python ${root_dir}/aceitacao/splinter_test.py
-	@ps aux | awk '(make run && $$0 !~ /awk/){ system("kill -9 "$$2) }'

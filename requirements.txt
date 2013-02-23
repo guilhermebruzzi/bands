@@ -12,14 +12,14 @@ gunicorn==0.14.6
 httplib2==0.7.7
 ipdb==0.7
 ipython==0.13.1
-lxml==2.3.6
+lxml==3.1.0
 mongoengine==0.7.6
 nose==1.2.1
 nosexcover==1.0.7
 oauth2==1.5.211
 pymongo==2.3
-selenium==2.26.0
-splinter==0.4.8
+selenium==2.30.0
+splinter==0.5.0
 webassets==0.7
 wsgiref==0.1.2
 yuicompressor==2.4.7
