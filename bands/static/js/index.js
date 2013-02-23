@@ -52,27 +52,9 @@ var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-butto
 
 function opcaoNewsletter(){
     var option = (this.innerHTML == "Sim") ? "sim" : "nao";
-    var cadastro = document.querySelector(".cadastro");
-    if(cadastro){ // Se tiver o elemento para fazer cadastro, é porque a pessoa não está logada
-        if(option == "sim"){
-            var fazerLogin = confirm("Para receber shows, é necessário efetuar login, deseja entrar no site agora (com o facebook isso é feito em apenas 1 clique)?");
-            if (fazerLogin)
-            {
-                window.location = "/login/";
-                return;
-            }
-        }
-    } else{
-        var tipo = "Meus Shows";
-        var parentNodeList = this.parentNode.parentNode.classList;
-        for(var i = 0; i < parentNodeList.length; i++){
-            var classe = parentNodeList[i];
-            if(classe == "newsletter-shows-locais"){
-                tipo = "Shows Locais";
-            }
-        }
-        makeRequestNewsletter(option, tipo);
-    }
+    var tipo = "Shows";
+
+    makeRequestNewsletter(option, tipo);
     this.parentNode.parentNode.style.display = "none";
 }
 
