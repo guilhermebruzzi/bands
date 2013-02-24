@@ -55,7 +55,7 @@ function opcaoNewsletter(){
     var tipo = "Shows";
 
     makeRequestNewsletter(option, tipo);
-    this.parentNode.parentNode.style.display = "none";
+    this.parentNode.parentNode.parentNode.style.display = "none";
 }
 
 function adicionarShowDaBanda(){

@@ -50,10 +50,12 @@
 
         {% if current_user and not newsletter %}
             <div class="newsletter">
-                <span class="icon"></span>
-                <span class="question">Gostaria de receber novos shows por email?</span>
-                <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: sim']);">Sim</a></span>
-                <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: nao']);">Não</a></span>
+                <div class="newsletter-inner">
+                    <span class="icon-email"></span>
+                    <span class="question">Gostaria de receber novos shows por email?</span>
+                    <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: sim']);">Sim</a></span>
+                    <span><a class="answer-principal shiny-red" href="#" onClick="_gaq.push(['_trackEvent', 'Newsletter', 'Show', 'Show: nao']);">Não</a></span>
+                </div>
             </div>
         {% endif %}
 
