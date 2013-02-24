@@ -606,6 +606,8 @@ class ControllersTest(BaseTest):
         newsletter_from_mongo = Newsletter.objects.all()
         self.assertEqual(len(newsletter_from_mongo), 3)
         self.assertIn(newsletter3, newsletter_from_mongo)
+        newsletter_from_mongo = [n for n in newsletter_from_mongo]
+        self.assertEqual(newsletter_from_mongo[0].user.name, "Guilherme")
 
 
     def get_or_create_location_test(self):
