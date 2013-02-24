@@ -51,6 +51,9 @@ def get_or_create_newsletter(tipo, user, option=None):
 
     return newsletter
 
+def get_all_newsletters():
+    return Newsletter.objects.all()
+
 
 def get_or_create_band(data):
     name = data['name'].title()

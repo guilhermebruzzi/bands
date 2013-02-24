@@ -3,6 +3,7 @@
 
 import os
 
+from models import *
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
@@ -10,7 +11,7 @@ from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_s
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
-    newsletter_exists, get_or_create_newsletter, get_all_bands
+    newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
@@ -46,9 +47,12 @@ def resultados(password):
         top_bands, len_bands = get_top_bands(sort=True)
         funcionalidades_fa = get_answers_and_counters_from_question(['fa-funcionalidades'])
         funcionalidades_musico = get_answers_and_counters_from_question(['musico-funcionalidades'])
+
+        newsletters = get_all_newsletters()
+
         return render_template('resultados_gerais.html', current_user=current_user, users=users,
             funcionalidades_fa=funcionalidades_fa, funcionalidades_musico=funcionalidades_musico,
-            bands=top_bands, len_bands=len_bands)
+            bands=top_bands, len_bands=len_bands, newsletters=newsletters)
     else:
         abort(404)
 

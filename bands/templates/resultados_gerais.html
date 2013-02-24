@@ -2,13 +2,6 @@
 {% block title %}Bands - Resultados Gerais{% endblock %}
 {% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/resultados_gerais.css') }}" />{% endblock %}
 {% block content %}
-    <header itemscope itemtype="http://schema.org/Person">
-
-        <meta itemprop="email" content="{{ current_user.email }}" />
-        <img itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
-        <span itemprop="name" class="name">{{ current_user.name }}</span>
-
-    </header>
     <section class="resultados-gerais">
         <h1 class="label-resultados-gerais">Bandas (total de: {{ len_bands }}):</h1><br />
         <ul>
@@ -33,6 +26,12 @@
         <ul>
             {% for funcionalidade in funcionalidades_musico %}
                 <li>{{ funcionalidade[0] }}({{ funcionalidade[1] }})</li>
+            {% endfor %}
+        </ul>
+        <br /><h1 class="label-resultados-gerais">Newsletter:</h1><br />
+        <ul>
+            {% for newsletter in newsletters %}
+                <li>{{ newsletter.user.name }} ({{ newsletter.tipo }}): {{ newsletter.option }}</li>
             {% endfor %}
         </ul>
     </section>

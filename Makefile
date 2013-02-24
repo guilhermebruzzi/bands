@@ -8,6 +8,9 @@ mongo: kill_mongo
 	@rm -rf /tmp/bands/mongodata && mkdir -p /tmp/bands/mongodata
 	@mongod --dbpath /tmp/bands/mongodata --logpath /tmp/bands/mongolog --port 7777 --quiet &
 
+mongolog:
+	@tail -f /tmp/bands/mongolog
+
 mongoexport:
 	@rm -rf /tmp/bands/mongodump && mkdir -p /tmp/bands/mongodump
 	@mongoexport -c question -u heroku -p 2ff73e5ccf353f7da162002ef2126623 --host alex.mongohq.com --port 10095 --db app8798964 -o /tmp/bands/mongodump/backup_question_prod.json
