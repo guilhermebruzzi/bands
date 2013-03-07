@@ -48,8 +48,7 @@
                         <b>Facebook</b>
                     </a>
                     <span class="explicacao">ou</span>
-                    <a class="gmail-btn" href="#">Faça login pelo Gmail</a>
-                    <span class="explicacao">Se quiser ver agora os shows das bandas da sua cidade ou shows de alguma banda específica, confira as listas abaixo.</span>
+                    <a id="gmail-btn" class="gmail-btn" href="#" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao Gmail', 'Botao Faca Login Gmail', 'Login Gmail area minhas bandas pela index page']);"><span>Faça login pelo Gmail</span></a>
                 </article>
             </article>
         {% endif %}
@@ -66,7 +65,7 @@
         {% endif %}
 
         <article id="shows-locais" class="shows-local titulo-show">
-            <h2>Shows Locais</h2>
+            <h2>Shows Locais ({{ current_city }})</h2>
             <ul>
                 {% for show in shows_locais %}
                     {%- set band_name = show.artists[0].name -%}

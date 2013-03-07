@@ -7,7 +7,7 @@ from models import *
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
-    get_current_city, has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
+    has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
@@ -62,7 +62,7 @@ def index():
         make_login(oauth_token=get_cookie_login(request))
 
     current_user = get_current_user()
-    current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
+    current_city = current_user.city if current_user and current_user.city else "Rio de Janeiro"
 
     minhas_bandas_shows = []
     if current_user:
@@ -78,7 +78,7 @@ def index():
     top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
 
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
-        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows)
+        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city)
 
 @app.route('/newsletter/<option>', methods=['POST'])
 def salvar_newsletter(option):

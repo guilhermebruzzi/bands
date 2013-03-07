@@ -31,6 +31,7 @@ def get_or_create_user(data, oauth_token=None):
 
     if "city" in data and data['city'] and data['city'] != user.city:
         user.city = data['city']
+        user.save()
 
     return user
 

@@ -296,6 +296,55 @@ footer a.new_link{
     margin-bottom: 35px;
 }
 
+/* Gmail Button */
+
+.gmail-btn{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05) 49%, rgba(0, 0, 0, 0.05) 51%, rgba(0, 0, 0, 0.1));
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 0.95em 0 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 13px;
+    margin: 0 0 0 4px;
+    border-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.5);
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0.08em 0 rgba(255, 255, 255, 0.7) inset, 0 0 0.08em rgba(255, 255, 255, 0.5) inset;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    background-color: #EFEFEF;
+    color: #222222;
+    -webkit-box-shadow: 0 0.08em 0 rgba(255, 255, 255, 0.7) inset, 0 0 0.08em rgba(255, 255, 255, 0.5) inset;
+    filter: dropshadow(color=#ffffff, offx=0, offy=1);
+    position: relative;
+    top: -4px;
+    font-weight: bold;
+    font-family: "Helvetica Neue",sans-serif;
+}
+.gmail-btn span{
+    position: relative;
+    top: 5px;
+}
+.gmail-btn:before {
+    color: #FF0000;
+    content: "m";
+    border-right: 0.075em solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0.075em 0 0 rgba(255, 255, 255, 0.25);
+    float: left;
+    font: 120%/1.65 zocial;
+    margin: 0 0.5em 0 0;
+    padding: 0 0.5em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+}
+
+
+
 /*Botão vermelho*/
 
 .shiny-red {

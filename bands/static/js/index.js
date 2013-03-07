@@ -91,6 +91,12 @@ function enterPressedProcuraBanda(e) {
     }
 }
 
+function gmailBtnClicked(){
+    alert("Por enquanto não temos login pelo gmail, o login deve ser feito pelo facebook.\n" +
+    "O Bands não postará nada em seu facebook e o login é bem rápido de ser feito.\n" +
+    "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
+}
+
 function main_index(){
     var answers = document.querySelectorAll(".answer-principal");
     for(var i = 0; i < answers.length; i++){
@@ -102,6 +108,9 @@ function main_index(){
         procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
         procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
     }
+
+    var gmailBtn = document.querySelector('#gmail-btn');
+    gmailBtn.addEventListener("click", gmailBtnClicked, false);
 }
 
 main_index();
