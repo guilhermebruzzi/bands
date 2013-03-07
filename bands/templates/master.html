@@ -110,7 +110,7 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
         {% endassets %}
 
     {% elif debug == False %}
-        <script type="text/javascript" src="js/google_analytics.js"></script>
+        <script type="text/javascript" src="/static/js/google_analytics.js"></script>
         {% assets filter="yui_js", output="js/gen/import-min.js",
             "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/user-voice.js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
