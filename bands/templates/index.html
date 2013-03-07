@@ -7,24 +7,28 @@
 
     {% if not current_user %}
         <section id="funcionalidades-home" class="funcionalidades-home">
-            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Cadastre Bandas', 'Cadastre Bandas']);">
-                <article id="cadastre-bandas" class="cadastre-bandas">
-                    <span class="cadastre-bandas-icone"></span>
-                    <h2>Cadastre Bandas</h2>
-                </article>
-            </a>
+            <article id="acompanhe-shows" class="acompanhe-shows">
+                <a href="#shows-locais" onClick="_gaq.push(['_trackEvent', 'Show', 'Acompanhe Shows', 'Acompanhe os Shows']);">
+                    <span class="acompanhe-shows-icone"></span>
+                    <h2>Acompanhe os Shows</h2>
+                </a>
+            </article>
 
-            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Siga Bandas', 'Siga Bandas']);">
-                <article id="siga-bandas" class="siga-bandas ">
+
+            <article id="siga-bandas" class="siga-bandas ">
+                <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Siga Bandas', 'Siga Bandas']);">
                     <span class="siga-bandas-icone"></span>
                     <h2>Siga Bandas</h2>
-                </article>
-            </a>
-
-            <article id="acompanhe-shows" class="acompanhe-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Acompanhe Shows', 'Acompanhe os Shows']);">
-                <span class="acompanhe-shows-icone"></span>
-                <h2>Acompanhe os Shows</h2>
+                </a>
             </article>
+
+            <article id="cadastre-bandas" class="cadastre-bandas">
+                <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Bands', 'Cadastre Bandas', 'Cadastre Bandas']);">
+                    <span class="cadastre-bandas-icone"></span>
+                    <h2>Cadastre Bandas</h2>
+                </a>
+            </article>
+
         </section>
     {% endif %}
 
@@ -59,7 +63,7 @@
             </div>
         {% endif %}
 
-        <article id="shows-local" class="shows-local titulo-show">
+        <article id="shows-locais" class="shows-local titulo-show">
             <h2>Shows Locais</h2>
             <ul>
                 {% for show in shows_locais %}
