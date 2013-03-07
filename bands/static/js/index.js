@@ -110,7 +110,9 @@ function main_index(){
     }
 
     var gmailBtn = document.querySelector('#gmail-btn');
-    gmailBtn.addEventListener("click", gmailBtnClicked, false);
+    if(gmailBtn){
+        gmailBtn.addEventListener("click", gmailBtnClicked, false);
+    }
 }
 
 main_index();
