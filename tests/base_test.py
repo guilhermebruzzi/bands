@@ -31,4 +31,4 @@ class BaseTest(TestCase):
         for show in shows:
             self.assertTrue(isinstance(show.artists[0], Band), msg="Pega os artistas do lastfm como bandas nossas")
             self.assertTrue(isinstance(show.location, Location), msg="Pega o local do lastfm como uma classe Location nossa")
-            self.assertRegexpMatches(show.datetime, r"(\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})")
+            self.assertRegexpMatches(show.datetime, r"(\d{2})/(\d{2})")

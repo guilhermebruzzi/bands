@@ -10,6 +10,7 @@ class User(db.Document):
     email = db.StringField(required=True)
     name = db.StringField(required=True)
     tipo = db.StringField(required=False)    # musico, fa, produtor, etc
+    city = db.StringField(required=False)
 
     @property
     def photo(self):
@@ -90,7 +91,7 @@ class Show(db.Document):
 
     @property
     def datetime(self):
-        return datetime.strftime(datetime.strptime(self.datetime_usa[:19], "%Y-%m-%d %H:%M:%S"), '%d/%m/%Y %H:%M:%S')
+        return datetime.strftime(datetime.strptime(self.datetime_usa[:19], "%Y-%m-%d %H:%M:%S"), '%d/%m')
 
     def __eq__(self, other):
         return self.slug == other.slug
