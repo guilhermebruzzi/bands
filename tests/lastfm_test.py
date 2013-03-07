@@ -24,7 +24,7 @@ class LastFmTest(BaseTest):
         locations = Location.objects.all()
 
         self.assertNotEqual(len(shows), 0)
-        self.assertNotEqual(len(shows_returned), len(shows))
+        self.assertEqual(len(shows_returned), len(shows))
         self.assertNotEqual(len(locations), 0)
 
         self.__assert_shows__(shows, shows_titles=None)

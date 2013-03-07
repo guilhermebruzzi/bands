@@ -742,7 +742,7 @@ class ControllersTest(BaseTest):
         })
         self.__assert_shows__(shows=[show_initial], shows_titles=['Beatles Show'])
 
-        shows = get_shows_from_bands_by_city(city="Rio de Janeiro")
+        shows = get_shows_from_bands_by_city(city=u"Rio de Janeiro")
         shows_from_mongo = Show.objects.all()
 
         self.assertEqual(len(shows), len(shows_from_mongo))
