@@ -4,7 +4,7 @@
     {% if not website %}
         {%- set website = show.location.website -%}
     {% endif %}
-    <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', {{ analytics_action }}, 'Banda: {{ band_name }} Show: {{ show.title }}']);">
+    <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', '{{ analytics_action }}', 'Banda: {{ band_name }} Show: {{ show.title }}']);">
         {% if show.cover_image %}
             <img src="{{ show.cover_image }}" />
         {% else %}
