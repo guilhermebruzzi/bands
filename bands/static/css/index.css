@@ -159,14 +159,15 @@ section.area-show-home article ul li{
 }
 
 .explicacao{
-    color: #9F0902;
-    text-decoration: underline;
+    color: #333;
+    font-weight: bold;
     display: inline-block;
     margin-bottom: 10px;
 }
 
 .texto-normal{
     text-decoration: none;
+    font-weight: normal;
 }
 
 section.area-show-home article ul li a.item-lista-shows{
