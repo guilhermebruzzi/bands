@@ -10,6 +10,7 @@ class User(db.Document):
     email = db.StringField(required=True)
     name = db.StringField(required=True)
     tipo = db.StringField(required=False)    # musico, fa, produtor, etc
+    city = db.StringField(required=False)
 
     @property
     def photo(self):

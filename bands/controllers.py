@@ -28,6 +28,10 @@ def get_or_create_user(data, oauth_token=None):
             bands_facebook = get_musicians_from_opengraph(user.facebook_id, oauth_token)
             for band_facebook in bands_facebook:
                 get_or_create_band({"slug": band_facebook, "name": band_facebook, "user": user})
+
+    if "city" in data and data['city'] and data['city'] != user.city:
+        user.city = data['city']
+
     return user
 
 def get_all_users():

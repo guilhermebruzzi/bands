@@ -79,6 +79,10 @@ def make_login(oauth_token):
 
     session['oauth_token'] = (oauth_token, '')
     me_data = facebook_module.get_facebook_data(oauth_token)
+
+    city = me_data['location']['name'] if 'location' in me_data and 'name' in me_data['location'] else None
+    me_data['city'] = city.split(',')[0] if city and ',' in city else city
+
     session['current_user'] = controllers_module.get_or_create_user(me_data, oauth_token=oauth_token)
 
 def need_to_be_logged(handler, path="/"):

@@ -156,6 +156,16 @@ class ControllersTest(BaseTest):
             'image': "http://www.morumbi.com.br/large.png" #  Large
         }
 
+    def create_user_with_city(self):
+        self.data_user_guto["city"] = "Rio de Janeiro"
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        self.__assert_user__(user_guto, self.data_user_guto)
+
+    def update_city_when_getting_user(self):
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        self.data_user_guto["city"] = "Rio de Janeiro"
+        user_guto = get_or_create_user(data=self.data_user_guto)
+        self.__assert_user__(user_guto, self.data_user_guto)
 
     def name_of_band_with_upper_letter_test(self):
         user_guto = get_or_create_user(data=self.data_user_guto)
@@ -747,6 +757,8 @@ class ControllersTest(BaseTest):
         self.assertEqual(user.facebook_id, user_data["id"])
         self.assertEqual(user.name, user_data["name"])
         self.assertEqual(user.email, user_data["email"])
+        if "city" in user_data:
+            self.assertEqual(user.city, user_data["city"])
         self.assertEqual(user.photo, 'http://graph.facebook.com/%s/picture' % user_data["id"])
 
     def __assert_questions__(self, questionsModel, questions):
