@@ -32,7 +32,8 @@ function makeRequestServer(method, url, callback, params){
     }
 }
 function makeRequestNewsletter(option, tipo, callback) {
-    var params = 'tipo=' + encodeURIComponent(tipo);
+    var user_id = document.querySelector('#current_user_id').innerHTML;
+    var params = 'tipo=' + encodeURIComponent(tipo) + '&user_id=' + encodeURIComponent(user_id);
     makeRequestServer("POST", "/newsletter/" + option, callback, params);
 }
 function makeRequestShowFromBand(bandName) {

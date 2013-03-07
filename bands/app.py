@@ -82,7 +82,8 @@ def index():
 
 @app.route('/newsletter/<option>', methods=['POST'])
 def salvar_newsletter(option):
-    current_user = get_current_user()
+    user_id = request.form['user_id']
+    current_user = get_or_create_user({"id": user_id})
     tipo = request.form['tipo']
     option = option == "sim"
     newsletter_answer = unicode(get_or_create_newsletter(option=option, user=current_user, tipo=tipo))

@@ -60,7 +60,7 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
                     {% if current_user %}
                         <div id="user-welcome" class="user-welcome">
                             <article>Bem-Vindo,</article>
-                            <article><b>{{ current_user.name }}</b></article>
+                            <article><b>{{ current_user.name }}</b><span id="current_user_id" class="hidden">{{ current_user.facebook_id }}</span> </article>
                         </div>
                         <span id="user-box-options" class="user-box-options">
                             <img id="user-box-photo" class="user-box-photo" itemprop="image" src="{{ current_user.photo }}" alt="foto do perfil do facebook" />
