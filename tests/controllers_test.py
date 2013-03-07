@@ -156,16 +156,20 @@ class ControllersTest(BaseTest):
             'image': "http://www.morumbi.com.br/large.png" #  Large
         }
 
-    def create_user_with_city(self):
+    def create_user_with_city_test(self):
         self.data_user_guto["city"] = "Rio de Janeiro"
         user_guto = get_or_create_user(data=self.data_user_guto)
+        user_guto_from_mongo = User.objects.all()[0]
         self.__assert_user__(user_guto, self.data_user_guto)
+        self.__assert_user__(user_guto_from_mongo, self.data_user_guto)
 
-    def update_city_when_getting_user(self):
-        user_guto = get_or_create_user(data=self.data_user_guto)
+    def update_city_when_getting_user_test(self):
+        get_or_create_user(data=self.data_user_guto)
         self.data_user_guto["city"] = "Rio de Janeiro"
         user_guto = get_or_create_user(data=self.data_user_guto)
+        user_guto_from_mongo = User.objects.all()[0]
         self.__assert_user__(user_guto, self.data_user_guto)
+        self.__assert_user__(user_guto_from_mongo, self.data_user_guto)
 
     def name_of_band_with_upper_letter_test(self):
         user_guto = get_or_create_user(data=self.data_user_guto)

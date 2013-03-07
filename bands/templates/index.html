@@ -60,7 +60,7 @@
         {% endif %}
 
         <article id="shows-local" class="shows-local titulo-show">
-            <h2>Shows Locais</h2>
+            <h2>Shows Locais ({{ current_city }})</h2>
             <ul>
                 {% for show in shows_locais %}
                     {%- set band_name = show.artists[0].name -%}
