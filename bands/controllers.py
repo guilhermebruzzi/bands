@@ -126,13 +126,13 @@ def get_or_create_show(data):
     show.save()
     return show
 
-def __sort_by_city_and_location__(city=None):
+def __sort_by_city_and_date__(city=None):
     now = str(datetime.now())
 
     if city:
         return lambda show: ("0" + show.datetime_usa if show.location.city == city else show.datetime_usa) if show.datetime_usa[:10] >= now[:10] else ("9" + show.datetime_usa)
 
-    return lambda show: show.datetime if show.datetime[:10] >= now[:10] else "9" + show.datetime
+    return lambda show: show.datetime_usa if show.datetime_usa[:10] >= now[:10] else "9" + show.datetime_usa
 
 
 def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=False):
@@ -144,7 +144,7 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
         if len(band.shows) == 0:
             bands_to_get_shows.append(band)
         else:
-            band.shows = sorted(band.shows, key=__sort_by_city_and_location__(city=city))
+            band.shows = sorted(band.shows, key=__sort_by_city_and_date__(city=city))
             if band.shows[0].datetime_usa[:10] < str(datetime.now())[:10]: #  Se o primeiro show já aconteceu, quer dizer que todos já aconteceram, nesse caso, pega mais do lastfm
                 bands_to_get_shows.append(band)
             else:
@@ -170,7 +170,7 @@ def get_shows_from_bands_by_city(city):
         if not show_mongo in shows:
             shows.append(show_mongo)
 
-    shows = sorted(shows, key=__sort_by_city_and_location__(city=city))
+    shows = sorted(shows, key=__sort_by_city_and_date__(city=city))
     return shows
 
 def get_all_bands():

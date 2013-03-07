@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import re
 import urllib
 from datetime import datetime
 from multiprocessing import Process
@@ -36,26 +35,26 @@ def __get_shows__(url_shows):
         if not type(artists) is list:
             artists = [artists]
         show_datetime = datetime.strptime(show_json['startDate'], '%a, %d %b %Y %H:%M:%S') #  From USA pattern to datetime
-        shows.append(
-            get_or_create_show({
-                'artists': [get_or_create_band({'name': artist}) for artist in artists],
-                'attendance_count': show_json['attendance'], #  number of people going
-                'cover_image': show_json['image'][2]['#text'], #  Large
-                'description': show_json['description'],
-                'datetime_usa': datetime.strftime(show_datetime, '%Y-%m-%d %H:%M:%S'), #  From datetime to string
-                'title': show_json['title'],
-                'website': show_json['website'],
-                'location': get_or_create_location({
-                    'name': show_json['venue']['name'],
-                    'city': show_json['venue']['location']['city'],
-                    'street': show_json['venue']['location']['street'],
-                    'postalcode': show_json['venue']['location']['postalcode'],
-                    'website': show_json['venue']['website'],
-                    'phonenumber': show_json['venue']['phonenumber'],
-                    'image': show_json["image"][2]["#text"], #  Large
-                })
+        show =  get_or_create_show({
+            'artists': [get_or_create_band({'name': artist}) for artist in artists],
+            'attendance_count': show_json['attendance'], #  number of people going
+            'cover_image': show_json['image'][2]['#text'], #  Large
+            'description': show_json['description'],
+            'datetime_usa': datetime.strftime(show_datetime, '%Y-%m-%d %H:%M:%S'), #  From datetime to string
+            'title': show_json['title'],
+            'website': show_json['website'],
+            'location': get_or_create_location({
+                'name': show_json['venue']['name'],
+                'city': show_json['venue']['location']['city'],
+                'street': show_json['venue']['location']['street'],
+                'postalcode': show_json['venue']['location']['postalcode'],
+                'website': show_json['venue']['website'],
+                'phonenumber': show_json['venue']['phonenumber'],
+                'image': show_json["image"][2]["#text"], #  Large
             })
-        )
+        })
+        if not show in shows:
+            shows.append(show)
 #    TODO: Logging de warning - if len(shows) == 0 :
 #        print url_shows
     return shows
