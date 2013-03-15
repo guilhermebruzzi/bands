@@ -210,8 +210,11 @@ header .user-menu .menu-lista a:hover{
 }
 
 h2{
-    font-size: 18px;
     margin: 15px auto;
+    font-family: Tahoma, Ubuntu;
+    text-transform: uppercase;
+    font-size: 10pt;
+    color: #333;
 }
 
 ul{
