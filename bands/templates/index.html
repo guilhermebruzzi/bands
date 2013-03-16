@@ -96,7 +96,7 @@
                             {% for band, band_shows in minhas_bandas_shows %}
                                 {%- set band_name = band.name -%}
                                 {%- set show = band_shows[0] -%}
-                                {%- set analytics_action = 'Ver show das minhas bandas' -%}
+                                {%- set analytics_action = 'Ver show de alguma das minhas bandas' -%}
                                 {{ lista_shows.escreve_show(analytics_action, band_name, show) }}
                             {% endfor %}
                         {% else %}
