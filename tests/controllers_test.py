@@ -134,7 +134,7 @@ class ControllersTest(BaseTest):
             }
 
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
-        self.access_token = "AAAEGO5mvMs0BALaWzyeh7HiL2aruu2Uxu5oS0gISC4hnD8VHkG05ZAH5fYzCBbnOCsEkZBLI7glTMY6iR3N0BC9i7TXyFqH1uCVW0RNQZDZD"
+        self.access_token = 'AAAEGO5mvMs0BAKSs368jVzpVIMeKspas62h6zyaALAdMbXF1T5qYCFxboPJA5MRyo9tqPZCWggM8oQ3IfhkPyeoZAxWDV9DnxAygqxTQZDZD'
 
         self.maracana_data = {
             'name': "Maracana",
