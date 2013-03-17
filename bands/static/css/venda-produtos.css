@@ -1,0 +1,25 @@
+.produto {
+    font-size: 14px;
+    list-style: none outside none;
+    position: relative;
+}
+
+.produto img {
+    height: 120px;
+    width: 120px;
+}
+
+.produto .nome-produto {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 5px;
+    position: absolute;
+    top: 0;
+}
+
+.produto .valor-produto {
+    font-size: 18px;
+    margin-left: 5px;
+    position: absolute;
+    top: 25px;
+}

@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}Bands - Los Bife - Produtos{% endblock %}
+
+{% block content %}
+    <section class="produtos-section">
+        <ul class="lista-produtos">
+            <li class="produto">
+                <img src="/static/img/cd_los_bife.jpg">
+                <span class="nome-produto">CD Los Bife</span>
+                <span class="valor-produto">R$ 15,00</span>
+            </li>
+            <li class="produto">
+                <img src="/static/img/camisa_los_bife.jpg">
+                <span class="nome-produto">Camisa Los Bife</span>
+                <span class="valor-produto">R$ 20,00</span>
+            </li>
+        </ul>
+        {{- formulario_pag_seguro | safe -}}
+    </section>
+{% endblock %}

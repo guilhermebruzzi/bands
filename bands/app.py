@@ -12,6 +12,7 @@ from controllers import get_or_create_user, validate_answers, random_top_bands, 
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
     newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters
+from pagseguropy.pagseguro import Pagseguro
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
@@ -112,6 +113,19 @@ def minhas_bandas():
     set_cookie_login(resp, oauth_token=get_facebook_oauth_token()[0])
     return resp
 
+@app.route('/los-bife', methods=['GET'])
+def venda_produtos():
+    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP') # CP é para poder usar o método cliente
+    carrinho.item(id=1, descr='CD Los Bife', qty='1', valor='0.15')
+    carrinho.item(id=2, descr='Camisa Los Bife', qty='1', valor='0.20')
+    current_user = get_current_user()
+    if current_user:
+        carrinho.cliente(nome=current_user.name, email=current_user.email)
+        if current_user.city:
+            carrinho.data['cliente']['cidade'] = current_user.city
+
+    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-comprar-assina.gif")
+    return render_template('venda_produtos.html', formulario_pag_seguro=formulario_pag_seguro)
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged
