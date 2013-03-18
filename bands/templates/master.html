@@ -102,20 +102,14 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
         </footer>
     </section>
 
-    {% if debug == True %}
+    {% assets filter="yui_js", output="js/gen/import-min.js",
+        "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/user-voice.js", "js/venda-produtos.js" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 
-        {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/user-voice.js", "js/venda-produtos.js" %}
-            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-        {% endassets %}
-
-    {% elif debug == False %}
+    {% if debug == False %}
         <script type="text/javascript" src="/static/js/google_analytics.js"></script>
-        {% assets filter="yui_js", output="js/gen/import-min.js",
-            "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/user-voice.js", "js/venda-produtos.js" %}
-            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-        {% endassets %}
-
+        <script type="text/javascript" src="/static/js/crazy_egg.js"></script>
     {% endif %}
 
     {% block js %}{% endblock %}
