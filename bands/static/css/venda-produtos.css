@@ -1,7 +1,27 @@
+.produtos-section{
+    background-color: #EEEEEE;
+    font-size: 0px;
+    width: 600px;
+    margin: 0 auto;
+}
+.logo-banda{
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+}
+.lista-produtos{
+    width: 500px;
+    margin: 0 auto;
+}
 .produto {
+    display: inline-block;
+    vertical-align: top;
     font-size: 14px;
     list-style: none outside none;
     position: relative;
+    width: 250px;
+    margin: 10px 0px 10px 0px;
 }
 
 .produto img {
@@ -14,12 +34,31 @@
     font-weight: bold;
     margin-left: 5px;
     position: absolute;
-    top: 0;
+    top: 0px;
+}
+
+.produto .quantidade {
+    margin-left: 5px;
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100px;
+}
+
+.produto .quantidade-camisas{
+    width: 150px;
 }
 
 .produto .valor-produto {
     font-size: 18px;
     margin-left: 5px;
+    color: #333333;
     position: absolute;
-    top: 25px;
+    bottom: 5px;
+    word-spacing: -2px;
+}
+
+.pague-com-pag-seguro{
+    width: 210px;
+    margin: 10px auto;
 }

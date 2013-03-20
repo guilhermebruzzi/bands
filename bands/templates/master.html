@@ -28,6 +28,12 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
 
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
+    <!-- ClickTale Top part -->
+    <script type="text/javascript">
+        var WRInitTime=(new Date()).getTime();
+    </script>
+    <!-- ClickTale end of Top part -->
+
     <!-- necessário para o like de página -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -113,4 +119,15 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
     {% endif %}
 
     {% block js %}{% endblock %}
+
+    <!-- ClickTale Bottom part -->
+    <div id="ClickTaleDiv" style="display: none;"></div>
+    <script type="text/javascript">
+        if(document.location.protocol!='https:')
+            document.write(unescape("%3Cscript%20src='http://s.clicktale.net/WRe0.js'%20type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        if(typeof ClickTale=='function') ClickTale(20555,1,"www14");
+    </script>
+    <!-- ClickTale end of Bottom part -->
 </body>
