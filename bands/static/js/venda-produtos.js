@@ -32,14 +32,16 @@ function addItemId(itemId, descricao, valor, quantidade){
 }
 
 function comprarPagSeguro(evt){
+    var validou = true;
     var selects = document.querySelectorAll('.quantidade');
     var data1 = getProdutoData(selects[0]);
     var data2 = getProdutoData(selects[1]);
+
     formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+
     if(data1.quantidade == 0 && data2.quantidade == 0){
         alert("Por favor, selecione 1 ou mais produtos para comprar");
-        evt.preventDefault();
-        return false;
+        validou = false;
     }
     else if(data1.quantidade == 0){
         addItemId(1, data2.descricao, data2.valor, data2.quantidade);
@@ -51,8 +53,13 @@ function comprarPagSeguro(evt){
         addItemId(1, data1.descricao, data1.valor, data1.quantidade);
         addItemId(2, data2.descricao, data2.valor, data2.quantidade);
     }
+
     formPagSeguro.innerHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
-    return true;
+
+    if(!validou){
+        evt.preventDefault();
+    }
+    return validou;
 }
 
 function mainVendaProdutos(){
