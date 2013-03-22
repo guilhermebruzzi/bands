@@ -125,7 +125,9 @@ def venda_produtos():
             carrinho.data['cliente']['cidade'] = current_user.city
 
     formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
-    return render_template('venda_produtos.html', formulario_pag_seguro=formulario_pag_seguro, range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'])
+    produtos_section = True if request.args.get('produtos-section') else False
+    return render_template('venda_produtos.html', formulario_pag_seguro=formulario_pag_seguro,
+        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section)
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged
