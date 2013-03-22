@@ -3,7 +3,7 @@
 {% block title %}Bands - Los Bife - Produtos{% endblock %}
 
 {% block content %}
-    <section class="produtos-section">
+    <section id="produtos-section" class="produtos-section">
         <img class="logo-banda" alt="Los Bife" src="/static/img/los-bife.jpg">
         <ul class="lista-produtos">
             <li class="produto">
@@ -49,4 +49,10 @@
             {{- formulario_pag_seguro | safe -}}
         </div>
     </section>
+{% endblock %}
+
+{% block js %}
+    {% if produtos_section %}
+        <script type="text/javascript" src="/static/js/apenas-produtos-section.js"></script>
+    {% endif %}
 {% endblock %}
