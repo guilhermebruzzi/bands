@@ -113,7 +113,7 @@ def minhas_bandas():
     set_cookie_login(resp, oauth_token=get_facebook_oauth_token()[0])
     return resp
 
-@app.route('/los-bife', methods=['GET', 'POST'])
+@app.route('/los-bife', methods=['GET'])
 def venda_produtos():
     carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP') # CP é para poder usar o método cliente
     carrinho.item(id=1, descr='CD Los Bife', qty=0, valor=15.0)

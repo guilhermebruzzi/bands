@@ -4,49 +4,58 @@
 
 {% block content %}
     <section id="produtos-section" class="produtos-section">
-        <img class="logo-banda" alt="Los Bife" src="/static/img/los-bife.jpg">
-        <ul class="lista-produtos">
-            <li class="produto">
-                <img src="/static/img/cd-los-bife.jpg">
-                <span class="hidden item-id">1</span>
-                <span class="nome-produto">CD Los Bife</span>
-                <select class="quantidade">
-                    <option value="0" selected="selected">0 cds</option>
-                    <option value="1">1 cd</option>
-                    {% for number in range_quantidade %}
-                        <option value="{{ number }}">{{ number }} cds</option>
-                    {% endfor %}
-                </select>
-                <span class="valor-produto">R$ 15,00</span>
-            </li>
-            <li class="produto">
-                <img src="/static/img/camisa-los-bife.jpg">
-                <span class="hidden item-id">2</span>
-                <span class="nome-produto">Camisa Los Bife</span>
-                <select class="quantidade quantidade-camisas">
-                    <option value="0" selected="selected">0 camisas</option>
+        <div class="area-banda box-gray">
+            <img class="logo-banda" alt="Los Bife" src="/static/img/los-bife.jpg">
+        </div>
+        <div class="area-produtos">
+            <h2 class="nome-banda-produtos titulo-produtos">Los Bife</h2>
+            <h3 class="titulo-produtos">Produtos</h3>
+            <ul class="lista-produtos">
+                <li class="produto">
+                    <img src="/static/img/cd-los-bife.jpg">
+                    <span class="info-produto">
+                        <span class="hidden item-id">1</span>
+                        <span class="nome-produto">CD Los Bife</span>
+                        <select class="quantidade">
+                            <option value="0" selected="selected">0 cds</option>
+                            <option value="1">1 cd</option>
+                            {% for number in range_quantidade %}
+                                <option value="{{ number }}">{{ number }} cds</option>
+                            {% endfor %}
+                        </select>
+                        <span class="valor-produto">R$ 15,00</span>
+                    </span>
+                </li>
+                <li class="produto">
+                    <img src="/static/img/camisa-los-bife.jpg">
+                    <span class="info-produto">
+                        <span class="hidden item-id">2</span>
+                        <span class="nome-produto">Camisa Los Bife</span>
+                        <select class="quantidade quantidade-camisas">
+                            <option value="0" selected="selected">0 camisas</option>
+                            {% for tamanho in range_tamanhos %}
+                                <option value="1">1 camisa {{ tamanho }}</option>
+                            {% endfor %}
 
-                    {% for tamanho in range_tamanhos %}
-                        <option value="1">1 camisa {{ tamanho }}</option>
-                    {% endfor %}
+                            {% for tamanho1 in range_tamanhos %}
+                                {% for tamanho2 in range_tamanhos %}
+                                    {% if tamanho1 != tamanho2 %}
+                                        <option value="2">1 {{ tamanho1 }} e 1 {{ tamanho2 }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
 
-                    {% for tamanho1 in range_tamanhos %}
-                        {% for tamanho2 in range_tamanhos %}
-                            {% if tamanho1 != tamanho2 %}
-                                <option value="2">1 {{ tamanho1 }} e 1 {{ tamanho2 }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-
-                    {% for tamanho in range_tamanhos %}
-                        <option value="2">2 camisas {{ tamanho }}</option>
-                    {% endfor %}
-                </select>
-                <span class="valor-produto">R$ 20,00</span>
-            </li>
-        </ul>
-        <div class="pague-com-pag-seguro">
-            {{- formulario_pag_seguro | safe -}}
+                            {% for tamanho in range_tamanhos %}
+                                <option value="2">2 camisas {{ tamanho }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="valor-produto">R$ 20,00</span>
+                    </span>
+                </li>
+            </ul>
+            <div class="pague-com-pag-seguro">
+                {{- formulario_pag_seguro | safe -}}
+            </div>
         </div>
     </section>
 {% endblock %}

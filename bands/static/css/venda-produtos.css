@@ -1,32 +1,75 @@
 .produtos-section{
-    background-color: #EEEEEE;
     font-size: 0px;
-    width: 600px;
+    width: 900px;
     margin: 0 auto;
+    font-family: Verdana;
 }
-.logo-banda{
-    width: 400px;
-    height: 300px;
-    margin: 0 auto;
-    display: block;
+.box-gray{
+    background-color: #eeeeee;
 }
-.lista-produtos{
-    width: 500px;
-    margin: 0 auto;
-}
-.produto {
+/* Area esquerda */
+.area-banda{
+    padding: 20px 45px 20px 45px;
+    height: 460px;
     display: inline-block;
     vertical-align: top;
     font-size: 14px;
+}
+.logo-banda{
+    width: 300px;
+    height: 260px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Area direita */
+.area-produtos{
+    display: inline-block;
+    vertical-align: top;
+    width: 500px;
+    font-size: 14px;
+}
+.lista-produtos{
+    width: 475px;
+    float: right;
+}
+.produto {
+    display: block;
+    font-size: 14px;
     list-style: none outside none;
-    position: relative;
     width: 250px;
-    margin: 10px 0px 10px 0px;
+    margin: 0px 0px 15px 0px;
+}
+
+.titulo-produtos{
+    color: #333333;
+    font-family: 'Kreon',serif;
+    font-weight: lighter;
+    margin: 0 0 20px 35px;
+}
+
+.nome-banda-produtos{
+    color: #888888;
+    font-family: 'Kreon',serif;
+    font-size: 25px;
+    font-weight: lighter;
+    margin: 20px 25px;
+
+}
+
+.info-produto{
+    width: 410px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25px;
 }
 
 .produto img {
-    height: 120px;
-    width: 120px;
+    height: 125px;
+    width: 125px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .produto .nome-produto {
