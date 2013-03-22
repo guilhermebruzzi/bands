@@ -1,7 +1,7 @@
 .produtos-section{
     font-size: 0px;
     width: 900px;
-    margin: 0 auto;
+    margin: 0 auto -50px;
     font-family: Verdana;
 }
 .round-box{
@@ -27,7 +27,7 @@
 /* Area esquerda */
 .area-banda{
     padding: 20px 45px 20px 45px;
-    height: 460px;
+    height: 510px;
     display: inline-block;
     vertical-align: top;
     font-size: 14px;
