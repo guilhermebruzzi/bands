@@ -6,7 +6,7 @@ from operator import itemgetter
 
 from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned
 
-from models import User, Question, Band, Show, Location, Newsletter
+from models import User, Question, Band, Show, Location, Newsletter, Product
 from helpers import get_slug
 from facebook import get_musicians_from_opengraph
 
@@ -84,6 +84,11 @@ def get_or_create_band(data):
 
     if "image" in data and data['image']:
         band.image = data['image']
+
+    if "products" in data and data["products"]:
+        for product in data["products"]:
+            if not product in band.products:
+                band.products.append(product)
 
     band.save()
     return band
@@ -294,6 +299,21 @@ def get_random_users(max=8):
             del users[choice]
 
     return (list(users_random), len_users)
+
+def get_or_create_product(data):
+    name = data['name'].title()
+    slug = get_slug(data['slug']) if "slug" in data else get_slug(data['name'])
+    try:
+        product = Product.objects.get(slug=slug)
+    except DoesNotExist:
+        product = Product.objects.create(slug=slug, name=name)
+
+    for prop in ["price", "photo", "quantity_type", "quantity_value"]:
+        if prop in data and data[prop]:
+            setattr(product, prop, data[prop])
+
+    product.save()
+    return product
 
 
 def get_question(slug):
