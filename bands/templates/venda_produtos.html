@@ -25,36 +25,30 @@
                                 <option value="{{ number }}">{{ number }} cds</option>
                             {% endfor %}
                         </select>
-                        <span class="valor-produto">R$ 15,00</span>
+                        <span class="valor-produto valor-monetario">R$ 15,00</span>
                     </span>
                 </li>
-                <li class="produto box-gray round-box">
-                    <img class="round-component" src="/static/img/camisa-los-bife.jpg">
-                    <span class="info-produto">
-                        <span class="hidden item-id">2</span>
-                        <span class="nome-produto">Camisa Los Bife</span>
-                        <span class="quantidade-label">quantidade</span>
-                        <select class="quantidade quantidade-camisas">
-                            <option value="0" selected="selected">0 camisas</option>
-                            {% for tamanho in range_tamanhos %}
-                                <option value="1">1 camisa {{ tamanho }}</option>
-                            {% endfor %}
-
-                            {% for tamanho1 in range_tamanhos %}
-                                {% for tamanho2 in range_tamanhos %}
-                                    {% if tamanho1 != tamanho2 %}
-                                        <option value="2">1 {{ tamanho1 }} e 1 {{ tamanho2 }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-
-                            {% for tamanho in range_tamanhos %}
-                                <option value="2">2 camisas {{ tamanho }}</option>
-                            {% endfor %}
-                        </select>
-                        <span class="valor-produto">R$ 20,00</span>
-                    </span>
+                {% for camisa in camisas %}
+                    <li class="produto box-gray round-box">
+                        <img class="round-component" src="/static/img/camisa-los-bife-{{ camisa }}.jpg">
+                        <span class="info-produto">
+                            <span class="hidden item-id">2</span>
+                            <span class="nome-produto">Camisa Los Bife {{ camisa }}</span>
+                            <span class="quantidade-label">quantidade</span>
+                            <span class="camisa-tamanhos quantidade">
+                                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-los-bife-{{ camisa }}-pp"><span class="camisa-tamanho">pp</span></span>
+                                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-los-bife-{{ camisa }}-p"><span class="camisa-tamanho">p</span></span>
+                                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-los-bife-{{ camisa }}-m"><span class="camisa-tamanho">m</span></span>
+                                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-los-bife-{{ camisa }}-g"><span class="camisa-tamanho">g</span></span>
+                            </span>
+                            <span class="valor-produto valor-monetario">R$ 20,00</span>
+                        </span>
+                    </li>
+                {% endfor %}
+                <li class="frete-container">
+                    <span class="frete valor-monetario">Frete: R$ 10,00</span>
                 </li>
+
             </ul>
             <div class="pague-com-pag-seguro">
                 {{- formulario_pag_seguro | safe -}}

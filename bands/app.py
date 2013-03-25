@@ -115,7 +115,7 @@ def minhas_bandas():
 
 @app.route('/los-bife', methods=['GET'])
 def venda_produtos():
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP') # CP é para poder usar o método cliente
+    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
     carrinho.item(id=1, descr='CD Los Bife', qty=0, valor=15.0)
     carrinho.item(id=2, descr='Camisa Los Bife', qty=0, valor=20.0)
     current_user = get_current_user()
@@ -127,7 +127,7 @@ def venda_produtos():
     formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     return render_template('venda_produtos.html', formulario_pag_seguro=formulario_pag_seguro,
-        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section)
+        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, camisas=["amarela", "vermelha"])
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged

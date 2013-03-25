@@ -66,10 +66,12 @@
     width: 475px;
     float: right;
 }
+.lista-produtos li{
+    list-style: none outside none;
+}
 .produto {
     display: block;
     font-size: 14px;
-    list-style: none outside none;
     width: 500px;
     margin: 0px 0px 15px 0px;
     font-size: 0px;
@@ -79,6 +81,14 @@
     background-image: -o-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
     background-image: -ms-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
     background-image: linear-gradient(to top, rgba(51,51,51,.1), rgba(239,239,239,0));
+}
+
+.valor-monetario{
+    font-size: 20px;
+    color: #a00902;
+    word-spacing: -2px;
+    font-family: 'Kreon',serif;
+    font-weight: bold;
 }
 
 .titulo-produtos{
@@ -140,18 +150,29 @@
     width: 100px;
 }
 
-.produto .quantidade-camisas{
-    width: 150px;
+.produto .camisa-tamanhos{
+    display: block;
+    width: 100%;
+    font-size: 0;
+    text-align: left;
+    bottom: 2px;
+}
+
+.produto .camisa-tamanho-container{
+    font-size: 14px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 5px 10px 0 0;
+}
+
+.produto .quantidade-cada-camisa{
+    width: 20px;
+    margin-right: 5px;
 }
 
 .produto .valor-produto {
-    font-size: 20px;
-    color: #a00902;
     position: absolute;
     bottom: 50px;
-    word-spacing: -2px;
-    font-family: 'Kreon',serif;
-    font-weight: bold;
 }
 
 .pague-com-pag-seguro{
