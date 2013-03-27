@@ -10,7 +10,7 @@ from models import *
 
 class ControllersTest(BaseTest):
 
-    models = [User, Question, Band, Show, Location, Newsletter] #  A serem deletados a cada teste
+    models = [User, Question, Band, Show, Location, Newsletter, Product] #  A serem deletados a cada teste
 
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
@@ -154,6 +154,21 @@ class ControllersTest(BaseTest):
             'website': "http://www.morumbi.com.br",
             'phonenumber': "(15)2222-2222",
             'image': "http://www.morumbi.com.br/large.png" #  Large
+        }
+
+        self.product_cd = {
+            "name": "CD Los Bife",
+            "price": 15,
+            "photo": "cd-los-bife.jpg",
+            "quantity_type": "list",
+            "quantity_value": "pp,p,m,g"
+        }
+        self.product_camisa = {
+            "name": "Camisa Los Bife Amarela",
+            "price": 20,
+            "photo": "camisa-los-bife-amarela.jpg",
+            "quantity_type": "range",
+            "quantity_value": "1,10,1"
         }
 
     def create_user_with_city_test(self):
@@ -747,6 +762,24 @@ class ControllersTest(BaseTest):
 
         self.assertEqual(len(shows), len(shows_from_mongo))
         self.__assert_shows__(shows_from_mongo, shows_titles=['Beatles Show'])
+
+    def save_products_test(self):
+        product_cd = get_or_create_product(self.product_cd)
+        product_camisa = get_or_create_product(self.product_camisa)
+        self.coldplay1["products"] = [product_cd, product_camisa]
+        get_or_create_band(self.coldplay1)
+        bands = get_all_bands()
+        products = Product.objects.all()
+        self.assertEqual(len(bands), 1)
+        self.assertEqual(len(products), 2)
+        self.assertIn(product_cd, bands[0].products)
+        self.assertIn(product_camisa, bands[0].products)
+        products_slugs = [p.slug for p in products]
+        products_quantity_lists = [p.quantity_list for p in products]
+        self.assertIn("cd-los-bife", products_slugs)
+        self.assertIn("camisa-los-bife-amarela", products_slugs)
+        self.assertIn(range(1,10,1), products_quantity_lists)
+        self.assertIn(['pp', 'p', 'm', 'g'], products_quantity_lists)
 
 
     def validate_answers_test(self):

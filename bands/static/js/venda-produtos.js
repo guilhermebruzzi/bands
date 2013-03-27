@@ -1,24 +1,44 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
 
-function getProdutoData(select){
-    var quantidade = select.value;
-    var descricao = select.options[select.selectedIndex].text + " Los Bife";
-    var itemId = 0;
-    var produtoNodes = select.parentNode.childNodes;
-    for(var nodeIndex in produtoNodes){
-        var node = produtoNodes[nodeIndex];
-        if(node.classList && node.classList.contains("item-id")){
-            itemId = parseInt(node.innerHTML, 10);
-        }
-    }
+
+function getValorProduto(descricao){
     var valor = '2000';
     if(descricao.indexOf("cd") !== -1){
         valor = '1500';
     }
+    return valor;
+}
+
+function getProdutoDataSelect(select){
+    var quantidade = select.value;
+    var descricao = select.options[select.selectedIndex].text + " Los Bife";
+
     return {
-        'itemId': itemId,
         'descricao': descricao,
-        'valor': valor,
+        'valor': getValorProduto(descricao),
+        'quantidade': quantidade
+    }
+}
+
+function getProdutoDataInputs(input){
+    var descricao = "";
+    var inputClassList = input.classList;
+    for(var classIndex in inputClassList){
+        var className = inputClassList[classIndex];
+        if(className != "quantidade-cada-camisa"){
+            descricao = capitaliseFirstLetter(className.split("-").join(" "));
+            break;
+        }
+    }
+
+    var quantidade = 0;
+    if(input.value){
+        quantidade = parseInt(input.value, 10);
+    }
+
+    return {
+        'descricao': descricao,
+        'valor': getValorProduto(descricao),
         'quantidade': quantidade
     }
 }
@@ -32,31 +52,41 @@ function addItemId(itemId, descricao, valor, quantidade){
 }
 
 function comprarPagSeguro(evt){
-    var validou = true;
-    var selects = document.querySelectorAll('.quantidade');
-    var data1 = getProdutoData(selects[0]);
-    var data2 = getProdutoData(selects[1]);
+    var selects = document.querySelectorAll('select.quantidade');
+    var inputs = document.querySelectorAll('input.quantidade-cada-camisa');
+    var datas = []
+    for(var selectIndex = 0; selectIndex < selects.length; selectIndex++){
+        var select = selects[selectIndex];
+        datas.push(getProdutoDataSelect(select));
+    }
+    for(var inputIndex = 0; inputIndex < inputs.length; inputIndex++){
+        var input = inputs[inputIndex];
+        datas.push(getProdutoDataInputs(input));
+    }
 
-    formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+    formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" name="item_frete_1" value="1000"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
-    if(data1.quantidade == 0 && data2.quantidade == 0){
-        alert("Por favor, selecione 1 ou mais produtos para comprar");
-        validou = false;
+    var validou = false;
+    var labelProdutos = "";
+    var itemId = 1;
+    for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
+        var data = datas[dataIndex];
+        validou = validou || (data.quantidade > 0)
+        if(data.quantidade > 0){
+            addItemId(itemId, data.descricao, data.valor, data.quantidade);
+            labelProdutos += data.quantidade + " " + data.descricao + " ";
+            itemId++;
+        }
     }
-    else if(data1.quantidade == 0){
-        addItemId(1, data2.descricao, data2.valor, data2.quantidade);
-    }
-    else if(data2.quantidade == 0){
-        addItemId(1, data1.descricao, data1.valor, data1.quantidade);
-    }
-    else{
-        addItemId(1, data1.descricao, data1.valor, data1.quantidade);
-        addItemId(2, data2.descricao, data2.valor, data2.quantidade);
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Produtos', 'Banda Los Bife', labelProdutos]);
     }
 
     formPagSeguro.innerHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
 
     if(!validou){
+        alert("Por favor, selecione 1 ou mais produtos para comprar");
         evt.preventDefault();
     }
     return validou;

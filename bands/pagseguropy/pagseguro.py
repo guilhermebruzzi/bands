@@ -384,7 +384,7 @@ class Pagseguro:
         ret.append(input % ('item_'+k, v))
 
     if data['botao']:
-      input = u'<input type="image" src="%s" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />"'
+      input = u'<input type="image" src="%s" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />'
       if type(data['imgBotao']) == str:
         ret.append(input % data['imgBotao'])
       input = u'<input type="image" src="https://pagseguro.uol.com.br/Security/Imagens/%s.jpg" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />'

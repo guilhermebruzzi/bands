@@ -99,6 +99,31 @@ class Show(db.Document):
     def __unicode__(self):
         return self.title
 
+class Product(db.Document):
+    slug = db.StringField(required=True)
+    name = db.StringField(required=True)
+    price = db.DecimalField(required=False)
+    photo = db.StringField(required=False)
+    quantity_type = db.StringField(required=False) # list or range
+    quantity_value = db.StringField(required=False) # pp,p,m,g or 1,9,1 <- (start, finish, step)
+
+    @property
+    def quantity_list(self):
+        quant_list = []
+        if self.quantity_type == "list":
+            quant_list = self.quantity_value.split(",")
+        if self.quantity_type == "range":
+            range_vals = self.quantity_value.split(",")
+            quant_list = range(int(range_vals[0]), int(range_vals[1]), int(range_vals[2]))
+        return quant_list
+
+    def __eq__(self, other):
+        return self.slug == other.slug
+
+    def __unicode__(self):
+        return self.name
+
+
 class Band(db.Document):
     slug = db.StringField(required=True)
     name = db.StringField(required=True)
@@ -106,6 +131,7 @@ class Band(db.Document):
     users = db.ListField(ReferenceField(User, dbref=False))
     shows = db.ListField(ReferenceField(Show, dbref=False))
     musicians = db.ListField(ReferenceField(User, dbref=False))
+    products = db.ListField(ReferenceField(Product, dbref=False))
 
     def __eq__(self, other):
         return self.slug == other.slug

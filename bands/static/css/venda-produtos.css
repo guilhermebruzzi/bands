@@ -1,64 +1,181 @@
 .produtos-section{
-    background-color: #EEEEEE;
     font-size: 0px;
-    width: 600px;
-    margin: 0 auto;
+    width: 900px;
+    margin: 0 auto -50px;
+    font-family: Verdana;
 }
-.logo-banda{
-    width: 400px;
-    height: 300px;
-    margin: 0 auto;
-    display: block;
+.round-box{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
-.lista-produtos{
-    width: 500px;
-    margin: 0 auto;
+
+.round-component{
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: -2px 0 8px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: -2px 0 8px 2px rgba(0,0,0,.2);
+    box-shadow: -2px 0 8px 2px rgba(0,0,0,.2);
+    border: 1px solid #888;
 }
-.produto {
+
+.box-gray{
+    border: 1px solid #bbbbbb;
+    background-color: #eeeeee;
+}
+/* Area esquerda */
+.area-banda{
+    padding: 20px 45px 20px 45px;
+    height: 510px;
     display: inline-block;
     vertical-align: top;
     font-size: 14px;
-    list-style: none outside none;
+    background-color: #eeeeee;
+}
+.logo-banda-container{
+    -webkit-box-shadow: inset -2px 0 8px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: inset -2px 0 8px 2px rgba(0,0,0,.2);
+    box-shadow: inset -2px 0 8px 2px rgba(0,0,0,.2);
     position: relative;
-    width: 250px;
-    margin: 10px 0px 10px 0px;
+    top: -262px;
+    z-index: 1;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    width: 302px;
+    height: 262px;
+}
+.logo-banda{
+    width: 300px;
+    height: 260px;
+    margin: 0 auto;
+    display: block;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #bbbbbb;
+}
+
+/* Area direita */
+.area-produtos{
+    display: inline-block;
+    vertical-align: top;
+    width: 500px;
+    font-size: 14px;
+}
+.lista-produtos{
+    width: 475px;
+    float: right;
+}
+.lista-produtos li{
+    list-style: none outside none;
+}
+.produto {
+    display: block;
+    font-size: 14px;
+    width: 500px;
+    margin: 0px 0px 15px 0px;
+    font-size: 0px;
+    padding: 10px 0px;
+    background-image: -webkit-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
+    background-image: -moz-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
+    background-image: -o-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
+    background-image: -ms-linear-gradient(bottom, rgba(51,51,51,.1), rgba(239,239,239,0));
+    background-image: linear-gradient(to top, rgba(51,51,51,.1), rgba(239,239,239,0));
+}
+
+.valor-monetario{
+    font-size: 20px;
+    color: #a00902;
+    word-spacing: -2px;
+    font-family: 'Kreon',serif;
+    font-weight: bold;
+}
+
+.titulo-produtos{
+    color: #333333;
+    font-family: 'Kreon',serif;
+    font-weight: lighter;
+    margin: 0 0 20px 35px;
+}
+
+.nome-banda-produtos{
+    color: #888888;
+    font-family: 'Kreon',serif;
+    font-size: 25px;
+    font-weight: lighter;
+    margin: 20px 25px 50px;
 }
 
 .produto img {
-    height: 120px;
-    width: 120px;
+    height: 125px;
+    width: 125px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 20px;
+}
+
+.info-produto{
+    border-left: 1px solid #bbbbbb;
+    display: inline-block;
+    font-size: 14px;
+    height: 132px;
+    padding: 0 0 0 10px;
+    position: relative;
+    top: -2px;
+    vertical-align: top;
+    width: 310px;
 }
 
 .produto .nome-produto {
     font-size: 20px;
-    font-weight: bold;
-    margin-left: 5px;
     position: absolute;
-    top: 0px;
+    top: 10px;
+    color: #333333;
+    font-family: 'Kreon',serif;
+    font-weight: lighter;
+}
+
+.produto .quantidade-label{
+    font-weight: bold;
+    color: #000000;
+    font-size: 12px;
+    position: absolute;
+    bottom: 30px;
 }
 
 .produto .quantidade {
-    margin-left: 5px;
     position: absolute;
-    bottom: 50px;
+    bottom: 4px;
     text-align: center;
     width: 100px;
 }
 
-.produto .quantidade-camisas{
-    width: 150px;
+.produto .camisa-tamanhos{
+    display: block;
+    width: 100%;
+    font-size: 0;
+    text-align: left;
+    bottom: 2px;
+}
+
+.produto .camisa-tamanho-container{
+    font-size: 14px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 5px 10px 0 0;
+}
+
+.produto .quantidade-cada-camisa{
+    width: 20px;
+    margin-right: 5px;
 }
 
 .produto .valor-produto {
-    font-size: 18px;
-    margin-left: 5px;
-    color: #333333;
     position: absolute;
-    bottom: 5px;
-    word-spacing: -2px;
+    bottom: 50px;
 }
 
 .pague-com-pag-seguro{
-    width: 210px;
-    margin: 10px auto;
+    float: right;
+    margin: 0px -30px 0 0;
 }
