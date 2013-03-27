@@ -21,6 +21,7 @@ function mainApenasProdutosSection(){
 
         window.setInterval(hideUserVoice, 500);
     }
+    produtosSection.style.margin = "0 0";
     produtosSection.style.width = "780px";
 }
 
