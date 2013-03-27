@@ -6,7 +6,7 @@ function hideUserVoice(){
 }
 function mainApenasProdutosSection(){
     var produtosSection = document.querySelector('#produtos-section');
-    produtosSection.style.margin = "0 0";
+    produtosSection.style.width = "780px";
     if(produtosSection){
         var sectionContainer = document.querySelector('.container');
         var header = document.querySelector('.container header');
