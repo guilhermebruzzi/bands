@@ -3,7 +3,7 @@
 }
 
 body, .container, footer, .content, .produtos-section{
-    width: 780px;
+    width: 700px;
     margin: 0 0;
 }
 
@@ -13,7 +13,7 @@ footer{
 }
 
 .area-produtos{
-    margin-left: 113px;
+    margin-left: 73px;
 }
 
 .produtos-section .titulo-produtos{
