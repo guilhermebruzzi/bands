@@ -1,0 +1,32 @@
+#uvTab{
+    display: none !important;
+}
+
+body, .container, footer, .content, .produtos-section{
+    width: 780px;
+    margin: 0 0;
+}
+
+footer{
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.area-produtos{
+    margin-left: 113px;
+}
+
+.produtos-section .titulo-produtos{
+    margin-bottom: 15px;
+}
+
+.logo-footer-link{
+    display: inline-block;
+    position: relative;
+    top: 10px;
+}
+
+.logo-footer-link img{
+    width: 64px;
+    height: 50px;
+}

@@ -4,13 +4,13 @@
 
 {% block content %}
     <section id="produtos-section" class="produtos-section">
-        <div class="area-banda">
+        <div id="area-banda" class="area-banda">
             <img class="logo-banda" alt="Los Bife" src="/static/img/los-bife.jpg">
             <div class="logo-banda-container"></div>
         </div>
-        <div class="area-produtos">
-            <h2 class="nome-banda-produtos titulo-produtos">Los Bife</h2>
-            <h3 class="titulo-produtos">Produtos</h3>
+        <div id="area-produtos" class="area-produtos">
+            <h2 id="nome-banda-produtos" class="nome-banda-produtos titulo-produtos">Los Bife</h2>
+            <h3 id="titulo-produtos" class="titulo-produtos">Produtos</h3>
             <ul class="lista-produtos">
                 <li class="produto box-gray round-box">
                     <img class="round-component" src="/static/img/cd-los-bife.jpg">
@@ -54,11 +54,17 @@
                 {{- formulario_pag_seguro | safe -}}
             </div>
         </div>
+        {% if produtos_section %}
+            <footer>
+                Quer saber de shows e produtos de mais bandas? Acesse o
+                <a class="logo-footer-link" target="_blank" href="http://bands.com.br">
+                    <img src="http://bands.com.br/static/img/logoBands.jpg">
+                </a>
+            </footer>
+        {% endif %}
     </section>
 {% endblock %}
 
-{% block js %}
-    {% if produtos_section %}
-        <script type="text/javascript" src="/static/js/apenas-produtos-section.js"></script>
-    {% endif %}
-{% endblock %}
+{% block css %}{% if produtos_section %}<link href='/static/css/apenas-produtos-section.css' rel='stylesheet' type='text/css'>{% endif %}{% endblock %}
+{% block js %}{% if produtos_section %}<script type="text/javascript" src="/static/js/apenas-produtos-section.js"></script>{% endif %}{% endblock %}
+
