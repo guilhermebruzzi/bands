@@ -32,9 +32,26 @@
         </section>
     {% endif %}
 
+    <section id="loja-bandas" class="loja-bandas">
+        <article class="lista-pagina-principal-container">
+            <h2>Loja Bands - Compre os produtos das bandas</h2>
+            <ul>
+                <li>
+                    <a href="/los-bife" class="item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Banda Los Bife', 'Clique na home']);">
+                        <img src="/static/img/los-bife.jpg" />
+                        <span class="item-info">
+                            <span class="nome-banda-item">Los Bife</span>
+                            <span class="ver-produtos-label">Veja os Produtos >></span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </article>
+    </section>
+
     <section id="area-show-home" class="area-show-home">
         {% if not current_user %}
-            <article class="explicacao-site titulo-show">
+            <article class="explicacao-site titulo-show lista-pagina-principal-container">
                 <h2>O que é o site Bands?</h2>
                 <article class="cadastro">
 
@@ -66,7 +83,7 @@
             </div>
         {% endif %}
 
-        <article id="shows-locais" class="shows-local titulo-show">
+        <article id="shows-locais" class="shows-local titulo-show lista-pagina-principal-container">
             <h2>Shows Locais ({{ current_city }})</h2>
             <ul>
                 {% for show in shows_locais %}
@@ -78,7 +95,7 @@
 
         </article>
 
-        <article id="minhas-bandas-shows" class="minhas-bandas-shows titulo-show">
+        <article id="minhas-bandas-shows" class="minhas-bandas-shows titulo-show lista-pagina-principal-container">
                 <h2>Shows das minhas bandas</h2>
                 <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
                     <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Nome da banda para ver próximo show" type="text" list="bandas" />

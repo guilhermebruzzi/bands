@@ -115,23 +115,113 @@ section.funcionalidades-home article h2{
     margin: 0 10px;
 }
 
+/* Listas com pontilhados */
+
+.lista-pagina-principal-container{
+    font-size: 11pt;
+    background: #eee;
+    padding: 4pt;
+    border-bottom: 3px dashed #bbb;
+}
+
+.lista-pagina-principal-container ul{
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 150px;
+}
+
+.lista-pagina-principal-container li{
+    list-style: none outside none;
+    margin: 5px 5px 15px;
+}
+
+.item-lista-bands{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    font-size: 0;
+}
+
+.item-lista-bands img, .item-lista-bands .img-default, .item-lista-bands .item-info{
+    display: inline-block;
+    font-size: 11pt;
+    vertical-align: top;
+    color: #9F0902;
+}
+
+.item-lista-bands:hover{
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhZGFkYWQiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(173,173,173,0.5) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(173,173,173,0.5))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6adadad',GradientType=1 ); /* IE6-8 */
+}
+
+.nome-banda-item, .ver-produtos-label{
+    margin-left: 26px;
+    margin-top: 6px;
+    display: inline-block;
+    width: 100%;
+}
+
+.nome-banda-item{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.ver-produtos-label{
+    font-size: 14px;
+    font-style: italic;
+    position: relative;
+    top: 5px;
+}
+
+/* Área de Lojas */
+
+.loja-bandas{
+    margin: 20px auto 10px auto;
+}
+
+.loja-bandas .item-lista-bands{
+    min-height: 90px;
+}
+
+.loja-bandas .item-lista-bands img{
+    height: 120px;
+    width: 160px;
+}
+
+.loja-bandas h2{
+    margin-left: 5px;
+}
+
 /* Área de Shows */
 
 section.area-show-home{
     font-size: 0px;
-    margin: 30px auto;
+    margin: 10px auto;
 }
 
 section.area-show-home article.titulo-show{
     width: 460px;
     display: inline-block;
     vertical-align: top;
-    font-size: 11pt;
-    position: relative;
     margin-top: 8px;
-    background: #eee;
-    padding: 4pt;
-    border-bottom: 3px dashed #bbb;
+    position: relative;
+}
+
+section.area-show-home .titulo-show ul{
+    height: 715px;
+    width: 460px;
+}
+
+section.area-show-home .titulo-show ul li{
+    height: 52px;
 }
 
 section.area-show-home article.explicacao-site{
@@ -153,26 +243,16 @@ section.area-show-home article.explicacao-site span{
     margin-top: 10px;
 }
 
+.shows-local h2{
+    margin-left: 5px;
+}
+
 section.area-show-home article.minhas-bandas-shows{
     float: right;
 }
 
-section.area-show-home article ul{
-    position: relative;
-    height: 715px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width: 460px;
-}
-
 section.area-show-home article .minhas-bandas-shows-lista{
     height: 669px;
-}
-
-section.area-show-home article ul li{
-    height: 52px;
-    list-style: none outside none;
-    margin: 5px 5px 15px;
 }
 
 .explicacao{
@@ -188,38 +268,19 @@ section.area-show-home article ul li{
 }
 
 section.area-show-home article ul li a.item-lista-shows{
-    display: inline-block;
     font-size: 0;
-    height: 100%;
-    width: 100%;
-}
-section.area-show-home article ul li a.item-lista-shows:hover{
-    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhZGFkYWQiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(173,173,173,0.5) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(173,173,173,0.5))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* IE10+ */
-    background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(173,173,173,0.5) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6adadad',GradientType=1 ); /* IE6-8 */
 }
 
 section.area-show-home article ul li a.item-lista-shows img,
 section.area-show-home article ul li a.item-lista-shows span.img-default{
     border: 1px solid #333;
-    display: inline-block;
     height: 50px;
     margin-right: 5px;
-    vertical-align: top;
     width: 50px;
 }
 
 section.area-show-home article ul li a.item-lista-shows span.info-show {
-    display: inline-block;
-    font-size: 11pt;
     height: 52px;
-    vertical-align: top;
 }
 
 section.area-show-home article ul li a.item-lista-shows span span.banda-show,
