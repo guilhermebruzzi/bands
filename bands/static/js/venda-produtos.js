@@ -1,9 +1,12 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
 
+function isCd(descricao){
+    return (descricao.indexOf("cd") !== -1)
+}
 
 function getValorProduto(descricao){
     var valor = '2000';
-    if(descricao.indexOf("cd") !== -1){
+    if(isCd(descricao)){
         valor = '1500';
     }
     return valor;
@@ -61,7 +64,8 @@ function comprarPagSeguro(evt){
     }
     for(var inputIndex = 0; inputIndex < inputs.length; inputIndex++){
         var input = inputs[inputIndex];
-        datas.push(getProdutoDataInputs(input));
+        camisa_data = getProdutoDataInputs(input);
+        datas.push(camisa_data);
     }
 
     formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" name="item_frete_1" value="1000"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
@@ -69,13 +73,19 @@ function comprarPagSeguro(evt){
     var validou = false;
     var labelProdutos = "";
     var itemId = 1;
+    var mensagemCamisa = null;
     for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
         var data = datas[dataIndex];
         validou = validou || (data.quantidade > 0)
         if(data.quantidade > 0){
-            addItemId(itemId, data.descricao, data.valor, data.quantidade);
+            if(isCd(data.descricao)){
+                addItemId(itemId, data.descricao, data.valor, data.quantidade);
+                itemId++;
+            }
+            else{
+                mensagemCamisa = "Por enquanto apenas os cds estão disponíveis.\nAvisaremos quando as camisas estiverem disponíveis em facebook.com/bandsbr ou diretamente para você se você fizer login em bands.com.br";
+            }
             labelProdutos += data.quantidade + " " + data.descricao + " ";
-            itemId++;
         }
     }
 
@@ -88,6 +98,14 @@ function comprarPagSeguro(evt){
     if(!validou){
         alert("Por favor, selecione 1 ou mais produtos para comprar");
         evt.preventDefault();
+    }
+    else{
+        if(mensagemCamisa){
+            alert(mensagemCamisa);
+        }
+        if(itemId == 1){ // Nenhum cd
+            evt.preventDefault();
+        }
     }
     return validou;
 }

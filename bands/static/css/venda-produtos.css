@@ -26,7 +26,7 @@
 }
 /* Area esquerda */
 .area-banda{
-    padding: 20px 45px 20px 45px;
+    padding: 20px 36px;
     height: 688px;
     display: inline-block;
     vertical-align: top;
@@ -38,16 +38,15 @@
     -moz-box-shadow: inset -2px 0 8px 2px rgba(0,0,0,.2);
     box-shadow: inset -2px 0 8px 2px rgba(0,0,0,.2);
     position: relative;
-    top: -262px;
+    top: -241px;
     z-index: 1;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    width: 302px;
-    height: 262px;
+    height: 240px;
 }
 .logo-banda{
-    width: 300px;
-    height: 260px;
+    width: 320px;
+    height: 240px;
     margin: 0 auto;
     display: block;
     -webkit-border-radius: 2px;
