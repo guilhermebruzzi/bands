@@ -1,4 +1,5 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
+var frete_total = 10.0;
 
 function isCd(descricao){
     return (descricao.indexOf("cd") !== -1)
@@ -68,18 +69,20 @@ function comprarPagSeguro(evt){
         datas.push(camisa_data);
     }
 
-    formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" name="item_frete_1" value="1000"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+    formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var validou = false;
     var labelProdutos = "";
     var itemId = 1;
     var mensagemCamisa = null;
+    var quantidadeItensTotal = 0;
     for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
         var data = datas[dataIndex];
         validou = validou || (data.quantidade > 0)
         if(data.quantidade > 0){
             if(isCd(data.descricao)){
                 addItemId(itemId, data.descricao, data.valor, data.quantidade);
+                quantidadeItensTotal += data.quantidade;
                 itemId++;
             }
             else{
@@ -93,6 +96,9 @@ function comprarPagSeguro(evt){
         _gaq.push(['_trackEvent', 'Produtos', 'Banda Los Bife', labelProdutos]);
     }
 
+
+    var frete_por_item = frete_total / quantidadeItensTotal;
+    formPagSeguro.innerHTML += '<input type="hidden" name="item_frete_1" value="' + frete_por_item.toFixed(2) + '">';
     formPagSeguro.innerHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
 
     if(!validou){
