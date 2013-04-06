@@ -3,7 +3,7 @@
 {% block title %}Bands - Los Bife - Produtos{% endblock %}
 
 {% block content %}
-    <section id="produtos-section" class="produtos-section">
+    <section id="produtos-section" class="produtos-section {% if produtos_section and dark %}produtos-section-dark{% endif %}">
         <div id="area-banda" class="area-banda">
             <img class="logo-banda" alt="Los Bife" src="/static/img/los-bife.jpg">
             <div class="logo-banda-container"></div>
@@ -58,7 +58,7 @@
             <footer>
                 Quer saber de shows e produtos de mais bandas? Acesse o
                 <a class="logo-footer-link" target="_blank" href="http://bands.com.br">
-                    <img src="http://bands.com.br/static/img/logoBands.jpg">
+                    <img src="/static/img/logoBands.png">
                 </a>
             </footer>
         {% endif %}

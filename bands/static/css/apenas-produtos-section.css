@@ -12,6 +12,10 @@ footer{
     margin-top: 15px;
 }
 
+.produtos-section-dark{
+    background-color: #000000;
+}
+
 .area-produtos{
     margin-left: 73px;
 }

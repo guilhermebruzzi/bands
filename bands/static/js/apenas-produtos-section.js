@@ -17,6 +17,10 @@ function mainApenasProdutosSection(){
 
         var nomeBanda = document.querySelector('#nome-banda-produtos');
         nomeBanda.innerHTML += " - Produtos";
+        if(produtosSection.classList.contains("produtos-section-dark")){
+            areaProdutos.removeChild(nomeBanda);
+            document.body.classList.add("produtos-section-dark");
+        }
     }
 }
 
