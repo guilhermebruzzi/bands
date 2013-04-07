@@ -82,6 +82,20 @@ QUESTIONS_PESQUISA = [
 
 BANDAS_CAMISAS = [
     {
+        "nome": "Coldplay",
+        "slug": "coldplay",
+        "camisas": [
+            { "tipo": "viva la vida", "preco": "20,00" },
+        ]
+    },
+    {
+        "nome": "Guns n' Roses",
+        "slug": "guns-n-roses",
+        "camisas": [
+            { "tipo": "caveira", "preco": "22,00" },
+        ]
+    },
+    {
         "nome": "Los Bife",
         "slug": "los-bife",
         "camisas": [
@@ -90,13 +104,41 @@ BANDAS_CAMISAS = [
         ]
     },
     {
+        "nome": "Los Hermanos",
+        "slug": "los-hermanos",
+        "camisas": [
+            { "tipo": u"quem é mais sentimental que eu", "preco": "22,00" },
+        ]
+    },
+    {
+        "nome": "Metallica",
+        "slug": "metallica",
+        "camisas": [
+            { "tipo": "branca", "preco": "19,00" },
+            { "tipo": "james hetfield", "preco": "22,00" }
+        ]
+    },
+    {
+        "nome": "Queen",
+        "slug": "queen",
+        "camisas": [
+            { "tipo": "preta", "preco": "22,00" },
+        ]
+    },
+    {
         "nome": "The Beatles",
         "slug": "the-beatles",
         "camisas": [
-            { "tipo": "integrantes-preta-23", "preco": "23,00" },
+            { "tipo": "integrantes", "preco": "23,00" },
         ]
     },
-
+    {
+        "nome": "Tim Maia",
+        "slug": "tim-maia",
+        "camisas": [
+            { "tipo": "preta", "preco": "33,00" },
+        ]
+    }
 ]
 
 def get_app():
