@@ -107,7 +107,7 @@ BANDAS_CAMISAS = [
         "nome": "Los Hermanos",
         "slug": "los-hermanos",
         "camisas": [
-            { "tipo": u"quem é mais sentimental que eu", "preco": "22,00" },
+            { "tipo": "sentimental", "preco": "22,00" },
         ]
     },
     {
@@ -141,8 +141,7 @@ BANDAS_CAMISAS = [
     }
 ]
 
-BANDAS_CAMISAS_HOME = []
-BANDAS_CAMISAS_HOME.append(BANDAS_CAMISAS[1])
+BANDAS_CAMISAS_HOME = [BANDAS_CAMISAS[1], BANDAS_CAMISAS[3], BANDAS_CAMISAS[5], BANDAS_CAMISAS[6]]
 
 def get_app():
     return app

@@ -7,10 +7,10 @@
             <span class="nome-produto">Camisa {{ banda_name }} - {{ camisa.tipo }}</span>
             <span class="quantidade-label">quantidade</span>
             <span class="camisa-tamanhos quantidade">
-                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo }}-pp"><span class="camisa-tamanho">pp</span></span>
-                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo }}-p"><span class="camisa-tamanho">p</span></span>
-                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo }}-m"><span class="camisa-tamanho">m</span></span>
-                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo }}-g"><span class="camisa-tamanho">g</span></span>
+                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo|replace(" ","-") }}-pp"><span class="camisa-tamanho">pp</span></span>
+                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo|replace(" ","-") }}-p"><span class="camisa-tamanho">p</span></span>
+                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo|replace(" ","-") }}-m"><span class="camisa-tamanho">m</span></span>
+                <span class="camisa-tamanho-container"><input type="text" class="quantidade-cada-camisa camisa-{{ banda_slug }}-{{ camisa.tipo|replace(" ","-") }}-g"><span class="camisa-tamanho">g</span></span>
             </span>
             <span class="valor-produto valor-monetario">R$ {{ camisa.preco }}</span>
         </span>

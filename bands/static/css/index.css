@@ -118,28 +118,34 @@ section.funcionalidades-home article h2{
 /* Listas com pontilhados */
 
 .lista-pagina-principal-container{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 3px dashed #BBBBBB;
     font-size: 11pt;
-    background: #eee;
-    padding: 4pt 4pt 20px;
-    border-bottom: 3px dashed #bbb;
+    padding: 4pt 4pt 25px;
     position: relative;
+    width: 1000px;
 }
 
 .lista-pagina-principal-container ul{
-    position: relative;
+    font-size: 0;
+    min-height: 150px;
     overflow-x: hidden;
     overflow-y: auto;
-    min-height: 150px;
+    position: relative;
+    width: 1100px;
 }
 
 .lista-pagina-principal-container li{
+    display: inline-block;
     list-style: none outside none;
     margin: 5px 5px 15px;
+    vertical-align: top;
+    width: 488px;
 }
 
 .lista-pagina-principal-container .pague-com-pag-seguro{
     float: left;
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 10px 3px;
 }
 
 .item-lista-bands{
