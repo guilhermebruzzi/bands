@@ -80,5 +80,24 @@ QUESTIONS_PESQUISA = [
     }
 ]
 
+BANDAS_CAMISAS = [
+    {
+        "nome": "Los Bife",
+        "slug": "los-bife",
+        "camisas": [
+            { "tipo": "amarela", "preco": "20,00" },
+            { "tipo": "vermelha", "preco": "20,00" },
+        ]
+    },
+    {
+        "nome": "The Beatles",
+        "slug": "the-beatles",
+        "camisas": [
+            { "tipo": "integrantes-preta", "preco": "23,00" },
+        ]
+    },
+
+]
+
 def get_app():
     return app
