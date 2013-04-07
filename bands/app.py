@@ -5,7 +5,7 @@ import os
 
 from models import *
 from flask import Flask, redirect, url_for, session, request, abort, make_response
-from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS
+from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS, BANDAS_CAMISAS_HOME
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
@@ -78,8 +78,12 @@ def index():
     top_bands = get_top_bands(max=3, maxSize=10)[0]
     top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
 
+    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
+    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
+
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
-        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city)
+        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city,
+        BANDAS_CAMISAS_HOME=BANDAS_CAMISAS_HOME, formulario_pag_seguro=formulario_pag_seguro)
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():
@@ -138,7 +142,8 @@ def los_bife():
     dark = True if request.args.get('dark') else False
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
         range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
-        camisas=[{"tipo": "amarela", "preco": "20,00"}, {"tipo": "vermelha", "preco": "20,00"}])
+        camisas=[{ "tipo": "amarela", "preco": "20,00" },
+                 { "tipo": "vermelha", "preco": "20,00" }])
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged

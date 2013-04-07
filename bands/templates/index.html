@@ -1,5 +1,6 @@
-{% import 'lista_shows.html' as lista_shows %}
 {% extends "master.html" %}
+{% import 'venda_produtos.html' as produtos %}
+{% import 'lista_shows.html' as lista_shows %}
 
 {% block title %}Bands - Home{% endblock %}
 
@@ -36,16 +37,18 @@
         <article class="lista-pagina-principal-container">
             <h2>Loja Bands - Compre os produtos das bandas</h2>
             <ul>
-                <li>
-                    <a href="/los-bife" class="item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Banda Los Bife', 'Clique na home']);">
-                        <img src="/static/img/los-bife.jpg" />
-                        <span class="item-info">
-                            <span class="nome-banda-item">Los Bife</span>
-                            <span class="ver-produtos-label">Veja os Produtos >></span>
-                        </span>
-                    </a>
+                {% for banda in BANDAS_CAMISAS_HOME %}
+                    {{ produtos.camisas(banda.nome, banda.slug, banda.camisas) }}
+                {% endfor %}
+                <li class="frete-container">
+                    <span class="frete valor-monetario">Frete: R$ 10,00</span>
                 </li>
+
             </ul>
+            <div class="pague-com-pag-seguro">
+                {{- formulario_pag_seguro | safe -}}
+            </div>
+        <a href="{{ url_for('loja_virtual') }}" class="shiny-red ver-mais-camisas" onclick="_gaq.push(['_trackEvent', 'Produtos', 'Clique loja virtual', 'Link loja virtual na home']);">Ver mais camisas</a>
         </article>
     </section>
 

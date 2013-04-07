@@ -120,8 +120,9 @@ section.funcionalidades-home article h2{
 .lista-pagina-principal-container{
     font-size: 11pt;
     background: #eee;
-    padding: 4pt;
+    padding: 4pt 4pt 20px;
     border-bottom: 3px dashed #bbb;
+    position: relative;
 }
 
 .lista-pagina-principal-container ul{
@@ -134,6 +135,11 @@ section.funcionalidades-home article h2{
 .lista-pagina-principal-container li{
     list-style: none outside none;
     margin: 5px 5px 15px;
+}
+
+.lista-pagina-principal-container .pague-com-pag-seguro{
+    float: left;
+    margin: 0 10px 10px 10px;
 }
 
 .item-lista-bands{

@@ -2,17 +2,31 @@ var formPagSeguro = document.querySelector('form[target="pagseguro"]');
 var frete_total = 10.0;
 
 function isCd(descricao){
-    return (descricao.indexOf("cd") !== -1)
+    return (descricao.indexOf("cd") !== -1);
 }
 
 function isCamisaNaoLosBife(descricao){
-    return (descricao.indexOf("camisa") !== -1 && descricao.indexOf("los bife") === -1 )
+    return (descricao.toLowerCase().indexOf("camisa") !== -1 && descricao.toLowerCase().indexOf("los bife") === -1);
+}
+
+function getValorProdutoInput(input){
+    var infoProdutoFilhos = input.parentNode.parentNode.parentNode.childNodes;
+    var preco = "2000";
+    for(var index = 0; index < infoProdutoFilhos.length; index++){
+        var info = infoProdutoFilhos[index];
+        if(info.classList && info.classList.contains("valor-produto")){
+            preco = info.innerHTML;
+            preco = preco.replace("R$ ", "");
+            preco = preco.replace(",", "");
+        }
+    }
+    return preco;
 }
 
 function getValorProduto(descricao){
-    var valor = '2000';
+    var valor = "2000";
     if(isCd(descricao)){
-        valor = '1500';
+        valor = "1500";
     }
     return valor;
 }
@@ -46,7 +60,7 @@ function getProdutoDataInputs(input){
 
     return {
         'descricao': descricao,
-        'valor': getValorProduto(descricao),
+        'valor': getValorProdutoInput(input),
         'quantidade': quantidade
     }
 }
@@ -69,18 +83,17 @@ function comprarPagSeguro(evt){
     }
     for(var inputIndex = 0; inputIndex < inputs.length; inputIndex++){
         var input = inputs[inputIndex];
-        camisa_data = getProdutoDataInputs(input);
+        var camisa_data = getProdutoDataInputs(input);
         datas.push(camisa_data);
     }
 
     formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var validou = false;
-    var acaoProdutos = [];
     var labelProdutos = "";
     var itemId = 1;
     var mensagemCamisa = null;
-    var quantidadeItensTotal = 0;
+    var quantidadePrimeiroItem = 0;
 
     for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
         var data = datas[dataIndex];
@@ -88,7 +101,9 @@ function comprarPagSeguro(evt){
         if(data.quantidade > 0){
             if(isCd(data.descricao) || isCamisaNaoLosBife(data.descricao)){
                 addItemId(itemId, data.descricao, data.valor, data.quantidade);
-                quantidadeItensTotal += data.quantidade;
+                if(itemId == 1){
+                    quantidadePrimeiroItem = data.quantidade;
+                }
                 itemId++;
             }
             else{
@@ -103,7 +118,7 @@ function comprarPagSeguro(evt){
     }
 
 
-    var frete_por_item = frete_total / quantidadeItensTotal;
+    var frete_por_item = frete_total / ((quantidadePrimeiroItem == 0) ? 1.0 : quantidadePrimeiroItem);
     formPagSeguro.innerHTML += '<input type="hidden" name="item_frete_1" value="' + frete_por_item.toFixed(2) + '">';
     formPagSeguro.innerHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
 

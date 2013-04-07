@@ -6,6 +6,8 @@
 {% block content %}
     <section id="produtos-section" class="produtos-section {% if produtos_section and dark %}produtos-section-dark{% endif %}">
         <div id="area-produtos" class="area-produtos">
+            <h2 id="nome-banda-produtos" class="nome-banda-produtos titulo-produtos">Loja Virtual</h2>
+            <h3 id="titulo-produtos" class="titulo-produtos">Camisas das bandas (sugira uma nova clicando em opine! na direita)</h3>
             <ul class="lista-produtos">
                 {% for camisa in camisas %}
                     {{ produtos.camisas(camisa.nome, camisa.slug, camisa.camisas) }}

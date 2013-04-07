@@ -99,5 +99,8 @@ BANDAS_CAMISAS = [
 
 ]
 
+BANDAS_CAMISAS_HOME = []
+BANDAS_CAMISAS_HOME.append(BANDAS_CAMISAS[1])
+
 def get_app():
     return app
