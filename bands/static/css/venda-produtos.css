@@ -54,7 +54,7 @@
     border: 1px solid #bbbbbb;
 }
 
-/* Area direita */
+/* Area produtos (Geral) */
 .area-produtos{
     display: inline-block;
     vertical-align: top;
@@ -178,3 +178,39 @@
     float: right;
     margin: 0px -30px 0 0;
 }
+
+/* Area Loja Virtual*/
+
+.loja-virtual-container{
+    font-size: 11pt;
+    padding: 0;
+    position: relative;
+    width: 1000px;
+}
+
+.loja-virtual-container ul{
+    background: none repeat scroll 0 0 #EEEEEE;
+    font-size: 0;
+    min-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    width: 1000px;
+    margin-bottom: 10px;
+}
+
+.loja-virtual-container li{
+    display: inline-block;
+    list-style: none outside none;
+    margin: 5px 5px 15px;
+    vertical-align: top;
+    width: 488px;
+}
+
+.loja-virtual-container .pague-com-pag-seguro{
+    margin: 10px auto;
+    width: 210px;
+    float: none;
+}
+
+

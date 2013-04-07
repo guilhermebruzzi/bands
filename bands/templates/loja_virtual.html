@@ -8,18 +8,20 @@
         <div id="area-produtos" class="area-produtos">
             <h2 id="nome-banda-produtos" class="nome-banda-produtos titulo-produtos">Loja Virtual</h2>
             <h3 id="titulo-produtos" class="titulo-produtos">Camisas das bandas (sugira uma nova clicando em opine! na direita)</h3>
-            <ul class="lista-produtos">
-                {% for camisa in camisas %}
-                    {{ produtos.camisas(camisa.nome, camisa.slug, camisa.camisas) }}
-                {% endfor %}
+            <section class="loja-virtual-container">
+                <ul class="lista-produtos">
+                    {% for camisa in camisas %}
+                        {{ produtos.camisas(camisa.nome, camisa.slug, camisa.camisas) }}
+                    {% endfor %}
 
-                <li class="frete-container">
-                    <span class="frete valor-monetario">Frete: R$ 10,00</span>
-                </li>
-            </ul>
-            <div class="pague-com-pag-seguro">
-                {{- formulario_pag_seguro | safe -}}
-            </div>
+                    <li class="frete-container">
+                        <span class="frete valor-monetario">Frete: R$ 10,00</span>
+                    </li>
+                </ul>
+                <div class="pague-com-pag-seguro">
+                    {{- formulario_pag_seguro | safe -}}
+                </div>
+            </section>
         </div>
         {% if produtos_section %}
             <footer>
