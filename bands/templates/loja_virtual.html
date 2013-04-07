@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% import 'venda_produtos.html' as produtos %}
+
+{% block title %}Bands - Loja Virtual{% endblock %}
+
+{% block content %}
+    <section id="produtos-section" class="produtos-section {% if produtos_section and dark %}produtos-section-dark{% endif %}">
+        <div id="area-produtos" class="area-produtos">
+            <ul class="lista-produtos">
+                {% for camisa in camisas %}
+                    {{ produtos.camisas(camisa.nome, camisa.slug, camisa.camisas) }}
+                {% endfor %}
+
+                <li class="frete-container">
+                    <span class="frete valor-monetario">Frete: R$ 10,00</span>
+                </li>
+            </ul>
+            <div class="pague-com-pag-seguro">
+                {{- formulario_pag_seguro | safe -}}
+            </div>
+        </div>
+        {% if produtos_section %}
+            <footer>
+                Quer saber de shows e produtos de mais bandas? Acesse o
+                <a class="logo-footer-link" target="_blank" href="http://bands.com.br">
+                    <img src="/static/img/logoBands.png">
+                </a>
+            </footer>
+        {% endif %}
+    </section>
+{% endblock %}
+
+{% block css %}{% if produtos_section %}<link href='/static/css/apenas-produtos-section.css' rel='stylesheet' type='text/css'>{% endif %}{% endblock %}
+{% block js %}{% if produtos_section %}<script type="text/javascript" src="/static/js/apenas-produtos-section.js"></script>{% endif %}{% endblock %}
+

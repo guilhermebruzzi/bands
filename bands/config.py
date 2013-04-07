@@ -93,7 +93,7 @@ BANDAS_CAMISAS = [
         "nome": "The Beatles",
         "slug": "the-beatles",
         "camisas": [
-            { "tipo": "integrantes-preta", "preco": "23,00" },
+            { "tipo": "integrantes-preta-23", "preco": "23,00" },
         ]
     },
 

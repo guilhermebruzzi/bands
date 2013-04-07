@@ -5,7 +5,7 @@ import os
 
 from models import *
 from flask import Flask, redirect, url_for, session, request, abort, make_response
-from config import get_app, facebook, MAIN_QUESTIONS, project_root
+from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
@@ -81,6 +81,19 @@ def index():
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
         shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city)
 
+@app.route('/loja-virtual', methods=['GET'])
+def loja_virtual():
+    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
+    current_user = get_current_user()
+
+    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
+    produtos_section = True if request.args.get('produtos-section') else False
+    dark = True if request.args.get('dark') else False
+
+    return render_template('loja_virtual.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
+        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
+        camisas=BANDAS_CAMISAS)
+
 @app.route('/newsletter/<option>', methods=['POST'])
 def salvar_newsletter(option):
     user_id = request.form['user_id']
@@ -114,15 +127,11 @@ def minhas_bandas():
     return resp
 
 @app.route('/los-bife', methods=['GET'])
-def venda_produtos():
+def los_bife():
     carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
     carrinho.item(id=1, descr='CD Los Bife', qty=0, valor=15.0)
     carrinho.item(id=2, descr='Camisa Los Bife', qty=0, valor=20.0)
     current_user = get_current_user()
-    if current_user:
-        carrinho.cliente(nome=current_user.name, email=current_user.email)
-        if current_user.city:
-            carrinho.data['cliente']['cidade'] = current_user.city
 
     formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
