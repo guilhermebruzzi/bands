@@ -5,6 +5,10 @@ function isCd(descricao){
     return (descricao.indexOf("cd") !== -1)
 }
 
+function isCamisaNaoLosBife(descricao){
+    return (descricao.indexOf("camisa") !== -1 && descricao.indexOf("los bife") === -1 )
+}
+
 function getValorProduto(descricao){
     var valor = '2000';
     if(isCd(descricao)){
@@ -72,28 +76,30 @@ function comprarPagSeguro(evt){
     formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var validou = false;
+    var acaoProdutos = [];
     var labelProdutos = "";
     var itemId = 1;
     var mensagemCamisa = null;
     var quantidadeItensTotal = 0;
+
     for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
         var data = datas[dataIndex];
         validou = validou || (data.quantidade > 0)
         if(data.quantidade > 0){
-            if(isCd(data.descricao)){
+            if(isCd(data.descricao) || isCamisaNaoLosBife(data.descricao)){
                 addItemId(itemId, data.descricao, data.valor, data.quantidade);
                 quantidadeItensTotal += data.quantidade;
                 itemId++;
             }
             else{
-                mensagemCamisa = "Por enquanto apenas os cds estão disponíveis.\nAvisaremos quando as camisas estiverem disponíveis em facebook.com/bandsbr ou diretamente para você se você fizer login em bands.com.br";
+                mensagemCamisa = "Por enquanto as camisas da Los Bife não estão disponíveis.\nAvisaremos quando as camisas da Los Bife estiverem disponíveis em facebook.com/bandsbr ou diretamente para você se você fizer login em bands.com.br";
             }
             labelProdutos += data.quantidade + " " + data.descricao + " ";
         }
     }
 
     if(typeof _gaq != "undefined"){
-        _gaq.push(['_trackEvent', 'Produtos', 'Banda Los Bife', labelProdutos]);
+        _gaq.push(['_trackEvent', 'Produtos', "Bandas em " + window.location.href, labelProdutos]);
     }
 
 
