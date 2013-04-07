@@ -127,8 +127,9 @@ def venda_produtos():
     formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
-    return render_template('venda_produtos.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
-        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark, camisas=["amarela", "vermelha"])
+    return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
+        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
+        camisas=[{"tipo": "amarela", "preco": "20,00"}, {"tipo": "vermelha", "preco": "20,00"}])
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged
