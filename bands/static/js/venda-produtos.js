@@ -127,12 +127,14 @@ function comprarPagSeguro(evt){
         evt.preventDefault();
     }
     else{
-        if(mensagemCamisa){
-            alert(mensagemCamisa);
-        }
-        if(itemId == 1){ // Nenhum cd
-            evt.preventDefault();
-        }
+//        if(mensagemCamisa){
+//            alert(mensagemCamisa);
+//        }
+//        if(itemId == 1){ // Nenhum cd
+//            evt.preventDefault();
+//        }
+        alert('Por enquanto não temos mais camisas em estoque, curta a página facebook.com/bandsbr ou faça login aqui no site e lhe avisaremos quando poderão comprar.')
+        evt.preventDefault();
     }
     return validou;
 }
