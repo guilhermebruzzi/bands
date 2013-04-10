@@ -7,6 +7,7 @@ from flask import Flask
 from flaskext.oauth import OAuth
 from flaskext.mongoengine import MongoEngine
 from flask.ext import assets
+from flask.ext.jasmine import Jasmine
 
 def add_path():
     global project_root
@@ -56,6 +57,19 @@ facebook = oauth.remote_app('facebook',
 db = MongoEngine(app)
 assets = assets.Environment()
 assets.init_app(app)
+
+jasmine = Jasmine(app)
+
+jasmine.specs(
+    'js/jquery-1.9.1.min.js',
+    'js/jasmine/fixtures/venda-produtos-fixture.js',
+    'js/jasmine/specs/venda-produtos-spec.js'
+)
+
+jasmine.sources(
+    'js/venda-produtos.js'
+)
+
 
 MAIN_QUESTIONS = [
     {
