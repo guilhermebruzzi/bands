@@ -301,7 +301,7 @@ footer a.new_link{
 
 /* Gmail Button */
 
-.gmail-btn{
+.conta-bands-btn, .gmail-btn{
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05) 49%, rgba(0, 0, 0, 0.05) 51%, rgba(0, 0, 0, 0.1));
     border-radius: 0.3em 0.3em 0.3em 0.3em;
     cursor: pointer;
@@ -328,11 +328,20 @@ footer a.new_link{
     font-weight: bold;
     font-family: "Helvetica Neue",sans-serif;
 }
-.gmail-btn span{
+.conta-bands-btn{
+    display: inline-block;
+    padding: 3px 10px 3px 3px;
+    position: relative;
+    top: -1px;
+}
+.conta-bands-btn span, .gmail-btn span{
     position: relative;
     top: 5px;
 }
-.gmail-btn:before {
+.conta-bands-btn span{
+    top: 1px;
+}
+.conta-bands-btn:before, .gmail-btn:before {
     color: #FF0000;
     content: "m";
     border-right: 0.075em solid rgba(0, 0, 0, 0.1);
@@ -346,7 +355,10 @@ footer a.new_link{
     text-transform: none;
 }
 
-
+.conta-bands-btn:before{
+    content: url('/static/img/favicon.png');
+    font: inherit;
+}
 
 /*Botão vermelho*/
 

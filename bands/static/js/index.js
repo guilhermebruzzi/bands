@@ -98,6 +98,12 @@ function gmailBtnClicked(){
     "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
 }
 
+function bandsBtnClicked(){
+    alert("Por enquanto não temos a opção de uma conta própria do Bands, sendo assim o login deve ser feito pelo facebook.\n" +
+    "O Bands não postará nada em seu facebook e o login é bem rápido de ser feito.\n" +
+    "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
+}
+
 function main_index(){
     var answers = document.querySelectorAll(".answer-principal");
     for(var i = 0; i < answers.length; i++){
@@ -113,6 +119,10 @@ function main_index(){
     var gmailBtn = document.querySelector('#gmail-btn');
     if(gmailBtn){
         gmailBtn.addEventListener("click", gmailBtnClicked, false);
+    }
+    var bandsBtn = document.querySelector('#conta-bands-btn');
+    if(bandsBtn){
+        bandsBtn.addEventListener("click", bandsBtnClicked, false);
     }
 }
 
