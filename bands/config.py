@@ -67,6 +67,7 @@ jasmine.specs(
 )
 
 jasmine.sources(
+    'js/base.js',
     'js/venda-produtos.js'
 )
 

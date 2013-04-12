@@ -6,13 +6,14 @@ describe("Venda de produtos", function() {
 
     beforeEach(function() {
         _gaq = []
-        if($("#produtos-section").length == 0){
-            $("body").append(vendaProdutosFixture);
-        }
+        $("body").append(vendaProdutosFixture);
+        formPagSeguro = document.querySelector('form[target="pagseguro"]');
+        mainVendaProdutos();
         this.context = $("#produtos-section");
     });
 
     afterEach(function() {
+        $("#produtos-section").remove();
     });
 
     it("Nao deixar comprar camisas", function() {
@@ -21,10 +22,19 @@ describe("Venda de produtos", function() {
         var submitCallback = jasmine.createSpy().andReturn(false);
         $(".pague-com-pag-seguro form", this.context).submit(submitCallback);
         $(".quantidade-cada-camisa:first", this.context).val('2');
-        $(".pague-com-pag-seguro input[type=image]", this.context).click();
-        expect(_gaq.length).toEqual(1);
-        expect(window.alert).toHaveBeenCalled();
-        expect(submitCallback).toHaveBeenCalled();
+        runs(function(){
+            $(".pague-com-pag-seguro form input[type=image]").click();
+        });
+
+        waits(500);
+
+        runs(function () {
+            expect(_gaq.length).toEqual(1);
+            expect(window.alert).toHaveBeenCalled();
+            expect(submitCallback).toHaveBeenCalled();
+        });
+
+
     });
 
 });
