@@ -19,10 +19,9 @@ nose==1.2.1
 nosexcover==1.0.7
 oauth2==1.5.211
 pymongo==2.3
-selenium==2.30.0
+selenium==2.32.0
 splinter==0.5.0
 webassets==0.7
 wsgiref==0.1.2
 yuicompressor==2.4.7
 pylast==0.5.11
-
