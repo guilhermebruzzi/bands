@@ -48,6 +48,18 @@ function makeRequestShowFromBand(bandName) {
     makeRequestServer("GET", "/show_from_band/" + bandName, adicionarShowDaBanda);
 }
 
+function makeRequestBandHome(bandName) {
+    if(typeof(_gaq) != "undefined"){
+        _gaq.push(['_trackEvent', 'Band', 'Procurar Banda na Home', 'Banda: ' + bandName]);
+    }
+    if(erroProcurarBandas.classList.contains("visivel")){
+        erroProcurarBandas.classList.remove("visivel");
+        erroProcurarBandas.classList.add("invisivel");
+    }
+    erroProcurarBandas.innerHTML = 'Não encontramos nenhuma banda chamada: ' + bandName + '. Verifique se digitou o nome corretamente.';
+    makeRequestServer("GET", "/search_band/" + bandName, adicionarBandaProcurada);
+}
+
 var procurarBandasText = document.querySelector('#opcoes-procurar-bandas-text');
 var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-button');
 
@@ -57,6 +69,27 @@ function opcaoNewsletter(){
 
     makeRequestNewsletter(option, tipo);
     this.parentNode.parentNode.parentNode.style.display = "none";
+}
+
+function adicionarBandaProcurada(){
+    if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 200) {
+            var htmlBanda = httpRequest.responseText;
+            var minhasBandasLista = document.querySelector('#minhas-bandas-lista');
+            if(htmlBanda){
+                minhasBandasLista.innerHTML = htmlBanda + minhasBandasLista.innerHTML;
+            }
+            else{
+                if(erroProcurarBandas.classList.contains("invisivel")){
+                    erroProcurarBandas.classList.remove("invisivel");
+                    erroProcurarBandas.classList.add("visivel");
+                }
+            }
+
+        } else {
+            console.log('There was a problem with the request.');
+        }
+    }
 }
 
 function adicionarShowDaBanda(){
@@ -86,9 +119,21 @@ function procurarShowDaBanda(){
     makeRequestShowFromBand(bandName);
 }
 
+function procurarBandaHome(){
+    var bandName = procurarBandasText.value;
+    procurarBandasText.value = "";
+    makeRequestBandHome(bandName);
+}
+
 function enterPressedProcuraBanda(e) {
     if (e.keyCode == 13) {
         setTimeout(procurarShowDaBanda, 50);
+    }
+}
+
+function enterPressedProcuraBandaHome(e) {
+    if (e.keyCode == 13) {
+        setTimeout(procurarBandaHome, 50);
     }
 }
 
@@ -112,8 +157,14 @@ function main_index(){
     }
 
     if(procurarBandasText){
-        procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
-        procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+        if(window.location.href.indexOf("novo") !== -1){
+            procurarBandasText.addEventListener("keypress", enterPressedProcuraBandaHome, false);
+            procurarBandasButton.addEventListener("click", procurarBandaHome, false);
+        }
+        else{
+            procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
+            procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
+        }
     }
 
     var gmailBtn = document.querySelector('#gmail-btn');
@@ -124,6 +175,10 @@ function main_index(){
     if(bandsBtn){
         bandsBtn.addEventListener("click", bandsBtnClicked, false);
     }
+    $('.modal').hide();
+    $('.close-banda').on('click', function(){
+        $(this).parent().remove();
+    });
 }
 
 main_index();

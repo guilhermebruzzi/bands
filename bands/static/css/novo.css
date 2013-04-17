@@ -1,0 +1,88 @@
+.area-bandas-nova-home .lista-pagina-principal-container{
+    margin: 20px 0px;
+}
+
+.area-bandas-nova-home .minhas-bandas{
+    background: none;
+    width: 100%;
+    border-bottom: 0;
+}
+
+.area-bandas-nova-home .explicacao-site h2{
+    font-size: 24px;
+}
+
+.minhas-bandas-lista{
+    width: 100%;
+}
+
+.minhas-bandas .opcoes-procurar-bandas-text{
+    height: 24px;
+    margin-right: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 83%;
+}
+
+.minhas-bandas .area-banda{
+    position: relative;
+    height: auto;
+}
+
+.minhas-bandas .lastfm-photo{
+    height: 252px;
+    vertical-align: top;
+    width: 252px;
+}
+
+.minhas-bandas .logo-banda-container {
+    height: 256px;
+    left: 35px;
+    position: absolute;
+    top: 19px;
+    width: 256px;
+    z-index: 1;
+}
+
+.minhas-bandas h2{
+    font-size: 30px;
+}
+
+.minhas-bandas h3{
+    font-size: 16px;
+    margin: 50px 10px 10px 2px;
+}
+
+.minhas-bandas-lista li{
+    width: 86%;
+    font-size: 0;
+    position: relative;
+}
+
+.close-banda{
+    font-size: 20px;
+    position: absolute;
+    right: 26px;
+    top: 19px;
+}
+
+.minhas-bandas-lista .item-lista-bands{
+    height: 54px;
+    margin: 0 0 50px 2px;
+    width: 95%;
+}
+
+.info-banda{
+    display: inline-block;
+    vertical-align: top;
+    width: 65%;
+}
+
+.banda-mais-opcoes button{
+    margin-right: 5px;
+}
+
+.minhas-bandas-lista .item-info span{
+    margin-left: 62px;
+    font-size: 16px;
+}

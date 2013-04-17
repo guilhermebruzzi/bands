@@ -5,6 +5,14 @@ from datetime import datetime
 from mongoengine import *
 from config import db
 
+lastfm = None
+
+def get_lastfm_module():
+    global lastfm
+    if lastfm is None:
+        lastfm = __import__("lastfm")
+    return lastfm
+
 class User(db.Document):
     facebook_id = db.StringField(required=True)
     email = db.StringField(required=True)
@@ -132,6 +140,16 @@ class Band(db.Document):
     shows = db.ListField(ReferenceField(Show, dbref=False))
     musicians = db.ListField(ReferenceField(User, dbref=False))
     products = db.ListField(ReferenceField(Product, dbref=False))
+    photo_url = db.StringField(required=False)
+
+    @property
+    def photo(self):
+        if self.photo_url:
+            return self.photo_url
+        lastfm_module = get_lastfm_module()
+        self.photo_url = lastfm_module.get_photo_from_band(band=self)
+        self.save()
+        return self.photo_url
 
     def __eq__(self, other):
         return self.slug == other.slug

@@ -1,0 +1,38 @@
+{% macro escreve_banda(band, show) -%}
+    <li class="round-component box-gray">
+        <div id="area-banda" class="area-banda">
+            <img class="lastfm-photo logo-banda" alt="imagem da banda" title="imagem da banda" src="{{ band.photo }}">
+            <div class="logo-banda-container"></div>
+        </div>
+
+        <div class="info-banda">
+            <h2>{{ band.name }}</h2>
+            <h3>Próximo Show</h3>
+            {%- set website = show.website -%}
+            {% if not website %}
+                {%- set website = show.location.website -%}
+            {% endif %}
+            <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                {% if show.cover_image %}
+                    <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
+                {% else %}
+                    {% if show.location.image %}
+                        <img alt="imagem do show" title="imagem do show" src="{{ show.location.image }}" />
+                    {% else %}
+                        <span title="imagem do show" class="icone-musicas img-default"></span>
+                    {% endif %}
+                {% endif %}
+                <span class="info-show item-info">
+                    <span class="banda-show">{{ show.datetime }}</span>
+                    <span class="data-show">{{ show.title }}</span>
+                </span>
+            </a>
+            <div class="banda-mais-opcoes">
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Mais shows</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-bandas-relacionadas" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Bandas relacionadas</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Comprar ingressos e camisas</button>
+            </div>
+        </div>
+        <button type="button" class="close-banda">&times;</button>
+    </li>
+{%- endmacro %}

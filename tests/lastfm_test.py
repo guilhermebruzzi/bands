@@ -3,7 +3,7 @@
 
 from base_test import BaseTest
 
-from lastfm import save_next_shows, get_nearby_shows
+from lastfm import save_next_shows, get_nearby_shows, get_photo_from_band
 from controllers import get_or_create_band
 from models import Band, Show, Location
 
@@ -36,3 +36,13 @@ class LastFmTest(BaseTest):
         self.assertEqual(len(shows), len(shows_from_mongo))
 
         self.__assert_shows__(shows, shows_titles=None)
+
+    def get_photo_from_band_test(self):
+        franz = self.bands[0]
+        self.assertEqual(franz.photo_url, None)
+        self.assertEqual(franz.photo, "http://userserve-ak.last.fm/serve/252/7149.jpg")
+        self.assertEqual(franz.photo_url, "http://userserve-ak.last.fm/serve/252/7149.jpg")
+
+        franz_from_mongo = Band.objects.get(name="Franz Ferdinand")
+        self.assertEqual(franz_from_mongo.photo_url, "http://userserve-ak.last.fm/serve/252/7149.jpg")
+        self.assertEqual(franz_from_mongo.photo, "http://userserve-ak.last.fm/serve/252/7149.jpg")
