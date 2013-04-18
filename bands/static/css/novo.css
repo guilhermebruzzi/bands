@@ -60,10 +60,13 @@
 }
 
 .close-banda{
-    font-size: 20px;
+    font-size: 18px;
     position: absolute;
     right: 26px;
     top: 19px;
+    border-radius: 4px;
+    border: 1px solid #c0c0c0;
+    color: #333333;
 }
 
 .minhas-bandas-lista .item-lista-bands{

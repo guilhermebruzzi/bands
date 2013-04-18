@@ -1,0 +1,11 @@
+var indexBtnFixture="";
+indexBtnFixture += "<span class=\"area-login-botoes\">";
+indexBtnFixture += "                        <a class=\"btn-auth btn-facebook large login-facebook\" onclick=\"_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login area minhas bandas pela index page']);\" href=\"\/login\/\">";
+indexBtnFixture += "                            Faça login pelo";
+indexBtnFixture += "                            <b>Facebook<\/b>";
+indexBtnFixture += "                        <\/a>";
+indexBtnFixture += "                        <span class=\"explicacao\">ou<\/span>";
+indexBtnFixture += "                        <a href=\"#\" class=\"gmail-btn\" id=\"gmail-btn\"><span>Faça login pelo Gmail<\/span><\/a>";
+indexBtnFixture += "                        <span class=\"explicacao\">ou<\/span>";
+indexBtnFixture += "                        <a href=\"#\" class=\"conta-bands-btn\" id=\"conta-bands-btn\"><span>Crie a sua conta Bands<\/span><\/a>";
+indexBtnFixture += "                    <\/span>";
