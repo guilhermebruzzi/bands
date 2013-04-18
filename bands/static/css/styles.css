@@ -209,12 +209,16 @@ header .user-menu .menu-lista a:hover{
     white-space: nowrap;
 }
 
-h2{
+h2, h3{
     margin: 15px auto;
     font-family: Tahoma, Ubuntu;
     text-transform: uppercase;
     font-size: 10pt;
     color: #333;
+}
+
+h3{
+    font-size: 8pt;
 }
 
 ul{
@@ -427,4 +431,12 @@ footer a.new_link{
 
 .error{
     color: red;
+}
+
+.modal-header{
+    font-size: 18px;
+}
+
+.modal-body{
+    font-size: 14px;
 }

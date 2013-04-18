@@ -1,0 +1,62 @@
+{% extends "master.html" %}
+{% import 'bootstrap_modal.html' as bootstrap_modal %}
+{% import 'band_search.html' as band_search %}
+
+{% block title %}Bands - Home{% endblock %}
+
+{% block content %}
+
+    <section id="area-banda-home" class="area-show-home area-bandas-nova-home">
+        {% if not current_user %}
+            <article class="explicacao-site titulo-show lista-pagina-principal-container">
+                <h2>O que é o site Bands?</h2>
+                <article class="cadastro">
+                    <span class="explicacao texto-normal"> Para músicos que procuram mais fãs. E para fãs que querem conhecer melhor seus músicos e novos artistas.</span>
+                    <span class="explicacao texto-normal"> Bands é um site para conectar fãs e músicos.</span><br />
+                    <span class="explicacao">Para cadastrar a sua banda ou salvar bandas e shows que queira acompanhar:</span><br />
+                    <span class="area-login-botoes">
+                        <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
+                            Faça login pelo
+                            <b>Facebook</b>
+                        </a>
+                        <span class="explicacao">ou</span>
+                        <a id="gmail-btn" class="gmail-btn" href="#" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao Gmail', 'Login Gmail area minhas bandas pela index page']);"><span>Faça login pelo Gmail</span></a>
+                        <span class="explicacao">ou</span>
+                        <a id="conta-bands-btn" class="conta-bands-btn" href="#" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao Bands', 'Criar conta bands pela home']);"><span>Crie a sua conta Bands</span></a>
+                    </span>
+                    <span class="explicacao">Ou use a nossa busca abaixo sem precisar de login.</span>
+                </article>
+            </article>
+        {% endif %}
+
+        <article id="minhas-bandas" class="minhas-bandas lista-pagina-principal-container">
+            <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
+                <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Digite a banda ou show que você deseja saber tudo sobre" type="text" list="bandas" />
+                <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn" type="button" value="Procurar" />
+                <span id="erro-procurar-bandas" class="error erro-procurar-bandas invisivel"></span>
+            </div>
+            <datalist id="bandas">
+                {% for band in all_bands %}
+                    <option value="{{ band.name }}" />
+                {% endfor %}
+            </datalist>
+            <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
+                {% for band, band_shows in minhas_bandas_shows %}
+                    {%- set show = band_shows[0] -%}
+                    {{ band_search.escreve_banda(band, show) }}
+                {% endfor %}
+            </ul>
+        </article>
+
+    </section>
+
+    {%- set modal_corpo = 'Ainda não temos mais shows para essa banda, clique em login no topo do site para ser avisado quando tivermos.' -%}
+    {{ bootstrap_modal.gera_modal('modal-mais-shows', 'Mais Shows', modal_corpo) }}
+
+    {%- set modal_corpo = 'Ainda não temos bandas relacionadas a essa, clique em login no topo do site para ser avisado quando tivermos.' -%}
+    {{ bootstrap_modal.gera_modal('modal-bandas-relacionadas', 'Bandas Relacionadas', modal_corpo) }}
+
+    {%- set modal_corpo = 'Ainda não temos ingressos e produtos para essa banda, clique em login no topo do site para ser avisado quando tivermos.' -%}
+    {{ bootstrap_modal.gera_modal('modal-produtos', 'Produtos', modal_corpo) }}
+
+{% endblock %}

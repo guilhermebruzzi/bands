@@ -56,7 +56,6 @@ def resultados(password):
             bands=top_bands, len_bands=len_bands, newsletters=newsletters)
     else:
         abort(404)
-
 @app.route('/', methods=['GET'])
 def index():
     if has_cookie_login(request) and not user_logged():
@@ -84,6 +83,33 @@ def index():
     return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
         shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city,
         BANDAS_CAMISAS_HOME=BANDAS_CAMISAS_HOME, formulario_pag_seguro=formulario_pag_seguro)
+
+@app.route('/novo/', methods=['GET'])
+def novo():
+    if has_cookie_login(request) and not user_logged():
+        make_login(oauth_token=get_cookie_login(request))
+
+    current_user = get_current_user()
+    current_city = current_user.city if current_user and current_user.city else "Rio de Janeiro"
+
+    minhas_bandas_shows = []
+    if current_user:
+        minhas_bandas = get_user_bands(user=current_user)
+        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
+
+    all_bands = get_all_bands()
+    top_bands = get_top_bands(max=3, maxSize=10)[0]
+    top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
+    minhas_bandas_shows.extend(top_shows)
+
+    shows_locais = get_shows_from_bands_by_city(city=current_city)
+    for show_local in shows_locais:
+        main_artist = show_local.artists[0]
+        minhas_bandas_shows.append((main_artist, [show_local]))
+
+    return render_template("novo.html", current_user=current_user,
+        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands)
+
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():
@@ -118,6 +144,16 @@ def show_from_band(band_name):
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
     return render_template("show_de_uma_banda.html", band=band, show=show)
 
+@app.route('/search_band/<band_name>', methods=['GET', 'POST'])
+def search_band(band_name):
+    current_user = None # TODO: Adicionar em minhas bandas: get_current_user()
+    current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
+    band = get_or_create_band({'slug': get_slug(band_name), 'name': band_name, 'user': current_user})
+    shows = get_shows_from_bands([band], limit_per_artist=1, city=current_city, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=True)
+    show = None
+    if shows:
+        show = shows[0][1][0] # Pegando apenas o objeto show da banda
+    return render_template("resultado_uma_banda.html", band=band, show=show)
 
 @app.route('/minhas-bandas/', methods=['GET'])
 @need_to_be_logged
