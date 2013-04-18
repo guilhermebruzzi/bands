@@ -1,3 +1,5 @@
+/ *Geral */
+
 .area-bandas-nova-home .lista-pagina-principal-container{
     margin: 20px 0px;
 }
@@ -8,13 +10,23 @@
     border-bottom: 0;
 }
 
+.icone-banda-default{
+    background-image: url("../img/banda-default.jpg");
+}
+
+/* Explicação do site */
+
 .area-bandas-nova-home .explicacao-site h2{
     font-size: 24px;
 }
 
+/* Minhas bandas */
+
 .minhas-bandas-lista{
     width: 100%;
 }
+
+/* Busca */
 
 .minhas-bandas .opcoes-procurar-bandas-text{
     height: 24px;
@@ -22,8 +34,26 @@
     text-align: center;
     text-transform: uppercase;
     width: 83%;
+    border: 1px solid #C0C0C0;
 }
 
+/* Cada Banda */
+
+/* Container da Banda */
+
+.minhas-bandas-lista li{
+    width: 86%;
+    font-size: 0;
+    position: relative;
+}
+
+.minhas-bandas-lista .item-lista-bands{
+    height: 54px;
+    margin: 0 0 20px 2px;
+    width: 95%;
+}
+
+/* Foto da Banda */
 .minhas-bandas .area-banda{
     position: relative;
     height: auto;
@@ -44,20 +74,58 @@
     z-index: 1;
 }
 
+/* Header da Banda */
+
 .minhas-bandas h2{
+    display: inline-block;
+    font-size: 0px;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+.favoritar{
+    font-size: 20px;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+
+.favoritar:visited span,
+.rating > span:hover:before,
+.rating > span:hover ~ span:before,
+.favoritar:active span,{
+    content: "\2605";
+    position: absolute;
+    color: #9F0902;
+    background-color: #9F0902;
+}
+
+.minhas-bandas .info-banda-nome{
     font-size: 30px;
+}
+
+.minhas-bandas .info-banda-header-menor{
+    font-size: 14px;
+    display: inline-block;
+    margin: 0px 0px 20px 20px;
+}
+
+.minhas-bandas input.nota{
+    height: 17px;
+    margin-left: 5px;
+    width: 25px;
 }
 
 .minhas-bandas h3{
     font-size: 16px;
-    margin: 50px 10px 10px 2px;
+    margin: 0 10px 10px 2px;
 }
 
-.minhas-bandas-lista li{
-    width: 86%;
-    font-size: 0;
-    position: relative;
-}
+/* Outras informacoes da Banda*/
 
 .close-banda{
     font-size: 18px;
@@ -73,16 +141,14 @@
     width: 25px;
 }
 
-.minhas-bandas-lista .item-lista-bands{
-    height: 54px;
-    margin: 0 0 50px 2px;
-    width: 95%;
-}
-
 .info-banda{
     display: inline-block;
     vertical-align: top;
     width: 65%;
+}
+
+.banda-mais-opcoes {
+    margin-bottom: 10px;
 }
 
 .banda-mais-opcoes button{

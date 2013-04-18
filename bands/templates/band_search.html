@@ -1,12 +1,24 @@
 {% macro escreve_banda(band, show) -%}
-    <li class="banda-container-li round-component box-gray">
+    <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
         <div id="area-banda" class="area-banda">
-            <img class="lastfm-photo logo-banda" alt="imagem da banda" title="imagem da banda" src="{{ band.photo }}">
-            <div class="logo-banda-container"></div>
+            {% if band.photo %}
+                <img class="lastfm-photo logo-banda" alt="imagem da banda" src="{{ band.photo }}" />
+            {% else %}
+                <span title="imagem da banda" class="lastfm-photo logo-banda icone-banda-default"></span>
+            {% endif %}
+            <div class="logo-banda-container" title="imagem da banda"></div>
         </div>
 
         <div class="info-banda">
-            <h2>{{ band.name }}</h2>
+            <h2>
+                <span class="info-banda-nome">{{ band.name }}</span>
+                <span class="info-banda-header-menor">Nota: <input type="number" value="7" class="nota" /></span>
+                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar rating"><span>☆</span></a></span>
+            </h2>
+            <div class="banda-mais-opcoes">
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-historia-timeline" onClick="_gaq.push(['_trackEvent', 'Band', 'Historia em timeline em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">História da Banda numa timeline</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Faça uma pergunta sobre a banda</button>
+            </div>
             {% if show %}
                 <h3>Próximo Show</h3>
                 {%- set website = show.website -%}

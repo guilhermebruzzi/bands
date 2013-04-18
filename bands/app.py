@@ -95,12 +95,13 @@ def novo():
     minhas_bandas_shows = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
-        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
+        minhas_bandas_shows.extend(get_shows_from_bands(minhas_bandas, 1, city=current_city))
+    else:
+        top_bands = get_top_bands(max=3, maxSize=10)[0]
+        top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
+        minhas_bandas_shows.extend(top_shows)
 
     all_bands = get_all_bands()
-    top_bands = get_top_bands(max=3, maxSize=10)[0]
-    top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
-    minhas_bandas_shows.extend(top_shows)
 
     shows_locais = get_shows_from_bands_by_city(city=current_city)
     for show_local in shows_locais:
@@ -142,6 +143,8 @@ def show_from_band(band_name):
     show = None
     if shows:
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
+    elif len(band.users) == 0:
+        band.delete()
     return render_template("show_de_uma_banda.html", band=band, show=show)
 
 @app.route('/search_band/<band_name>', methods=['GET', 'POST'])
@@ -153,6 +156,8 @@ def search_band(band_name):
     show = None
     if shows:
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
+    elif len(band.users) == 0:
+        band.delete()
     return render_template("resultado_uma_banda.html", band=band, show=show)
 
 @app.route('/minhas-bandas/', methods=['GET'])

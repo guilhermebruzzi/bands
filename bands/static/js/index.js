@@ -182,8 +182,12 @@ function main_index(){
         $(bandsBtn).click(bandsBtnClicked);
     }
     $('.modal').hide();
-    $('body').on('click', ".close-banda", function(){
+    $('#minhas-bandas').on('click', ".close-banda", function(){
         $(this).parent().remove();
+    });
+    $('#minhas-bandas').on('click', ".favoritar", function(evt){
+        evt.preventDefault();
+        return false;
     });
 }
 

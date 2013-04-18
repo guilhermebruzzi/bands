@@ -50,6 +50,12 @@
 
     </section>
 
+    {%- set modal_corpo = 'Ainda não temos a história da banda em timeline, clique em login no topo do site para ser avisado quando tivermos. Você pode mandar qualquer fato da banda para contato@bands.com.br que colocaremos no site.' -%}
+    {{ bootstrap_modal.gera_modal('modal-historia-timeline', 'Timeline da banda', modal_corpo) }}
+
+    {%- set modal_corpo = 'Por enquanto você pode mandar qualquer pergunta da banda para contato@bands.com.br lhe responderemos e colocaremos a resposta no site.' -%}
+    {{ bootstrap_modal.gera_modal('modal-pergunte', 'Pergunte sobre a banda', modal_corpo) }}
+
     {%- set modal_corpo = 'Ainda não temos mais shows para essa banda, clique em login no topo do site para ser avisado quando tivermos.' -%}
     {{ bootstrap_modal.gera_modal('modal-mais-shows', 'Mais Shows', modal_corpo) }}
 

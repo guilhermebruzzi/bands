@@ -1,4 +1,4 @@
 {% import 'band_search.html' as band_search %}
-{%- if band -%}
+{%- if band and band.photo -%}
     {{ band_search.escreve_banda(band, show) }}
 {%- endif -%}
