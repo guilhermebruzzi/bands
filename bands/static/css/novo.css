@@ -64,9 +64,13 @@
     position: absolute;
     right: 26px;
     top: 19px;
-    border-radius: 4px;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
     border: 1px solid #c0c0c0;
     color: #333333;
+    background-color: #ffffff;
+    height: 25px;
+    width: 25px;
 }
 
 .minhas-bandas-lista .item-lista-bands{

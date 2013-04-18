@@ -182,7 +182,7 @@ function main_index(){
         $(bandsBtn).click(bandsBtnClicked);
     }
     $('.modal').hide();
-    $('.close-banda').on('click', function(){
+    $('body').on('click', ".close-banda", function(){
         $(this).parent().remove();
     });
 }
