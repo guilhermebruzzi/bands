@@ -93,12 +93,14 @@ function enterPressedProcuraBanda(e) {
 }
 
 function gmailBtnClicked(){
+    _gaq.push(['_trackEvent', 'Login', 'Login Botao Gmail', 'Login Gmail area minhas bandas pela index page']);
     alert("Por enquanto não temos login pelo gmail, o login deve ser feito pelo facebook.\n" +
     "O Bands não postará nada em seu facebook e o login é bem rápido de ser feito.\n" +
     "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
 }
 
 function bandsBtnClicked(){
+    _gaq.push(['_trackEvent', 'Login', 'Login Botao Bands', 'Criar conta bands pela home']);
     alert("Por enquanto não temos a opção de uma conta própria do Bands, sendo assim o login deve ser feito pelo facebook.\n" +
     "O Bands não postará nada em seu facebook e o login é bem rápido de ser feito.\n" +
     "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
@@ -118,11 +120,11 @@ function main_index(){
 
     var gmailBtn = document.querySelector('#gmail-btn');
     if(gmailBtn){
-        gmailBtn.addEventListener("click", gmailBtnClicked, false);
+        $(gmailBtn).click(gmailBtnClicked);
     }
     var bandsBtn = document.querySelector('#conta-bands-btn');
     if(bandsBtn){
-        bandsBtn.addEventListener("click", bandsBtnClicked, false);
+        $(bandsBtn).click(bandsBtnClicked);
     }
 }
 

@@ -63,12 +63,15 @@ jasmine = Jasmine(app)
 jasmine.specs(
     'js/jquery-1.9.1.min.js',
     'js/jasmine/fixtures/venda-produtos-fixture.js',
-    'js/jasmine/specs/venda-produtos-spec.js'
+    'js/jasmine/specs/venda-produtos-spec.js',
+    'js/jasmine/fixtures/index-btn-fixture.js',
+    'js/jasmine/specs/index-btn-spec.js'
 )
 
 jasmine.sources(
     'js/base.js',
-    'js/venda-produtos.js'
+    'js/venda-produtos.js',
+    'js/index.js'
 )
 
 
