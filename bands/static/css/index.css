@@ -317,3 +317,16 @@ section.area-show-home article ul li a.item-lista-shows span span.banda-show {
 .fullwidth-textbox{
     width: 65%;
 }
+
+.modal-body textarea {
+    width: 98%;
+}
+
+.modal-body input {
+    width: 90%;
+}
+
+.modal-body label {
+    display: inline-block;
+    margin: 5px 0;
+}

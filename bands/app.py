@@ -11,7 +11,7 @@ from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_s
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
-    newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters
+    newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters, get_or_create_band_question
 from pagseguropy.pagseguro import Pagseguro
 
 
@@ -133,6 +133,16 @@ def salvar_newsletter(option):
     option = option == "sim"
     newsletter_answer = unicode(get_or_create_newsletter(option=option, user=current_user, tipo=tipo))
     return __make_response_plain_text__(newsletter_answer)
+
+@app.route('/band-question/', methods=['POST'])
+def band_question():
+    data = {}
+    data["email"] = request.form['email']
+    data["question"] = request.form['question']
+    data["band_slug"] = request.form['band_slug']
+
+    get_or_create_band_question(data)
+    return __make_response_plain_text__("ok")
 
 @app.route('/show_from_band/<band_name>', methods=['GET', 'POST'])
 def show_from_band(band_name):

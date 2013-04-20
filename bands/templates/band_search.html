@@ -1,4 +1,5 @@
 {% macro escreve_banda(band, show, notas) -%}
+{% import 'band_question.html' as band_question %}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
         <div id="area-banda" class="area-banda">
             {% if band.photo %}
@@ -23,7 +24,7 @@
             </h2>
             <div class="banda-mais-opcoes">
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-historia-timeline">História da Banda numa timeline</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
                 <h3>Próximo Show</h3>
@@ -53,6 +54,9 @@
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
             </div>
         </div>
+
+        {{ band_question.gera_modal(band.slug) }}
+
         <button type="button" class="close-banda">&times;</button>
     </li>
 {%- endmacro %}

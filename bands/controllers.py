@@ -6,7 +6,7 @@ from operator import itemgetter
 
 from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned
 
-from models import User, Question, Band, Show, Location, Newsletter, Product
+from models import User, Question, Band, Show, Location, Newsletter, Product, BandQuestion
 from helpers import get_slug
 from facebook import get_musicians_from_opengraph
 
@@ -17,6 +17,14 @@ def get_lastfm_module():
     if lastfm is None:
         lastfm = __import__("lastfm")
     return lastfm
+
+def get_or_create_band_question(data):
+    try:
+        band_question = BandQuestion.objects.get(email=data['email'], question=data['question'], band_slug=data["band_slug"])
+    except DoesNotExist:
+        band_question = BandQuestion.objects.create(email=data['email'], question=data['question'], band_slug=data["band_slug"])
+
+    return band_question
 
 def get_or_create_user(data, oauth_token=None):
     try:

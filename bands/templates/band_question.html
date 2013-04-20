@@ -1,0 +1,21 @@
+{% macro gera_modal(band_slug) -%}
+    <div id="modal-pergunte-{{ band_slug }}" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Faça uma pergunta:</h3>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" class="slug-pergunta" value="{{ band_slug }}" />
+
+            <label>E-mail:</label>
+            <input type="text" class="email-pergunta" />
+
+            <label>Pergunta:</label>
+            <textarea class="texto-pergunta"></textarea>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn shiny-red enviar-pergunta">Enviar</a>
+            <a href="#" class="btn shiny-red close" data-dismiss="modal" aria-hidden="true">Close</a>
+        </div>
+    </div>
+{%- endmacro %}
