@@ -1,4 +1,4 @@
-{% macro escreve_banda(band, show) -%}
+{% macro escreve_banda(band, show, notas) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
         <div id="area-banda" class="area-banda">
             {% if band.photo %}
@@ -12,12 +12,18 @@
         <div class="info-banda">
             <h2>
                 <span class="info-banda-nome">{{ band.name }}</span>
-                <span class="info-banda-header-menor">Nota: <input type="number" value="7" class="nota" /></span>
-                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar rating"><span>☆</span></a></span>
+                <span class="info-banda-header-menor">Nota:
+                    <select class="nota">
+                        {% for nota in notas %}
+                            <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
             </h2>
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-historia-timeline" onClick="_gaq.push(['_trackEvent', 'Band', 'Historia em timeline em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">História da Banda numa timeline</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Faça uma pergunta sobre a banda</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-historia-timeline">História da Banda numa timeline</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
                 <h3>Próximo Show</h3>
@@ -42,9 +48,9 @@
                 </a>
             {% endif %}
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Mais shows</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-bandas-relacionadas" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Bandas relacionadas</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">Comprar ingressos e camisas</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Mais shows</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-bandas-relacionadas" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Bandas relacionadas</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
             </div>
         </div>
         <button type="button" class="close-banda">&times;</button>

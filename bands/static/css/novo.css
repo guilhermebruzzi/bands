@@ -28,6 +28,10 @@
 
 /* Busca */
 
+.minhas-bandas .opcoes-procurar-bandas {
+    margin: 15px 0px;
+}
+
 .minhas-bandas .opcoes-procurar-bandas-text{
     height: 24px;
     margin-right: 6px;
@@ -81,27 +85,21 @@
     font-size: 0px;
 }
 
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-}
 .favoritar{
-    font-size: 20px;
-}
-.rating > span {
     display: inline-block;
+    background: url("../img/favorite-star-icons.png") no-repeat;
+    background-position: -16px 0;
+    width: 16px;
+    height: 16px;
     position: relative;
-    width: 1.1em;
+    top: 2px;
 }
 
-.favoritar:visited span,
-.rating > span:hover:before,
-.rating > span:hover ~ span:before,
-.favoritar:active span,{
-    content: "\2605";
-    position: absolute;
-    color: #9F0902;
-    background-color: #9F0902;
+.favoritar:visited,
+.favoritar:hover,
+.favoritar:active,
+.favoritar.favoritou{
+    background-position: 0 0;
 }
 
 .minhas-bandas .info-banda-nome{
@@ -114,10 +112,13 @@
     margin: 0px 0px 20px 20px;
 }
 
-.minhas-bandas input.nota{
-    height: 17px;
+.minhas-bandas .nota{
+    font-size: 12px;
+    height: 21px;
     margin-left: 5px;
-    width: 25px;
+    position: relative;
+    top: -1px;
+    width: 38px;
 }
 
 .minhas-bandas h3{

@@ -177,14 +177,37 @@ function main_index(){
     if(gmailBtn){
         $(gmailBtn).click(gmailBtnClicked);
     }
+
     var bandsBtn = document.querySelector('#conta-bands-btn');
     if(bandsBtn){
         $(bandsBtn).click(bandsBtnClicked);
     }
+
+    $('#minhas-bandas-lista').on("click", ".favoritar", function(){
+        var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
+
+        if(typeof _gaq != "undefined"){
+            _gaq.push(['_trackEvent', 'Band', 'Favoritar em uma pesquisa de banda', 'Banda: ' + bandaNome]);
+        }
+
+        $(this).addClass("favoritou");
+    });
+
+    $('#minhas-bandas-lista').on("change", ".nota", function(){
+        var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
+        var nota = $(this).val();
+
+        if(typeof _gaq != "undefined"){
+            _gaq.push(['_trackEvent', 'Band', 'Nota em uma pesquisa de banda', 'Banda: ' + bandaNome + ' Nota: ' + nota]);
+        }
+    });
+
     $('.modal').hide();
+
     $('#minhas-bandas').on('click', ".close-banda", function(){
         $(this).parent().remove();
     });
+
     $('#minhas-bandas').on('click', ".favoritar", function(evt){
         evt.preventDefault();
         return false;

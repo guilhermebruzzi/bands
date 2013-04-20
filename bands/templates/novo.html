@@ -43,7 +43,7 @@
             <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
                 {% for band, band_shows in minhas_bandas_shows %}
                     {%- set show = band_shows[0] -%}
-                    {{ band_search.escreve_banda(band, show) }}
+                    {{ band_search.escreve_banda(band, show, notas) }}
                 {% endfor %}
             </ul>
         </article>

@@ -8,6 +8,8 @@ describe("Botoes fake na home", function() {
         $("body").append(indexBtnFixture);
         main_index();
         this.context = $(".area-login-botoes");
+        _gaq = [];
+
         this.assertClickedBtn = function(elm){
             expect(_gaq.length).toEqual(0);
             spyOn(window, "alert");
@@ -23,7 +25,6 @@ describe("Botoes fake na home", function() {
                 expect(_gaq.length).toEqual(1);
             });
         };
-        _gaq = []
     });
 
     afterEach(function() {

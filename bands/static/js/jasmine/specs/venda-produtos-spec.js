@@ -5,7 +5,7 @@ describe("Venda de produtos", function() {
     //expect(foo).toEqual(1);
 
     beforeEach(function() {
-        _gaq = []
+        _gaq = [];
         $("body").append(vendaProdutosFixture);
         formPagSeguro = document.querySelector('form[target="pagseguro"]');
         mainVendaProdutos();
@@ -22,6 +22,7 @@ describe("Venda de produtos", function() {
         var submitCallback = jasmine.createSpy().andReturn(false);
         $(".pague-com-pag-seguro form", this.context).submit(submitCallback);
         $(".quantidade-cada-camisa:first", this.context).val('2');
+
         runs(function(){
             $(".pague-com-pag-seguro form input[type=image]").click();
         });
