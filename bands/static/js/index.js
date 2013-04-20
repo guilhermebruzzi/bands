@@ -190,7 +190,7 @@ function main_index(){
             _gaq.push(['_trackEvent', 'Band', 'Favoritar em uma pesquisa de banda', 'Banda: ' + bandaNome]);
         }
 
-        $(this).addClass("favoritou");
+        $(this).toggleClass("favoritou");
     });
 
     $('#minhas-bandas-lista').on("change", ".nota", function(){

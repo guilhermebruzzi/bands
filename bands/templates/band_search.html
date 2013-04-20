@@ -27,31 +27,34 @@
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
-                <h3>Próximo Show</h3>
+                <h3>Shows</h3>
                 {%- set website = show.website -%}
                 {% if not website %}
                     {%- set website = show.location.website -%}
                 {% endif %}
-                <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
-                    {% if show.cover_image %}
-                        <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
-                    {% else %}
-                        {% if show.location.image %}
-                            <img alt="imagem do show" title="imagem do show" src="{{ show.location.image }}" />
+                <div class="navegacao-show-container">
+                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
+                    <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                        {% if show.cover_image %}
+                            <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
                         {% else %}
-                            <span title="imagem do show" class="icone-musicas img-default"></span>
+                            {% if show.location.image %}
+                                <img alt="imagem do show" title="imagem do show" src="{{ show.location.image }}" />
+                            {% else %}
+                                <span title="imagem do show" class="icone-musicas img-default"></span>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    <span class="info-show item-info">
-                        <span class="banda-show">{{ show.datetime }}</span>
-                        <span class="data-show">{{ show.title }}</span>
-                    </span>
-                </a>
+                        <span class="info-show item-info">
+                            <span class="banda-show">{{ show.datetime }}</span>
+                            <span class="data-show">{{ show.title }}</span>
+                        </span>
+                    </a>
+                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
+                </div>
             {% endif %}
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Mais shows</button>
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-bandas-relacionadas" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Bandas relacionadas</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
+                <button type="button" class="shiny-red comprar-ingressos-camisas" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
             </div>
         </div>
 

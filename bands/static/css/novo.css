@@ -53,8 +53,9 @@
 
 .minhas-bandas-lista .item-lista-bands{
     height: 54px;
-    margin: 0 0 20px 2px;
-    width: 95%;
+    margin: 0;
+    vertical-align: top;
+    width: 400px;
 }
 
 /* Foto da Banda */
@@ -95,9 +96,6 @@
     top: 2px;
 }
 
-.favoritar:visited,
-.favoritar:hover,
-.favoritar:active,
 .favoritar.favoritou{
     background-position: 0 0;
 }
@@ -118,12 +116,53 @@
     margin-left: 5px;
     position: relative;
     top: -1px;
-    width: 38px;
+    width: 45px;
+}
+
+.minhas-bandas .navegacao-show-container{
+    font-size: 0;
+    height: 52px;
+    margin-bottom: 20px;
+}
+
+.minhas-bandas .band-navegacao-show{
+    display: inline-block;
+    background: url("../img/navegacao-shows.png") no-repeat;
+    background-position: 0 0;
+    width: 39px;
+    height: 54px;
+    border: 0;
+    vertical-align: top;
+}
+
+section.area-show-home .minhas-bandas ul li a.item-lista-shows span.info-show {
+    height: 52px;
+    width: 336px;
+}
+
+section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.banda-show,
+section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-show {
+    color: #9F0902;
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 6px;
+    position: relative;
+    top: 0px;
+    width: 398px;
+}
+
+.minhas-bandas .band-prev-show{
+    margin-right: 70px;
+}
+
+.minhas-bandas .band-next-show{
+    background-position: -39px 0;
+    margin-left: 30px;
 }
 
 .minhas-bandas h3{
     font-size: 16px;
-    margin: 0 10px 10px 2px;
+    margin: 20px 10px 10px 2px;
 }
 
 /* Outras informacoes da Banda*/
@@ -154,6 +193,11 @@
 
 .banda-mais-opcoes button{
     margin-right: 5px;
+}
+
+.banda-mais-opcoes .comprar-ingressos-camisas {
+    float: right;
+    margin-right: 34px;
 }
 
 .minhas-bandas-lista .item-info span{
