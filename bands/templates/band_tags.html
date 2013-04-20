@@ -1,0 +1,18 @@
+{% macro gera_modal(band) -%}
+    <div id="modal-tags-{{ band.slug }}" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Escolha um gênero:</h3>
+        </div>
+        <div class="modal-body">
+            {% for tag in band.tags %}
+                <div>
+                    <a href="#{{ tag }}" class="close" data-dismiss="modal" aria-hidden="true">{{ tag }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn shiny-red close" data-dismiss="modal" aria-hidden="true">Close</a>
+        </div>
+    </div>
+{%- endmacro %}

@@ -75,12 +75,12 @@ def save_next_shows(bands):
             print params
         return __get_shows__(url)
 
-def get_photo_from_band(band):
+def get_band_data(band):
     params = {"method": "artist.getinfo", "artist": band.name, "autocorrect": '1', "api_key": network.api_key, "format": "json"}
     params = urllib.urlencode(dict([k, v.encode('utf-8')] for k, v in params.items()))
     url = 'http://ws.audioscrobbler.com/2.0/?%s' % params
     response_lastfm = get_json(url)
-    return response_lastfm["artist"]["image"][3]['#text']
+    return response_lastfm["artist"]
 
 
 def get_next_shows_subprocess(bands):

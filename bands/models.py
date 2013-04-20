@@ -141,15 +141,29 @@ class Band(db.Document):
     musicians = db.ListField(ReferenceField(User, dbref=False))
     products = db.ListField(ReferenceField(Product, dbref=False))
     photo_url = db.StringField(required=False)
+    tags_list = db.ListField(StringField())
+
+    @property
+    def tags(self):
+        if len(self.tags_list) == 0:
+            self.update_data();
+        return self.tags_list
 
     @property
     def photo(self):
-        if self.photo_url:
-            return self.photo_url
-        lastfm_module = get_lastfm_module()
-        self.photo_url = lastfm_module.get_photo_from_band(band=self)
-        self.save()
+        if not self.photo_url:
+            self.update_data();
         return self.photo_url
+
+    def update_data(self):
+        lastfm_module = get_lastfm_module()
+        band_data = lastfm_module.get_band_data(band=self)
+        self.photo_url = band_data["image"][3]['#text']
+
+        if type(band_data["tags"]) is dict:
+            self.tags_list = [tag["name"] for tag in band_data["tags"]["tag"]]
+
+        self.save()
 
     def __eq__(self, other):
         return self.slug == other.slug

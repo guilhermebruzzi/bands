@@ -111,7 +111,7 @@
 .minhas-bandas .info-banda-header-menor{
     font-size: 14px;
     display: inline-block;
-    margin: 0px 0px 20px 20px;
+    margin: 0px 0px 0px 20px;
 }
 
 .minhas-bandas input.nota{
@@ -158,4 +158,12 @@
 .minhas-bandas-lista .item-info span{
     margin-left: 62px;
     font-size: 16px;
+}
+
+.info-banda-genero {
+    font-size: 14px;
+}
+
+.info-banda-genero-div, .info-banda-header {
+    margin-bottom: 10px;
 }
