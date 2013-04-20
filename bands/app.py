@@ -109,7 +109,7 @@ def novo():
         minhas_bandas_shows.append((main_artist, [show_local]))
 
     return render_template("novo.html", current_user=current_user,
-        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands)
+        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11))
 
 
 @app.route('/loja-virtual', methods=['GET'])
