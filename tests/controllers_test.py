@@ -10,7 +10,7 @@ from models import *
 
 class ControllersTest(BaseTest):
 
-    models = [User, Question, Band, Show, Location, Newsletter, Product] #  A serem deletados a cada teste
+    models = [User, Question, Band, Show, Location, Newsletter, Product, BandQuestion] #  A serem deletados a cada teste
 
     def setUp(self):
         self.__delete_all__() #  Chama a funcao que deleta todos os models que essa classe testa
@@ -170,6 +170,24 @@ class ControllersTest(BaseTest):
             "quantity_type": "range",
             "quantity_value": "1,10,1"
         }
+
+        self.band_question = {
+            "email": "guibruzzi@gmail.com",
+            "question": "Quando a Madonna perdeu a virgindade?",
+            "band_slug": "madonna"
+        }
+
+    def get_or_create_band_question_test(self):
+        madonna_question = get_or_create_band_question(data=self.band_question)
+        self.__assert_question__(madonna_question, self.band_question)
+
+        band_question = BandQuestion.objects.all()[0]
+        self.__assert_question__(band_question, self.band_question)
+
+        band_question = get_or_create_band_question(data=self.band_question)
+        self.__assert_question__(band_question, self.band_question)
+        self.assertEqual(len(BandQuestion.objects.all()), 1)
+
 
     def create_user_with_city_test(self):
         self.data_user_guto["city"] = "Rio de Janeiro"
@@ -789,6 +807,10 @@ class ControllersTest(BaseTest):
         self.assertTrue(validate_answers(self.valid_musico))
         self.assertTrue(validate_answers(self.valid_fa))
 
+    def __assert_question__(self, band_question, band_question_data):
+        self.assertEqual(band_question.email, band_question_data["email"])
+        self.assertEqual(band_question.question, band_question_data["question"])
+        self.assertEqual(band_question.band_slug, band_question_data["band_slug"])
 
     def __assert_user__(self, user, user_data):
         self.assertEqual(user.facebook_id, user_data["id"])

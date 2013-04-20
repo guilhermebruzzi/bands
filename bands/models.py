@@ -156,3 +156,8 @@ class Band(db.Document):
 
     def __unicode__(self):
         return self.name
+
+class BandQuestion(db.Document):
+    email = db.StringField(required=True)
+    question = db.StringField(required=True)
+    band_slug = db.StringField(required=True)

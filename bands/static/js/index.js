@@ -189,6 +189,20 @@ function main_index(){
         evt.preventDefault();
         return false;
     });
+
+    $(".enviar-pergunta").click(function(){
+        var email = $(this).parent().parent().find(".email-pergunta").val();
+        var texto = $(this).parent().parent().find(".texto-pergunta").val();
+        var slug = $(this).parent().parent().find(".slug-pergunta").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/band-question/",
+            data: { email: email, question: texto, band_slug: slug }
+        }).done(function(msg) {
+            alert(msg);
+        });
+    });
 }
 
 main_index();
