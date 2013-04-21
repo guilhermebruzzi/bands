@@ -7,7 +7,7 @@
         <div class="modal-body">
             {% for similar in band.similares %}
                 <div>
-                    <a href="#{{ similar.name }}" class="close" data-dismiss="modal" aria-hidden="true" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas no modal', 'Banda principal: {{ band.name }} e banda relacionada: {{ similar.name }}']);">{{ similar.name }}</a>
+                    <a href="#{{ similar.name }}" class="info-banda-link close" data-dismiss="modal" aria-hidden="true" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas no modal', 'Banda principal: {{ band.name }} e banda relacionada: {{ similar.name }}']);">{{ similar.name }}</a>
                 </div>
             {% endfor %}
         </div>
