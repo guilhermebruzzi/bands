@@ -11,7 +11,7 @@
 }
 
 .icone-banda-default{
-    background-image: url("../img/banda-default.jpg");
+    background-image: url("/static/img/banda-default.jpg");
 }
 
 /* Explicação do site */
@@ -88,7 +88,7 @@
 
 .favoritar{
     display: inline-block;
-    background: url("../img/favorite-star-icons.png") no-repeat;
+    background: url("/static/img/favorite-star-icons.png") no-repeat;
     background-position: -16px 0;
     width: 16px;
     height: 16px;
@@ -127,7 +127,7 @@
 
 .minhas-bandas .band-navegacao-show{
     display: inline-block;
-    background: url("../img/navegacao-shows.png") no-repeat;
+    background: url("/static/img/navegacao-shows.png") no-repeat;
     background-position: 0 0;
     width: 39px;
     height: 54px;
