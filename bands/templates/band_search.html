@@ -70,6 +70,6 @@
         {{ bandas_relacionadas.gera_modal(band) }}
         {{ band_history.gera_modal(band) }}
 
-        <button type="button" class="close-banda">&times;</button>
+        <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{ band.name }}']);">&times;</button>
     </li>
 {%- endmacro %}
