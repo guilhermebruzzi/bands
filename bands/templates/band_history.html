@@ -1,0 +1,16 @@
+{% macro gera_modal(band) -%}
+    <div id="modal-history-{{ band.slug }}" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>História da banda</h3>
+        </div>
+        <div class="modal-body">
+            <p><a href="#" class="btn shiny-red ver-em-formato-timeline" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver história em timeline no modal de historia (botao de cima)', 'Banda: {{ band.name }}']);">Ver essa história numa timeline</a></p>
+            <p><pre>{{ band.history|safe }}</pre></p>
+            <p><a href="#" class="btn shiny-red ver-em-formato-timeline" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver história em timeline no modal de historia (botao de baixo)', 'Banda: {{ band.name }}']);">Ver essa história numa timeline</a></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn shiny-red close" data-dismiss="modal" aria-hidden="true">Close</a>
+        </div>
+    </div>
+{%- endmacro %}

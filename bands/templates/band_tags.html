@@ -7,7 +7,7 @@
         <div class="modal-body">
             {% for tag in band.tags %}
                 <div>
-                    <a href="#{{ tag }}" class="close" data-dismiss="modal" aria-hidden="true">{{ tag }}</a>
+                    <a href="#{{ tag }}" class="info-banda-link close" data-dismiss="modal" aria-hidden="true" onClick="_gaq.push(['_trackEvent', 'Band', 'Genero no modal', 'Banda: {{ band.name }} Genero: {{ tag }}']);">{{ tag }}</a>
                 </div>
             {% endfor %}
         </div>

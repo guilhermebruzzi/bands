@@ -1,6 +1,7 @@
 {% import 'band_question.html' as band_question %}
 {% import 'band_tags.html' as band_tags %}
 {% import 'bandas_relacionadas.html' as bandas_relacionadas %}
+{% import 'band_history.html' as band_history %}
 
 {% macro escreve_banda(band, show, notas) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
@@ -26,10 +27,10 @@
                 <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
             </h2>
             <div class="info-banda-genero-div">
-                <a class="info-banda-genero" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
+                <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
             </div>
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-historia-timeline">História da Banda numa timeline</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-history-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver Historia em uma pesquisa de banda', 'Banda: {{ band.name }}']);">História da Banda numa timeline</button>
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
@@ -39,7 +40,7 @@
                     {%- set website = show.location.website -%}
                 {% endif %}
                 <div class="navegacao-show-container">
-                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
+                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Esq em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
                     <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
                         {% if show.cover_image %}
                             <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
@@ -55,7 +56,7 @@
                             <span class="data-show">{{ show.title }}</span>
                         </span>
                     </a>
-                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
+                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Dir em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
                 </div>
             {% endif %}
             <div class="banda-mais-opcoes">
@@ -67,6 +68,7 @@
         {{ band_question.gera_modal(band.slug) }}
         {{ band_tags.gera_modal(band) }}
         {{ bandas_relacionadas.gera_modal(band) }}
+        {{ band_history.gera_modal(band) }}
 
         <button type="button" class="close-banda">&times;</button>
     </li>

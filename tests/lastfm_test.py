@@ -63,6 +63,9 @@ class LastFmTest(BaseTest):
         self.assertEqual(franz_from_mongo.similares_slug, ["kaiser-chiefs", "arctic-monkeys", "kasabian", "the-strokes", "the-last-shadow-puppets"])
         self.__assert_bands_list__(franz_from_mongo.similares, self.franz_similares_data)
 
+        self.assertIn("Franz Ferdinand", franz_from_mongo.history_content)
+        self.assertIn("Franz Ferdinand", franz_from_mongo.history)
+
     def __assert_bands_list__(self, bands_list, bands_list_data):
         self.assertEqual(len(bands_list), len(bands_list_data))
 

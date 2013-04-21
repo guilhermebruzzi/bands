@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import time
+import re
 from datetime import datetime
 from mongoengine import *
 from config import db
@@ -151,6 +151,7 @@ class Band(db.Document):
     photo_url = db.StringField(required=False)
     tags_list = db.ListField(StringField())
     similares_slug = db.ListField(StringField())
+    history_content = db.StringField(required=False)
 
     @property
     def similares(self):
@@ -161,14 +162,20 @@ class Band(db.Document):
     @property
     def tags(self):
         if len(self.tags_list) == 0:
-            self.update_data();
+            self.update_data()
         return self.tags_list
 
     @property
     def photo(self):
         if not self.photo_url:
-            self.update_data();
+            self.update_data()
         return self.photo_url
+
+    @property
+    def history(self):
+        if not self.history_content:
+            self.update_data()
+        return self.history_content
 
     def update_data(self):
         lastfm_module = get_lastfm_module()
@@ -188,6 +195,8 @@ class Band(db.Document):
             for similar_band in similares:
                 band = controller.get_or_create_band({"name": similar_band["name"]})
                 self.similares_slug.append(band.slug)
+
+        self.history_content = re.sub('<[^>]*>', '', band_data["bio"]["content"])
 
         self.save()
 

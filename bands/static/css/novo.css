@@ -205,8 +205,10 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     font-size: 16px;
 }
 
-.info-banda-genero {
-    font-size: 14px;
+.info-banda-link {
+    color: #9F0902;
+    font-size: 18px;
+    text-decoration: none;
 }
 
 .info-banda-genero-div, .info-banda-header {
