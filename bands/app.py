@@ -55,35 +55,8 @@ def resultados(password):
             bands=top_bands, len_bands=len_bands, newsletters=newsletters)
     else:
         abort(404)
+
 @app.route('/', methods=['GET'])
-def index():
-    if has_cookie_login(request) and not user_logged():
-        make_login(oauth_token=get_cookie_login(request))
-
-    current_user = get_current_user()
-    current_city = current_user.city if current_user and current_user.city else "Rio de Janeiro"
-
-    minhas_bandas_shows = []
-    if current_user:
-        minhas_bandas = get_user_bands(user=current_user)
-        minhas_bandas_shows = get_shows_from_bands(minhas_bandas, 1, city=current_city)
-
-    shows_locais = get_shows_from_bands_by_city(city=current_city)
-
-    newsletter = newsletter_exists(tipo="Shows", user=current_user)
-
-    all_bands = get_all_bands()
-    top_bands = get_top_bands(max=3, maxSize=10)[0]
-    top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
-
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
-
-    return render_template("index.html", current_user=current_user, minhas_bandas_shows=minhas_bandas_shows,
-        shows_locais=shows_locais, newsletter=newsletter, all_bands=all_bands, top_shows=top_shows, current_city=current_city,
-        BANDAS_CAMISAS_HOME=BANDAS_CAMISAS_HOME, formulario_pag_seguro=formulario_pag_seguro)
-
-@app.route('/novo/', methods=['GET'])
 def novo():
     if has_cookie_login(request) and not user_logged():
         make_login(oauth_token=get_cookie_login(request))
