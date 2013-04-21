@@ -3,7 +3,6 @@
 
 import os
 
-from models import *
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS, BANDAS_CAMISAS_HOME
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \

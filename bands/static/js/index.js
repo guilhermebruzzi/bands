@@ -155,6 +155,21 @@ function bandsBtnClicked(){
     "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
 }
 
+function historyTimelineBtnClicked(){
+    alert("Por enquanto não temos a opção de história em formato de timeline.\n" +
+    "Caso queira saber quando teremos essa opção faça login na parte superior do site.\n" +
+    "No botão opine na parte direita você pode discutir sobre essa e outras opções que gostaria que tivessemos.");
+}
+
+function infoBandaGeneroClicked(){
+    var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
+    var genero = $(this).text();
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Band', 'Gênero em timeline no modal de história', 'Banda: ' + bandaNome + ' Genero: ' + genero]);
+    }
+}
+
 function main_index(){
     var answers = document.querySelectorAll(".answer-principal");
     for(var i = 0; i < answers.length; i++){
@@ -183,6 +198,8 @@ function main_index(){
         $(bandsBtn).click(bandsBtnClicked);
     }
 
+    $('.modal').hide();
+
     $('#minhas-bandas-lista').on("click", ".favoritar", function(){
         var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
 
@@ -202,8 +219,6 @@ function main_index(){
         }
     });
 
-    $('.modal').hide();
-
     $('#minhas-bandas').on('click', ".close-banda", function(){
         $(this).parent().remove();
     });
@@ -212,6 +227,10 @@ function main_index(){
         evt.preventDefault();
         return false;
     });
+
+    $('#minhas-bandas').on('click', ".ver-em-formato-timeline", historyTimelineBtnClicked);
+
+    $('#minhas-bandas').on('click', ".info-banda-genero", infoBandaGeneroClicked);
 
     $(".enviar-pergunta").click(function(){
         var email = $(this).parent().parent().find(".email-pergunta").val();

@@ -54,3 +54,8 @@ class LastFmTest(BaseTest):
 
         self.assertEqual(franz_from_mongo.tags_list, ["indie", "indie rock", "rock", "alternative", "britpop"])
         self.assertEqual(franz_from_mongo.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])
+
+        self.assertIn("Franz Ferdinand", franz_from_mongo.history_content)
+        self.assertIn("Franz Ferdinand", franz_from_mongo.history)
+
+
