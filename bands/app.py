@@ -114,7 +114,7 @@ def band_question():
     data["band_slug"] = request.form['band_slug']
 
     get_or_create_band_question(data)
-    return __make_response_plain_text__("ok")
+    return __make_response_plain_text__("Pergunta enviada com sucesso! Envie quantas quiser.")
 
 @app.route('/show_from_band/<band_name>', methods=['GET', 'POST'])
 def show_from_band(band_name):
