@@ -17,6 +17,8 @@ class LastFmTest(BaseTest):
         self.artists = ["Franz Ferdinand", "Ivete Sangalo", "Chico Buarque", "Muse"]
         self.bands = [get_or_create_band({"name": artist}) for artist in self.artists]
 
+        self.franz_similares_data = [ "Kaiser Chiefs", "Arctic Monkeys", "Kasabian", "The Strokes", "The Last Shadow Puppets" ]
+
     def save_next_shows_test(self):
         shows_returned = save_next_shows(self.bands)
 
@@ -41,12 +43,15 @@ class LastFmTest(BaseTest):
         franz = self.bands[0]
         self.assertEqual(franz.photo_url, None)
         self.assertEqual(franz.tags_list, [])
+        self.assertEqual(franz.similares_slug, [])
 
         self.assertEqual(franz.photo, "http://userserve-ak.last.fm/serve/252/7149.jpg")
         self.assertEqual(franz.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])
+        self.__assert_bands_list__(franz.similares, self.franz_similares_data)
 
         self.assertEqual(franz.photo_url, "http://userserve-ak.last.fm/serve/252/7149.jpg")
         self.assertEqual(franz.tags_list, ["indie", "indie rock", "rock", "alternative", "britpop"])
+        self.assertEqual(franz.similares_slug, ["kaiser-chiefs", "arctic-monkeys", "kasabian", "the-strokes", "the-last-shadow-puppets"])
 
         franz_from_mongo = Band.objects.get(name="Franz Ferdinand")
         self.assertEqual(franz_from_mongo.photo_url, "http://userserve-ak.last.fm/serve/252/7149.jpg")
@@ -54,3 +59,17 @@ class LastFmTest(BaseTest):
 
         self.assertEqual(franz_from_mongo.tags_list, ["indie", "indie rock", "rock", "alternative", "britpop"])
         self.assertEqual(franz_from_mongo.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])
+
+        self.assertEqual(franz_from_mongo.similares_slug, ["kaiser-chiefs", "arctic-monkeys", "kasabian", "the-strokes", "the-last-shadow-puppets"])
+        self.__assert_bands_list__(franz_from_mongo.similares, self.franz_similares_data)
+
+    def __assert_bands_list__(self, bands_list, bands_list_data):
+        self.assertEqual(len(bands_list), len(bands_list_data))
+
+        band_names = [band.name for band in bands_list]
+
+        for name in bands_list_data:
+            self.assertIn(name, band_names)
+
+        for name in band_names:
+            self.assertIn(name, bands_list_data)

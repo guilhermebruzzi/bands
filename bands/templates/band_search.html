@@ -1,5 +1,6 @@
 {% import 'band_question.html' as band_question %}
 {% import 'band_tags.html' as band_tags %}
+{% import 'bandas_relacionadas.html' as bandas_relacionadas %}
 
 {% macro escreve_banda(band, show, notas) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
@@ -58,13 +59,14 @@
                 </div>
             {% endif %}
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-bandas-relacionadas" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Bandas relacionadas</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Bandas relacionadas</button>
                 <button type="button" class="shiny-red comprar-ingressos-camisas" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
             </div>
         </div>
 
         {{ band_question.gera_modal(band.slug) }}
         {{ band_tags.gera_modal(band) }}
+        {{ bandas_relacionadas.gera_modal(band) }}
 
         <button type="button" class="close-banda">&times;</button>
     </li>

@@ -6,12 +6,20 @@ from mongoengine import *
 from config import db
 
 lastfm = None
+controllers_module = None
 
 def get_lastfm_module():
     global lastfm
     if lastfm is None:
         lastfm = __import__("lastfm")
     return lastfm
+
+
+def get_controllers_module():
+    global controllers_module
+    if controllers_module is None:
+        controllers_module = __import__("controllers")
+    return controllers_module
 
 class User(db.Document):
     facebook_id = db.StringField(required=True)
@@ -142,6 +150,13 @@ class Band(db.Document):
     products = db.ListField(ReferenceField(Product, dbref=False))
     photo_url = db.StringField(required=False)
     tags_list = db.ListField(StringField())
+    similares_slug = db.ListField(StringField())
+
+    @property
+    def similares(self):
+        if len(self.similares_slug) == 0:
+            self.update_data();
+        return Band.objects.filter(slug__in=self.similares_slug)
 
     @property
     def tags(self):
@@ -157,11 +172,22 @@ class Band(db.Document):
 
     def update_data(self):
         lastfm_module = get_lastfm_module()
+        controller = get_controllers_module()
+
         band_data = lastfm_module.get_band_data(band=self)
         self.photo_url = band_data["image"][3]['#text']
 
         if type(band_data["tags"]) is dict:
             self.tags_list = [tag["name"] for tag in band_data["tags"]["tag"]]
+
+        if type(band_data["similar"]) is dict:
+            similares = band_data["similar"]["artist"]
+            if not type(similares) is list:
+                similares = [similares]
+
+            for similar_band in similares:
+                band = controller.get_or_create_band({"name": similar_band["name"]})
+                self.similares_slug.append(band.slug)
 
         self.save()
 
