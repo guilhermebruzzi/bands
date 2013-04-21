@@ -185,7 +185,11 @@ class Band(db.Document):
         self.photo_url = band_data["image"][3]['#text']
 
         if type(band_data["tags"]) is dict:
-            self.tags_list = [tag["name"] for tag in band_data["tags"]["tag"]]
+            tags = band_data["tags"]["tag"]
+            if not type(tags) is list:
+                tags = [tags]
+
+            self.tags_list = [tag["name"] for tag in tags]
 
         if type(band_data["similar"]) is dict:
             similares = band_data["similar"]["artist"]
