@@ -178,14 +178,8 @@ function main_index(){
     }
 
     if(procurarBandasText){
-        if(window.location.href.indexOf("novo") !== -1){
-            procurarBandasText.addEventListener("keypress", enterPressedProcuraBandaHome, false);
-            procurarBandasButton.addEventListener("click", procurarBandaHome, false);
-        }
-        else{
-            procurarBandasText.addEventListener("keypress", enterPressedProcuraBanda, false);
-            procurarBandasButton.addEventListener("click", procurarShowDaBanda, false);
-        }
+        procurarBandasText.addEventListener("keypress", enterPressedProcuraBandaHome, false);
+        procurarBandasButton.addEventListener("click", procurarBandaHome, false);
     }
 
     var gmailBtn = document.querySelector('#gmail-btn');
