@@ -140,7 +140,7 @@ def search_band(band_name):
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
     elif len(band.users) == 0:
         band.delete()
-    return render_template("resultado_uma_banda.html", band=band, show=show)
+    return render_template("resultado_uma_banda.html", band=band, show=show, notas=range(11))
 
 @app.route('/minhas-bandas/', methods=['GET'])
 @need_to_be_logged

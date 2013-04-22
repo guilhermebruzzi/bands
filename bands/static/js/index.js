@@ -78,6 +78,7 @@ function adicionarBandaProcurada(){
             var minhasBandasLista = document.querySelector('#minhas-bandas-lista');
             if(htmlBanda){
                 minhasBandasLista.innerHTML = htmlBanda + minhasBandasLista.innerHTML;
+                $('.modal').hide();
             }
             else{
                 if(erroProcurarBandas.classList.contains("invisivel")){
@@ -111,7 +112,6 @@ function adicionarShowDaBanda(){
             console.log('There was a problem with the request.');
         }
     }
-    $('.modal').hide();
 }
 
 function procurarShowDaBanda(){
