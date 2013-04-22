@@ -111,6 +111,7 @@ function adicionarShowDaBanda(){
             console.log('There was a problem with the request.');
         }
     }
+    $('.modal').hide();
 }
 
 function procurarShowDaBanda(){
