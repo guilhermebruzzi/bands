@@ -167,7 +167,7 @@ function infoBandaGeneroClicked(){
     var genero = $(this).text();
 
     if(typeof _gaq != "undefined"){
-        _gaq.push(['_trackEvent', 'Band', 'Gênero em timeline no modal de história', 'Banda: ' + bandaNome + ' Genero: ' + genero]);
+        _gaq.push(['_trackEvent', 'Band', 'Gênero em uma pesquisa de banda', 'Banda: ' + bandaNome + ' Genero: ' + genero]);
     }
 }
 
