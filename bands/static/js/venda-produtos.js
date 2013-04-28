@@ -99,7 +99,7 @@ function comprarPagSeguro(evt){
         var data = datas[dataIndex];
         validou = validou || (data.quantidade > 0)
         if(data.quantidade > 0){
-            if(isCd(data.descricao) || isCamisaNaoLosBife(data.descricao)){
+            if(isCd(data.descricao)){
                 addItemId(itemId, data.descricao, data.valor, data.quantidade);
                 if(itemId == 1){
                     quantidadePrimeiroItem = data.quantidade;
@@ -107,7 +107,7 @@ function comprarPagSeguro(evt){
                 itemId++;
             }
             else{
-                mensagemCamisa = "Por enquanto as camisas da Los Bife não estão disponíveis.\nAvisaremos quando as camisas da Los Bife estiverem disponíveis em facebook.com/bandsbr ou diretamente para você se você fizer login em bands.com.br";
+                mensagemCamisa = "Por enquanto não temos mais camisas em estoque, curta a página facebook.com/bandsbr ou faça login aqui no site e lhe avisaremos quando poderão comprar.";
             }
             labelProdutos += data.quantidade + " " + data.descricao + " ";
         }
@@ -127,14 +127,12 @@ function comprarPagSeguro(evt){
         evt.preventDefault();
     }
     else{
-//        if(mensagemCamisa){
-//            alert(mensagemCamisa);
-//        }
-//        if(itemId == 1){ // Nenhum cd
-//            evt.preventDefault();
-//        }
-        alert('Por enquanto não temos mais camisas em estoque, curta a página facebook.com/bandsbr ou faça login aqui no site e lhe avisaremos quando poderão comprar.')
-        evt.preventDefault();
+        if(mensagemCamisa){
+            alert(mensagemCamisa);
+        }
+        if(itemId == 1){ // Nenhum cd
+            evt.preventDefault();
+        }
     }
     return validou;
 }

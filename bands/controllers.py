@@ -284,6 +284,17 @@ def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantida
 
     return bandasOrdenadas[0:max]
 
+def get_random_bands_from_a_slug_list(slug_list, max=3):
+    index = 0
+    bands_slugs = []
+    while index < max:
+        slug = random.choice(slug_list)
+        if not slug in bands_slugs:
+            bands_slugs.append(slug)
+            index += 1
+    return [get_band(slug) for slug in bands_slugs]
+
+
 def get_user_bands(user):
     bands = get_all_bands()
     return [band for band in bands if user in band.users]

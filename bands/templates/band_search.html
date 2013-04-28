@@ -2,8 +2,9 @@
 {% import 'band_tags.html' as band_tags %}
 {% import 'bandas_relacionadas.html' as bandas_relacionadas %}
 {% import 'band_history.html' as band_history %}
+{% import 'band_products.html' as band_products %}
 
-{% macro escreve_banda(band, show, notas) -%}
+{% macro escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
         <div id="area-banda" class="area-banda">
             {% if band.photo %}
@@ -30,8 +31,8 @@
                 <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
             </div>
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-history-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver Historia em uma pesquisa de banda', 'Banda: {{ band.name }}']);">História da Banda numa timeline</button>
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Faça uma pergunta sobre a banda</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-history-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver Historia em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">História da Banda numa timeline</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
                 <h3>Shows</h3>
@@ -40,8 +41,8 @@
                     {%- set website = show.location.website -%}
                 {% endif %}
                 <div class="navegacao-show-container">
-                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Esq em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
-                    <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{ band.name }} Show: {{ show.title }}']);">
+                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Esq em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);"></button>
+                    <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows item-lista-bands" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{  band.name | escape  }} Show: {{ show.title }}']);">
                         {% if show.cover_image %}
                             <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
                         {% else %}
@@ -56,12 +57,18 @@
                             <span class="data-show">{{ show.title }}</span>
                         </span>
                     </a>
-                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Dir em uma pesquisa de banda', 'Banda: {{ band.name }}']);"></button>
+                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Dir em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);"></button>
                 </div>
+            {% else %}
+                <div class="navegacao-show-container"></div>
             {% endif %}
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Bandas relacionadas</button>
-                <button type="button" class="shiny-red comprar-ingressos-camisas" data-toggle="modal" data-target="#modal-produtos" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Ingressos e produtos em uma pesquisa de banda', 'Banda: {{ band.name }}']);">Comprar ingressos e camisas</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Bandas relacionadas</button>
+                {% if band.slug == "los-bife" %}
+                    <a type="button" class="shiny-red" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</a>
+                {% else %}
+                    <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</button>
+                {% endif %}
             </div>
         </div>
 
@@ -69,7 +76,8 @@
         {{ band_tags.gera_modal(band) }}
         {{ bandas_relacionadas.gera_modal(band) }}
         {{ band_history.gera_modal(band) }}
+        {{ band_products.gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro) }}
 
-        <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{ band.name }}']);">&times;</button>
+        <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{  band.name | escape  }}']);">&times;</button>
     </li>
 {%- endmacro %}

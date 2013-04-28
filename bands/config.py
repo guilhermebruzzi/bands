@@ -100,22 +100,22 @@ QUESTIONS_PESQUISA = [
     }
 ]
 
-BANDAS_CAMISAS = [
-    {
+BANDAS_CAMISAS = {
+    "coldplay" : {
         "nome": "Coldplay",
         "slug": "coldplay",
         "camisas": [
             { "tipo": "viva la vida", "preco": "20,00" },
         ]
     },
-    {
+    "guns-n-roses": {
         "nome": "Guns n' Roses",
         "slug": "guns-n-roses",
         "camisas": [
             { "tipo": "caveira", "preco": "22,00" },
         ]
     },
-    {
+    "los-bife": {
         "nome": "Los Bife",
         "slug": "los-bife",
         "camisas": [
@@ -123,14 +123,14 @@ BANDAS_CAMISAS = [
             { "tipo": "vermelha", "preco": "20,00" },
         ]
     },
-    {
+    "los-hermanos": {
         "nome": "Los Hermanos",
         "slug": "los-hermanos",
         "camisas": [
             { "tipo": "sentimental", "preco": "22,00" },
         ]
     },
-    {
+    "metallica": {
         "nome": "Metallica",
         "slug": "metallica",
         "camisas": [
@@ -138,30 +138,30 @@ BANDAS_CAMISAS = [
             { "tipo": "james hetfield", "preco": "22,00" }
         ]
     },
-    {
+    "queen": {
         "nome": "Queen",
         "slug": "queen",
         "camisas": [
             { "tipo": "preta", "preco": "22,00" },
         ]
     },
-    {
+    "the-beatles": {
         "nome": "The Beatles",
         "slug": "the-beatles",
         "camisas": [
             { "tipo": "integrantes", "preco": "23,00" },
         ]
     },
-    {
+    "tim-maia": {
         "nome": "Tim Maia",
         "slug": "tim-maia",
         "camisas": [
             { "tipo": "preta", "preco": "33,00" },
         ]
     }
-]
+}
 
-BANDAS_CAMISAS_HOME = [BANDAS_CAMISAS[1], BANDAS_CAMISAS[3], BANDAS_CAMISAS[5], BANDAS_CAMISAS[6]]
+BANDAS_CAMISAS_HOME = [BANDAS_CAMISAS["guns-n-roses"], BANDAS_CAMISAS["los-hermanos"], BANDAS_CAMISAS["metallica"], BANDAS_CAMISAS["tim-maia"]]
 
 def get_app():
     return app
