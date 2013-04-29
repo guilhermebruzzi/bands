@@ -87,7 +87,8 @@ function comprarPagSeguro(evt){
         datas.push(camisa_data);
     }
 
-    formPagSeguro.innerHTML = '<input type="hidden" value="guibruzzi@gmail.com" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+    var emailCobranca = $('input[name="email_cobranca"]').val();
+    formPagSeguro.innerHTML = '<input type="hidden" value="' + emailCobranca + '" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var validou = false;
     var labelProdutos = "";
