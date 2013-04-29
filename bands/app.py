@@ -17,6 +17,9 @@ from pagseguropy.pagseguro import Pagseguro
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
+carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
+formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
+
 def __make_response_plain_text__(response_text):
     response = make_response(response_text)
     response.headers["Content-type"] = "text/plain"
@@ -91,9 +94,6 @@ def novo():
         main_artist = show_local.artists[0]
         minhas_bandas_shows.append((main_artist, [show_local]))
 
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
-
     return render_template("novo.html", current_user=current_user,
         minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
         formulario_pag_seguro=formulario_pag_seguro)
@@ -101,10 +101,7 @@ def novo():
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
     current_user = get_current_user()
-
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
 
@@ -160,9 +157,6 @@ def search_band(band_name):
     elif len(band.users) == 0:
         band.delete()
 
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
-
     return render_template("resultado_uma_banda.html", band=band, show=show, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
         formulario_pag_seguro=formulario_pag_seguro)
 
@@ -179,12 +173,8 @@ def minhas_bandas():
 
 @app.route('/los-bife', methods=['GET'])
 def los_bife():
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
-    carrinho.item(id=1, descr='CD Los Bife', qty=0, valor=15.0)
-    carrinho.item(id=2, descr='Camisa Los Bife', qty=0, valor=20.0)
     current_user = get_current_user()
 
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
