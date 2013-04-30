@@ -254,7 +254,7 @@ def login():
 @need_to_be_logged
 def logout():
     del session['current_user']
-    resp = redirect(url_for('index'))
+    resp = redirect(url_for('novo'))
     if has_cookie_login(request):
         delete_cookie_login(resp)
     return resp
