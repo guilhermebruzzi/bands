@@ -454,6 +454,24 @@ class ControllersTest(BaseTest):
             else:
                 self.assertEqual(band["size"], 1)
 
+    def get_random_bands_from_a_slug_list_test(self):
+        slug_list = []
+        for i in range(7):
+            coldplay_slug = "%s%d" % (self.coldplay1["slug"], i + 1)
+            coldplay_name = "%s %d" % (self.coldplay1["name"], i + 1)
+            get_or_create_band({"slug": coldplay_slug, "name": coldplay_name})
+            if i % 2 == 1:
+                slug_list.append(coldplay_slug)
+
+        all_bands = get_all_bands()
+        self.assertEqual(len(all_bands), 7)
+        bands = get_random_bands_from_a_slug_list(slug_list, max=3)
+        self.assertEqual(len(bands), 3)
+        for band in bands:
+            self.assertIsInstance(band, Band)
+            self.assertIn(band.slug, slug_list)
+            self.assertIn(band, all_bands)
+
 
     def random_top_bands_ignoring_my_liked_bands_test(self):
         user_guilherme = get_or_create_user(data=self.data_user_guilherme)

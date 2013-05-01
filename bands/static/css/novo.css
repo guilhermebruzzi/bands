@@ -247,3 +247,21 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 .info-banda-genero-div, .info-banda-header {
     margin-bottom: 10px;
 }
+
+/* Produtos */
+
+.modal-produtos {
+    width: 732px;
+}
+
+.modal-produtos .modal-body {
+    width: 100%;
+}
+
+.modal-produtos .area-produtos {
+    width: 100%;
+}
+.lista-pagina-principal-container .lista-produtos {
+    width: 700px;
+}
+

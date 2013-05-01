@@ -43,7 +43,7 @@
             <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
                 {% for band, band_shows in minhas_bandas_shows %}
                     {%- set show = band_shows[0] -%}
-                    {{ band_search.escreve_banda(band, show, notas) }}
+                    {{ band_search.escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) }}
                 {% endfor %}
             </ul>
         </article>
@@ -52,8 +52,5 @@
 
     {%- set modal_corpo = 'Ainda não temos mais shows para essa banda, clique em login no topo do site para ser avisado quando tivermos.' -%}
     {{ bootstrap_modal.gera_modal('modal-mais-shows', 'Mais Shows', modal_corpo) }}
-
-    {%- set modal_corpo = 'Ainda não temos ingressos e produtos para essa banda, clique em login no topo do site para ser avisado quando tivermos.' -%}
-    {{ bootstrap_modal.gera_modal('modal-produtos', 'Produtos', modal_corpo) }}
 
 {% endblock %}

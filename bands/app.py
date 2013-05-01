@@ -6,15 +6,19 @@ import os
 from flask import Flask, redirect, url_for, session, request, abort, make_response
 from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS, BANDAS_CAMISAS_HOME
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
-    has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login
+    has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login, random_insert
 from controllers import get_or_create_user, validate_answers, random_top_bands, get_user_bands, \
     get_or_create_band, like_band, unlike_band, get_top_bands, get_all_users, get_related_bands, get_band, \
     get_answers_and_counters_from_question, get_shows_from_bands, get_shows_from_bands_by_city, set_user_tipo,\
-    newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters, get_or_create_band_question
+    newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters, get_or_create_band_question,\
+    get_random_bands_from_a_slug_list
 from pagseguropy.pagseguro import Pagseguro
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
+
+carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
+formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
 
 def __make_response_plain_text__(response_text):
     response = make_response(response_text)
@@ -70,8 +74,18 @@ def novo():
         minhas_bandas_shows.extend(get_shows_from_bands(minhas_bandas, 1, city=current_city))
     else:
         top_bands = get_top_bands(max=3, maxSize=10)[0]
+        extra_top_bands = get_random_bands_from_a_slug_list(slug_list=BANDAS_CAMISAS.keys(), max=2)
+
         top_shows = get_shows_from_bands([band["band_object"] for band in top_bands], 1, city=current_city)
+        extra_top_shows = get_shows_from_bands(extra_top_bands, 1, city=current_city)
+
+        los_bife_band = get_band(slug="los-bife")
+        extra_top_shows.append((los_bife_band, los_bife_band.shows[:1]))
+
         minhas_bandas_shows.extend(top_shows)
+        for show in extra_top_shows:
+            if not show in minhas_bandas_shows:
+                random_insert(elm=show, lista=minhas_bandas_shows)
 
     all_bands = get_all_bands()
 
@@ -81,15 +95,13 @@ def novo():
         minhas_bandas_shows.append((main_artist, [show_local]))
 
     return render_template("novo.html", current_user=current_user,
-        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11))
+        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
+        formulario_pag_seguro=formulario_pag_seguro)
 
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
     current_user = get_current_user()
-
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
 
@@ -133,14 +145,20 @@ def show_from_band(band_name):
 def search_band(band_name):
     current_user = None # TODO: Adicionar em minhas bandas: get_current_user()
     current_city = "Rio de Janeiro" # get_current_city(ip=get_client_ip())
+
     band = get_or_create_band({'slug': get_slug(band_name), 'name': band_name, 'user': current_user})
+
     shows = get_shows_from_bands([band], limit_per_artist=1, city=current_city, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=True)
+
     show = None
+
     if shows:
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
     elif len(band.users) == 0:
         band.delete()
-    return render_template("resultado_uma_banda.html", band=band, show=show, notas=range(11))
+
+    return render_template("resultado_uma_banda.html", band=band, show=show, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
+        formulario_pag_seguro=formulario_pag_seguro)
 
 @app.route('/minhas-bandas/', methods=['GET'])
 @need_to_be_logged
@@ -155,12 +173,8 @@ def minhas_bandas():
 
 @app.route('/los-bife', methods=['GET'])
 def los_bife():
-    carrinho = Pagseguro(email_cobranca="guibruzzi@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
-    carrinho.item(id=1, descr='CD Los Bife', qty=0, valor=15.0)
-    carrinho.item(id=2, descr='Camisa Los Bife', qty=0, valor=20.0)
     current_user = get_current_user()
 
-    formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
@@ -240,7 +254,7 @@ def login():
 @need_to_be_logged
 def logout():
     del session['current_user']
-    resp = redirect(url_for('index'))
+    resp = redirect(url_for('novo'))
     if has_cookie_login(request):
         delete_cookie_login(resp)
     return resp

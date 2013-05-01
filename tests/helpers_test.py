@@ -3,7 +3,7 @@
 
 import flask
 from unittest import TestCase
-from helpers import get_slug, user_logged
+from helpers import get_slug, user_logged, random_insert
 from models import User
 from app import app
 
@@ -42,6 +42,12 @@ class HelpersTest(TestCase):
             self.assertFalse(user_logged())
             flask.session['current_user'] = self.guilherme_user
             self.assertTrue(user_logged())
+
+    def random_insert_test(self):
+        lista = [1,2,3,4,5]
+        elemento = 100
+        lista = random_insert(elemento, lista)
+        self.assertIn(elemento, lista)
 
     def __get_tag_index__(self, tagclouds, label):
         for index in range(len(tagclouds)):

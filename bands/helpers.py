@@ -5,6 +5,7 @@ import re
 import flask
 import json
 import urllib2
+import random
 
 from flask import session, render_template, request
 from config import get_app
@@ -37,6 +38,12 @@ def get_json(url):
     response = urllib2.urlopen(url)
     json_response = json.loads(response.read())
     return json_response
+
+def random_insert(elm, lista):
+    tamanho = len(lista)
+    indice = random.randint(0, tamanho)
+    lista.insert(indice, elm)
+    return lista
 
 
 def user_logged():
