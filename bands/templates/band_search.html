@@ -5,7 +5,24 @@
 
 {% macro escreve_banda(band, show, notas) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
-        <div id="area-banda" class="area-banda">
+        <h2 id="band-header" class="info-banda-header">
+            {% if band.photo %}
+                <span title="imagem da banda" class="photo-icon small" style="background-image: url('{{ band.photo }}');"></span>
+            {% else %}
+                <span title="imagem da banda" class="photo-icon icone-banda-default small"></span>
+            {% endif %}
+            <span class="info-banda-nome">{{ band.name }}</span>
+            <span class="info-banda-header-menor">Nota:
+                <select class="nota">
+                    {% for nota in notas %}
+                        <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
+                    {% endfor %}
+                </select>
+            </span>
+            <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
+        </h2>
+
+        <div id="area-banda" class="area-banda hidden">
             {% if band.photo %}
                 <img class="lastfm-photo logo-banda" alt="imagem da banda" src="{{ band.photo }}" />
             {% else %}
@@ -14,18 +31,7 @@
             <div class="logo-banda-container" title="imagem da banda"></div>
         </div>
 
-        <div class="info-banda">
-            <h2 class="info-banda-header">
-                <span class="info-banda-nome">{{ band.name }}</span>
-                <span class="info-banda-header-menor">Nota:
-                    <select class="nota">
-                        {% for nota in notas %}
-                            <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
-                        {% endfor %}
-                    </select>
-                </span>
-                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
-            </h2>
+        <div id="info-banda" class="info-banda hidden">
             <div class="info-banda-genero-div">
                 <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
             </div>
@@ -70,6 +76,7 @@
         {{ bandas_relacionadas.gera_modal(band) }}
         {{ band_history.gera_modal(band) }}
 
+        <label class="label">Clique para expandir</label>
         <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{ band.name }}']);">&times;</button>
     </li>
 {%- endmacro %}

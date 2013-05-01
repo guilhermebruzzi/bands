@@ -70,6 +70,12 @@
     width: 252px;
 }
 
+.photo-icon {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+ }
+
 .minhas-bandas .logo-banda-container {
     height: 256px;
     left: 35px;
@@ -102,12 +108,39 @@
 
 .minhas-bandas .info-banda-nome{
     font-size: 30px;
+    position:relative;
+    top: -20px;
+    left: 10px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.label {
+    font-size: 14px;
+    position: relative;
+    top: -35px;
+    left: 75px;
 }
 
 .minhas-bandas .info-banda-header-menor{
     font-size: 14px;
+    position:relative;
+    top: -20px;
+    left: 20px;
     display: inline-block;
-    margin: 0px 0px 0px 20px;
+}
+
+.info-banda-header {
+    width:100%;
+    padding: 10px;
+    margin:0;
+    height: 50px;
+}
+
+.small {
+    background-size: 50px 50px;
 }
 
 .minhas-bandas .nota{

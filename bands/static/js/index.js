@@ -240,6 +240,23 @@ function main_index(){
             alert(msg);
         });
     });
+
+    $('.info-banda-header').click(function() {
+        var bandSlug = $(this).parent().attr('id');
+        var areaBanda = $('#' + bandSlug + ' #area-banda');
+        var infoBanda = $('#' + bandSlug + ' #info-banda');
+        var photoIcon = $('#' + bandSlug + ' .photo-icon');
+
+        if(areaBanda.hasClass('hidden')) {
+            areaBanda.removeClass('hidden');
+            infoBanda.removeClass('hidden');
+            photoIcon.css('visibility', 'hidden');
+        }else {
+            areaBanda.addClass('hidden');
+            infoBanda.addClass('hidden');
+            photoIcon.css('visibility', 'visible');
+        }
+    });
 }
 
 main_index();
