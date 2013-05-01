@@ -246,15 +246,18 @@ function main_index(){
         var areaBanda = $('#' + bandSlug + ' #area-banda');
         var infoBanda = $('#' + bandSlug + ' #info-banda');
         var photoIcon = $('#' + bandSlug + ' .photo-icon');
+        var label = $('#' + bandSlug + ' .label');
 
         if(areaBanda.hasClass('hidden')) {
             areaBanda.removeClass('hidden');
             infoBanda.removeClass('hidden');
             photoIcon.css('visibility', 'hidden');
+            label.addClass('hidden');
         }else {
             areaBanda.addClass('hidden');
             infoBanda.addClass('hidden');
             photoIcon.css('visibility', 'visible');
+            label.removeClass('hidden');
         }
     });
 }
