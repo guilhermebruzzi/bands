@@ -1,4 +1,8 @@
-/ *Geral */
+/* Geral */
+
+.modal.hide{
+    display: none;
+}
 
 .area-bandas-nova-home .lista-pagina-principal-container{
     margin: 20px 0px;

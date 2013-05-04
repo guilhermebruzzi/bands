@@ -78,7 +78,6 @@ function adicionarBandaProcurada(){
             var minhasBandasLista = document.querySelector('#minhas-bandas-lista');
             if(htmlBanda){
                 minhasBandasLista.innerHTML = htmlBanda + minhasBandasLista.innerHTML;
-                $('.modal').hide();
             }
             else{
                 if(erroProcurarBandas.classList.contains("invisivel")){
@@ -192,8 +191,6 @@ function main_index(){
     if(bandsBtn){
         $(bandsBtn).click(bandsBtnClicked);
     }
-
-    $('.modal').hide();
 
     $('#minhas-bandas-lista').on("click", ".favoritar", function(){
         var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
