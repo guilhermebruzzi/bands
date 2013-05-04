@@ -241,7 +241,7 @@ function main_index(){
         });
     });
 
-    $('.info-banda-header').click(function() {
+    $(document).on('click', '.info-banda-header', function() {
         var bandSlug = $(this).parent().attr('id');
         var areaBanda = $('#' + bandSlug + ' #area-banda');
         var infoBanda = $('#' + bandSlug + ' #info-banda');
@@ -253,11 +253,19 @@ function main_index(){
             infoBanda.removeClass('hidden');
             photoIcon.css('visibility', 'hidden');
             label.addClass('hidden');
+
+            if(typeof _gaq != "undefined"){
+                _gaq.push(['_trackEvent', 'Band', 'Expandir', 'Banda: ' + bandSlug]);
+            }
         }else {
             areaBanda.addClass('hidden');
             infoBanda.addClass('hidden');
             photoIcon.css('visibility', 'visible');
             label.removeClass('hidden');
+
+            if(typeof _gaq != "undefined"){
+                _gaq.push(['_trackEvent', 'Band', 'Retrair', 'Banda: ' + bandSlug]);
+            }
         }
     });
 }

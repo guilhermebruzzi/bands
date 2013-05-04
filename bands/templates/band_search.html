@@ -13,14 +13,7 @@
                 <span title="imagem da banda" class="photo-icon icone-banda-default small"></span>
             {% endif %}
             <span class="info-banda-nome">{{ band.name }}</span>
-            <span class="info-banda-header-menor">Nota:
-                <select class="nota">
-                    {% for nota in notas %}
-                        <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
-                    {% endfor %}
-                </select>
-            </span>
-            <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
+            <label class="label">&#43; Clique para expandir</label>
         </h2>
 
         <div id="area-banda" class="area-banda hidden">
@@ -35,6 +28,14 @@
         <div id="info-banda" class="info-banda hidden">
             <div class="info-banda-genero-div">
                 <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
+                <span class="info-banda-header-menor">Nota:
+                    <select class="nota">
+                        {% for nota in notas %}
+                            <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
             </div>
             <div class="banda-mais-opcoes">
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-history-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver Historia em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">História da Banda numa timeline</button>
@@ -84,7 +85,6 @@
         {{ band_history.gera_modal(band) }}
         {{ band_products.gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro) }}
 
-        <label class="label">Clique para expandir</label>
         <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{  band.name | escape  }}']);">&times;</button>
     </li>
 {%- endmacro %}

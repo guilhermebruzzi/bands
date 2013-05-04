@@ -1,6 +1,9 @@
 root_dir		= $(realpath .)
 src_dir			= ${root_dir}/bands
 
+help:
+	@echo "Rode make mongo, make export, make import"
+
 kill_mongo:
 	@ps aux | awk '(/mongod/ && $$0 !~ /awk/){ system("kill -9 "$$2) }'
 

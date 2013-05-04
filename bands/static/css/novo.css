@@ -109,7 +109,7 @@
 .minhas-bandas .info-banda-nome{
     font-size: 30px;
     position:relative;
-    top: -20px;
+    top: -14px;
     left: 10px;
 }
 
@@ -120,15 +120,16 @@
 .label {
     font-size: 14px;
     position: relative;
-    top: -35px;
-    left: 75px;
+    top: -20px;
+    left: 35px;
+    text-decoration: underline;
+    color: #9F0902;
+    cursor: pointer;
 }
 
 .minhas-bandas .info-banda-header-menor{
     font-size: 14px;
-    position:relative;
-    top: -20px;
-    left: 20px;
+    margin-left: 20px;
     display: inline-block;
 }
 
@@ -137,6 +138,7 @@
     padding: 10px;
     margin:0;
     height: 50px;
+    cursor: pointer;
 }
 
 .small {
