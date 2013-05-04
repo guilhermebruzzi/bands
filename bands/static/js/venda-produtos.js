@@ -1,4 +1,5 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
+formPagSeguroHTML = ''
 var frete_total = 10.0;
 
 function isCd(descricao){
@@ -69,26 +70,26 @@ function addItemId(itemId, descricao, valor, quantidade){
     var inputHtmls = ['<input type="hidden" value="' + itemId + '" name="item_id_' + itemId + '">', '<input type="hidden" value="' + descricao + '" name="item_descr_' + itemId + '">', '<input type="hidden" value="' + quantidade + '" name="item_quant_' + itemId + '">', '<input type="hidden" value="' + valor + '" name="item_valor_' + itemId + '">'];
     for(var inputHtmlIndex in inputHtmls){
         var inputHtml = inputHtmls[inputHtmlIndex];
-        formPagSeguro.innerHTML += " " + inputHtml + " ";
+        formPagSeguroHTML += " " + inputHtml + " ";
     }
 }
 
 function comprarPagSeguro(evt){
-    var selects = document.querySelectorAll('select.quantidade');
-    var inputs = document.querySelectorAll('input.quantidade-cada-camisa');
-    var datas = []
-    for(var selectIndex = 0; selectIndex < selects.length; selectIndex++){
-        var select = selects[selectIndex];
+    var selects = $('select.quantidade', $(this).parent().parent());
+    var inputs = $('input.quantidade-cada-camisa', $(this).parent().parent());
+    var datas = [];
+
+    selects.each(function(index, select){
         datas.push(getProdutoDataSelect(select));
-    }
-    for(var inputIndex = 0; inputIndex < inputs.length; inputIndex++){
-        var input = inputs[inputIndex];
+    });
+
+    inputs.each(function(index, input){
         var camisa_data = getProdutoDataInputs(input);
         datas.push(camisa_data);
-    }
+    });
 
     var emailCobranca = $('input[name="email_cobranca"]').val();
-    formPagSeguro.innerHTML = '<input type="hidden" value="' + emailCobranca + '" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+    formPagSeguroHTML = '<input type="hidden" value="' + emailCobranca + '" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var validou = false;
     var labelProdutos = "";
@@ -120,8 +121,10 @@ function comprarPagSeguro(evt){
 
 
     var frete_por_item = frete_total / ((quantidadePrimeiroItem == 0) ? 1.0 : quantidadePrimeiroItem);
-    formPagSeguro.innerHTML += '<input type="hidden" name="item_frete_1" value="' + frete_por_item.toFixed(2) + '">';
-    formPagSeguro.innerHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
+    formPagSeguroHTML += '<input type="hidden" name="item_frete_1" value="' + frete_por_item.toFixed(2) + '">';
+    formPagSeguroHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
+
+    $(this).html(formPagSeguroHTML);
 
     if(!validou){
         alert("Por favor, selecione 1 ou mais produtos para comprar");
@@ -139,7 +142,7 @@ function comprarPagSeguro(evt){
 }
 
 function mainVendaProdutos(){
-    formPagSeguro.addEventListener("submit", comprarPagSeguro, false);
+    $(document).on('submit', 'form[target="pagseguro"]', comprarPagSeguro);
 }
 
 if(formPagSeguro){
