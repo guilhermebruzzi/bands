@@ -177,6 +177,20 @@ class ControllersTest(BaseTest):
             "band_slug": "madonna"
         }
 
+    def get_all_bands_test(self):
+        for band_id in range(12):
+            get_or_create_band({"name": "The Beatles %d" % band_id})
+
+        all_bands = get_all_bands()
+        self.assertEqual(len(all_bands), 12)
+        for band in all_bands:
+            self.assertIsInstance(band, Band)
+
+        all_bands_limited = get_all_bands(limit=4)
+        self.assertEqual(len(all_bands_limited), 4)
+        for index, band in enumerate(all_bands_limited):
+            self.assertEqual(band, all_bands[index])
+
     def get_or_create_band_question_test(self):
         madonna_question = get_or_create_band_question(data=self.band_question)
         self.__assert_question__(madonna_question, self.band_question)

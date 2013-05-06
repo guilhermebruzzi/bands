@@ -191,7 +191,9 @@ def get_shows_from_bands_by_city(city):
     shows = sorted(shows, key=__sort_by_city_and_date__(city=city))
     return shows
 
-def get_all_bands():
+def get_all_bands(limit=None):
+    if limit:
+        return Band.objects[:limit]
     return Band.objects.all()
 
 def get_band(slug):
