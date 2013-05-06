@@ -5,7 +5,7 @@
 }
 
 .area-bandas-nova-home .lista-pagina-principal-container{
-    margin: 20px 0px;
+    margin: 0;
 }
 
 .area-bandas-nova-home .minhas-bandas{
@@ -111,10 +111,10 @@
 }
 
 .minhas-bandas .info-banda-nome{
-    font-size: 30px;
+    font-size: 29px;
     position:relative;
     top: -14px;
-    left: 10px;
+    margin-left: 10px;
 }
 
 .hidden{
@@ -125,7 +125,7 @@
     font-size: 14px;
     position: relative;
     top: -20px;
-    left: 35px;
+    margin-left: 35px;
     text-decoration: underline;
     color: #9F0902;
     cursor: pointer;
@@ -138,11 +138,10 @@
 }
 
 .info-banda-header {
-    width:100%;
-    padding: 10px;
-    margin:0;
-    height: 50px;
     cursor: pointer;
+    margin: 0;
+    padding: 8px 0 3px 10px;
+    width: 100%;
 }
 
 .small {
@@ -248,10 +247,6 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     color: #9F0902;
     font-size: 18px;
     text-decoration: none;
-}
-
-.info-banda-genero-div, .info-banda-header {
-    margin-bottom: 10px;
 }
 
 /* Produtos */

@@ -138,7 +138,7 @@ section.funcionalidades-home article h2{
 .lista-pagina-principal-container li{
     display: inline-block;
     list-style: none outside none;
-    margin: 5px 5px 15px;
+    margin: 0 5px 15px;
     vertical-align: top;
     width: 488px;
 }
