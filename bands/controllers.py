@@ -178,10 +178,13 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
             lastfm.get_next_shows_subprocess(bands_to_get_shows)
     return shows
 
-def get_shows_from_bands_by_city(city):
+def get_shows_from_bands_by_city(city, date_to_get=None):
     shows = []
 
-    if int(datetime.now().strftime("%w")) == 5:
+    if not date_to_get:
+        date_to_get = datetime.now()
+
+    if int(date_to_get.strftime("%w")) == 0 and int(date_to_get.strftime("%H")) >= 0 and int(date_to_get.strftime("%H")) <= 11:
         lastfm = get_lastfm_module()
         shows = lastfm.get_nearby_shows(city=city)
 

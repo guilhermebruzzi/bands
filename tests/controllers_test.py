@@ -813,6 +813,27 @@ class ControllersTest(BaseTest):
         self.assertEqual(len(shows), len(shows_from_mongo))
         self.__assert_shows__(shows_from_mongo, shows_titles=['Beatles Show'])
 
+    def get_shows_from_bands_by_city_with_datetime(self):
+        show_initial = get_or_create_show({
+            'artists': [get_or_create_band(self.beatles1)],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': str(datetime.now()), #  From USA datetime to Brazil pattern
+            'title': 'beatles show',
+            'website': "http://www.beatles.com",
+            'location': get_or_create_location(self.maracana_data)
+        })
+        shows = get_shows_from_bands_by_city(city=u"Rio de Janeiro", date_to_get=datetime(2013, 5, 13, 14, 30, 45))
+        shows_from_mongo = Show.objects.all()
+        self.assertEqual(len(shows_from_mongo), 1)
+
+        shows = get_shows_from_bands_by_city(city=u"Rio de Janeiro", date_to_get=datetime(2013, 5, 12, 9, 30, 45))
+        self.__assert_shows__(shows, shows_titles=['Beatles Show'])
+
+        shows_from_mongo = Show.objects.all()
+        self.assertGreater(len(shows_from_mongo), 1)
+
     def save_products_test(self):
         product_cd = get_or_create_product(self.product_cd)
         product_camisa = get_or_create_product(self.product_camisa)
