@@ -73,26 +73,21 @@ def novo():
         minhas_bandas = get_user_bands(user=current_user)
         minhas_bandas_shows.extend(get_shows_from_bands(minhas_bandas, 1, city=current_city))
     else:
-        extra_top_bands = get_random_bands_from_a_slug_list(slug_list=BANDAS_CAMISAS.keys(), max=5)
-        extra_top_shows = get_shows_from_bands(extra_top_bands, 1, city=current_city)
-
+        top_bands = [get_band("the-beatles"), get_band("queen"), get_band("metallica"), get_band("guns-n-roses")]
+        minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city)
         los_bife_band = get_band(slug="los-bife")
-        extra_top_shows.append((los_bife_band, los_bife_band.shows[:1]))
-
-        for show in extra_top_shows:
-            random_insert(elm=show, lista=minhas_bandas_shows)
+        minhas_bandas_shows.append((los_bife_band, los_bife_band.shows[:1]))
 
         shows_locais = get_shows_from_bands_by_city(city=current_city)
         for show_local in shows_locais:
             main_artist = show_local.artists[0]
             minhas_bandas_shows.append((main_artist, [show_local]))
 
-    all_bands = get_all_bands(limit=1000)
+    all_bands = get_all_bands(limit=5000)
 
     return render_template("novo.html", current_user=current_user,
         minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
         formulario_pag_seguro=formulario_pag_seguro)
-
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():

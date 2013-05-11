@@ -179,8 +179,11 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
     return shows
 
 def get_shows_from_bands_by_city(city):
-    lastfm = get_lastfm_module()
-    shows = lastfm.get_nearby_shows(city=city)
+    shows = []
+
+    if int(datetime.now().strftime("%w")) == 5:
+        lastfm = get_lastfm_module()
+        shows = lastfm.get_nearby_shows(city=city)
 
     locations = Location.objects.filter(city=city)
     shows_from_mongo = Show.objects.filter(location__in=locations, datetime_usa__gte=str(datetime.now().date()))
@@ -189,15 +192,18 @@ def get_shows_from_bands_by_city(city):
             shows.append(show_mongo)
 
     shows = sorted(shows, key=__sort_by_city_and_date__(city=city))
+
     return shows
 
 def get_all_bands(limit=None):
     if limit:
-        return Band.objects[:limit]
-    return Band.objects.all()
+        return Band.objects[:limit].order_by("-users")
+    return Band.objects.order_by("-users")
 
 def get_band(slug):
     return Band.objects.filter(slug=slug).first()
+
+
 
 def get_related_bands(band, max=None, user=None):
     bands = get_all_bands()
