@@ -83,7 +83,7 @@ def novo():
             main_artist = show_local.artists[0]
             minhas_bandas_shows.append((main_artist, [show_local]))
 
-    all_bands = get_all_bands(limit=10)
+    all_bands = get_all_bands(limit=2000)
 
     return render_template("novo.html", current_user=current_user,
         minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
