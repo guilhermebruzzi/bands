@@ -175,7 +175,10 @@ class Band(db.Document):
     def history(self):
         if not self.history_content:
             self.update_data()
-        return self.history_content
+        read_more_on_position = self.history_content.find("Read more")
+        if read_more_on_position == -1:
+            return self.history_content.strip()
+        return self.history_content[:read_more_on_position].strip()
 
     def update_data(self):
         lastfm_module = get_lastfm_module()
