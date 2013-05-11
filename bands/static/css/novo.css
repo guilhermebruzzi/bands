@@ -203,6 +203,12 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     margin: 20px 10px 10px 2px;
 }
 
+/* História em Timeline */
+
+.timeline-banda{
+    font-size: 14px;
+}
+
 /* Outras informacoes da Banda*/
 
 .close-banda{

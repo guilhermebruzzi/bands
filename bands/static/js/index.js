@@ -265,6 +265,16 @@ function main_index(){
             }
         }
     });
+
+    $(document).ready(function() {
+        createStoryJS({
+            type:       'timeline',
+            width:      '800',
+            height:     '600',
+            source:     'https://docs.google.com/spreadsheet/pub?key=0Agl_Dv6iEbDadFYzRjJPUGktY0NkWXFUWkVIZDNGRHc&amp;output=html',
+            embed_id:   'the-beatles-timeline'
+        });
+    });
 }
 
 main_index();

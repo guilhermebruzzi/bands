@@ -38,7 +38,7 @@
                 <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
             </div>
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-history-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Ver Historia em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">História da Banda numa timeline</button>
+                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Bandas relacionadas</button>
                 <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Faça uma pergunta sobre a banda</button>
             </div>
             {% if show %}
@@ -70,12 +70,19 @@
                 <div class="navegacao-show-container"></div>
             {% endif %}
             <div class="banda-mais-opcoes">
-                <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Bandas relacionadas</button>
                 {% if band.slug == "los-bife" %}
                     <a type="button" class="shiny-red" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</a>
                 {% else %}
                     <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</button>
                 {% endif %}
+            </div>
+            <div class="timeline-banda">
+                {% if band.slug == "the-beatles" %}
+                    <div id="the-beatles-timeline"></div>
+                {% else %}
+                    <p><pre>{{ band.history|safe }}</pre></p>
+                {% endif %}
+
             </div>
         </div>
 
