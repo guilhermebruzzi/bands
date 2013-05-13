@@ -207,6 +207,35 @@ class Band(db.Document):
 
         self.save()
 
+    def timeline_as_dict(self):
+        return  {
+            "headline": unicode(self.name),
+            "type": "default",
+            "text": u"<p>%s</p>" % self.history,
+            "asset": {
+                "media": self.photo
+            },
+            "date": [
+                {
+                    "startDate": "%s" % str(datetime.now().date()).replace("-", ","),
+                    "headline": "Contribua",
+                    "text": u"<p>Clique no botão acima escrito 'Clique aqui para contribuir' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
+                    "tag": u"%s, Contribua" % self.name,
+                    "classname": "contribua"
+                },
+                {
+                    "startDate": "%s" % str(datetime.now().date()).replace("-", ","),
+                    "headline": u"Wikipedia sobre %s (para maiores informações)" % self.name,
+                    "tag": u"%s Wikipedia" % self.name,
+                    "classname": u"%s-wiki" % self.slug,
+                    "asset": {
+                        "media": "http://pt.wikipedia.org/wiki/%s" % self.name.strip().replace(" ", "_")
+                    }
+                }
+
+            ]
+        }
+
     def __eq__(self, other):
         return self.slug == other.slug
 

@@ -76,14 +76,12 @@
                     <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</button>
                 {% endif %}
             </div>
-            <div class="timeline-banda">
-                {% if band.slug == "the-beatles" %}
-                    <div id="the-beatles-timeline"></div>
-                {% else %}
-                    <p><pre>{{ band.history|safe }}</pre></p>
-                {% endif %}
+        </div>
 
-            </div>
+        <div id="{{ band.slug }}-timeline" class="timeline-banda timeline-invisivel">
+            <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0" width="1000" height="800">
+                <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
+            </iframe>
         </div>
 
         {{ band_question.gera_modal(band.slug) }}

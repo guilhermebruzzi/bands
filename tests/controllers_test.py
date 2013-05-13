@@ -134,7 +134,7 @@ class ControllersTest(BaseTest):
             }
 
         self.guilherme_bruzzi_real_data_user = {"id": "100000002085352", "email": "guibruzzi@gmail.com", "name": "Guilherme Heynemann Bruzzi"}
-        self.access_token = 'AAAEGO5mvMs0BAKSs368jVzpVIMeKspas62h6zyaALAdMbXF1T5qYCFxboPJA5MRyo9tqPZCWggM8oQ3IfhkPyeoZAxWDV9DnxAygqxTQZDZD'
+        self.access_token = 'CAAEGO5mvMs0BABvsScZBfOOjVGP7eWRqlrZCh4ZADonFZC0PT6IyjOQIaKmXtpEUXFaN0oriZAc2hoOLRVppCpFclqKZAhoUbZCxxHiUlqRZAfkLA5WTWghfnpk5CZAvvZCAFBBTOxOZBIz9T6Uu9p23iUU'
 
         self.maracana_data = {
             'name': "Maracana",
@@ -190,6 +190,17 @@ class ControllersTest(BaseTest):
         self.assertEqual(len(all_bands_limited), 4)
         for index, band in enumerate(all_bands_limited):
             self.assertEqual(band, all_bands[index])
+
+    def timeline_as_dict_test(self):
+        beatles_band = get_or_create_band({"name": self.beatles1["name"]})
+        timeline = beatles_band.timeline_as_dict()
+        self.assertIn("headline", timeline.keys())
+        self.assertIn("type", timeline.keys())
+        self.assertIn("text", timeline.keys())
+        self.assertIn("asset", timeline.keys())
+        self.assertEqual(timeline["asset"]["media"], beatles_band.photo_url)
+        self.assertIn("date", timeline.keys())
+        self.assertEqual(timeline["date"][-1]["startDate"], str(datetime.now().date()).replace("-", ","))
 
     def get_or_create_band_question_test(self):
         madonna_question = get_or_create_band_question(data=self.band_question)

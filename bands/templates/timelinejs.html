@@ -1,0 +1,14 @@
+<div class="timeline-banda {% if band.slug == "the-beatles" %}tamanho-timeline{% endif %} timeline-invisivel">
+    <h3>Timeline</h3>
+    <div id="{{ band.slug }}-timeline" class="band-timeline"></div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='timelinejs-compiled/js/storyjs-embed.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        carregaTimelines();
+    });
+</script>

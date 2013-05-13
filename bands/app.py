@@ -3,7 +3,7 @@
 
 import os
 
-from flask import Flask, redirect, url_for, session, request, abort, make_response
+from flask import Flask, redirect, url_for, session, request, abort, make_response, jsonify, json
 from config import get_app, facebook, MAIN_QUESTIONS, project_root, BANDAS_CAMISAS, BANDAS_CAMISAS_HOME
 from helpers import need_to_be_logged, need_to_be_admin, get_current_user, get_slug, render_template, get_client_ip, \
     has_cookie_login, set_cookie_login, delete_cookie_login, user_logged, make_login, get_cookie_login, random_insert
@@ -20,9 +20,9 @@ app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku ac
 carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
 formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
 
-def __make_response_plain_text__(response_text):
+def __make_response_plain_text__(response_text, type_of_response="text/plain"):
     response = make_response(response_text)
-    response.headers["Content-type"] = "text/plain"
+    response.headers["Content-type"] = type_of_response
     return response
 
 @app.route('/sitemap.xml', methods=['GET'])
@@ -171,6 +171,24 @@ def los_bife():
         range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
         camisas=[{ "tipo": "amarela", "preco": "20,00" },
                  { "tipo": "vermelha", "preco": "20,00" }])
+
+@app.route('/band/<band_timeline_id>.json', methods=['GET'])
+def get_band_timeline_json(band_timeline_id):
+    band_slug = band_timeline_id.replace("-timeline", "")
+
+    path_to_band_json = '%s/bands/static/json/%s-timeline.json' % (project_root, band_slug)
+
+    timeline = get_band(slug=band_slug).timeline_as_dict()
+
+    if os.path.exists(path_to_band_json):
+        timeline = json.loads(open(path_to_band_json).read())["timeline"]
+
+    return jsonify(timeline=timeline)
+
+@app.route('/band/<band_timeline_id>.html', methods=['GET'])
+def get_band_timeline_html(band_timeline_id):
+    band_slug = band_timeline_id.replace("-timeline", "")
+    return render_template("timelinejs.html", band=get_band(slug=band_slug))
 
 @app.route('/band/add/', methods=['POST'])
 @need_to_be_logged

@@ -205,8 +205,24 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 
 /* História em Timeline */
 
-.timeline-banda{
+.timeline-banda {
     font-size: 14px;
+    width: 800px;
+    margin: 0 auto 20px auto;
+}
+
+.timeline-invisivel{
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1000;
+}
+
+.timeline-banda h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: -5px;
 }
 
 /* Outras informacoes da Banda*/
@@ -232,7 +248,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 }
 
 .banda-mais-opcoes {
-    margin-bottom: 10px;
+    margin: 30px 0 20px;
 }
 
 .banda-mais-opcoes button{

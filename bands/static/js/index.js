@@ -1,4 +1,6 @@
 var erroProcurarBandas = document.querySelector('#erro-procurar-bandas');
+var procurarBandasText = document.querySelector('#opcoes-procurar-bandas-text');
+var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-button');
 
 function makeRequestServer(method, url, callback, params){
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
@@ -31,22 +33,6 @@ function makeRequestServer(method, url, callback, params){
         httpRequest.send(params);
     }
 }
-function makeRequestNewsletter(option, tipo, callback) {
-    var user_id = document.querySelector('#current_user_id').innerHTML;
-    var params = 'tipo=' + encodeURIComponent(tipo) + '&user_id=' + encodeURIComponent(user_id);
-    makeRequestServer("POST", "/newsletter/" + option, callback, params);
-}
-function makeRequestShowFromBand(bandName) {
-    if(typeof(_gaq) != "undefined"){
-        _gaq.push(['_trackEvent', 'Show', 'Busca Show', 'Procurar Show na Home: ' + bandName]);
-    }
-    if(erroProcurarBandas.classList.contains("visivel")){
-        erroProcurarBandas.classList.remove("visivel");
-        erroProcurarBandas.classList.add("invisivel");
-    }
-    erroProcurarBandas.innerHTML = 'Não encontramos nenhum show de ' + bandName + ' num futuro próximo';
-    makeRequestServer("GET", "/show_from_band/" + bandName, adicionarShowDaBanda);
-}
 
 function makeRequestBandHome(bandName) {
     if(typeof(_gaq) != "undefined"){
@@ -60,24 +46,14 @@ function makeRequestBandHome(bandName) {
     makeRequestServer("GET", "/search_band/" + bandName, adicionarBandaProcurada);
 }
 
-var procurarBandasText = document.querySelector('#opcoes-procurar-bandas-text');
-var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-button');
-
-function opcaoNewsletter(){
-    var option = (this.innerHTML == "Sim") ? "sim" : "nao";
-    var tipo = "Shows";
-
-    makeRequestNewsletter(option, tipo);
-    this.parentNode.parentNode.parentNode.style.display = "none";
-}
-
 function adicionarBandaProcurada(){
     if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {
-            var htmlBanda = httpRequest.responseText;
-            var minhasBandasLista = document.querySelector('#minhas-bandas-lista');
-            if(htmlBanda){
-                minhasBandasLista.innerHTML = htmlBanda + minhasBandasLista.innerHTML;
+            var htmlNovaBanda = httpRequest.responseText;
+            var novaBanda = $(htmlNovaBanda);
+            var minhasBandasLista = $('#minhas-bandas-lista');
+            if(htmlNovaBanda){
+                minhasBandasLista.prepend(novaBanda);
             }
             else{
                 if(erroProcurarBandas.classList.contains("invisivel")){
@@ -90,45 +66,12 @@ function adicionarBandaProcurada(){
             console.log('There was a problem with the request.');
         }
     }
-}
-
-function adicionarShowDaBanda(){
-    if (httpRequest.readyState === 4) {
-        if (httpRequest.status === 200) {
-            var htmlShow = httpRequest.responseText;
-            var minhasBandasShows = document.querySelector('#minhas-bandas-shows-lista');
-            if(htmlShow){
-                minhasBandasShows.innerHTML = htmlShow + minhasBandasShows.innerHTML;
-            }
-            else{
-                if(erroProcurarBandas.classList.contains("invisivel")){
-                    erroProcurarBandas.classList.remove("invisivel");
-                    erroProcurarBandas.classList.add("visivel");
-                }
-            }
-
-        } else {
-            console.log('There was a problem with the request.');
-        }
-    }
-}
-
-function procurarShowDaBanda(){
-    var bandName = procurarBandasText.value;
-    procurarBandasText.value = "";
-    makeRequestShowFromBand(bandName);
 }
 
 function procurarBandaHome(){
     var bandName = procurarBandasText.value;
     procurarBandasText.value = "";
     makeRequestBandHome(bandName);
-}
-
-function enterPressedProcuraBanda(e) {
-    if (e.keyCode == 13) {
-        setTimeout(procurarShowDaBanda, 50);
-    }
 }
 
 function enterPressedProcuraBandaHome(e) {
@@ -170,13 +113,57 @@ function infoBandaGeneroClicked(){
     }
 }
 
-function main_index(){
-    var answers = document.querySelectorAll(".answer-principal");
-    for(var i = 0; i < answers.length; i++){
-        var answer = answers[i];
-        answer.addEventListener("click", opcaoNewsletter, false);
-    }
+function carregaTimeline(timelineId){ // Ex.: timelineId='the-beatles-timeline'
+    createStoryJS({
+        type:       'timeline',
+        width:      '800',
+        height:     '600',
+        lang:       'pt-br',
+        source:     '/band/' + timelineId + '.json',
+        embed_id:   timelineId
+    });
+}
 
+function carregaTimelines(){
+    $(".band-timeline").each(function(){
+        var timelineId = $(this).attr("id");
+        carregaTimeline(timelineId);
+    });
+}
+
+function toggleBand(){
+    var bandParent = $(this).parent();
+    var bandSlug = bandParent.attr('id');
+    var areaBanda = bandParent.find('#area-banda');
+    var infoBanda = bandParent.find('#info-banda');
+    var photoIcon = bandParent.find('.photo-icon');
+    var timelineBanda = bandParent.find('.timeline-banda');
+    var label = bandParent.find('.label');
+
+    if(areaBanda.hasClass('hidden')) {
+        areaBanda.removeClass('hidden');
+        infoBanda.removeClass('hidden');
+        timelineBanda.removeClass('timeline-invisivel');
+        photoIcon.css('visibility', 'hidden');
+        label.addClass('hidden');
+
+        if(typeof _gaq != "undefined"){
+            _gaq.push(['_trackEvent', 'Band', 'Expandir', 'Banda: ' + bandSlug]);
+        }
+    }else {
+        areaBanda.addClass('hidden');
+        infoBanda.addClass('hidden');
+        timelineBanda.addClass('timeline-invisivel');
+        photoIcon.css('visibility', 'visible');
+        label.removeClass('hidden');
+
+        if(typeof _gaq != "undefined"){
+            _gaq.push(['_trackEvent', 'Band', 'Retrair', 'Banda: ' + bandSlug]);
+        }
+    }
+}
+
+function main_index(){
     if(procurarBandasText){
         procurarBandasText.addEventListener("keypress", enterPressedProcuraBandaHome, false);
         procurarBandasButton.addEventListener("click", procurarBandaHome, false);
@@ -191,6 +178,8 @@ function main_index(){
     if(bandsBtn){
         $(bandsBtn).click(bandsBtnClicked);
     }
+
+    $(document).on('click', '.info-banda-header', toggleBand);
 
     $('#minhas-bandas-lista').on("click", ".favoritar", function(){
         var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
@@ -238,43 +227,6 @@ function main_index(){
         });
     });
 
-    $(document).on('click', '.info-banda-header', function() {
-        var bandSlug = $(this).parent().attr('id');
-        var areaBanda = $('#' + bandSlug + ' #area-banda');
-        var infoBanda = $('#' + bandSlug + ' #info-banda');
-        var photoIcon = $('#' + bandSlug + ' .photo-icon');
-        var label = $('#' + bandSlug + ' .label');
-
-        if(areaBanda.hasClass('hidden')) {
-            areaBanda.removeClass('hidden');
-            infoBanda.removeClass('hidden');
-            photoIcon.css('visibility', 'hidden');
-            label.addClass('hidden');
-
-            if(typeof _gaq != "undefined"){
-                _gaq.push(['_trackEvent', 'Band', 'Expandir', 'Banda: ' + bandSlug]);
-            }
-        }else {
-            areaBanda.addClass('hidden');
-            infoBanda.addClass('hidden');
-            photoIcon.css('visibility', 'visible');
-            label.removeClass('hidden');
-
-            if(typeof _gaq != "undefined"){
-                _gaq.push(['_trackEvent', 'Band', 'Retrair', 'Banda: ' + bandSlug]);
-            }
-        }
-    });
-
-    $(document).ready(function() {
-        createStoryJS({
-            type:       'timeline',
-            width:      '800',
-            height:     '600',
-            source:     'https://docs.google.com/spreadsheet/pub?key=0Agl_Dv6iEbDadFYzRjJPUGktY0NkWXFUWkVIZDNGRHc&amp;output=html',
-            embed_id:   'the-beatles-timeline'
-        });
-    });
 }
 
 main_index();
