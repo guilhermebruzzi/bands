@@ -226,7 +226,6 @@ function main_index(){
             alert(msg);
         });
     });
-
 }
 
 main_index();
