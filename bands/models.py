@@ -227,7 +227,7 @@ class Band(db.Document):
                     "startDate": "%s" % str(datetime.now().date()).replace("-", ","),
                     "headline": u"Wikipedia sobre %s (para maiores informações)" % self.name,
                     "tag": u"%s Wikipedia" % self.name,
-                    "classname": u"%s-wiki" % self.slug,
+                    "classname": "wikipedia",
                     "asset": {
                         "media": "http://pt.wikipedia.org/wiki/%s" % self.name.strip().replace(" ", "_")
                     }

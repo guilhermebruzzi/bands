@@ -40,7 +40,7 @@
                 "startDate":"2013,05,13",
                 "headline":"Wikipedia sobre os Beatles (para maiores informações)",
                 "tag":"The Beatles Wikipedia",
-                "classname":"the-beatles-wiki",
+                "classname":"wikipedia",
                 "asset": {
                     "media":"http://pt.wikipedia.org/wiki/The_Beatles"
                 }
