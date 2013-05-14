@@ -41,8 +41,12 @@
     margin-right: 6px;
     text-align: center;
     text-transform: uppercase;
-    width: 83%;
+    width: 85%;
     border: 1px solid #C0C0C0;
+}
+
+.minhas-bandas .procurar{
+    margin-left: 13px;
 }
 
 /* Cada Banda */
