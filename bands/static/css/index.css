@@ -129,8 +129,6 @@ section.funcionalidades-home article h2{
 .lista-pagina-principal-container ul{
     font-size: 0;
     min-height: 150px;
-    overflow-x: hidden;
-    overflow-y: auto;
     position: relative;
     width: 1100px;
 }

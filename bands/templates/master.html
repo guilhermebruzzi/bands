@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" lang="pt-br">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" lang="pt-BR">
 <head>
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -117,6 +117,9 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='timelinejs-compiled/js/storyjs-embed.js') }}"></script>
+
+    <script type="text/javascript"> var addthis_config = {"data_track_addressbar":true} ; </script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-518eb49137fb39b2"></script>
 
     {% assets filter="yui_js", output="js/gen/import-min.js",
         "js/base.js", "js/index.js", "js/cadastro.js", "js/votacao.js", "js/master.js", "js/venda-produtos.js", "js/user-voice.js" %}

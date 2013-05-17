@@ -138,12 +138,16 @@ function toggleBand(){
     var infoBanda = bandParent.find('#info-banda');
     var photoIcon = bandParent.find('.photo-icon');
     var timelineBanda = bandParent.find('.timeline-banda');
+    var shareBanda = bandParent.find('.share');
+    var comentariosBanda = bandParent.find('.comentarios');
     var label = bandParent.find('.label');
 
     if(areaBanda.hasClass('hidden')) {
         areaBanda.removeClass('hidden');
         infoBanda.removeClass('hidden');
-        timelineBanda.removeClass('timeline-invisivel');
+        timelineBanda.removeClass('invisivel');
+        shareBanda.removeClass('invisivel');
+        comentariosBanda.removeClass('invisivel');
         photoIcon.css('visibility', 'hidden');
         label.addClass('hidden');
 
@@ -153,7 +157,9 @@ function toggleBand(){
     }else {
         areaBanda.addClass('hidden');
         infoBanda.addClass('hidden');
-        timelineBanda.addClass('timeline-invisivel');
+        timelineBanda.addClass('invisivel');
+        shareBanda.addClass('invisivel');
+        comentariosBanda.addClass('invisivel');
         photoIcon.css('visibility', 'visible');
         label.removeClass('hidden');
 

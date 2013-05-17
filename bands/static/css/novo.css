@@ -57,6 +57,9 @@
     width: 86%;
     font-size: 0;
     position: relative;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .minhas-bandas-lista .item-lista-bands{
@@ -107,7 +110,7 @@
     width: 16px;
     height: 16px;
     position: relative;
-    top: 2px;
+    top: 3px;
 }
 
 .favoritar.favoritou{
@@ -137,7 +140,7 @@
 
 .minhas-bandas .info-banda-header-menor{
     font-size: 14px;
-    margin-left: 20px;
+    margin-left: 15px;
     display: inline-block;
 }
 
@@ -151,6 +154,40 @@
 .small {
     background-size: 50px 50px;
 }
+
+/* Share e comentarios */
+
+.minhas-bandas .share {
+    display: inline-block;
+    position: absolute;
+    right: 100px;
+    top: 70px;
+    width: 195px;
+}
+
+.share .addthis_button_facebook_like{
+    position: absolute;
+    left: 0px;
+}
+
+.share .shares-menores{
+    position: absolute;
+    right: 0px;
+    top: 2px;
+}
+
+.share .addthis_button_twitter{
+    position: relative;
+    left: 0px;
+}
+
+.minhas-bandas .comentarios {
+    margin: 0 auto;
+    width: 800px;
+    padding-bottom: 15px;
+}
+
+/* Resto das informacoes */
 
 .minhas-bandas .nota{
     font-size: 12px;
@@ -215,7 +252,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     margin: 0 auto 20px auto;
 }
 
-.timeline-invisivel{
+.invisivel{
     visibility: hidden;
     position: absolute;
     bottom: 0;
