@@ -1,0 +1,7 @@
+{% import 'band_search.html' as band_search %}
+{% if not current_user %}
+    {% for band, band_shows in minhas_bandas_shows %}
+        {%- set show = band_shows[0] -%}
+        {{ band_search.escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) }}
+    {% endfor %}
+{% endif %}

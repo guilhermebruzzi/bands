@@ -13,6 +13,7 @@ from controllers import get_or_create_user, validate_answers, random_top_bands, 
     newsletter_exists, get_or_create_newsletter, get_all_bands, get_all_newsletters, get_or_create_band_question,\
     get_random_bands_from_a_slug_list
 from pagseguropy.pagseguro import Pagseguro
+from config import cache
 
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
@@ -71,23 +72,49 @@ def novo():
     minhas_bandas_shows = []
     if current_user:
         minhas_bandas = get_user_bands(user=current_user)
+
+        if request.args.get('band'):
+            minhas_bandas.insert(0, get_band(slug=request.args.get('band')))
+
         minhas_bandas_shows.extend(get_shows_from_bands(minhas_bandas, 1, city=current_city))
     else:
         top_bands = [get_band("the-beatles"), get_band("queen"), get_band("metallica"), get_band("guns-n-roses")]
+
+        if request.args.get('band'):
+            top_bands.insert(0, get_band(slug=request.args.get('band')))
+
         minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city)
         los_bife_band = get_band(slug="los-bife")
         minhas_bandas_shows.append((los_bife_band, los_bife_band.shows[:1]))
 
-        shows_locais = get_shows_from_bands_by_city(city=current_city)
-        for show_local in shows_locais:
-            main_artist = show_local.artists[0]
-            minhas_bandas_shows.append((main_artist, [show_local]))
 
-    all_bands = get_all_bands(limit=2000)
 
     return render_template("novo.html", current_user=current_user,
-        minhas_bandas_shows=minhas_bandas_shows, all_bands=all_bands, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
+        minhas_bandas_shows=minhas_bandas_shows, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
         formulario_pag_seguro=formulario_pag_seguro)
+
+@app.route('/bandas-datalist/', methods=['GET'])
+@cache.cached(timeout=18000)
+def bandas_datalist():
+    all_bands = get_all_bands(limit=2000)
+    return render_template("bandas_datalist.html", all_bands=all_bands)
+
+@app.route('/bandas-locais/', methods=['GET'])
+@cache.cached(timeout=18000)
+def bandas_locais():
+    minhas_bandas_shows = []
+
+    current_user = get_current_user()
+    current_city = current_user.city if current_user and current_user.city else "Rio de Janeiro"
+
+    shows_locais = get_shows_from_bands_by_city(city=current_city)
+    for show_local in shows_locais:
+        main_artist = show_local.artists[0]
+        minhas_bandas_shows.append((main_artist, [show_local]))
+
+    return render_template("bandas_locais.html", minhas_bandas_shows=minhas_bandas_shows,
+        current_user=current_user,
+        notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS, formulario_pag_seguro=formulario_pag_seguro)
 
 @app.route('/loja-virtual', methods=['GET'])
 def loja_virtual():

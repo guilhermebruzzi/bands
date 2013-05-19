@@ -2,6 +2,43 @@ var erroProcurarBandas = document.querySelector('#erro-procurar-bandas');
 var procurarBandasText = document.querySelector('#opcoes-procurar-bandas-text');
 var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-button');
 
+var disqus_shortname = 'bands';
+var disqus_identifier; //unique identifier
+var disqus_url; //post permalink
+// var disqus_title; //post title
+
+function loadDisqus(source, identifier, url) {
+
+    if (window.DISQUS) {
+
+        jQuery('#disqus_thread').insertAfter(source); //append the HTML after the link
+
+        //if Disqus exists, call it's reset method with new parameters
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.identifier = identifier;
+                this.page.url = url;
+                // this.page.title = title
+            }
+        });
+
+    } else {
+
+        //insert a wrapper in HTML after the relevant "show comments" link
+        jQuery('<div id="disqus_thread"></div>').insertAfter(source);
+        disqus_identifier = identifier; //set the identifier argument
+        disqus_url = url; //set the permalink argument
+        // disqus_title = title;
+
+        //append the Disqus embed script to HTML
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        jQuery('head').append(dsq);
+
+    }
+};
+
 function makeRequestServer(method, url, callback, params){
     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
@@ -111,6 +148,17 @@ function infoBandaGeneroClicked(){
     if(typeof _gaq != "undefined"){
         _gaq.push(['_trackEvent', 'Band', 'Gênero em uma pesquisa de banda', 'Banda: ' + bandaNome + ' Genero: ' + genero]);
     }
+}
+
+function mostrarComentariosClicked(){
+    var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Band', 'Ver comentários em uma pesquisa de banda', 'Banda: ' + bandaNome]);
+    }
+
+    $(".mostrar-comentarios").removeClass("invisivel");
+    $(this).addClass("invisivel");
 }
 
 function carregaTimeline(timelineId){ // Ex.: timelineId='the-beatles-timeline'
@@ -232,6 +280,24 @@ function main_index(){
             alert(msg);
         });
     });
+
+    var bandasDatalist = $("#bandas");
+    if(bandasDatalist.length > 0){
+        bandasDatalist.load("/bandas-datalist/");
+    }
+
+    var minhasBandasListas = $("#minhas-bandas-lista");
+
+    if(minhasBandasListas.length > 0){
+        $.ajax({
+            type: "GET",
+            url: "/bandas-locais/"
+        }).done(function(htmlBandasLocais) {
+                minhasBandasListas.append(htmlBandasLocais);
+        });
+    }
+
+    $('#minhas-bandas').on('click', ".mostrar-comentarios", mostrarComentariosClicked);
 }
 
 main_index();

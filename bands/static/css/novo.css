@@ -185,6 +185,7 @@
     margin: 0 auto;
     width: 800px;
     padding-bottom: 15px;
+    font-size: 14px;
 }
 
 /* Resto das informacoes */
@@ -249,7 +250,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 .timeline-banda {
     font-size: 14px;
     width: 800px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
 }
 
 .invisivel{
@@ -310,6 +311,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     color: #9F0902;
     font-size: 18px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /* Produtos */

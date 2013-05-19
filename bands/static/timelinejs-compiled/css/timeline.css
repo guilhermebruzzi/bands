@@ -284,3 +284,32 @@
 /* Custom css da timeline */
 .wikipedia .text{height: 100px !important;}
 h3{font-size: 16px; margin: 15px auto; font-family: Tahoma, Ubuntu; text-transform: uppercase; color: #333;}
+.shiny-red {
+    -moz-box-shadow:inset 0px 1px 0px 0px #d4302a;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #d4302a;
+    box-shadow:inset 0px 1px 0px 0px #d4302a;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d4302a), color-stop(1, #a00a02) );
+    background:-moz-linear-gradient( center top, #d4302a 5%, #a00a02 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4302a', endColorstr='#a00a02');
+    background-color:#d4302a;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #d4302a;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #a00a02;
+}.shiny-red:hover {
+     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a00a02), color-stop(1, #d4302a) );
+     background:-moz-linear-gradient( center top, #a00a02 5%, #d4302a 100% );
+     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a00a02', endColorstr='#d4302a');
+     background-color:#a00a02;
+ }.shiny-red:active {
+      position:relative;
+      top:1px;
+  }

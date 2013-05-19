@@ -8,6 +8,7 @@ from flaskext.oauth import OAuth
 from flaskext.mongoengine import MongoEngine
 from flask.ext import assets
 from flask.ext.jasmine import Jasmine
+from flask.ext.cache import Cache
 
 def add_path():
     global project_root
@@ -76,6 +77,7 @@ jasmine.sources(
     'js/index.js',
 )
 
+cache = Cache(app)
 
 MAIN_QUESTIONS = [
     {

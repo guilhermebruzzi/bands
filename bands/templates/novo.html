@@ -34,9 +34,6 @@
                 <span id="erro-procurar-bandas" class="error erro-procurar-bandas invisivel"></span>
             </div>
             <datalist id="bandas">
-                {% for band in all_bands %}
-                    <option value="{{ band.name }}" />
-                {% endfor %}
             </datalist>
             <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
                 {% for band, band_shows in minhas_bandas_shows %}
