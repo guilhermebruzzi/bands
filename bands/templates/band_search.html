@@ -83,7 +83,7 @@
             {% else %}
                 <div class="navegacao-show-container"></div>
             {% endif %}
-            <div class="banda-mais-opcoes">
+            <div class="banda-mais-opcoes banda-mais-opcoes-baixo">
                 {% if band.slug == "los-bife" %}
                     <a type="button" class="shiny-red" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</a>
                 {% else %}
@@ -95,7 +95,7 @@
         <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
             <h3>Timeline</h3>
             <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-colabore" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Clique aqui para contribuir</button>
-            <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0" width="900" height="700">
+            <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
                 <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
             </iframe>
         </div>

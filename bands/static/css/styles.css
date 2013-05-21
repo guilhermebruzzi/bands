@@ -245,6 +245,11 @@ textarea {
     height: 220px;
 }
 
+iframe{
+    width: 900px;
+    height: 700px;
+}
+
 .hidden{
     display: none !important;
 }

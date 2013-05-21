@@ -164,8 +164,8 @@ function mostrarComentariosClicked(){
 function carregaTimeline(timelineId){ // Ex.: timelineId='the-beatles-timeline'
     createStoryJS({
         type:       'timeline',
-        width:      '800',
-        height:     '600',
+        width:      '90%',
+        height:     '90%',
         lang:       'pt-br',
         source:     '/band/' + timelineId + '.json',
         embed_id:   timelineId

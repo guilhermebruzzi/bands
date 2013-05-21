@@ -18,6 +18,10 @@
     background-image: url("/static/img/banda-default.jpg");
 }
 
+.explicacao-linha-unica{
+    width: 100%;
+}
+
 /* Explicação do site */
 
 .area-bandas-nova-home .explicacao-site h2{
@@ -330,4 +334,121 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 .lista-pagina-principal-container .lista-produtos {
     width: 700px;
 }
+
+/* IPAD */
+
+/* Landscape */
+
+@media (max-device-width: 1024px) and (orientation: landscape) {
+
+}
+
+/* Portrait */
+
+@media (max-width: 768px) {
+    .area-bandas-nova-home {
+        width: 100%;
+    }
+
+    header .div-topo {
+        width: 590px;
+    }
+
+    section.area-show-home article.explicacao-site {
+        width: 620px;
+        margin-left: 25px;
+    }
+
+    .area-bandas-nova-home .minhas-bandas {
+        width: 90%;
+    }
+
+    .minhas-bandas .opcoes-procurar-bandas {
+        width: auto;
+        font-size: 0;
+        padding-left: 18px;
+    }
+
+    .minhas-bandas .opcoes-procurar-bandas-text {
+        width: 500px;
+        display: inline-block;
+        font-size: 14px;
+        vertical-align: top;
+        position: relative;
+        top: 1px;
+        height: 26px;
+    }
+
+    .minhas-bandas .procurar {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .lista-pagina-principal-container ul {
+        width: 730px;
+        padding-left: 22px;
+    }
+
+    .minhas-bandas .logo-banda-container {
+        height: 128px;
+        width: 128px;
+    }
+
+    .minhas-bandas .lastfm-photo {
+        height: 124px;
+        width: 124px;
+    }
+
+    .minhas-bandas .share {
+        right: 238px;
+        top: 102px;
+    }
+
+    .minhas-bandas .info-banda-nome {
+        font-size: 20px;
+        margin-left: 20px;
+    }
+
+    .minhas-bandas .label {
+        font-size: 12px;
+        top: -15px;
+    }
+
+    .banda-mais-opcoes {
+        margin: 32px 0 20px;
+    }
+
+    .minhas-bandas .navegacao-show-container {
+        margin-bottom: 15px;
+    }
+
+    .banda-mais-opcoes-baixo{
+        margin-top: 0px
+    }
+
+    .banda-mais-opcoes button {
+        margin-top: 15px;
+    }
+
+    .minhas-bandas .navegacao-show-container .band-navegacao-show{
+        display: none;
+    }
+
+    .timeline-banda{
+        padding-left: 25px;
+    }
+
+    .timeline-banda iframe {
+        width: 650px;
+        height: 700px;
+        position: relative;
+        left: -7px;
+    }
+
+    .minhas-bandas .comentarios {
+        width: 550px;
+    }
+
+}
+
 
