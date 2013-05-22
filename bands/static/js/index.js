@@ -188,6 +188,7 @@ function toggleBand(){
     var timelineBanda = bandParent.find('.timeline-banda');
     var shareBanda = bandParent.find('.share');
     var comentariosBanda = bandParent.find('.comentarios');
+    var mostrarComentarios = comentariosBanda.find('.mostrar-comentarios');
     var label = bandParent.find('.label');
 
     if(areaBanda.hasClass('hidden')) {
@@ -198,6 +199,7 @@ function toggleBand(){
         comentariosBanda.removeClass('invisivel');
         photoIcon.css('visibility', 'hidden');
         label.addClass('hidden');
+        mostrarComentarios.click(); // Abre o espaço de comentários
 
         if(typeof _gaq != "undefined"){
             _gaq.push(['_trackEvent', 'Band', 'Expandir', 'Banda: ' + bandSlug]);

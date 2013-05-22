@@ -212,6 +212,33 @@
     width: 45px;
 }
 
+.minhas-bandas .pergunte-sobre-a-banda {
+    margin-left: 111px;
+}
+
+.similares-body {
+    font-size: 0;
+    display: inline-block;
+}
+
+.similares-linha {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 25px;
+    vertical-align: top;
+    width: 150px;
+}
+
+.primeira-linha-similar{
+    margin-left: 5px;
+}
+
+.similar{
+    display: inline-block;
+    width: 100%;
+    margin: 4px 0px;
+}
+
 .minhas-bandas .navegacao-show-container{
     font-size: 0;
     height: 52px;
@@ -303,7 +330,11 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 }
 
 .banda-mais-opcoes {
-    margin: 30px 0 20px;
+    margin: 20px 0 20px;
+}
+
+.banda-mais-opcoes-baixo{
+    margin-top: 40px;
 }
 
 .banda-mais-opcoes button{

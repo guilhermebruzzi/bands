@@ -219,7 +219,7 @@ class Band(db.Document):
                 {
                     "startDate": "%s" % str(datetime.now().date()).replace("-", ","),
                     "headline": "Contribua",
-                    "text": u"<p>Clique no botão acima escrito 'Clique aqui para contribuir' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
+                    "text": u"<p>Clique no botão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                     "tag": u"%s, Contribua" % self.name,
                     "classname": "contribua"
                 },
