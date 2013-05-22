@@ -348,12 +348,17 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 /* Landscape */
 
 @media (max-device-width: 1024px) and (orientation: landscape) {
+    .minhas-bandas .close-banda{
+        width: 15px;
+    }
+
     .minhas-bandas .comentarios {
         width: 550px;
     }
 
-    .minhas-bandas .close-banda{
-        width: 20px;
+    .minhas-bandas .opcoes-procurar-bandas-text {
+        width: 74%;
+        /*float: left;*/
     }
 }
 
@@ -424,7 +429,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     }
 
     .minhas-bandas .close-banda{
-        width: 20px;
+        width: 15px;
     }
 
     .minhas-bandas .info-banda-nome {
