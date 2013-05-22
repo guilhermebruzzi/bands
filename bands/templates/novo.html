@@ -9,27 +9,13 @@
     <section id="area-banda-home" class="area-show-home area-bandas-nova-home">
         {% if not current_user %}
             <article class="explicacao-site titulo-show lista-pagina-principal-container">
-                <h2>O que é o site Bands?</h2>
-                <article class="cadastro">
-                    <span class="explicacao texto-normal"> Para músicos que procuram mais fãs. E para fãs que querem conhecer melhor seus músicos e novos artistas.</span>
-                    <span class="explicacao texto-normal"> Bands é um site para conectar fãs e músicos.</span><br />
-                    <span class="explicacao">Para cadastrar a sua banda ou salvar bandas e shows que queira acompanhar:</span><br />
-                    <span class="area-login-botoes">
-                        <a href="/login/" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao', 'Botao Faca Login area minhas bandas pela index page']);" class="btn-auth btn-facebook large login-facebook">
-                            Faça login pelo
-                            <b>Facebook</b>
-                        </a>
-                        <span class="explicacao">ou</span>
-                        <a id="conta-bands-btn" class="conta-bands-btn" href="#" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Botao Bands', 'Criar conta bands pela home']);"><span>Crie a sua conta Bands</span></a>
-                    </span>
-                    <span class="explicacao explicacao-linha-unica">Ou use a nossa busca abaixo sem precisar de login.</span>
-                </article>
+                <h2>Busque pela sua banda preferida e saiba tudo dela!</h2>
             </article>
         {% endif %}
 
         <article id="minhas-bandas" class="minhas-bandas lista-pagina-principal-container">
             <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
-                <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="Digite a banda ou show que você deseja saber tudo sobre" type="text" list="bandas" />
+                <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="DIGITE AQUI A BANDA OU MÚSICO QUE VOCÊ DESEJA SABER TUDO SOBRE" type="text" list="bandas" />
                 <input id="opcoes-procurar-bandas-button" class="shiny-red add-btn procurar" type="button" value="Procurar" />
                 <span id="erro-procurar-bandas" class="error erro-procurar-bandas invisivel"></span>
             </div>

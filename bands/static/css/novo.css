@@ -45,16 +45,17 @@
 /* Busca */
 
 .minhas-bandas .opcoes-procurar-bandas {
-    margin: 15px 0px;
+    margin: 30px 0px;
 }
 
 .minhas-bandas .opcoes-procurar-bandas-text{
     height: 24px;
     margin-right: 6px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 85%;
+    text-align: left;
+    width: 83%;
     border: 1px solid #C0C0C0;
+    padding-left: 10px;
+    font-size: 16px;
 }
 
 .minhas-bandas .procurar{
