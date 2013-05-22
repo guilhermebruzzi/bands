@@ -53,6 +53,22 @@ header .logo a {
     height: 100%;
 }
 
+header .fb-fanpage-container{
+    position: relative;
+    left: -50px;
+    width: 250px;
+    display: inline-block;
+}
+
+header .esconde-fanpage-logo{
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
 .main-title{
     font-family: tahoma;
     text-decoration: none;
@@ -61,9 +77,11 @@ header .logo a {
 
 header .span-logo-slogan{
     display: inline-block;
-    width: 220px;
-    text-align: center;
     margin-bottom: 7px;
+    position: relative;
+    text-align: center;
+    width: 220px;
+    z-index: 1;
 }
 
 header .user-box-top {

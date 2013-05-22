@@ -349,6 +349,10 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 /* Landscape */
 
 @media (max-device-width: 1024px) and (orientation: landscape) {
+    .area-bandas-nova-home .explicacao-site h2 {
+        font-size: 22px;
+    }
+
     .minhas-bandas .close-banda{
         width: 15px;
     }
@@ -359,7 +363,6 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 
     .minhas-bandas .opcoes-procurar-bandas-text {
         width: 74%;
-        /*float: left;*/
     }
 }
 
@@ -382,6 +385,10 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     section.area-show-home article.explicacao-site {
         width: 620px;
         margin-left: 25px;
+    }
+
+    .area-bandas-nova-home .explicacao-site h2 {
+        font-size: 17px;
     }
 
     .area-bandas-nova-home .minhas-bandas {
