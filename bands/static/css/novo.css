@@ -4,6 +4,14 @@
     display: none;
 }
 
+.modal-header .close {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+}
+
 .area-bandas-nova-home .lista-pagina-principal-container{
     margin: 0;
 }
@@ -340,12 +348,23 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 /* Landscape */
 
 @media (max-device-width: 1024px) and (orientation: landscape) {
+    .minhas-bandas .comentarios {
+        width: 550px;
+    }
 
+    .minhas-bandas .close-banda{
+        width: 20px;
+    }
 }
 
 /* Portrait */
 
 @media (max-width: 768px) {
+    body, .container, .content {
+        width: 768px;
+        margin: 0;
+    }
+
     .area-bandas-nova-home {
         width: 100%;
     }
@@ -404,6 +423,10 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
         top: 102px;
     }
 
+    .minhas-bandas .close-banda{
+        width: 20px;
+    }
+
     .minhas-bandas .info-banda-nome {
         font-size: 20px;
         margin-left: 20px;
@@ -447,6 +470,17 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 
     .minhas-bandas .comentarios {
         width: 550px;
+    }
+
+    /* Produtos */
+
+    .modal-produtos, .lista-pagina-principal-container .lista-produtos{
+        width: 600px;
+    }
+
+    .lista-produtos li.produto {
+        list-style: none outside none;
+        width: 549px;
     }
 
 }

@@ -37,6 +37,13 @@
                 }
             },
             {
+                "startDate": "2013,05,12",
+                "headline": "Contribua",
+                "text": "<p>Clique no botão acima escrito 'Clique aqui para contribuir' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
+                "tag": "The Beatles, Contribua",
+                "classname": "contribua"
+            },
+            {
                 "startDate":"2013,05,13",
                 "headline":"Wikipedia sobre os Beatles (para maiores informações)",
                 "tag":"The Beatles Wikipedia",
