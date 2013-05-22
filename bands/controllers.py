@@ -159,7 +159,9 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
     shows = []
     bands_to_get_shows = []
     for band in bands:
-        if len(band.shows) == 0:
+        if not band:
+            continue
+        if hasattr(band, "shows") and len(band.shows) == 0:
             bands_to_get_shows.append(band)
         else:
             band.shows = sorted(band.shows, key=__sort_by_city_and_date__(city=city))

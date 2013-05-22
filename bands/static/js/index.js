@@ -298,6 +298,12 @@ function main_index(){
     }
 
     $('#minhas-bandas').on('click', ".mostrar-comentarios", mostrarComentariosClicked);
+
+    $(document).on('click', '.info-banda-link', function(){
+        var bandName = $(this).text();
+        makeRequestBandHome(bandName);
+    });
+
 }
 
 main_index();
