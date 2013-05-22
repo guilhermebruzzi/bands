@@ -3,6 +3,7 @@
 {% import 'band_tags.html' as band_tags %}
 {% import 'bandas_relacionadas.html' as bandas_relacionadas %}
 {% import 'band_products.html' as band_products %}
+{% import 'contribuicao_timeline.html' as contribuicao %}
 
 {% macro escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
@@ -94,7 +95,7 @@
 
         <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
             <h3>Timeline</h3>
-            <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-colabore" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Clique aqui para contribuir</button>
+            <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Clique aqui para contribuir</button>
             <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
                 <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
             </iframe>
@@ -128,7 +129,7 @@
         {{ band_tags.gera_modal(band) }}
         {{ bandas_relacionadas.gera_modal(band) }}
         {{ band_products.gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro) }}
-        {{ modal_generico.gera_modal("modal-colabore", "Contribua com a timeline da sua banda!", "Envie um email para contato@bands.com.br com o que você gostaria de ver na timeline da sua banda, que nós providenciaremos!") }}
+        {{ contribuicao.gera_modal(band) }}
 
         <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{  band.name | escape  }}']);">&times;</button>
     </li>
