@@ -369,6 +369,15 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     cursor: pointer;
 }
 
+
+.minhas-bandas li.banda-loading {
+    left: 0;
+    padding: 20px 0 19px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+}
+
 /* Produtos */
 
 .modal-produtos {

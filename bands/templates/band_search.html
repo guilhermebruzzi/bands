@@ -96,7 +96,7 @@
                 <div class="similares-body">
                     {% for similar in band.similares %}
                         {% if loop.index0 %2 == 0 %}<span class="similares-linha {% if loop.index0 == 0 %}primeira-linha-similar{% endif %}">{% endif %}
-                        <a href="#{{ similar.name }}" class="similar info-banda-link" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas no modal', 'Banda principal: {{ band.name }} e banda relacionada: {{ similar.name }}']);">{{ similar.name }}</a>
+                        <a href="#minhas-bandas" class="similar info-banda-link" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas no modal', 'Banda principal: {{ band.name }} e banda relacionada: {{ similar.name }}']);">{{ similar.name }}</a>
                         {% if loop.index0 %2 == 1 %}</span>{% endif %}
                     {% endfor %}
                 </div>

@@ -98,6 +98,9 @@ function adicionarBandaProcurada(){
                     erroProcurarBandas.classList.add("visivel");
                 }
             }
+            $("#banda-loading").addClass("hidden");
+            minhasBandasLista.removeClass("padding-80");
+
 
         } else {
             console.log('There was a problem with the request.');
@@ -304,6 +307,14 @@ function main_index(){
     $(document).on('click', '.info-banda-link', function(){
         var bandName = $(this).text();
         makeRequestBandHome(bandName);
+    });
+
+    $(document).on('click', '.similar', function(){
+        var bandaLoading = $('#banda-loading');
+        if(bandaLoading.hasClass("hidden")){
+            bandaLoading.removeClass("hidden");
+        }
+        $("#minhas-bandas-lista").addClass("padding-80");
     });
 
 }

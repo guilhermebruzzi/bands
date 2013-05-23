@@ -69,6 +69,10 @@ header .esconde-fanpage-logo{
     top: 0px;
 }
 
+.padding-80{
+    padding-top: 80px;
+}
+
 .main-title{
     font-family: tahoma;
     text-decoration: none;

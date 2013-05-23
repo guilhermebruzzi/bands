@@ -23,6 +23,9 @@
             <datalist id="bandas">
             </datalist>
             <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
+                <li id="banda-loading" class="banda-loading banda-container-li round-component box-gray hidden">
+                    <img src="/static/timelinejs-compiled/css/loading.gif" />
+                </li>
                 {% for band, band_shows in minhas_bandas_shows %}
                     {%- set show = band_shows[0] -%}
                     {{ band_search.escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) }}
