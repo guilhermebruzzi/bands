@@ -77,9 +77,9 @@
 
 .minhas-bandas-lista .item-lista-bands{
     height: 54px;
-    margin: 0;
+    margin: 0 90px 0 0;
     vertical-align: top;
-    width: 400px;
+    width: 300px;
 }
 
 /* Foto da Banda */
@@ -258,9 +258,10 @@
     vertical-align: top;
 }
 
+
 section.area-show-home .minhas-bandas ul li a.item-lista-shows span.info-show {
     height: 52px;
-    width: 336px;
+    width: 236px;
 }
 
 section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.banda-show,
@@ -271,7 +272,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     margin-top: 6px;
     position: relative;
     top: 0px;
-    width: 398px;
+    width: 250px;
 }
 
 .minhas-bandas .band-prev-show{
