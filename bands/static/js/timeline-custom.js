@@ -30,4 +30,13 @@ $(document).ready(function(){
         }
     });
 
+    $(document).on("click", ".navegacao-musica-2", function(){
+        $('.flag-content')[2].click()
+    });
+
+    $(document).on("click", ".navegacao-musica-3", function(){
+        $('.flag-content')[2].click()
+    });
+
+
 });

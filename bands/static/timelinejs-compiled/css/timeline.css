@@ -284,6 +284,12 @@
 /* Custom css da timeline */
 .wikipedia .text{height: 100px !important;}
 h3{font-size: 16px; margin: 15px auto; font-family: Tahoma, Ubuntu; text-transform: uppercase; color: #333;}
+.navegacao-musica {
+    color: #9F0902 !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    margin: 8px 0 !important;
+}
 .shiny-red {
     -moz-box-shadow:inset 0px 1px 0px 0px #d4302a;
     -webkit-box-shadow:inset 0px 1px 0px 0px #d4302a;
