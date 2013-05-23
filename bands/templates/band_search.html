@@ -32,15 +32,6 @@
         </h2>
 
         <div id="area-banda" class="area-banda hidden">
-            {% if band.photo %}
-                <img class="lastfm-photo logo-banda" alt="imagem da banda" src="{{ band.photo }}" />
-            {% else %}
-                <span title="imagem da banda" class="lastfm-photo logo-banda icone-banda-default"></span>
-            {% endif %}
-            <div class="logo-banda-container" title="imagem da banda"></div>
-        </div>
-
-        <div id="info-banda" class="info-banda hidden">
             <div class="info-banda-genero-div">
                 <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
                 <span class="info-banda-header-menor">Nota:
@@ -52,6 +43,18 @@
                 </span>
                 <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
             </div>
+        </div>
+
+        <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
+            <h3>Timeline <small>(use as setas para navegar)</small></h3>
+            <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
+                <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
+            </iframe>
+            <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Contribua com a timeline</button>
+        </div>
+
+        <div id="info-banda" class="info-banda hidden">
+
             <div class="banda-mais-opcoes">
                 {% if band.slug == "los-bife" %}
                     <a type="button" class="shiny-red" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</a>
@@ -98,14 +101,6 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
-
-        <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
-            <h3>Timeline <small>(use as setas para navegar)</small></h3>
-            <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Contribua com a timeline</button>
-            <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
-                <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
-            </iframe>
         </div>
 
         <div class="comentarios invisivel">

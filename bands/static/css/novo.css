@@ -83,9 +83,12 @@
 }
 
 /* Foto da Banda */
-.minhas-bandas .area-banda{
-    position: relative;
+
+.minhas-bandas .area-banda {
     height: auto;
+    left: 39px;
+    position: relative;
+    top: -20px;
 }
 
 .minhas-bandas .lastfm-photo{
@@ -213,7 +216,7 @@
 }
 
 .minhas-bandas .pergunte-sobre-a-banda {
-    margin-left: 111px;
+    margin-left: 50px;
 }
 
 .similares-body {
@@ -323,18 +326,26 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     width: 25px;
 }
 
-.info-banda{
-    display: inline-block;
+
+.info-banda {
+    display: block;
+    margin: 0 auto;
     vertical-align: top;
     width: 65%;
 }
 
+.contribua-timeline {
+    left: 8px;
+    position: relative;
+    top: -50px;
+}
+
 .banda-mais-opcoes {
-    margin: 20px 0 20px;
+    margin: 0px 0 50px;
 }
 
 .banda-mais-opcoes-baixo{
-    margin-top: 40px;
+    margin: 50px 0;
 }
 
 .banda-mais-opcoes button{
