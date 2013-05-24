@@ -8,7 +8,9 @@
         <p>{{ corpo }}</p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn shiny-red close" data-dismiss="modal" aria-hidden="true">{{ texto_botao }}</a>
+        <a href="#" class="btn shiny-red close" data-dismiss="modal" aria-hidden="true">
+            {% if texto_botao %}{{ texto_botao }}{% else %}Fechar{% endif %}
+        </a>
     </div>
 </div>
 {%- endmacro %}

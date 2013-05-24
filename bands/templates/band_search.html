@@ -50,7 +50,9 @@
             <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
                 <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
             </iframe>
-            <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: {{  band.name | escape  }}']);">Contribua com a timeline</button>
+            <div class="contribua-timeline-body">
+                <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
+            </div>
         </div>
 
         <div id="info-banda" class="info-banda hidden">

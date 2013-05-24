@@ -335,10 +335,11 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     width: 65%;
 }
 
-.contribua-timeline {
+.contribua-timeline-body {
     left: 8px;
     position: relative;
     top: -50px;
+    z-index: 1;
 }
 
 .banda-mais-opcoes {

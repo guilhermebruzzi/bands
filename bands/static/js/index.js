@@ -138,11 +138,6 @@ function bandsBtnClicked(){
     "No botão opine na parte direita você pode discutir sobre esse sistema de login.");
 }
 
-function historyTimelineBtnClicked(){
-    alert("Por enquanto não temos a opção de história em formato de timeline.\n" +
-    "Caso queira saber quando teremos essa opção faça login na parte superior do site.\n" +
-    "No botão opine na parte direita você pode discutir sobre essa e outras opções que gostaria que tivessemos.");
-}
 
 function infoBandaGeneroClicked(){
     var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
@@ -150,6 +145,14 @@ function infoBandaGeneroClicked(){
 
     if(typeof _gaq != "undefined"){
         _gaq.push(['_trackEvent', 'Band', 'Gênero em uma pesquisa de banda', 'Banda: ' + bandaNome + ' Genero: ' + genero]);
+    }
+}
+
+function contribuaTimelineClicked(){
+    var bandaNome = $(this).parent().parent().parent().find(".info-banda-nome").text();
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Band Timeline', 'Botao colabore', 'Banda: ' + bandaNome]);
     }
 }
 
@@ -268,8 +271,6 @@ function main_index(){
         return false;
     });
 
-    $('#minhas-bandas').on('click', ".ver-em-formato-timeline", historyTimelineBtnClicked);
-
     $('#minhas-bandas').on('click', ".info-banda-genero", infoBandaGeneroClicked);
 
     $(".enviar-pergunta").click(function(){
@@ -304,18 +305,17 @@ function main_index(){
 
     $('#minhas-bandas').on('click', ".mostrar-comentarios", mostrarComentariosClicked);
 
-    $(document).on('click', '.info-banda-link', function(){
-        var bandName = $(this).text();
-        makeRequestBandHome(bandName);
-    });
-
-    $(document).on('click', '.similar', function(){
+    $('#minhas-bandas').on('click', '.similar', function(){
         var bandaLoading = $('#banda-loading');
         if(bandaLoading.hasClass("hidden")){
             bandaLoading.removeClass("hidden");
         }
         $("#minhas-bandas-lista").addClass("padding-80");
+        var bandName = $(this).text();
+        makeRequestBandHome(bandName);
     });
+
+    $(document).on('click', ".contribua-timeline", contribuaTimelineClicked);
 
 }
 
