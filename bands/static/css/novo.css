@@ -65,7 +65,7 @@ seta timeline: #ececec com border #ddd8d8
     -webkit-box-shadow: inset 0 2px 1px rgba(0,0,0,.13);
     -moz-box-shadow: inset 0 2px 1px rgba(0,0,0,.13);
     box-shadow: inset 0 2px 1px rgba(0,0,0,.13);
-    color: #CCCCCC;
+    color: #777;
     font-family: arial;
     font-size: 17px;
     font-style: italic;
@@ -92,12 +92,16 @@ seta timeline: #ececec com border #ddd8d8
 /* Container da Banda */
 
 .minhas-bandas-lista li{
-    width: 86%;
+    width: 100%;
     font-size: 0;
     position: relative;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+
+.minhas-bandas .area-banda{
+    background-color: #F8F8F8;
 }
 
 .minhas-bandas-lista .item-lista-bands{
@@ -223,7 +227,7 @@ seta timeline: #ececec com border #ddd8d8
 }
 
 .minhas-bandas .comentarios {
-    margin: 0 auto;
+    margin: 0 auto 0 210px;
     width: 800px;
     padding-bottom: 15px;
     font-size: 14px;

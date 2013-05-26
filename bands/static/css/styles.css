@@ -5,7 +5,26 @@ html, body{
 }
 
 @font-face {
-    font-family:"Decker";src:url("Decker.eot?") format("eot"),url("Decker.woff") format("woff"),url("Decker.ttf") format("truetype"),url("Decker.svg#") format("svg");
+    font-family:"Decker";
+    src: url("/static/css/Decker.eot");
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family:"Decker Bold";
+    src:url("/static/css/Decker-Bold.eot");
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family:"Code Light";
+    src:url("/static/css/Code-Light.otf");
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family:"Code Bold";
+    src:url("/static/css/Code-Bold.otf");
     font-weight:normal;
     font-style:normal;
 }
@@ -22,7 +41,7 @@ html, body{
     margin: 0 auto;
     padding: 0;
     font-size: 0;
-    width: 960px;
+    width: 1000px;
 }
 
 header {
@@ -61,7 +80,7 @@ header .logo a {
 
 header .fb-fanpage-container{
     position: relative;
-    left: -50px;
+    left: 90px;
     width: 250px;
     display: inline-block;
 }
@@ -71,7 +90,7 @@ header .esconde-fanpage-logo{
     width: 60px;
     background-color: #F7F7F7;
     position: absolute;
-    left: 0px;
+    left: -108px;
     top: 0px;
 }
 
@@ -239,10 +258,11 @@ header .user-menu .menu-lista a:hover{
 
 h2, h3{
     margin: 15px auto;
-    font-family: Tahoma, Ubuntu;
+    color: #8C8C8C;
+    font-family: "Decker";
     text-transform: uppercase;
     font-size: 10pt;
-    color: #333;
+    font-weight: normal;
 }
 
 h3{
@@ -280,8 +300,10 @@ textarea {
 }
 
 iframe{
-    width: 900px;
-    height: 700px;
+    height: 900px;
+    left: -108px;
+    position: relative;
+    width: 1120px;
 }
 
 .hidden{

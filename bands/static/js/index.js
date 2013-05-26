@@ -1,6 +1,5 @@
 var erroProcurarBandas = document.querySelector('#erro-procurar-bandas');
 var procurarBandasText = document.querySelector('#opcoes-procurar-bandas-text');
-var procurarBandasButton = document.querySelector('#opcoes-procurar-bandas-button');
 
 var disqus_shortname = 'bands';
 var disqus_identifier; //unique identifier
@@ -228,7 +227,6 @@ function toggleBand(){
 function main_index(){
     if(procurarBandasText){
         procurarBandasText.addEventListener("keypress", enterPressedProcuraBandaHome, false);
-        procurarBandasButton.addEventListener("click", procurarBandaHome, false);
     }
 
     var gmailBtn = document.querySelector('#gmail-btn');

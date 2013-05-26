@@ -1,12 +1,12 @@
 @font-face {
     font-family:"Decker";
-    src:url("/static/css/Decker.eot?") format("eot"),url("/static/css/Decker.woff") format("woff"),url("/static/css/Decker.ttf") format("truetype"),url("/static/css/Decker.svg#") format("svg");
+    src: url("/static/css/Decker.eot");
     font-weight:normal;
     font-style:normal;
 }
 @font-face {
     font-family:"Decker Bold";
-    src:url("/static/css/Decker-Bold.ttf") format("truetype");
+    src:url("/static/css/Decker-Bold.eot");
     font-weight:normal;
     font-style:normal;
 }
@@ -161,7 +161,7 @@
 }
 
 .vco-storyjs p, .vco-storyjs blockquote, .vco-storyjs blockquote p, .vco-storyjs .twitter blockquote p {
-    font-family: "Georgia", Times New Roman, Times, serif !important;
+    font-family: Decker, "Georgia", Times New Roman, Times, serif !important;
 }
 
 .vco-storyjs .vco-feature h1, .vco-storyjs .vco-feature h2, .vco-storyjs .vco-feature h3, .vco-storyjs .vco-feature h4, .vco-storyjs .vco-feature h5, .vco-storyjs .vco-feature h6 {
@@ -211,7 +211,7 @@
 
 .vco-storyjs .vco-feature h3, .vco-storyjs .vco-feature h4, .vco-storyjs .vco-feature h5, .vco-storyjs .vco-feature h6 {
     font-family: "Code Light";
-    margin-bottom: 15px;
+    margin: 15px 0px;
 }
 
 .vco-storyjs .vco-feature p {
@@ -785,11 +785,10 @@
     vertical-align: middle;
 }
 .vco-slider .slider-item .content .content-container .text {
-    width: 40%;
-    max-width: 50%;
     min-width: 120px;
-    display: table-cell;
+    padding-left: 20px;
     vertical-align: middle;
+    width: 100% !important;
 }
 .vco-slider .slider-item .content .content-container .text .container {
     display: table-cell;
@@ -802,8 +801,10 @@
     -ms-hyphens: auto;
     hyphens: auto;
     word-wrap: break-word;
+    color: #8C8C8C;
+    font-family: "Decker";
+    max-width: 300px;
 }
-
 .vco-slider .slider-item .content .content-container .text .container h2.date {
     font-size: 15px;
     line-height: 15px;
@@ -827,7 +828,6 @@
 }
 
 .vco-slider .slider-item .content .content-container .media {
-    width: 100%;
     min-width: 50%;
     float: left;
 }
@@ -2672,7 +2672,7 @@ h3 {
 }
 
 .navegacao-musica  {
-    color:  #9F0902 !important;
+    color:  #8c8c8c !important;
     display:  inline-block !important;
     font-size:  16px !important;
     margin:  8px 0 !important;
