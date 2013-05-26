@@ -35,7 +35,7 @@ $(document).ready(function(){
     });
 
     $(document).on("click", ".navegacao-musica-3", function(){
-        $('.flag-content')[2].click()
+        $('.flag-content')[3].click()
     });
 
 
