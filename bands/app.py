@@ -197,7 +197,9 @@ def los_bife():
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
         range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
         camisas=[{ "tipo": "amarela", "preco": "20,00" },
-                 { "tipo": "vermelha", "preco": "20,00" }])
+                 { "tipo": "vermelha", "preco": "20,00" },
+                 { "tipo": "azul", "preco": "20,00" },
+                 { "tipo": "verde", "preco": "20,00" }])
 
 @app.route('/band/<band_timeline_id>.json', methods=['GET'])
 def get_band_timeline_json(band_timeline_id):

@@ -4,6 +4,12 @@ html, body{
     padding:0;
 }
 
+@font-face {
+    font-family:"Decker";src:url("Decker.eot?") format("eot"),url("Decker.woff") format("woff"),url("Decker.ttf") format("truetype"),url("Decker.svg#") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
+
 .container {
     position: relative;
     margin: 0 auto;

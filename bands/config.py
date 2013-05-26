@@ -123,6 +123,8 @@ BANDAS_CAMISAS = {
         "camisas": [
             { "tipo": "amarela", "preco": "20,00" },
             { "tipo": "vermelha", "preco": "20,00" },
+            { "tipo": "azul", "preco": "20,00" },
+            { "tipo": "verde", "preco": "20,00" },
         ]
     },
     "los-hermanos": {
