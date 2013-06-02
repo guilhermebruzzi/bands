@@ -149,11 +149,11 @@
     font-family: "Georgia", Times New Roman, Times, serif;
 }
 .vco-storyjs .twitter, .vco-storyjs .vcard, .vco-storyjs .messege, .vco-storyjs .credit, .vco-storyjs .caption, .vco-storyjs .zoom-in, .vco-storyjs .zoom-out, .vco-storyjs .back-home, .vco-storyjs .time-interval div, .vco-storyjs .time-interval-major div, .vco-storyjs .nav-container {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: Decker, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .vco-storyjs h1.date, .vco-storyjs h2.date, .vco-storyjs h3.date, .vco-storyjs h4.date, .vco-storyjs h5.date, .vco-storyjs h6.date {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family:  Decker, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .vco-storyjs .timenav h1, .vco-storyjs .flag-content h1, .vco-storyjs .era h1, .vco-storyjs .timenav h2, .vco-storyjs .flag-content h2, .vco-storyjs .era h2, .vco-storyjs .timenav h3, .vco-storyjs .flag-content h3, .vco-storyjs .era h3, .vco-storyjs .timenav h4, .vco-storyjs .flag-content h4, .vco-storyjs .era h4, .vco-storyjs .timenav h5, .vco-storyjs .flag-content h5, .vco-storyjs .era h5, .vco-storyjs .timenav h6, .vco-storyjs .flag-content h6, .vco-storyjs .era h6 {
@@ -624,7 +624,7 @@
 }
 
 .vco-notouch .vco-slider .nav-next:hover .icon {
-    margin-left: 66px;
+    margin-left: 2px;
 }
 
 .vco-notouch .vco-slider .slider-item .content .content-container .media .media-container .wikipedia h4 a:hover {
@@ -685,6 +685,25 @@
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 5px;
+    width: 75px;
+    display: inline-block;
+    color: #B3B3B3;
+    font-family: Decker;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 15px;
+}
+
+.vco-slider .nav-next .date {
+    left: -48px;
+    position: relative;
+    top: -69px;
+}
+
+.vco-slider .nav-previous .date {
+    left: 40px;
+    position: relative;
+    top: -69px;
 }
 
 .vco-slider .nav-previous .title, .vco-slider .nav-next .title {
@@ -698,12 +717,12 @@
 }
 .vco-slider .nav-previous .icon {
     margin-left: 15px;
-    background-image: url(timeline.png?v4.4);
+    background-image: url("/static/img/sprite-timeline.jpg");
+    background-position: -52px -71px;
     background-repeat: no-repeat;
-    background-position: -160px 0;
-    width: 24px;
-    height: 24px;
+    height: 69px;
     overflow: hidden;
+    width: 75px;
 }
 
 .vco-slider .nav-previous .date, .vco-slider .nav-previous .title {
@@ -716,13 +735,13 @@
     text-align: right;
 }
 .vco-slider .nav-next .icon {
-    margin-left: 61px;
-    background-image: url(timeline.png?v4.4);
+    margin-left: 0px;
+    background-image: url("/static/img/sprite-timeline.jpg");
+    background-position: -52px 0;
     background-repeat: no-repeat;
-    background-position: -184px 0;
-    width: 24px;
-    height: 24px;
+    height: 69px;
     overflow: hidden;
+    width: 75px;
 }
 
 .vco-slider .nav-next .date, .vco-slider .nav-next .title {
@@ -732,22 +751,22 @@
 
 @media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (min-device-pixel-ratio:2) {
     .vco-slider .nav-previous .icon {
-        background-image: url(timeline@2x.png?v4.4);
-        background-size: 352px 260px;
+        margin-left: 15px;
+        background-image: url("/static/img/sprite-timeline.jpg");
+        background-position: -52px -69px;
         background-repeat: no-repeat;
-        background-position: -160px 0;
-        width: 24px;
-        height: 24px;
+        height: 69px;
         overflow: hidden;
+        width: 75px;
     }
     .vco-slider .nav-next .icon {
-        background-image: url(timeline@2x.png?v4.4);
-        background-size: 352px 260px;
+        margin-left: 0px;
+        background-image: url("/static/img/sprite-timeline.jpg");
+        background-position: -52px 0;
         background-repeat: no-repeat;
-        background-position: -184px 0;
-        width: 24px;
-        height: 24px;
+        height: 69px;
         overflow: hidden;
+        width: 75px;
     }
 }
 .vco-slider .slider-item {
@@ -802,7 +821,7 @@
     hyphens: auto;
     word-wrap: break-word;
     color: #8C8C8C;
-    font-family: "Decker";
+    font-family: Decker;
     max-width: 300px;
 }
 .vco-slider .slider-item .content .content-container .text .container h2.date {
@@ -1285,6 +1304,7 @@
     -webkit-box-shadow: 1px 1px 7px rgba(0,  0,  0,  0.3);
     -moz-box-shadow: 1px 1px 7px rgba(0,  0,  0,  0.3);
     box-shadow: 1px 1px 7px rgba(0,  0,  0,  0.3);
+    background-color: #F8F8F8;
 }
 
 .vco-storyjs .vco-feedback {

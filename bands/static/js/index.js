@@ -155,6 +155,18 @@ function contribuaTimelineClicked(){
     }
 }
 
+function enviarContribuicaoClicked(){
+    var modal = $(this).parent().parent();
+    var bandaSlug = modal.attr("id").replace("modal-contribuicao-", "");
+    var data = modal.find(".data-acontecimento").val();
+    var texto = modal.find(".texto-acontecimento").val();
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Band Timeline', 'Enviar Contribuicao', 'Banda: ' + bandaSlug + ' Data:' + data + ' Texto: ' + texto]);
+    }
+    alert('Obrigado por contribuir, iremos avaliar a sua contribuicao e incluí-la em breve! :)');
+}
+
 function mostrarComentariosClicked(){
     var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
 
@@ -292,7 +304,7 @@ function main_index(){
 
     var minhasBandasListas = $("#minhas-bandas-lista");
 
-    if(minhasBandasListas.length > 0){
+    if(minhasBandasListas.length > 0 && $(".deslogado").length > 0){
         $.ajax({
             type: "GET",
             url: "/bandas-locais/"
@@ -314,6 +326,7 @@ function main_index(){
     });
 
     $(document).on('click', ".contribua-timeline", contribuaTimelineClicked);
+    $(document).on('click', ".enviar-contribuicao", enviarContribuicaoClicked);
 
 }
 

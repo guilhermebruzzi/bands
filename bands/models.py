@@ -222,15 +222,6 @@ class Band(db.Document):
                     "text": u"<p>Clique no botão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                     "tag": u"%s, Contribua" % self.name,
                     "classname": "contribua"
-                },
-                {
-                    "startDate": "%s" % str(datetime.now().date()).replace("-", ","),
-                    "headline": u"Wikipedia sobre %s (para maiores informações)" % self.name,
-                    "tag": u"%s Wikipedia" % self.name,
-                    "classname": "wikipedia",
-                    "asset": {
-                        "media": "http://pt.wikipedia.org/wiki/%s" % self.name.strip().replace(" ", "_")
-                    }
                 }
 
             ]

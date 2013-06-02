@@ -38,5 +38,10 @@ $(document).ready(function(){
         $('.flag-content')[3].click()
     });
 
+    $(".nav-next").find(".date").each(function(){
+        var currentDateWithoutYear = $(this).text().substring(0, -5).trim();
+        var currentYear = $(this).text().replace(currentDateWithoutYear, "").trim();
+        $(this).html("<span class='date-without-year'>" + currentDateWithoutYear + "</span><span class='date-year'>" + currentYear + "</span>");
+    });
 
 });

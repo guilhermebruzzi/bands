@@ -46,7 +46,10 @@
         </div>
 
         <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
-            <h3>Timeline <small>(use as setas para navegar)</small></h3>
+            <h3 class="titulo-no-box titulo-timeline-no-box">Timeline</h3>
+            <div class="contribua-timeline-body contribua-timeline-cima">
+                <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
+            </div>
             <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
                 <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
             </iframe>
@@ -66,7 +69,7 @@
                 <button type="button" class="shiny-red pergunte-sobre-a-banda" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Pergunte sobre a banda</button>
             </div>
             {% if show %}
-                <h3>Shows</h3>
+                <h3 class="titulo-no-box titulo-proximos-shows-no-box">Próximos Shows</h3>
                 {%- set website = show.website -%}
                 {% if not website %}
                     {%- set website = show.location.website -%}
@@ -96,7 +99,7 @@
                 <div class="navegacao-show-container"></div>
             {% endif %}
             <div class="banda-mais-opcoes banda-mais-opcoes-baixo">
-                <h3>Buscas relacionadas</h3>
+                <h3 class="titulo-no-box titulo-buscas-relacionadas-no-box">Buscas relacionadas</h3>
                 <div class="similares-body">
                     {% for similar in band.similares %}
                         {% if loop.index0 %2 == 0 %}<span class="similares-linha {% if loop.index0 == 0 %}primeira-linha-similar{% endif %}">{% endif %}

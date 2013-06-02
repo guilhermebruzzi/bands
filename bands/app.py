@@ -78,7 +78,8 @@ def novo():
 
         minhas_bandas_shows.extend(get_shows_from_bands(minhas_bandas, 1, city=current_city))
     else:
-        top_bands = [get_band("the-beatles"), get_band("queen"), get_band("metallica"), get_band("guns-n-roses")]
+        top_bands = [get_band("the-beatles"), get_band("queen"), get_band("guns-n-roses"),
+                     get_band("legiao-urbana"), get_band("linkin-park")]
 
         if request.args.get('band'):
             top_bands.insert(0, get_band(slug=request.args.get('band')))
