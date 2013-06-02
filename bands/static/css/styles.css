@@ -85,13 +85,13 @@ header .fb-fanpage-container{
     display: inline-block;
 }
 
-header .esconde-fanpage-logo{
-    height: 60px;
-    width: 60px;
-    background-color: #F7F7F7;
-    position: absolute;
+header .esconde-fanpage-logo {
+    background: linear-gradient(to bottom, #FFFFFF 0px, #F2F2F2 69%, #F7F7F7 100%) repeat scroll 0 0 transparent;
+    height: 150px;
     left: -108px;
-    top: 0px;
+    position: absolute;
+    top: -78px;
+    width: 60px;
 }
 
 .padding-80{
