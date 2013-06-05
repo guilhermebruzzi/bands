@@ -36,6 +36,7 @@ mongodump:
 
 install:
 	@pip install -r requirements.txt
+	@pip install -r requirements-local.txt
 
 clean:
 	@find . -type f -name "*.pyc" -exec rm -rf {} \;

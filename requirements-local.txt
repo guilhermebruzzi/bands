@@ -1,0 +1,7 @@
+coverage==3.5.3
+nose==1.2.1
+nosexcover==1.0.7
+ipdb==0.7
+ipython==0.13.1
+selenium==2.32.0
+splinter==0.5.0
