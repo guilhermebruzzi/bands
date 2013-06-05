@@ -395,9 +395,9 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 }
 
 .contribua-timeline-cima {
-    left: 129px;
-    position: absolute;
-    top: 178px;
+    left: 65px;
+    position: relative;
+    top: 3px;
 }
 
 .banda-mais-opcoes {
