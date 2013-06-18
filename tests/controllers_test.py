@@ -128,6 +128,11 @@ class ControllersTest(BaseTest):
             "name": "Coldplay",
         }
 
+        self.legiao = {
+            "slug": "legiao-urbana",
+            "name": "Legiao Urbana",
+        }
+
         self.lower_letter_band = {
             "slug": "a-banda-mais-bonita-da-cidade",
             "name": "a bAnda maIs bonitA Da ciDade",
@@ -771,7 +776,34 @@ class ControllersTest(BaseTest):
         self.assertEqual(bands_shows[1][0], cassia)
         self.assertEqual(bands_shows[1][1][0], show2)
 
-    def get_shows_from_bands_all_in_the_past(self):
+    def get_shows_from_bands_force_to_include_band_test(self):
+        legiao = get_or_create_band(self.legiao)
+
+        shows = get_shows_from_bands(bands=[legiao], force_to_include_band=False, call_lastfm_if_dont_have_shows=False)
+        self.assertEqual(len(shows), 0)
+
+        shows = get_shows_from_bands(bands=[legiao], force_to_include_band=True, call_lastfm_if_dont_have_shows=False)
+        self.assertEqual(len(shows), 1)
+        self.assertEqual(shows[0][0], legiao)
+
+        show1 = get_or_create_show({
+            'artists': [legiao],
+            'attendance_count': 2, #  number of people going
+            'cover_image': '', #  Large
+            'description': '',
+            'datetime_usa': "1991-03-20 10:00:00", #  From USA datetime to Brazil pattern
+            'title': 'legiao show',
+            'website': "http://www.legiaourbana.com.br",
+            'location': get_or_create_location(self.morumbi_data)
+        })
+
+        shows = get_shows_from_bands(bands=[legiao], force_to_include_band=True, call_lastfm_if_dont_have_shows=False)
+        self.assertEqual(len(shows), 1)
+        self.assertEqual(shows[0][0], legiao)
+        self.assertEqual(shows[0][1][0], show1)
+
+
+    def get_shows_from_bands_all_in_the_past_test(self):
         self.beatles1['user'] = get_or_create_user(data=self.data_user_guilherme)
         beatles = get_or_create_band(self.beatles1)
 
@@ -798,11 +830,11 @@ class ControllersTest(BaseTest):
         })
 
         shows_from_mongo = Show.objects.all()
-        self.assertEqual(len(shows_from_mongo), 1)
+        self.assertEqual(len(shows_from_mongo), 2)
 
         shows = get_shows_from_bands(bands=[beatles], limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=False)
         self.assertEqual(len(shows), 1)
-        self.assertEqual(shows[0], show2)
+        self.assertEqual(shows[0][1][0], show2)
 
 
     def get_shows_from_bands_by_city_test(self):

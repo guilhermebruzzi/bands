@@ -12,7 +12,7 @@ class TestAceitacao(unittest.TestCase):
 
     def login_facebook(self, browser):
         browser.visit('http://localhost:5000/')
-        button_login_fb = browser.find_by_css('.login-facebook').first
+        button_login_fb = browser.find_by_css('.login-menu-facebook').first
         button_login_fb.click()
         time.sleep(3)
         browser.fill('email', 'guilherme.bruzzi@corp.globo.com')
@@ -33,21 +33,28 @@ class TestAceitacao(unittest.TestCase):
             self.assertEqual(len(button_login_fb), 0, msg=u"A pessoa está corretamente logada")
             browser.find_by_id('user-box-options').click()
             browser.find_by_css('.menu-lista a')[2].click() #  Clicar no logout
-            browser.find_by_css('.login-facebook').click() # relogar
+            browser.find_by_css('.login-menu-facebook').click() # relogar
             self.assertTrue(browser.url.startswith('http://localhost:5000/minhas-bandas'), msg=u"Entrou em minhas bandas corretamente após se relogar")
 
-#    def test_cookie(self):
-#        with Browser() as browser:
-#            browser.driver.maximize_window()
-#           TODO: Fazer funcionar esse broser add cookie
-#            browser.cookies.add({'user_logged': 'AAAEGO5mvMs0BAAwdRwykJhGCVIjOL6AhLXHtR1FfS1UCgFaYg7Qinqf55U8xKE6lwyjZBbrjcNKXn3l66vlzFa9oRtFRZBCOVSSICJvQZDZD'}) #  Oauth token de Meuteste de Aceitacao
-#            browser.visit('http://localhost:5000/')
-#            button_login_fb = browser.find_by_css('.login-facebook')
-#            self.assertEqual(len(button_login_fb), 0, msg=u"A pessoa está corretamente logada")
+    def pesquisa_e_expande_foo_fighters(self, browser):
+        browser.visit('http://localhost:5000/')
+        opcoes_procurar = browser.find_by_id("opcoes-procurar-bandas-text")
+        opcoes_procurar.type('Foo Fighters\n')
+        time.sleep(3)
+        self.assertEqual(browser.find_by_css("#foo-fighters .info-banda-nome").text.upper(), 'FOO FIGHTERS')
+        browser.find_by_css("#foo-fighters .info-banda-header").first.click()
+        self.assertEqual(browser.find_by_css("#foo-fighters .titulo-timeline-no-box").text.upper(), 'TIMELINE')
+        contribuaTimeline = browser.find_by_css('#foo-fighters .contribua-timeline')
+        self.assertNotEqual(len(contribuaTimeline), 0)
+        contribuaTimeline.first.click()
+        self.assertIn('contato@bands.com.br', browser.find_by_css("#modal-contribuicao-foo-fighters .modal-body p").text)
 
+    def test_pesquisa_e_expande_timeline(self):
+        with Browser() as browser:
+            browser.driver.maximize_window()
+            self.pesquisa_e_expande_foo_fighters(browser)
+            self.login_facebook(browser)
+            self.pesquisa_e_expande_foo_fighters(browser)
 
-            
 if __name__ == '__main__':
     unittest.main()
-
-

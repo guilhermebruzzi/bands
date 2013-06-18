@@ -84,7 +84,7 @@ def novo():
         if request.args.get('band'):
             top_bands.insert(0, get_band(slug=request.args.get('band')))
 
-        minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city)
+        minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city, force_to_include_band=True)
         los_bife_band = get_band(slug="los-bife")
         minhas_bandas_shows.append((los_bife_band, los_bife_band.shows[:1]))
 

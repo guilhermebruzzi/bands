@@ -95,7 +95,7 @@ Em bands.com.br você verá conteúdo relevante das bandas e músicos que você 
                     {% else %}
                         <div id="login-menu" class="login-menu">
                             <article>Você não está conectado.</article>
-                            <a href="{{ url_for('login') }}" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Faça Login pelo Facebook</a>
+                            <a href="{{ url_for('login') }}" class="login-menu-facebook" onClick="_gaq.push(['_trackEvent', 'Login', 'Login Master', 'Login topo pela master page']);">Faça Login pelo Facebook</a>
                         </div>
                     {% endif %}
                 </span>

@@ -152,8 +152,15 @@ def __sort_by_city_and_date__(city=None):
 
     return lambda show: show.datetime_usa if show.datetime_usa[:10] >= now[:10] else "9" + show.datetime_usa
 
+def __add_to_bands_to_get_shows__(band, shows, bands_to_get_shows, limit_per_artist, force_to_include_band):
+    if force_to_include_band:
+        if not hasattr(band, "shows") or len(band.shows) == 0:
+            shows.append((band, []))
+        else:
+            shows.append((band, band.shows[:limit_per_artist]))
+    bands_to_get_shows.append(band)
 
-def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=False):
+def get_shows_from_bands(bands, limit_per_artist=None, city=None, force_to_include_band=False, call_lastfm_if_dont_have_shows=True, call_lastfm_without_subprocess=False):
     """ bands: Uma lista de bandas nas quais pegará os limit_per_artist shows (default: None = todos os shows) e ordenará por city se for passado algo """
 
     shows = []
@@ -162,11 +169,11 @@ def get_shows_from_bands(bands, limit_per_artist=None, city=None, call_lastfm_if
         if not band:
             continue
         if hasattr(band, "shows") and len(band.shows) == 0:
-            bands_to_get_shows.append(band)
+            __add_to_bands_to_get_shows__(band, shows, bands_to_get_shows, limit_per_artist, force_to_include_band)
         else:
             band.shows = sorted(band.shows, key=__sort_by_city_and_date__(city=city))
             if band.shows[0].datetime_usa[:10] < str(datetime.now())[:10]: #  Se o primeiro show já aconteceu, quer dizer que todos já aconteceram, nesse caso, pega mais do lastfm
-                bands_to_get_shows.append(band)
+                __add_to_bands_to_get_shows__(band, shows, bands_to_get_shows, limit_per_artist, force_to_include_band)
             else:
                 shows.append((band, band.shows[:limit_per_artist]))
     if call_lastfm_if_dont_have_shows and len(bands_to_get_shows) > 0:

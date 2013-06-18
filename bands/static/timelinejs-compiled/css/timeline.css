@@ -2697,3 +2697,7 @@ h3 {
     font-size:  16px !important;
     margin:  8px 0 !important;
 }
+
+.date-year{
+    color: #ff0000;
+}

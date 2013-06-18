@@ -9,6 +9,13 @@ $(document).ready(function(){
         return elm.attr("id");
     }
 
+    function gaNavegacaoMusica(elm){
+        var timelineId = findParentTimelineId(elm);
+        if(typeof _gaq != "undefined"){
+            _gaq.push(['_trackEvent', 'Band Timeline', 'Navegacao Musica', 'Banda: ' + timelineId + ' Texto: ' + $(elm).text()]);
+        }
+    }
+
     $(document).on("click", ".nav-container", function(){
         var timelineId = findParentTimelineId(this);
         if(typeof _gaq != "undefined"){
@@ -31,11 +38,13 @@ $(document).ready(function(){
     });
 
     $(document).on("click", ".navegacao-musica-2", function(){
-        $('.flag-content')[2].click()
+        $('.flag-content')[2].click();
+        gaNavegacaoMusica(this);
     });
 
     $(document).on("click", ".navegacao-musica-3", function(){
-        $('.flag-content')[3].click()
+        $('.flag-content')[3].click();
+        gaNavegacaoMusica(this);
     });
 
     $(".nav-next").find(".date").each(function(){
