@@ -1,0 +1,27 @@
+{
+    "timeline":
+    {
+        "headline":"Legião Urbana",
+        "type":"default",
+        "text": " <p><img src='http://userserve-ak.last.fm/serve/252/52255403.jpg' title='legião urbana foto' alt='legião urbana foto' /></p><h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
+        "date": [
+            {
+                "startDate":"2011,07,04",
+                "headline":"Aborto Elétrico E filme somos tão jovens",
+                "text": "<h2>História do Aborto Elétrico</h2><p><strong>Aborto Elétrico</strong> foi uma banda brasileira de rock que esteve ativa entre 1978 e dezembro de 1981 (foi feito um show de despedida em março de 1982). Tinha, em sua formação original, Renato Russo no baixo e vocal, André Pretorius na guitarra e Fê Lemos na bateria.</p><p>A banda fez parte da Turma da Colina (movimento de bandas de Brasília fundado no fim dos anos 70), junto a bandas como a Plebe Rude e a Os Paralamas do Sucesso.</p><p>Foi o marco para o surgimento de bandas como Legião Urbana e Capital Inicial anos depois. Foi nessa época que várias músicas do repertório do Legião Urbana e do Capital Inicial foram criadas, como Que País é este (Legião Urbana) e Veraneio Vascaína (Capital Inicial).</p><h2>Filme Somos Tão Jovens</h2><p><strong>Somos tão Jovens</strong> é um filme de drama brasileiro de 2013, uma obra biográfica sobre o cantor Renato Russo.</p><p>O longa foi dirigido por Antonio Carlos da Fontoura, escrito por Marcos Bernstein e estrelado por Thiago Mendonça e Laila Zaid.</p><p> Esse filme cujo trailer está logo aqui em cima conta essa história do Aborto Elétrico.</p>",
+                "tag":"Legião Urbana, Aborto Elétrico, Somos tão jovens",
+                "classname":"aborto-eletrico-somos-tao-jovens",
+                "asset": {
+                    "media":"http://www.youtube.com/watch?v=xa3izIueaE4"
+                }
+            },
+            {
+                "startDate": "2013,05,12",
+                "headline": "Contribua",
+                "text": "<p>Clique no boão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
+                "tag": "Legião Urbana, Contribua",
+                "classname": "contribua"
+            }
+        ]
+        }
+}
