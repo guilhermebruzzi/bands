@@ -6,15 +6,14 @@
 
 {% block content %}
 
-    <section id="area-banda-home" class="area-show-home area-bandas-nova-home">
-        {% if not current_user %}
-            <article class="explicacao-site titulo-show lista-pagina-principal-container">
-                <h2>1. Busque a sua banda favorita (se já não estiver na lista).</h2>
-                <h2>2. Clique em expandir e descubra tudo sobre ela!</h2>
-            </article>
-        {% endif %}
-
-        <article id="minhas-bandas" class="minhas-bandas lista-pagina-principal-container">
+    {% if not current_user %}
+        <section class="explicacao-site">
+            <h2 class="pergunta-site">O que fazer aqui no site?</h2>
+            <ul class="o-que-fazer">
+                <li>Busque a sua banda favorita.</li>
+                <li>Clique em expandir e descubra tudo sobre ela!</li>
+                <li>Se quiser salvar uma lista de bandas: <a href="{{ url_for('login') }}" class="login-menu-facebook" onClick="_gaq.push(['_trackEvent', 'Login', 'Login pag. principal', 'Login no meio do texto']);">Faça login usando o seu Facebook.</a></li>
+            </ul>
             <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
                 <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="digite uma banda ou músico que você deseja conhecer melhor" type="text" list="bandas" />
                 <span class="loupa-icon"></span>
@@ -22,6 +21,13 @@
             </div>
             <datalist id="bandas">
             </datalist>
+        </section>
+    {% endif %}
+
+    <section id="area-banda-home" class="content-home area-show-home area-bandas-nova-home">
+
+        <article id="minhas-bandas" class="minhas-bandas lista-pagina-principal-container">
+
             <ul id="minhas-bandas-lista" class="minhas-bandas-lista">
                 <li id="banda-loading" class="banda-loading banda-container-li round-component box-gray hidden">
                     <img src="/static/timelinejs-compiled/css/loading.gif" />

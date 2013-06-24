@@ -208,13 +208,11 @@ function toggleBand(){
     var mostrarComentarios = comentariosBanda.find('.mostrar-comentarios');
     var label = bandParent.find('.label');
 
-    if(areaBanda.hasClass('hidden')) {
+    if(timelineBanda.hasClass('invisivel')) {
         areaBanda.removeClass('hidden');
         infoBanda.removeClass('hidden');
         timelineBanda.removeClass('invisivel');
-        shareBanda.removeClass('invisivel');
         comentariosBanda.removeClass('invisivel');
-        photoIcon.css('visibility', 'hidden');
         label.addClass('hidden');
         mostrarComentarios.click(); // Abre o espaço de comentários
 
@@ -225,9 +223,7 @@ function toggleBand(){
         areaBanda.addClass('hidden');
         infoBanda.addClass('hidden');
         timelineBanda.addClass('invisivel');
-        shareBanda.addClass('invisivel');
         comentariosBanda.addClass('invisivel');
-        photoIcon.css('visibility', 'visible');
         label.removeClass('hidden');
 
         if(typeof _gaq != "undefined"){

@@ -228,9 +228,11 @@ def get_band_timeline_html(band_timeline_id):
 def add_band():
     name = request.form['band']
     user = get_current_user()
-
-    band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
-    return "%s\n%s" % (band.name, band.slug)
+    if user:
+        band = get_or_create_band({'slug': get_slug(name), 'name': name, 'user': user})
+        return "%s\n%s" % (band.name, band.slug)
+    else:
+        return "Ninguem logado"
 
 
 @app.route('/band/like/', methods=['POST'])
@@ -248,10 +250,11 @@ def like():
 def unlike():
     slug = request.form['band']
     user = get_current_user()
-
-    unlike_band(slug, user)
-    return 'unliked'
-
+    if user:
+        unlike_band(slug, user)
+        return 'unliked'
+    else:
+        return "Ninguem logado"
 
 @app.route('/band/related_bands/<slug>/', methods=['GET'])
 @need_to_be_logged

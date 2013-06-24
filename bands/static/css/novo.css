@@ -46,6 +46,19 @@ seta timeline: #ececec com border #ddd8d8
     font-size: 24px;
 }
 
+.o-que-fazer {
+    color: #EC1D14;
+    font-family: Decker;
+    font-size: 12px;
+    font-weight: normal;
+    list-style: decimal outside none;
+    padding-left: 208px;
+}
+
+.o-que-fazer li{
+    margin-top: 3px;
+}
+
 /* Minhas bandas */
 
 .minhas-bandas-lista{
@@ -54,13 +67,13 @@ seta timeline: #ececec com border #ddd8d8
 
 /* Busca */
 
-.minhas-bandas .opcoes-procurar-bandas {
+.opcoes-procurar-bandas {
     margin: 30px auto;
     position: relative;
     width: 670px;
 }
 
-.minhas-bandas .opcoes-procurar-bandas-text{
+.opcoes-procurar-bandas-text{
     border: 1px solid #DDDDDD;
     -webkit-box-shadow: inset 0 2px 1px rgba(0,0,0,.13);
     -moz-box-shadow: inset 0 2px 1px rgba(0,0,0,.13);
@@ -83,7 +96,7 @@ seta timeline: #ececec com border #ddd8d8
     z-index: 2;
 }
 
-.minhas-bandas .procurar{
+.procurar{
     margin-left: 13px;
 }
 
@@ -128,9 +141,9 @@ seta timeline: #ececec com border #ddd8d8
 
 .photo-icon {
     display: inline-block;
-    height: 50px;
-    width: 50px;
- }
+    height: 120px;
+    width: 115px;
+}
 
 .minhas-bandas .logo-banda-container {
     height: 256px;
@@ -150,10 +163,10 @@ seta timeline: #ececec com border #ddd8d8
 
 .favoritar{
     display: inline-block;
-    background: url("/static/img/favorite-star-icons.png") no-repeat;
-    background-position: -16px 0;
-    width: 16px;
-    height: 16px;
+    background: url("/static/img/share-icons.jpg") no-repeat;
+    background-position: -22px 0;
+    width: 22px;
+    height: 22px;
     position: relative;
     top: 3px;
 }
@@ -162,11 +175,14 @@ seta timeline: #ececec com border #ddd8d8
     background-position: 0 0;
 }
 
-.minhas-bandas .info-banda-nome{
-    font-size: 29px;
-    position:relative;
-    top: -14px;
-    margin-left: 10px;
+.minhas-bandas .info-banda-nome {
+    color: #D43129;
+    font-family: Decker;
+    font-size: 35px;
+    font-style: normal;
+    left: 165px;
+    position: absolute;
+    top: 30px;
 }
 
 .hidden{
@@ -175,12 +191,10 @@ seta timeline: #ececec com border #ddd8d8
 
 .label {
     font-size: 14px;
-    position: relative;
-    top: -20px;
-    margin-left: 35px;
+    position: absolute;
+    bottom: 20px;
+    right: 175px;
     text-decoration: underline;
-    color: #9F0902;
-    cursor: pointer;
 }
 
 .minhas-bandas .info-banda-header-menor{
@@ -192,12 +206,13 @@ seta timeline: #ececec com border #ddd8d8
 .info-banda-header {
     cursor: pointer;
     margin: 0;
-    padding: 8px 0 3px 10px;
+    padding: 0;
     width: 100%;
+    position: relative;
 }
 
 .small {
-    background-size: 50px 50px;
+    background-size: 115px 120px;
 }
 
 /* Share e comentarios */
@@ -206,24 +221,32 @@ seta timeline: #ececec com border #ddd8d8
     display: inline-block;
     position: absolute;
     right: 100px;
-    top: 70px;
+    top: 13px;
     width: 195px;
 }
 
 .share .addthis_button_facebook_like{
     position: absolute;
     left: 0px;
+    top: 10px;
 }
 
-.share .shares-menores{
+.share .addthis_button_tweet{
     position: absolute;
-    right: 0px;
-    top: 2px;
+    left: 105px;
+    top: 10px;
 }
 
-.share .addthis_button_twitter{
+.share .favoritar-body {
+    font-size: 14px;
+    position: absolute;
+    right: -5px;
+    top: 5px;
+}
+
+.share .favoritar-texto{
     position: relative;
-    left: 0px;
+    top: -3px;
 }
 
 .minhas-bandas .comentarios {
@@ -423,12 +446,18 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 }
 
 .info-banda-link {
-    color: #9F0902;
+    color: #9E9E9E;
     font-size: 18px;
     text-decoration: none;
     cursor: pointer;
 }
 
+
+.info-banda-genero {
+    left: 165px;
+    position: absolute;
+    top: 70px;
+}
 
 .minhas-bandas li.banda-loading {
     left: 0;
@@ -472,7 +501,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
         width: 550px;
     }
 
-    .minhas-bandas .opcoes-procurar-bandas-text {
+    .opcoes-procurar-bandas-text {
         width: 74%;
     }
 }
@@ -506,13 +535,13 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
         width: 90%;
     }
 
-    .minhas-bandas .opcoes-procurar-bandas {
+    .opcoes-procurar-bandas {
         width: auto;
         font-size: 0;
         padding-left: 18px;
     }
 
-    .minhas-bandas .opcoes-procurar-bandas-text {
+    .opcoes-procurar-bandas-text {
         width: 500px;
         display: inline-block;
         font-size: 14px;
@@ -522,7 +551,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
         height: 26px;
     }
 
-    .minhas-bandas .procurar {
+    .procurar {
         display: inline-block;
         vertical-align: top;
     }

@@ -14,36 +14,18 @@
                 <span title="imagem da banda" class="photo-icon icone-banda-default small"></span>
             {% endif %}
             <span class="info-banda-nome">{{ band.name }}</span>
-            <div class="share invisivel">
+            <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
+            <div class="share">
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style" addthis:url="http://bands.com.br/?band={{ band.slug }}" addthis:title="Bands - {{ band.name }}" addthis:description="Confira {{ band.name }} em http://bands.com.br/?band={{ band.slug }}">
                     <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-                    <div class="shares-menores">
-                        <a class="addthis_button_facebook" addthis:ui_use_css="false"></a>
-                        <a class="addthis_button_twitter" addthis:ui_use_css="false"></a>
-                        <a class="addthis_button_compact"></a>
-                        <a class="addthis_counter addthis_bubble_style"></a>
-                    </div>
+                     <a class="addthis_button_tweet"></a>
                 </div>
+                <div class="favoritar-body"><span class="favoritar-texto">Favoritar</span> <a href="#{{ band.slug }}" class="favoritar"></a></div>
                 <!-- AddThis Button END -->
             </div>
-
-            <label class="label">&#43; Clique para expandir</label>
+            <label class="label info-banda-link">&#43; Clique para expandir</label>
         </h2>
-
-        <div id="area-banda" class="area-banda hidden">
-            <div class="info-banda-genero-div">
-                <a class="info-banda-genero info-banda-link" data-toggle="modal" data-target="#modal-tags-{{ band.slug }}" href="#{{ band.slug }}">{{ band.tags[0] }}</a>
-                <span class="info-banda-header-menor">Nota:
-                    <select class="nota">
-                        {% for nota in notas %}
-                            <option value="{{ nota }}" {% if nota == 7 %}selected="selected"{% endif %}>{{ nota }}</option>
-                        {% endfor %}
-                    </select>
-                </span>
-                <span class="info-banda-header-menor">Favoritar: <a href="#{{ band.slug }}" class="favoritar"></a></span>
-            </div>
-        </div>
 
         <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
             <h3 class="titulo-no-box titulo-timeline-no-box">Timeline</h3>

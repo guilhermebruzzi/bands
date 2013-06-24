@@ -141,7 +141,7 @@ section.funcionalidades-home article h2{
     margin: 0 5px 15px;
     vertical-align: top;
     width: 488px;
-    background-color: #f8f8f8;
+    background-color: #fbfbfb;
 }
 
 .lista-pagina-principal-container .pague-com-pag-seguro{
@@ -220,6 +220,10 @@ section.area-show-home{
     margin: 10px auto;
 }
 
+.content .content-home{
+    width: 1000px;
+}
+
 section.area-show-home article.titulo-show{
     width: 460px;
     display: inline-block;
@@ -237,14 +241,24 @@ section.area-show-home .titulo-show ul li{
     height: 52px;
 }
 
-section.area-show-home article.explicacao-site{
-    background-color: #F8F8F8;
-    padding: 14px;
-    width: 930px;
+.explicacao-site {
+    background-color: #FBFBFB;
     border-bottom: 0 none;
+    margin: 0 0 65px;
+    padding: 10px 0 50px;
+    width: 100%;
 }
 
-section.area-show-home article.explicacao-site span{
+.explicacao-site h2 {
+    color: #EC1D14;
+    font-family: Decker;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 5px 0 10px 180px;
+    text-transform: uppercase;
+}
+
+.explicacao-site span{
     color: #555;
     font-size: 11pt;
     margin-bottom: 4px;
