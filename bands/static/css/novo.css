@@ -213,6 +213,10 @@ seta timeline: #ececec com border #ddd8d8
 
 .small {
     background-size: 115px 120px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    border-bottom: 10px solid rgba(255, 0, 0, 0.75);
 }
 
 /* Share e comentarios */
@@ -300,16 +304,14 @@ seta timeline: #ececec com border #ddd8d8
     margin-bottom: 20px;
 }
 
-.minhas-bandas .band-navegacao-show{
+.minhas-bandas .band-navegacao-show {
+    background: url("/static/img/sprite-timeline.jpg") no-repeat scroll 0 -107px transparent;
+    border: 0 none;
     display: inline-block;
-    background: url("/static/img/navegacao-shows.png") no-repeat;
-    background-position: 0 0;
-    width: 39px;
-    height: 54px;
-    border: 0;
+    height: 45px;
     vertical-align: top;
+    width: 50px;
 }
-
 
 section.area-show-home .minhas-bandas ul li a.item-lista-shows span.info-show {
     height: 52px;
@@ -331,8 +333,8 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     margin-right: 70px;
 }
 
-.minhas-bandas .band-next-show{
-    background-position: -39px 0;
+.minhas-bandas .band-next-show {
+    background-position: 0 -59px;
     margin-left: 30px;
 }
 
@@ -411,7 +413,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
 }
 
 .contribua-timeline-body {
-    left: 8px;
+    left: 73px;
     position: relative;
     top: -50px;
     z-index: 1;
