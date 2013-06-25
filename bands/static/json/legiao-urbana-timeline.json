@@ -1,27 +1,253 @@
 {
-    "timeline":
-    {
-        "headline":"Legião Urbana",
-        "type":"default",
-        "text": " <p><img src='http://userserve-ak.last.fm/serve/252/52255403.jpg' title='legião urbana foto' alt='legião urbana foto' /></p><h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
+    "timeline": {
+        "headline": "Legião Urbana",
+        "type": "default",
+        "text": "<p><img src='http://userserve-ak.last.fm/serve/252/52255403.jpg' title='legião urbana foto' alt='legião urbana foto' /></p><h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
         "date": [
             {
-                "startDate":"2011,07,04",
-                "headline":"Aborto Elétrico E filme somos tão jovens",
-                "text": "<h2>História do Aborto Elétrico</h2><p><strong>Aborto Elétrico</strong> foi uma banda brasileira de rock que esteve ativa entre 1978 e dezembro de 1981 (foi feito um show de despedida em março de 1982). Tinha, em sua formação original, Renato Russo no baixo e vocal, André Pretorius na guitarra e Fê Lemos na bateria.</p><p>A banda fez parte da Turma da Colina (movimento de bandas de Brasília fundado no fim dos anos 70), junto a bandas como a Plebe Rude e a Os Paralamas do Sucesso.</p><p>Foi o marco para o surgimento de bandas como Legião Urbana e Capital Inicial anos depois. Foi nessa época que várias músicas do repertório do Legião Urbana e do Capital Inicial foram criadas, como Que País é este (Legião Urbana) e Veraneio Vascaína (Capital Inicial).</p><h2>Filme Somos Tão Jovens</h2><p><strong>Somos tão Jovens</strong> é um filme de drama brasileiro de 2013, uma obra biográfica sobre o cantor Renato Russo.</p><p>O longa foi dirigido por Antonio Carlos da Fontoura, escrito por Marcos Bernstein e estrelado por Thiago Mendonça e Laila Zaid.</p><p> Esse filme cujo trailer está logo aqui em cima conta essa história do Aborto Elétrico.</p>",
-                "tag":"Legião Urbana, Aborto Elétrico, Somos tão jovens",
-                "classname":"aborto-eletrico-somos-tao-jovens",
+                "startDate": "1978,01,01",
+                "headline": "Aborto Elétrico",
+                "text": "Brasília era ainda uma ilha cultural em relação ao resto do país. Até 1978, a história curta da nova capital não lhe atribuíra ainda nenhum momento particularmente brilhante nas artes, até porque não havia sido formada a primeira geração de artistas brasilienses. Estes estavam surgindo, justamente ali, com a cara que aquelas duas primeiras décadas tinha tido na cidade.“Química” era um dos hinos do Aborto Elétrico e foi a primeira canção daquela turma a ser gravada em fonograma e lançada em LP e K7 por todo o país. Não tardou para que Jorge Davidson, agente da gravadora britânica EMI, assinasse contrato com a banda.",
+                "tag": "Legião Urbana, aborto elétrico",
+                "classname": "legiao-urbana-aborto-eletrico",
                 "asset": {
-                    "media":"http://www.youtube.com/watch?v=xa3izIueaE4"
+                    "media": "http://www.youtube.com/watch?v=IIRn_umBkUo"
                 }
             },
             {
-                "startDate": "2013,05,12",
+                "startDate": "1982,08,01",
+                "headline": "Formação da Legião Urbana",
+                "text": "A banda foi formada em agosto de 1982 poucos meses após uma discussão de Renato Russo com sua antiga banda, Aborto Elétrico, devido a uma briga com o integrante Fê Lemos (bateria) na música \"Veraneio Vascaína\" (na ocasião, Renato havia errado a letra e levou uma baquetada em pleno show). Com o fim da banda, Fê Lemos e seu irmão, Flávio Lemos (contrabaixo), reúnem-se com Dinho Ouro Preto e formam o Capital Inicial. Para compor, Renato Russo se inspirava em bandas como Sex Pistols, The Beatles, Ramones, The Smiths, The Cure, Talking Heads e Joy Division e no filósofo Jean-Jacques Rousseau (daí a inspiração para o nome artístico).",
+                "tag": "Legião Urbana, formação",
+                "classname": "legiao-urbana-formacao",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=Y8mghyhTC0M"
+                }
+            },
+            {
+                "startDate": "1982,09,05",
+                "headline": "Primeira apresentação",
+                "text": "A primeira apresentação da Legião Urbana aconteceu em 5 de setembro de 1982 na cidade mineira de Patos de Minas, durante o festival Rock no Parque, que contou com outras oito atrações, entre elas a Plebe Rude. Esse foi o único concerto em que a banda apareceu com a sua primeira formação: Renato Russo (vocalista e baixista), Marcelo Bonfá (baterista), Paulo Paulista (tecladista) e Eduardo Paraná (guitarrista), hoje conhecido como Kadu Lambach. Na verdade, a Cadoro Promoções — empresa responsável pela produção do festival — havia contratado o Aborto Elétrico e até impresso centenas de cartazes com o nome da banda formada por Renato Russo, Fê Lemos e André Pretorius. Mas como o grupo havia acabado, Renato convenceu o dono da produtora, Carlos Alberto Xaulim, a se apresentar com a banda que tinha acabado de formar com o baterista Marcelo Bonfá. Após a apresentação, Paulo Paulista e Eduardo Paraná deixaram a Legião. O próximo guitarrista seria Ico Ouro-Preto (irmão de Dinho Ouro-Preto, vocalista do Capital Inicial), mas foi logo substituído por Dado Villa-Lobos.",
+                "tag": "Legião Urbana, primeira apresentação",
+                "classname": "legiao-urbana-primeira-apresentacao",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=1KtzsSPyG7I"
+                }
+            },
+            {
+                "startDate": "1983,03,01",
+                "headline": "Dado Villa-Lobos entra na banda",
+                "text": "Dado Villa-Lobos, que assumiu a guitarra da Legião Urbana",
+                "tag": "Legião Urbana, Dado Villa-Lobos, guitarrista",
+                "classname": "legiao-urbana-dado-chega"
+            },
+            {
+                "startDate": "1983,07,23",
+                "headline": "Legião Urbana é convidada para gravar com a EMI",
+                "text": "Em 23 de julho de 1983, a Legião faz no Circo Voador, Rio de Janeiro, um concerto que mudaria a história da banda. Após a apresentação, eles são convidados a gravar uma fita demo com a EMI.",
+                "tag": "Legião Urbana, gravação, EMI, circo voador",
+                "classname": "legiao-urbana-gravação",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=QaPWOodPriY"
+                }
+            },
+            {
+                "startDate": "1984,01,01",
+                "headline": "Renato Rocha entra na banda",
+                "text": "Por indicação de Marcelo Bonfá, entra o baixista Renato Rocha e começa então a gravação do primeiro disco.",
+                "tag": "Legião Urbana, Renato Rocha, baixista, gravação, primeiro disco",
+                "classname": "legiao-urbana-renato-rocha-chega"
+            },
+            {
+                "startDate": "1985,01,01",
+                "headline": "O Sucesso",
+                "text": "Entraram em cena acelerando o andamento da música jovem brasileira. De toda a geração emergida no boom do rock nacional em 1985, a Legião Urbana foi a banda mais venerada pelo público e respeitada pela crítica. Apesar das letras consideradas sérias, por outro lado, o discurso não caía para a facilidade do tom panfletário.",
+                "tag": "Legião Urbana, sucesso",
+                "classname": "legiao-urbana-sucesso"
+            },
+            {
+                "startDate": "1985,01,02",
+                "headline": "Primeiro disco: \"Legião Urbana\"",
+                "text": "O primeiro álbum, Legião Urbana, é extremamente politizado, com letras que fazem críticas contundentes a diversos aspectos da sociedade brasileira. Paralelo a isso, possui canções de amor que foram marcantes na história da música brasileira, como \"Será\", \"Ainda é cedo\" e \"Por Enquanto\", esta última que é considerada como a melhor faixa de encerramento de um disco, segundo Arthur Dapieve, crítico e amigo de Renato Russo. \"Geração Coca-Cola\" é outra música famosa deste álbum. Com ares punks e guitarras distorcidas, assumiam a voz daqueles que tinham crescido sobre o período militar chamando-os de \"Geração Coca-Cola\".",
+                "tag": "Legião Urbana, primeiro disco",
+                "classname": "legiao-urbana-primeiro-disco",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=adhajymelcg"
+                }
+            },
+            {
+                "startDate": "1986,07,01",
+                "headline": "Disco \"Dois\"",
+                "text": "No segundo disco, o lado lírico e folk aflorou mais. Se o primeiro trabalho tinha toda a urgência punk-aborto-elétrico, aquele era o contraponto, a visão complementar de um trovador que já não era mais solitário. O disco deveria ser duplo e se chamar Mitologia e Intuição, mas o projeto foi recusado pela gravadora, fazendo com que o disco saísse simples. A primeira música, \"Daniel na Cova dos Leões\" é iniciada com um pouco da canção \"Será\" envolto a ruídos de rádio e do hino da Internacional Socialista. É o segundo álbum mais vendido da banda, com mais de 1,2 milhão de cópias, e considerado por muitos o mais romântico. \"Tempo Perdido\" fez um grande sucesso e se tornou um dos clássicos da Legião. \"Eduardo e Mônica\", \"Índios\" e \"Quase Sem Querer\" também fizeram muito sucesso.",
+                "tag": "Legião Urbana, segundo disco, disco dois",
+                "classname": "legiao-urbana-segundo-disco",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=vfniIM36dtY"
+                }
+            },
+            {
+                "startDate": "1987,10,01",
+                "headline": "Disco \"Que País É Este 1978/1987\"",
+                "text": "O disco seguinte foi o \"Que País É Este 1978/1987\". O sucesso de \"Dois\", o disco anterior, fez com que a gravadora pressionasse muito a banda para o lançamento de seu terceiro álbum, sem que houvesse repertório para isso. Das nove faixas de Que País É Este 1978/1987, apenas duas foram compostas depois de Dois, justamente as duas últimas, Angra dos Reis, em menção à construção de uma usina nuclear na cidade fluminense, e Mais do Mesmo, que em 1998 daria título à coletânea Mais do Mesmo. A música Que País É Este foi escrita em 1978, na época em que Russo ainda fazia parte do Aborto Elétrico. Faroeste Caboclo foi composta em 1979, na fase \"trovador solitário\" de Renato Russo. Com mais de nove minutos de duração, a música, que possui 168 versos e não tem refrão, conta a história do nordestino João de Santo Cristo. Russo a considerava sua Hurricane.",
+                "tag": "Legião Urbana, terceiro disco, disco Que País É Este 1978/1987",
+                "classname": "legiao-urbana-terceiro-disco",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=TEYj6mOmX_A"
+                }
+            },
+            {
+                "startDate": "1988,06,18",
+                "headline": "Show no Estádio Mané Garrincha",
+                "text": "Apesar e por causa da reação ensandecida dos fãs, as turnês do grupo não eram longas. O imenso circo que era preciso se formar para cada show tornava aquele ritual um tanto quanto incômodo. Emocionalmente também era tudo muito intenso e desgastante. Renato, por ser o líder em quem os fãs depositavam tantas expectativas, sofria ainda mais com aquilo tudo. O apogeu dessa catarse coletiva aconteceu em Brasília. Durante o show que marcava a volta da banda à cidade, os portões do estádio Mané Garrincha foram abertos, na tentativa de conter os que não conseguiram comprar um dos 50 mil ingressos postos à venda. Com a tensão no ar, uma série de confusões se sucederam. Violência policial, discursos inflamados, bombas caseiras e a invasão do palco por um fã alucinado que se agarrou violentamente ao vocalista. O cenário de caos terminou com a suspensão da apresentação e mais confusão. Cerca de 50 pessoas foram presas, mais de 300 ficaram feridas e uma série de péssimas lembranças como resultado. A turnê foi suspensa e, a partir dali, a Legião se voltaria ainda mais para os estúdios.",
+                "tag": "Legião Urbana, show, estádio Mané Garrincha",
+                "classname": "legiao-urbana-show-mane-garrincha",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=GCilaCYvyzU"
+                }
+            },
+            {
+                "startDate": "1989,10,26",
+                "headline": "Álbum \"As Quatro Estações\"",
+                "text": "O álbum As Quatro Estações é considerado por fãs o melhor e mais inspirado trabalho do grupo, e inclusive pelo próprio Renato Russo. O disco possui o maior número de hits: são onze canções das quais pelo menos nove foram tocadas incessantemente nas rádios brasileiras.É o álbum mais vendido da Legião, com mais de 1,7 milhão de cópias, considerado a obra mais \"religiosa\" da banda. A obra de Renato Russo e, por consequência, da Legião Urbana circulava pelas fronteiras entre a ética pública e a ética privada, como definiu Arthur Dapieve no livro “Renato Russo, o Trovador Solitário”. Seja na condução do país, da coisa pública, dos meios de comunicação ou na sinceridade e respeito aos sentimentos individuais, era preciso disciplina, compaixão, bondade e coragem. Neste disco, essas esferas da vida de todo cidadão eram rediscutidas. Juntando Camões com a filosofia de textos bíblicos e budistas, a poesia de Renato chegava ao auge da forma e se tornava ainda mais precisa sobre os problemas do seu tempo. Do desgaste das relações familiares à Aids, da intolerância e dos preconceitos sexistas ao amor romântico idealizado e inatingível, a Legião Urbana encerrava os anos 80 traçando o panorama daqueles tempos e jogando luzes de esperança para dias tão sombrios. O baixista Renato Rocha tocou com o trio nos três primeiros álbuns e chegou a gravar o baixo de algumas faixas do álbum, porém deixou o grupo devido a desentendimentos com os outros membros. As linhas de baixo originalmente gravadas por Rocha foram regravadas por Dado e Renato, que se revezaram nos baixos e guitarras. Músicas muito conhecidas, como \"Pais e Filhos\" e \"Monte Castelo\" fizeram parte deste álbum.",
+                "tag": "Legião Urbana, as quatro estações",
+                "classname": "legiao-urbana-as-quatro-estacoes",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=SDzrscdv9js"
+                }
+            },
+            {
+                "startDate": "1991,11,01",
+                "headline": "Álbum \"V\"",
+                "text": "V é considerado o disco mais melancólico da banda. Renato estava em um momento complicado de sua vida, por conta da descoberta de que era soropositivo um ano e meio antes, problemas no relacionamento com seu namorado, Robert Scott Hickman, e alcoolismo. O álbum é repleto de canções atípicas para os \"padrões\" da banda. A atmosfera de \"Metal Contra as Nuvens\", com seus mais de onze minutos de duração, é um dos destaques, assim como a densa \"A Montanha Mágica\". A crítica social de \"O Teatro dos Vampiros\" e a melancólica \"Vento no Litoral\" foram as mais tocadas neste CD.",
+                "tag": "Legião Urbana, v",
+                "classname": "legiao-urbana-v",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=5NdYnM2ua2Y"
+                }
+            },
+            {
+                "startDate": "1993,11,01",
+                "headline": "Álbum \"O Descobrimento do Brasil\"",
+                "text": "O álbum O Descobrimento do Brasil foi lançado na época em que Renato Russo tinha iniciado o tratamento para livrar-se da dependência química e mostrava-se otimista quanto ao seu sucesso. Ainda assim, as letras oscilam entre tristeza e alegria, encontros e despedidas. É como se, para seguir em frente, fosse necessário deixar muitas coisas para trás, e não se pudesse fazer isso sem uma boa dose de nostalgia. Desta forma, Descobrimento é um álbum com fortes notas de esperança, mas permeado por tristeza e saudosismo. Ainda assim, é considerado por muitos o álbum mais \"alegre\" e delicado da Legião Urbana. Apesar de boas vendas, o CD não foi muito tocado nas rádios. As faixas de sucesso foram \"Giz\", \"Vinte e Nove\" e \"Perfeição\", música essa que foi na época uma pesada crítica ao Brasil.",
+                "tag": "Legião Urbana, O Descobrimento do Brasil",
+                "classname": "legiao-urbana-o-descobrimento-do-brasil",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=FVGpLCDEJ04"
+                }
+            },
+            {
+                "startDate": "1995,01,14",
+                "headline": "O último concerto",
+                "text": "O último concerto da Legião Urbana aconteceu na casa de apresentações \"Reggae Night\" em Santos, litoral do estado de São Paulo.<h1>Parte 1:</h1><iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/OmBia2KQn5Q\" frameborder=\"0\" allowfullscreen></iframe><h1>Parte 2:</h1><iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/EgYIoC3okGM\" frameborder=\"0\" allowfullscreen></iframe>",
+                "tag": "Legião Urbana, último show",
+                "classname": "legiao-urbana-ultimo-concerto"
+            },
+            {
+                "startDate": "1995,01,01",
+                "endDate": "1995,12,31",
+                "headline": "Por Enquanto 1984-1995",
+                "text": "Todos os discos de estúdio da banda até 1993 foram remasterizados no lendário estúdio britânico Abbey Road Studios, em Londres, famoso por vários discos dos Beatles; e lançados em uma lata, intitulada \"Por Enquanto 1984-1995\". A lata também incluía um pequeno livro, com um texto escrito pelo antropólogo Hermano Vianna, irmão do músico Herbert Vianna.",
+                "tag": "Legião Urbana, Por Enquanto 1984-1995",
+                "classname": "legiao-urbana-por-enquanto"
+            },
+            {
+                "startDate": "1996,09,20",
+                "headline": "Álbum \"A Tempestade ou O Livro dos Dias\"",
+                "text": "\"A Tempestade ou O Livro dos Dias\" foi o último da banda com o Renato Russo vivo. O álbum possui densas músicas, alternando o rock clássico de \"Natália\" e \"Dezesseis\", ao lirismo de \"L'Aventura\", \"A Via Láctea\", \"Leila\", \"1º de Julho\" e \"O Livro dos Dias\" e ao classicismo de \"Longe do Meu Lado\". As letras, em geral, abordam temas como solidão, passado, amor, depressão, homossexualidade, AIDS, intolerância e injustiças, sendo um disco \"melodramático\" e de alma triste. Algumas canções do disco sugerem uma despedida antecipada, como diz o trecho \"e quando eu for embora, não, não chore por mim\", da canção \"Música Ambiente\". As fotos do encarte foram tiradas próximas à época do lançamento, exceto a de Renato, que foi aproveitada da sessão de fotos do seu álbum solo Equilíbrio Distante de 1995, já que o cantor, um pouco debilitado, se recusou a fotografar para o disco. O álbum A Tempestade foi lançado inicialmente na época como um clássico livrinho com capa de papelão e anos depois relançado como álbum comum (caixa de plástico). A foto do guitarrista Dado é diferente entre as duas versões. Com exceção de \"A Via Láctea\", as demais faixas do álbum possuem apenas a voz guia de Renato, que não quis gravar as vozes definitivas. Também não foram incluídas as frases \"Urbana Legio Omnia Vincit\" e \"Ouça no Volume Máximo\", presentes nos discos do grupo. Em seu lugar, uma frase do escritor modernista brasileiro Oswald de Andrade: \"O Brasil é uma República Federativa cheia de árvores e gente dizendo adeus\".",
+                "tag": "Legião Urbana, A Tempestade ou O Livro dos Dias",
+                "classname": "legiao-urbana-a-tempestade-ou-o-livro-dos-dias",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=Bv2kklYmwJM"
+                }
+            },
+            {
+                "startDate": "1996,10,11",
+                "headline": "Falecimento de Renato Russo",
+                "text": "Renato Russo faleceu 21 dias após o lançamento de A Tempestade.",
+                "tag": "Legião Urbana, Falecimento",
+                "classname": "legiao-urbana-falecimento-renato-russo"
+            },
+            {
+                "startDate": "1996,10,22",
+                "headline": "Fim da banda",
+                "text": "O fim oficial da banda aconteceu onze dias após a morte do mentor, líder e fundador da banda, Renato Russo. Dado Villa-Lobos e Marcelo Bonfá seguiram suas carreiras e lançaram discos solo nos anos seguintes.",
+                "tag": "Legião Urbana, Falecimento",
+                "classname": "legiao-urbana-falecimento-renato-russo"
+            },
+            {
+                "startDate": "1997,07,18",
+                "headline": "Álbum \"Uma Outra Estação\"",
+                "text": "Uma Outra Estação foi um álbum póstumo. A idéia original era de que A Tempestade fosse um álbum duplo. Como saiu simples, o material não lançado foi retrabalhado e compilado nesse álbum. Canções como \"Clarisse\" ficaram de fora do álbum anterior por desejo do próprio Renato, que a considerava com uma temática muito pesada. A letra da canção \"Sagrado Coração\" consta no encarte, porém não possui registro da voz de Renato. O álbum conta com participações especiais como Renato Rocha, baixista dos primeiros discos da Legião, e Bi Ribeiro, baixista dos Paralamas do Sucesso. Muitos começaram a ouvir as músicas da banda após a morte de Renato, aclamado por alguns até mesmo como um herói, embora sem nenhum feito heroico, mas perpetuado como portador de uma visão crítica e realista.",
+                "tag": "Legião Urbana, Uma Outra Estação",
+                "classname": "legiao-urbana-uma-outra-estacao",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=yrrIbC5WYZA"
+                }
+            },
+            {
+                "startDate": "2009,09,05",
+                "headline": "Rumores sobre o retorno",
+                "text": "Após rumores sobre uma possível retorno as atividades, o site oficial da banda divulgou um comunicado, em nome da família Manfredini, Dado Villa-Lobos, Marcelo Bonfá e da gravadora EMI, esclarecendo que eram infundadas informações sobre retorno da banda, esclarecendo que \"uma possível volta da banda Legião Urbana é falsa. Não existe possibilidade alguma de uma volta da banda Legião Urbana.\"",
+                "tag": "Legião Urbana, retorno",
+                "classname": "legiao-urbana-retorno"
+            },
+            {
+                "startDate": "2009,09,20",
+                "headline": "Porão do Rock",
+                "text": "Quinze dias após o desmentido, Dado Villa-Lobos e Marcelo Bonfá fizeram uma participação especial em um concerto do festival Porão do Rock, em Brasília.",
+                "tag": "Legião Urbana, Porão do Rock",
+                "classname": "legiao-urbana-porao-do-rock",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=sIaXIgreH1E"
+                }
+            },
+            {
+                "startDate": "2011,09,29",
+                "headline": "Tributo à Legião no Rock in Rio",
+                "text": "Villa-Lobos e Bonfá conduziram, juntamente com a Orquestra Sinfônica Brasileira, um show-tributo à Legião Urbana durante o Rock In Rio. O concerto contou com convidados (como Rogério Flausino, do Jota Quest, e Toni Platão) que cantaram alguns sucessos da banda.",
+                "tag": "Legião Urbana, tributo, Rock in Rio, orquestra sinfonica brasileira",
+                "classname": "legiao-urbana-tributo-rock-in-rio",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=XlHDFgoDTpM"
+                }
+            },
+            {
+                "startDate": "2012,05,29",
+                "headline": "Tributo à Legião para a série MTV ao Vivo",
+                "text": "A MTV Brasil organizou um novo concerto-tributo para a série MTV ao Vivo, em São Paulo, pelos trinta anos da banda. A homenagem teve o ator Wagner Moura, fã assumido da banda, como vocalista principal, além também de participações dos músicos Fernando Catatau e Bi Ribeiro e ainda do guitarrista britânico Andy Gill, do Gang of Four, uma das maiores influências da Legião. Vinte anos antes, a banda participou da série Acústico MTV, também do mesmo canal.",
+                "tag": "Legião Urbana, tributo, mtv ao vivo, wagner moura",
+                "classname": "legiao-urbana-tributo-mtv",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=wR3aNQvnjBQ"
+                }
+            },
+            {
+                "startDate": "2013,05,03",
+                "headline": "Filme \"Somos tão Jovens\"",
+                "text": "Somos Tão Jovens, de Antônio Carlos da Fontoura, com roteiro de Marcos Bernstein, retrata a adolescência de Renato Russo (interpretado pelo ator Thiago Mendonça) e o início de seu interesse pela música, abordando a criação e extinção do Aborto Elétrico e também sua fase Trovador Solitário e o início da Legião Urbana. O filme foi distribuído pelas empresas Imagem Filmes e Fox Film Brasil.",
+                "tag": "Legião Urbana, filme, somos tao jovens",
+                "classname": "legiao-urbana-filme-somos-tao-jovens",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=9_pgN0sTmrY"
+                }
+            },
+            {
+                "startDate": "2013,05,30",
+                "headline": "Filme \"Faroeste Caboclo\"",
+                "text": "O filme Faroeste Caboclo é a adaptação da canção homônima de Renato, dirigida por René Sampaio e com roteiro de Victor Atherino e Marcos Bernstein a partir da letra original, e com distribuição da Europa Filmes. No elenco, Fabrício Boliveira (o protagonista João de Santo Cristo), Ísis Valverde (a mocinha Maria Lúcia), Felipe Abib (o vilão Jeremias) e César Troncoso (o traficante Pablo).",
+                "tag": "Legião Urbana, filme, faroeste caboclo",
+                "classname": "legiao-urbana-filme-faroeste-caboclo",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=4azYkNkPtJg"
+                }
+            },
+            {
+                "startDate": "2013,06,26",
                 "headline": "Contribua",
-                "text": "<p>Clique no boão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
+                "text": "<p>Clique no boão acima escrito \"Contribua com a timeline\" e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "Legião Urbana, Contribua",
                 "classname": "contribua"
             }
         ]
-        }
+    }
 }
