@@ -21,7 +21,9 @@
                     <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
                      <a class="addthis_button_tweet"></a>
                 </div>
-                <div class="favoritar-body"><span class="favoritar-texto">Favoritar</span> <a href="#{{ band.slug }}" class="favoritar"></a></div>
+                <script type="text/javascript"> var addthis_config = {"data_track_addressbar":true} ; </script>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-518eb49137fb39b2"></script>
+                <div class="favoritar-body"><a id="favoritar-{{ band.slug }}" href="#{{ band.slug }}" class="favoritar"></a><label for="favoritar-{{ band.slug }}" class="favoritar-texto">Favoritar</label></div>
                 <!-- AddThis Button END -->
             </div>
             <label class="label info-banda-link">&#43; Clique para expandir</label>
@@ -30,25 +32,23 @@
         <div id="{{ band.slug }}-timeline" class="timeline-banda invisivel">
             <h3 class="titulo-no-box titulo-timeline-no-box">Timeline</h3>
             <div class="contribua-timeline-body contribua-timeline-cima">
-                <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
+                <button type="button" class="botao-principal contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
             </div>
             <iframe src="/band/{{ band.slug }}-timeline.html" style="border: 0">
                 <p>Seu navegador não suporta iframes e assim não podemos exibir a timeline para você.</p>
             </iframe>
-            <div class="contribua-timeline-body">
-                <button type="button" class="shiny-red contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
-            </div>
         </div>
 
         <div id="info-banda" class="info-banda hidden">
 
             <div class="banda-mais-opcoes">
+                <button type="button" class="botao-principal contribua-timeline" data-toggle="modal" data-target="#modal-contribuicao-{{ band.slug }}">Contribua com a timeline</button>
                 {% if band.slug == "los-bife" %}
-                    <a type="button" class="shiny-red" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Comprar produtos (cds, camisas, etc.)</a>
+                    <a type="button" class="botao-principal" href="/los-bife" target="_blank" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Compre produtos</a>
                 {% else %}
-                    <button type="button" class="shiny-red" data-toggle="modal" data-target="#modal-produtos-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Compre produtos</button>
+                    <button type="button" class="botao-principal" data-toggle="modal" data-target="#modal-produtos-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Produtos', 'Comprar produtos em uma pesquisa de banda', 'Banda: {{ band.name | escape }}']);">Compre produtos</button>
                 {% endif %}
-                <button type="button" class="shiny-red pergunte-sobre-a-banda" data-toggle="modal" data-target="#modal-pergunte-{{ band.slug }}" onClick="_gaq.push(['_trackEvent', 'Band', 'Pergunte sobre a banda em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);">Pergunte sobre a banda</button>
+                <button type="button" class="botao-principal bandas-relacionadas" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}">Bandas relacionadas</button>
             </div>
             {% if show %}
                 <h3 class="titulo-no-box titulo-proximos-shows-no-box">Próximos Shows</h3>
@@ -80,16 +80,6 @@
             {% else %}
                 <div class="navegacao-show-container"></div>
             {% endif %}
-            <div class="banda-mais-opcoes banda-mais-opcoes-baixo">
-                <h3 class="titulo-no-box titulo-buscas-relacionadas-no-box">Buscas relacionadas</h3>
-                <div class="similares-body">
-                    {% for similar in band.similares %}
-                        {% if loop.index0 %2 == 0 %}<span class="similares-linha {% if loop.index0 == 0 %}primeira-linha-similar{% endif %}">{% endif %}
-                        <a href="#minhas-bandas" class="similar info-banda-link" onClick="_gaq.push(['_trackEvent', 'Band', 'Bandas relacionadas no modal', 'Banda principal: {{ band.name }} e banda relacionada: {{ similar.name }}']);">{{ similar.name }}</a>
-                        {% if loop.index0 %2 == 1 %}</span>{% endif %}
-                    {% endfor %}
-                </div>
-            </div>
         </div>
 
         <div class="comentarios invisivel">

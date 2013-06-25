@@ -251,6 +251,8 @@ seta timeline: #ececec com border #ddd8d8
 .share .favoritar-texto{
     position: relative;
     top: -3px;
+    font-size: 12px;
+    left: 6px;
 }
 
 .minhas-bandas .comentarios {
@@ -425,8 +427,16 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     top: 3px;
 }
 
+.banda-mais-opcoes:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+
 .banda-mais-opcoes {
-    margin: 0px 0 50px;
+    margin: 0 0 50px -5px;
+    text-align: justify;
+    width: 600px;
 }
 
 .banda-mais-opcoes-baixo{

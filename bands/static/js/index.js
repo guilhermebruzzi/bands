@@ -178,6 +178,16 @@ function mostrarComentariosClicked(){
     $(this).addClass("invisivel");
 }
 
+function favoritarClicked(){
+    var bandaNome = $(this).parent().parent().parent().find(".info-banda-nome").text();
+
+    if(typeof _gaq != "undefined"){
+        _gaq.push(['_trackEvent', 'Band', 'Favoritar em uma pesquisa de banda', 'Banda: ' + bandaNome]);
+    }
+
+    $(this).toggleClass("favoritou");
+}
+
 function carregaTimeline(timelineId){ // Ex.: timelineId='the-beatles-timeline'
     createStoryJS({
         type:       'timeline',
@@ -249,15 +259,8 @@ function main_index(){
 
     $(document).on('click', '.info-banda-header', toggleBand);
 
-    $('#minhas-bandas-lista').on("click", ".favoritar", function(){
-        var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
-
-        if(typeof _gaq != "undefined"){
-            _gaq.push(['_trackEvent', 'Band', 'Favoritar em uma pesquisa de banda', 'Banda: ' + bandaNome]);
-        }
-
-        $(this).toggleClass("favoritou");
-    });
+    $('#minhas-bandas-lista').on("click", ".favoritar", favoritarClicked);
+    $('#minhas-bandas-lista').on("click", ".favoritar-texto", favoritarClicked);
 
     $('#minhas-bandas-lista').on("change", ".nota", function(){
         var bandaNome = $(this).parent().parent().find(".info-banda-nome").text();
@@ -319,6 +322,7 @@ function main_index(){
         $("#minhas-bandas-lista").addClass("padding-80");
         var bandName = $(this).text();
         makeRequestBandHome(bandName);
+        window.location.href = window.location.href.replace(window.location.hash, "") + "#minhas-bandas"
     });
 
     $(document).on('click', ".contribua-timeline", contribuaTimelineClicked);
