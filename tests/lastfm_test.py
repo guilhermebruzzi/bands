@@ -46,17 +46,19 @@ class LastFmTest(BaseTest):
         self.assertEqual(franz.tags_list, [])
         self.assertEqual(franz.similares_slug, [])
 
-        self.assertEqual(franz.photo, "http://userserve-ak.last.fm/serve/252/324253.jpg")
+        franz_url_photo = "http://userserve-ak.last.fm/serve/252/7149.jpg"
+
+        self.assertEqual(franz.photo, franz_url_photo)
         self.assertEqual(franz.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])
         self.__assert_bands_list__(franz.similares, self.franz_similares_data)
 
-        self.assertEqual(franz.photo_url, "http://userserve-ak.last.fm/serve/252/324253.jpg")
+        self.assertEqual(franz.photo_url, franz_url_photo)
         self.assertEqual(franz.tags_list, ["indie", "indie rock", "rock", "alternative", "britpop"])
         self.__assert_bands_slugs__(franz.similares_slug, self.franz_similares_slug)
 
         franz_from_mongo = Band.objects.get(name="Franz Ferdinand")
-        self.assertEqual(franz_from_mongo.photo_url, "http://userserve-ak.last.fm/serve/252/324253.jpg")
-        self.assertEqual(franz_from_mongo.photo, "http://userserve-ak.last.fm/serve/252/324253.jpg")
+        self.assertEqual(franz_from_mongo.photo_url, franz_url_photo)
+        self.assertEqual(franz_from_mongo.photo, franz_url_photo)
 
         self.assertEqual(franz_from_mongo.tags_list, ["indie", "indie rock", "rock", "alternative", "britpop"])
         self.assertEqual(franz_from_mongo.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])

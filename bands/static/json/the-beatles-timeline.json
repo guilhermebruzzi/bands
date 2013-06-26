@@ -14,7 +14,10 @@
                 "headline":"Formação",
                 "text":"<p><p>Em Março de 1957, empolgado com o skiffle que Lonnie Donegan popularizou com seus sons improvisados, John Lennon criou uma banda composta por colegas da escola Quarry Bank School — que incluía seu melhor amigo na época, Pete Shotton — primeiramente chamada de The Black Jacks, mas logo definida como The Quarrymen (em homenagem à escola). Inicialmente, além dos dois, a banda era composta por Eric Griffths (violão), Bill Smith (baixo improvisado) e Rod Davis (banjo).<br> Em 6 de julho de 1957, Paul McCartney havia assistido uma apresentação da banda em uma festa na Igreja St. Peter, e Ivan Vaughan, amigo de John Lennon e colega de classe de Paul, apresentou-lhe a Lennon; Paul foi convidado a ingressar na banda e, no mesmo ano, mostrou a Lennon a composição <strong>I've Lost My Little Girl</strong>.<br> Em 6 de fevereiro de 1958, o jovem guitarrista George Harrison juntou-se à banda, apresentado por Paul que o teria conhecido por acaso num ônibus.<br> Apesar da relutância inicial de Lennon pelo fato de Harrison ser três anos mais novo que ele (na época, com quinze anos), McCartney insistiu depois de uma demonstração de George e este terminou ingressando no grupo.<br> Lennon e McCartney desempenharam a guitarra rítmica durante esse período e, após o baterista oficial do Quarrymen, Colin Hanton deixar a banda, em 1959, depois de uma discussão com os outros membros, teve uma alta rotatividade de bateristas. Stuart Sutcliffe, colega de Lennon numa escola de arte de Liverpool, aderiu ao baixo em janeiro de 1960, a pedido do amigo. </p> <p>Como Paul e George estudavam no Instituto de Liverpool, não seria mais apropriado chamar a banda por <strong>Quarrymen</strong> e, então, o grupo passou por uma progressão de nomes, incluindo <strong>Johnny and The Moondogs</strong> e <strong>Long John and The Beatles</strong>'. Sutcliffe sugeriu o nome <strong>The Beetles</strong> como homenagem a Buddy Holly e <strong>The Crickets</strong>. Após uma turnê com Johnny Gentle na Escócia, a banda mudou definitivamente seu nome para <strong>The Beatles</strong>. A primeira esposa de John, Cynthia Lennon, argumenta que o título <strong>The Beatles</strong> veio a John no Renshaw Hall bar, depois de ele beber cerveja.13 Lennon, que era conhecido por dar diversas versões da história, ironizou num artigo da revista Mersey Beat de 1971 que teve uma visão onde um homem, numa torta flamejante, disse: 'Vocês são Beatles com A'. Durante uma entrevista em 2001, McCartney atribuiu a si o nome definitivo da banda, afirmando que John tivera a ideia de nos chamar de 'The Beetles'; eu disse: 'por que não Beatles?; você sabe, como a batida da 'bateria'.</p> <p>Em maio de 1960, os então Silver Beetles realizaram uma turnê no norte da Escócia, com o cantor Johnny Gentle, a quem a banda havia conhecido uma hora antes de sua primeira apresentação.<br> McCartney refere-se à viagem como uma grande experiência para a banda. Naquela época os Beatles não tinham um baterista fixo, assim, profissionais desse gênero tocavam para eles apenas em determinadas ocasiões.</p></p>",
                 "tag":"The Beatles, Formação",
-                "classname":"the-beatles-formacao"
+                "classname":"the-beatles-formacao",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/173094.jpg"
+                }
             },
             {
                 "startDate":"1963,03,22",
@@ -41,15 +44,9 @@
                 "headline": "Contribua",
                 "text": "<p>Clique no botão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "The Beatles, Contribua",
-                "classname": "contribua"
-            },
-            {
-                "startDate":"2013,05,13",
-                "headline":"Wikipedia sobre os Beatles (para maiores informações)",
-                "tag":"The Beatles Wikipedia",
-                "classname":"wikipedia",
+                "classname": "contribua",
                 "asset": {
-                    "media":"http://pt.wikipedia.org/wiki/The_Beatles"
+                    "media":"http://userserve-ak.last.fm/serve/252/173094.jpg"
                 }
             }
 

@@ -3,7 +3,10 @@
     {
         "headline":"Linkin Park",
         "type":"default",
-        "text": " <p><img src='http://userserve-ak.last.fm/serve/252/87874129.png' title='linkin park foto' alt='linkin park foto' /></p><h3>História</h3><p>Linkin Park é uma banda de rock dos Estados Unidos formada em 1996 em Agoura Hills, Califórnia. Desde a sua formação, a banda já vendeu mais de 50 milhões de álbuns e ganhou dois Grammy Awards. Eles tiveram o sucesso alcançado em 2000, com o seu álbum de estreia, Hybrid Theory, que foi certificado pela RIAA como disco de diamante em 2005. O álbum seguinte, Meteora, continuou o sucesso da banda, com o topo no gráfico de álbuns Billboard 200 em 2003, e foi seguido por um extenso trabalho de caridades e de turnês em todo o mundo. Em 2003, Linkin Park foi nomeada pela MTV2 a sexta maior banda da era de videoclipes e a terceira melhor do novo milênio atrás de Oasis e Coldplay.</p><p>O terceiro álbum de estúdio, Minutes to Midnight, atingiu o topo das paradas da Billboard e teve a terceira melhor estreia na semana de qualquer outro álbum e foi o disco mais vendido no mundo em 2007. O quarto disco da banda, A Thousand Suns, foi lançado oficialmente em 14 de setembro de 2010 e se tornou líder de vendas em mais de quinze países. O álbum mais recente da banda, o CD Living Things, foi lançado em 26 de junho de 2012, e combina todos os elementos e gêneros presentes nos trabalhos anteriores do grupo. Eles também são conhecidos por suas várias colaborações, mais notavelmente com o rapper Jay-Z no seu álbum Collision Course, e muitos outros artistas em Reanimation.</p>",
+        "text": "<h3>História</h3><p>Linkin Park é uma banda de rock dos Estados Unidos formada em 1996 em Agoura Hills, Califórnia. Desde a sua formação, a banda já vendeu mais de 50 milhões de álbuns e ganhou dois Grammy Awards. Eles tiveram o sucesso alcançado em 2000, com o seu álbum de estreia, Hybrid Theory, que foi certificado pela RIAA como disco de diamante em 2005. O álbum seguinte, Meteora, continuou o sucesso da banda, com o topo no gráfico de álbuns Billboard 200 em 2003, e foi seguido por um extenso trabalho de caridades e de turnês em todo o mundo. Em 2003, Linkin Park foi nomeada pela MTV2 a sexta maior banda da era de videoclipes e a terceira melhor do novo milênio atrás de Oasis e Coldplay.</p><p>O terceiro álbum de estúdio, Minutes to Midnight, atingiu o topo das paradas da Billboard e teve a terceira melhor estreia na semana de qualquer outro álbum e foi o disco mais vendido no mundo em 2007. O quarto disco da banda, A Thousand Suns, foi lançado oficialmente em 14 de setembro de 2010 e se tornou líder de vendas em mais de quinze países. O álbum mais recente da banda, o CD Living Things, foi lançado em 26 de junho de 2012, e combina todos os elementos e gêneros presentes nos trabalhos anteriores do grupo. Eles também são conhecidos por suas várias colaborações, mais notavelmente com o rapper Jay-Z no seu álbum Collision Course, e muitos outros artistas em Reanimation.</p>",
+        "asset": {
+            "media": "http://userserve-ak.last.fm/serve/252/87874129.png"
+        },
         "date": [
             {
                 "startDate":"2011,07,04",
@@ -20,7 +23,10 @@
                 "headline": "Contribua",
                 "text": "<p>Clique no boão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "Linkin Park, Contribua",
-                "classname": "contribua"
+                "classname": "contribua",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/87874129.png"
+                }
             }
         ]
         }

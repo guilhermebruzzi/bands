@@ -1,13 +1,12 @@
-<div class="timeline-banda {% if band.slug == "the-beatles" %}tamanho-timeline{% endif %} timeline-invisivel">
+<div class="timeline-banda">
+    <h3 class="titulo-timeline-no-box">Timeline<small>(use as setas para navegar)</small></h3>
     <div id="{{ band.slug }}-timeline" class="band-timeline"></div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-<link href="{{ url_for('static', filename='css/prettify.css') }}" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="{{ url_for('static', filename='js/prettify.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='timelinejs-compiled/js/storyjs-embed.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/timeline-custom.js') }}"></script>

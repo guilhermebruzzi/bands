@@ -2,7 +2,10 @@
     "timeline": {
         "headline": "Legião Urbana",
         "type": "default",
-        "text": "<p><img src='http://userserve-ak.last.fm/serve/252/52255403.jpg' title='legião urbana foto' alt='legião urbana foto' /></p><h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
+        "text": "<h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
+        "asset": {
+            "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+        },
         "date": [
             {
                 "startDate": "1978,01,01",
@@ -39,7 +42,10 @@
                 "headline": "Dado Villa-Lobos entra na banda",
                 "text": "Dado Villa-Lobos, que assumiu a guitarra da Legião Urbana",
                 "tag": "Legião Urbana, Dado Villa-Lobos, guitarrista",
-                "classname": "legiao-urbana-dado-chega"
+                "classname": "legiao-urbana-dado-chega",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "1983,07,23",
@@ -56,14 +62,20 @@
                 "headline": "Renato Rocha entra na banda",
                 "text": "Por indicação de Marcelo Bonfá, entra o baixista Renato Rocha e começa então a gravação do primeiro disco.",
                 "tag": "Legião Urbana, Renato Rocha, baixista, gravação, primeiro disco",
-                "classname": "legiao-urbana-renato-rocha-chega"
+                "classname": "legiao-urbana-renato-rocha-chega",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "1985,01,01",
                 "headline": "O Sucesso",
                 "text": "Entraram em cena acelerando o andamento da música jovem brasileira. De toda a geração emergida no boom do rock nacional em 1985, a Legião Urbana foi a banda mais venerada pelo público e respeitada pela crítica. Apesar das letras consideradas sérias, por outro lado, o discurso não caía para a facilidade do tom panfletário.",
                 "tag": "Legião Urbana, sucesso",
-                "classname": "legiao-urbana-sucesso"
+                "classname": "legiao-urbana-sucesso",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "1985,01,02",
@@ -137,10 +149,23 @@
             },
             {
                 "startDate": "1995,01,14",
-                "headline": "O último concerto",
-                "text": "O último concerto da Legião Urbana aconteceu na casa de apresentações \"Reggae Night\" em Santos, litoral do estado de São Paulo.<h1>Parte 1:</h1><iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/OmBia2KQn5Q\" frameborder=\"0\" allowfullscreen></iframe><h1>Parte 2:</h1><iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/EgYIoC3okGM\" frameborder=\"0\" allowfullscreen></iframe>",
+                "headline": "O último concerto (parte 1)",
+                "text": "<p>O último concerto da Legião Urbana aconteceu na casa de apresentações \"Reggae Night\" em Santos, litoral do estado de São Paulo.</p><p>Essa é a parte 1, para ver a parte 2 é só ver o próximo evento dessa timeline.</p>",
                 "tag": "Legião Urbana, último show",
-                "classname": "legiao-urbana-ultimo-concerto"
+                "classname": "legiao-urbana-ultimo-concerto",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=OmBia2KQn5Q"
+                }
+            },
+            {
+                "startDate": "1995,01,14",
+                "headline": "O último concerto (parte 2)",
+                "text": "<p>O último concerto da Legião Urbana aconteceu na casa de apresentações \"Reggae Night\" em Santos, litoral do estado de São Paulo.</p><p>Essa é a segunda e última parte desse show, para ver a parte 1 é só ver o evento anterior dessa timeline.</p>",
+                "tag": "Legião Urbana, último show",
+                "classname": "legiao-urbana-ultimo-concerto",
+                "asset": {
+                    "media": "http://www.youtube.com/embed/EgYIoC3okGM"
+                }
             },
             {
                 "startDate": "1995,01,01",
@@ -148,7 +173,10 @@
                 "headline": "Por Enquanto 1984-1995",
                 "text": "Todos os discos de estúdio da banda até 1993 foram remasterizados no lendário estúdio britânico Abbey Road Studios, em Londres, famoso por vários discos dos Beatles; e lançados em uma lata, intitulada \"Por Enquanto 1984-1995\". A lata também incluía um pequeno livro, com um texto escrito pelo antropólogo Hermano Vianna, irmão do músico Herbert Vianna.",
                 "tag": "Legião Urbana, Por Enquanto 1984-1995",
-                "classname": "legiao-urbana-por-enquanto"
+                "classname": "legiao-urbana-por-enquanto",
+                "asset": {
+                    "media": "http://www.youtube.com/watch?v=jkM5e04vjzE"
+                }
             },
             {
                 "startDate": "1996,09,20",
@@ -165,14 +193,20 @@
                 "headline": "Falecimento de Renato Russo",
                 "text": "Renato Russo faleceu 21 dias após o lançamento de A Tempestade.",
                 "tag": "Legião Urbana, Falecimento",
-                "classname": "legiao-urbana-falecimento-renato-russo"
+                "classname": "legiao-urbana-falecimento-renato-russo",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "1996,10,22",
                 "headline": "Fim da banda",
                 "text": "O fim oficial da banda aconteceu onze dias após a morte do mentor, líder e fundador da banda, Renato Russo. Dado Villa-Lobos e Marcelo Bonfá seguiram suas carreiras e lançaram discos solo nos anos seguintes.",
                 "tag": "Legião Urbana, Falecimento",
-                "classname": "legiao-urbana-falecimento-renato-russo"
+                "classname": "legiao-urbana-falecimento-renato-russo",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "1997,07,18",
@@ -189,7 +223,10 @@
                 "headline": "Rumores sobre o retorno",
                 "text": "Após rumores sobre uma possível retorno as atividades, o site oficial da banda divulgou um comunicado, em nome da família Manfredini, Dado Villa-Lobos, Marcelo Bonfá e da gravadora EMI, esclarecendo que eram infundadas informações sobre retorno da banda, esclarecendo que \"uma possível volta da banda Legião Urbana é falsa. Não existe possibilidade alguma de uma volta da banda Legião Urbana.\"",
                 "tag": "Legião Urbana, retorno",
-                "classname": "legiao-urbana-retorno"
+                "classname": "legiao-urbana-retorno",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             },
             {
                 "startDate": "2009,09,20",
@@ -246,7 +283,10 @@
                 "headline": "Contribua",
                 "text": "<p>Clique no boão acima escrito \"Contribua com a timeline\" e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "Legião Urbana, Contribua",
-                "classname": "contribua"
+                "classname": "contribua",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
             }
         ]
     }

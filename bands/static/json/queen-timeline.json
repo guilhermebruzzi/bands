@@ -3,7 +3,10 @@
     {
         "headline":"Queen",
         "type":"default",
-        "text":"<p><img src='http://userserve-ak.last.fm/serve/252/45625545.png' title='queen foto' alt='queen foto' /></p><h3>História</h3><p>Brian May e Tim Staffell, amigos de escola, decidem formar uma banda e colocam um anúncio no Imperial College à procura de um baterista ao estilo Ginger Baker (baterista da banda inglesa Cream). Roger Taylor responde ao anúncio e junto com Tim (vocais, baixo) e Brian (guitarra, vocais), formam o grupo Smile, que chegou a abrir shows para o então jovem guitarrista americano Jimi Hendrix. Freddie era colega de quarto de Tim, e seguia assiduamente aos concertos do grupo. A essa altura, Freddie era vocalista de outras bandas, como os Wreckage e mais tarde o Ibex. Para além disso, não tinha qualquer problema em partilhar as suas ideias acerca da direcção musical que os Smile deveriam tomar.</p><p>Em 1970, Tim decidiu então pôr fim à sua carreira nos Smile, e juntou-se a uma banda chamada Humpty Bong. Freddie substituiu-o, e mudou o nome da banda para Queen, que não agradava de começo os outros integrantes.O símbolo muito elaborado da banda, foi desenhado por Feddie Mercury, que tinha um curso em artes e que tocava piano. Então o grupo começa a procurar por um baixista profissional. O primeiro seria Mike Grose, que ficou no Smile de abril à agosto de 1970. Só no ano seguinte, em 1971, que o grupo encontrou seu baixista definitivo, um jovem de Leicester formado em eletrônica, chamado John Deacon.</p><p>Com a formação definida, o quarteto estava definitivamente em marcha, possuidores de uma imagem inovadora, desfazendo regras musicais anteriores, compondo temas de absoluta originalidade, com nada, ou bem pouco a ver com o resto do rock daqueles tempos.</p>",
+        "text":"<h3>História</h3><p>Brian May e Tim Staffell, amigos de escola, decidem formar uma banda e colocam um anúncio no Imperial College à procura de um baterista ao estilo Ginger Baker (baterista da banda inglesa Cream). Roger Taylor responde ao anúncio e junto com Tim (vocais, baixo) e Brian (guitarra, vocais), formam o grupo Smile, que chegou a abrir shows para o então jovem guitarrista americano Jimi Hendrix. Freddie era colega de quarto de Tim, e seguia assiduamente aos concertos do grupo. A essa altura, Freddie era vocalista de outras bandas, como os Wreckage e mais tarde o Ibex. Para além disso, não tinha qualquer problema em partilhar as suas ideias acerca da direcção musical que os Smile deveriam tomar.</p><p>Em 1970, Tim decidiu então pôr fim à sua carreira nos Smile, e juntou-se a uma banda chamada Humpty Bong. Freddie substituiu-o, e mudou o nome da banda para Queen, que não agradava de começo os outros integrantes.O símbolo muito elaborado da banda, foi desenhado por Feddie Mercury, que tinha um curso em artes e que tocava piano. Então o grupo começa a procurar por um baixista profissional. O primeiro seria Mike Grose, que ficou no Smile de abril à agosto de 1970. Só no ano seguinte, em 1971, que o grupo encontrou seu baixista definitivo, um jovem de Leicester formado em eletrônica, chamado John Deacon.</p><p>Com a formação definida, o quarteto estava definitivamente em marcha, possuidores de uma imagem inovadora, desfazendo regras musicais anteriores, compondo temas de absoluta originalidade, com nada, ou bem pouco a ver com o resto do rock daqueles tempos.</p>",
+        "asset": {
+            "media": "http://userserve-ak.last.fm/serve/252/45625545.png"
+        },
         "date": [
             {
                 "startDate":"1968,01,01",
@@ -11,36 +14,39 @@
                 "headline":"Formação",
                 "text":"<p>Queen é uma banda de rock britânica, formada em Londres, em 1971, originalmente composta por Freddie Mercury (vocal principal, piano, violão), Brian May (guitarra, vocal), John Deacon (baixo) e Roger Taylor (bateria, vocal). Brian e Roger ocasionalmente cantavam algumas músicas.</p>",
                 "tag":"Queen, Formação",
-                "classname":"queen-formacao"
+                "classname":"queen-formacao",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/45625545.png"
+                }
             },
             {
                 "startDate":"1991,11,24",
                 "headline":"Morte de Freddie Mercury",
                 "text":"<p>Em 24 de novembro de 1991, o vocalista da banda, Freddie Mercury, faleceu em sua mansão em Londres, vítima de uma broncopneumonia, decorrência da AIDS. Freddie tinha 45 anos de idade.</p>",
                 "tag":"Queen, Morte Freddie Mercury",
-                "classname":"morte-freddie-mercury"
+                "classname":"morte-freddie-mercury",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/45625545.png"
+                }
             },
             {
                 "startDate":"1991,01,01",
                 "headline":"Freddie Mercury com AIDS",
                 "text":"<p>Em 1991, começaram a surgir rumores mais fortes de que o cantor Freddie Mercury estava com AIDS.</p>",
                 "tag":"Queen, Freddie Mercury AIDS",
-                "classname":"freddie-mercury-aids"
+                "classname":"freddie-mercury-aids",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/45625545.png"
+                }
             },
             {
                 "startDate": "2013,05,12",
                 "headline": "Contribua",
                 "text": "<p>Clique no botão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "Queen, Contribua",
-                "classname": "contribua"
-            },
-            {
-                "startDate":"2013,05,13",
-                "headline":"Wikipedia sobre os Queen (para maiores informações)",
-                "tag":"Queen Wikipedia",
-                "classname":"wikipedia",
+                "classname": "contribua",
                 "asset": {
-                    "media":"http://pt.wikipedia.org/wiki/Queen"
+                    "media":"http://userserve-ak.last.fm/serve/252/45625545.png"
                 }
             }
 

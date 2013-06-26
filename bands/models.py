@@ -221,7 +221,10 @@ class Band(db.Document):
                     "headline": "Contribua",
                     "text": u"<p>Clique no botão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                     "tag": u"%s, Contribua" % self.name,
-                    "classname": "contribua"
+                    "classname": "contribua",
+                    "asset": {
+                        "media": self.photo
+                    }
                 }
 
             ]
