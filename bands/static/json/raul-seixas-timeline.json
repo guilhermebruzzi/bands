@@ -1,0 +1,43 @@
+{
+    "timeline":
+    {
+        "headline":"Raul Seixas",
+        "type":"default",
+        "text": "<h3>História</h3><p>Raul Seixas - O Moleque Maravilhoso  por Sylvio Passos    Maria Eugênia Pereira dos Santos era uma garotinha bonita quando conheceu Raul Varella Seixas. Ela tinha sete anos, e ele nove. O namoro, que durante anos ficou somente na troca de olhares e bilhetinhos, culminou no casamento dos dois, às 17:30h do dia 16 de setembro de 1944, na Igreja do Bonfim, em Salvador, na Bahia. Nove meses após a união de Raul e Maria Eugênia, nascia o primeiro filho do casal, Raul Santos Seixas, em 28 de junho de 1945.</p>",
+        "asset": {
+            "media": "http://userserve-ak.last.fm/serve/252/78793.jpg"
+        },
+        "date": [
+            {
+                "startDate":"1945,06,28",
+                "headline":"Infância",
+                "text":"<p>\"Quando eu era guri, lá na Bahia, música para mim era uma coisa secundária. O que me preocupava mesmo eram os problemas da vida e da morte, o problema do homem, de onde vim, para onde vou (…)\" —Raul Seixas</p><p>Raul Santos Seixas nasceu às 8 horas da manhã em 28 de Junho de 1945 numa família de classe média baiana que vivia na Avenida Sete de Setembro, Salvador. Seu pai, Raul Varella Seixas, era engenheiro da estrada de ferro e sua mãe, Maria Eugênia Santos Seixas, se dedicava às atividades domésticas. No próximo mês ele foi registrado no Cartório de Registro Civil de Salvador com o nome do pai e do avô paterno. Em 16 de setembro do mesmo ano, batizaram-no na Igreja Matriz da Boa Viagem. Em 4 de dezembro de 1948, Raul Seixas ganhou um irmão, o único, Plínio Santos Seixas, com quem teria um bom relacionamento durante sua infância. Os estudos de Raul Seixas começaram em 1952, onde frequentou o curso primário estudando com a professora Sônia Bahia. Concluído o curso em 1956, fundou o Club dos Cigarros com alguns amigos. O trágico percurso escolar de Raul Seixas se iniciaria em 1957, quando ele ingressou no ginásio Colégio São Bento, onde foi reprovado na 2ª série por três anos. Um dos motivos da reprovação, segundo alguns biógrafos, é que ele, em vez de ir assistir as aulas, ouvia rock and roll — em seus primórdios — na loja Cantinho da Música.</p>",
+                "tag":"Raul Seixas, Infância",
+                "classname":"raul-seixas-infancia",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/78793.jpg"
+                }
+            },
+            {
+                "startDate":"1974,01,01",
+                "headline":"Sociedade Alternativa",
+                "text":"<p>Sociedade Alternativa faz parte de uma filosofia, defendida por Raul Seixas, baseada nos escritos do ocultista britânico Aleister Crowley e sua Lei de Thelema: \"Faze o que tu queres há de ser tudo da Lei.\"</p><p>O escritor ocultista britânico Aleister Crowley influenciou muito Raul Seixas, especialmente em suas composições. Assim como Paulo Coelho, escritor e autor de best sellers, que por sinal era parceiro musical de Raul. Os dois fundaram a Sociedade Alternativa na década de 1970. A Sociedade Alternativa é uma utopia idealizada por Raul Seixas e jamais realizada, que tinha como objetivo seguir os preceitos da ordem O.T.O, seguidora dos ensinamentos de Crowley.</p>",
+                "tag":"Raul Seixas, Sociedade Alternativa",
+                "classname":"sociedade-alternativa",
+                "asset": {
+                    "media":"http://www.youtube.com/watch?v=BcXnMS8rJcw"
+                }
+            },
+            {
+                "startDate": "2013,05,12",
+                "headline": "Contribua",
+                "text": "<p>Clique no boão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre ele.</p>",
+                "tag": "Raul Seixas, Contribua",
+                "classname": "contribua",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/78793.jpg"
+                }
+            }
+        ]
+    }
+}
