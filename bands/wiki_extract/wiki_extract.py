@@ -7,10 +7,16 @@ from wiki2plain import Wiki2Plain
 def retira_acentos(st):
     acentos_to_replace = [
         (u'á', u'a'), (u'ã', u'a'), (u'à', u'a'),
+        (u'Á', u'a'), (u'Ã', u'a'), (u'À', u'a'),
         (u'é', u'e'), (u'è', u'e'),
+        (u'É', u'e'), (u'È', u'e'),
         (u'í', u'i'), (u'ì', u'i'),
+        (u'Í', u'i'), (u'Ì', u'i'),
         (u'ó', u'o'), (u'õ', u'o'), (u'ò', u'o'),
+        (u'Ó', u'o'), (u'Õ', u'o'), (u'Ò', u'o'),
         (u'ú', u'u'), (u'ù', u'u'),
+        (u'Ú', u'u'), (u'Ù', u'u'),
+        (u'Ç', u'c'),
         (u'ç', u'c')
     ]
 
@@ -46,21 +52,23 @@ def wiki_extract(article, lang='pt'):
     parent_pointer = content_dict
     first = True
     for line in content.splitlines():
-        if line:
-            if first:
-                content_dict["resumo"] = line
-                first = False
-            elif line.startswith("== "):
+        line = line.strip()
+        if line != "":
+            if line.startswith("==") and not line.startswith("==="):
                 title = __get_title(line)
                 content_dict[title] = {"text": ""}
                 parent_pointer = content_dict[title]
                 current_pointer = content_dict[title]
-            elif line.startswith("=== "):
+                first = False
+            elif line.startswith("==="):
                 title = __get_title(line)
                 parent_pointer[title] = {"text": ""}
                 current_pointer = parent_pointer[title]
             else:
-                current_pointer["text"] = "%s<p>%s</p>" % (current_pointer["text"], line)
+                if first:
+                    content_dict["resumo"] = "%s<p>%s</p>" % (current_pointer["resumo"], line)
+                else:
+                    current_pointer["text"] = "%s<p>%s</p>" % (current_pointer["text"], line)
 
 
     return content_dict
