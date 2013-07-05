@@ -1,0 +1,33 @@
+{
+    "timeline":
+    {
+        "headline":"Flea",
+        "type":"default",
+        "text": "<h3>História</h3><p>Michael Peter Balzary (Melbourne, 16 de Outubro de 1962), mais conhecido pelo seu nome artístico Flea, é um baixista australiano nascido em Melbourne. Flea, que também toca o trompete e ocasionalmente trabalha como ator, é mais conhecido como baixista, co-fundador e um dos compositores da banda de rock alternativo Red Hot Chili Peppers. Flea também é o co-fundador da Silverlake Conservatory of Music, uma organização sem fins lucrativos de educação musical fundada em 2001.</p><p>Originalmente um prodígio do trompete, Flea aprendeu a tocar baixo na escola secundária, com seu amigo íntimo (e futuro guitarrista do Red Hot Chili Peppers) Hillel Slovak, que precisava de um baixista para sua banda Anthym. Flea passou a integrar o grupo, porém abandonou-o alguns meses depois para tocar na banda de punk Fear. Logo juntou-se novamente a Slovak para formar uma banda destinada a apenas uma apresentação, com seus colegas de escola Anthony Kiedis e Jack Irons; a colaboração inesperada acabaria dando origem aos Red Hot Chili Peppers.</p><p>Altamente considerado como um dos melhores baixistas de todos os tempos, seu trabalho com a banda incorporou diversos estilos musicais, e abrangem, tecnicamente, desde o slap mais agressivo a métodos mais melódicos. Tem influências do funk e da música punk rock, seu estilo é primordialmente centrado na simplicidade e no minimalismo, não dispensa a complexidade como um recurso a ser utilizado quando necessário. Além dos Chili Peppers, Flea colaborou com diversos outros artistas, incluindo o Jane's Addiction, The Mars Volta e Alanis Morissette e mais recentemente, Rocketjuice e The Moon. Em abril de 2011, a revista Rolling Stone fez uma lista dos 10 melhores baixistas de todos os tempos, com Flea em segundo.</p>",
+        "asset": {
+            "media": "http://userserve-ak.last.fm/serve/252/171827.jpg"
+        },
+        "date": [
+            {
+                "startDate":"1945,06,28",
+                "headline":"Nirvana - Smells Like Teen Spirit feat Flea",
+                "text":"<p>Em 23 de janeiro de 1993 o Nirvana convida o baixista Flea do Red Hot Chili Peppers para tocar trompete na música Smells Like Teen Spirit.</p><p>Isso aconteceu no Hollywood Rock Show no Rio de Janeiro.</p>",
+                "tag":"Flea, Smells Like Teen Spirit",
+                "classname":"flea-smells",
+                "asset": {
+                    "media":"https://www.youtube.com/watch?v=1KTRjUYtu3Q"
+                }
+            },
+            {
+                "startDate": "2013,05,12",
+                "headline": "Contribua",
+                "text": "<p>Clique no boão acima escrito 'Contribua com a timeline' e escreva os acontecimentos que você mais gosta sobre ele.</p>",
+                "tag": "Flea, Contribua",
+                "classname": "contribua",
+                "asset": {
+                    "media":"http://userserve-ak.last.fm/serve/252/171827.jpg"
+                }
+            }
+        ]
+    }
+}

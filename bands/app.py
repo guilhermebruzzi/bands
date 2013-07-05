@@ -177,8 +177,6 @@ def search_band(band_name):
 
     if shows:
         show = shows[0][1][0] # Pegando apenas o objeto show da banda
-    elif len(band.users) == 0:
-        band.delete()
 
     return render_template("resultado_uma_banda.html", band=band, show=show, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
         formulario_pag_seguro=formulario_pag_seguro)
