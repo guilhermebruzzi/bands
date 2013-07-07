@@ -7,14 +7,6 @@
 {% block content %}
 
     <section class="explicacao-site">
-        {% if not current_user %}
-        <h2 class="pergunta-site">O que fazer aqui no site?</h2>
-        <ul class="o-que-fazer">
-            <li>Busque a sua banda favorita.</li>
-            <li>Clique em expandir e descubra tudo sobre ela!</li>
-            <li>Se quiser salvar uma lista de bandas: <a href="{{ url_for('login') }}" class="login-menu-facebook" onClick="_gaq.push(['_trackEvent', 'Login', 'Login pag. principal', 'Login no meio do texto']);">Faça login usando o seu Facebook.</a></li>
-        </ul>
-        {% endif %}
         <div id="opcoes-procurar-bandas" class="opcoes-procurar-bandas">
             <input id="opcoes-procurar-bandas-text" class="opcoes-procurar-bandas-text fullwidth-textbox" placeholder="digite uma banda ou músico que você deseja conhecer melhor" type="text" list="bandas" />
             <span class="loupa-icon"></span>
