@@ -27,7 +27,7 @@
                 </li>
                 {% for band, band_shows in minhas_bandas_shows %}
                     {%- set show = band_shows[0] -%}
-                    {{ band_search.escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) }}
+                    {{ band_search.escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro, range_tamanhos) }}
                 {% endfor %}
             </ul>
         </article>

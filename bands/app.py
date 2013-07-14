@@ -20,6 +20,7 @@ app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku ac
 
 carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
 formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
+range_tamanhos = ['Baby Look', 'P', 'M', 'G', 'GG']
 
 def __make_response_plain_text__(response_text, type_of_response="text/plain"):
     response = make_response(response_text)
@@ -97,7 +98,7 @@ def novo():
 
     return render_template("novo.html", current_user=current_user,
         minhas_bandas_shows=minhas_bandas_shows, notas=range(11), BANDAS_CAMISAS=BANDAS_CAMISAS,
-        formulario_pag_seguro=formulario_pag_seguro)
+        formulario_pag_seguro=formulario_pag_seguro, range_tamanhos=range_tamanhos)
 
 @app.route('/bandas-datalist/', methods=['GET'])
 @cache.cached(timeout=18000)
@@ -129,7 +130,7 @@ def loja_virtual():
     dark = True if request.args.get('dark') else False
 
     return render_template('loja_virtual.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
-        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
+        range_quantidade=range(2, 10), range_tamanhos=range_tamanhos, produtos_section=produtos_section, dark=dark,
         camisas=BANDAS_CAMISAS)
 
 @app.route('/newsletter/<option>', methods=['POST'])
@@ -199,11 +200,10 @@ def los_bife():
     produtos_section = True if request.args.get('produtos-section') else False
     dark = True if request.args.get('dark') else False
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
-        range_quantidade=range(2, 10), range_tamanhos=['pp', 'p', 'm', 'g'], produtos_section=produtos_section, dark=dark,
+        range_quantidade=range(2, 10), range_tamanhos=range_tamanhos, produtos_section=produtos_section, dark=dark,
         camisas=[{ "tipo": "amarela", "preco": "20,00" },
                  { "tipo": "vermelha", "preco": "20,00" },
-                 { "tipo": "azul", "preco": "20,00" },
-                 { "tipo": "verde", "preco": "20,00" }])
+                 { "tipo": "azul", "preco": "20,00" }])
 
 @app.route('/band/<band_timeline_id>.json', methods=['GET'])
 def get_band_timeline_json(band_timeline_id):

@@ -5,7 +5,7 @@
 {% import 'band_products.html' as band_products %}
 {% import 'contribuicao_timeline.html' as contribuicao %}
 
-{% macro escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro) -%}
+{% macro escreve_banda(band, show, notas, BANDAS_CAMISAS, formulario_pag_seguro, range_tamanhos) -%}
     <li id="{{ band.slug }}" class="banda-container-li round-component box-gray">
         <h2 id="band-header" class="info-banda-header">
             {% if band.photo %}
@@ -108,7 +108,7 @@
         {{ band_question.gera_modal(band.slug) }}
         {{ band_tags.gera_modal(band) }}
         {{ bandas_relacionadas.gera_modal(band) }}
-        {{ band_products.gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro) }}
+        {{ band_products.gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro, range_tamanhos) }}
         {{ contribuicao.gera_modal(band) }}
 
         <button type="button" class="close-banda" onClick="_gaq.push(['_trackEvent', 'Band', 'Fechar o box da banda', 'Banda: {{  band.name | escape  }}']);">&times;</button>

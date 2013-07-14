@@ -1,6 +1,6 @@
 {% import 'venda_produtos.html' as produtos %}
 
-{% macro gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro) -%}
+{% macro gera_modal(band, BANDAS_CAMISAS, formulario_pag_seguro, range_tamanhos) -%}
     <div id="modal-produtos-{{ band.slug }}" class="modal-produtos modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -30,7 +30,7 @@
                             </li>
                         {% endif %}
 
-                        {{ produtos.camisas(band.name, band.slug, banda_camisas["camisas"] ) }}
+                        {{ produtos.camisas(band.name, band.slug, banda_camisas["camisas"], range_tamanhos ) }}
 
                         <li class="frete-container">
                             <span class="frete valor-monetario">Frete: R$ 10,00</span>

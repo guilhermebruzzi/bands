@@ -112,7 +112,7 @@
     width: 125px;
     display: inline-block;
     vertical-align: top;
-    margin: 0px 20px;
+    margin: 0 15px;
 }
 
 .info-produto{
@@ -124,7 +124,7 @@
     position: relative;
     top: -2px;
     vertical-align: top;
-    width: 310px;
+    width: 322px;
 }
 
 .produto .nome-produto {
