@@ -49,59 +49,6 @@
                 {% endif %}
                 <button type="button" class="botao-principal bandas-relacionadas" data-toggle="modal" data-target="#modal-relacionadas-{{ band.slug }}">Bandas relacionadas</button>
             </div>
-            {% if show %}
-                <h3 class="titulo-no-box titulo-proximos-shows-no-box">Próximos Shows</h3>
-                {%- set website = show.website -%}
-                {% if not website %}
-                    {%- set website = show.location.website -%}
-                {% endif %}
-                <div class="navegacao-show-container">
-                    <button type="button" title="show anterior" class="band-navegacao-show band-prev-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Esq em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);"></button>
-                    <div class="item-lista-bands">
-                        <a {% if website %} href="{{ website }}" target="_blank" {% else %} href="#" {% endif %} class="item-lista-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Show em uma pesquisa de banda', 'Banda: {{  band.name | escape  }} Show: {{ show.title }}']);">
-                            {% if show.cover_image %}
-                                <img alt="imagem do show" title="imagem do show" src="{{ show.cover_image }}" />
-                            {% else %}
-                                {% if show.location.image %}
-                                    <img alt="imagem do show" title="imagem do show" src="{{ show.location.image }}" />
-                                {% else %}
-                                    <span title="imagem do show" class="icone-musicas img-default"></span>
-                                {% endif %}
-                            {% endif %}
-                            <span class="info-show item-info">
-                                <span class="banda-show">{{ show.datetime }}</span>
-                                <span class="data-show">{{ show.title }}</span>
-                            </span>
-                        </a>
-                    </div>
-                    <button type="button" title="próximo show" class="band-navegacao-show band-next-show" data-toggle="modal" data-target="#modal-mais-shows" onClick="_gaq.push(['_trackEvent', 'Show', 'Mais shows Dir em uma pesquisa de banda', 'Banda: {{  band.name | escape  }}']);"></button>
-                </div>
-            {% else %}
-                <div class="navegacao-show-container"></div>
-            {% endif %}
-        </div>
-
-        <div class="comentarios invisivel">
-            <a class="mostrar-comentarios info-banda-link" href="#comentarios" onclick="loadDisqus(jQuery(this), 'http://bands.com.br/?band={{ band.slug }}', 'http://bands.com.br/?band={{ band.slug }}');">
-                Mostrar comentários
-            </a>
-
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                var disqus_shortname = 'bands';
-                var disqus_identifier = 'http://bands.com.br/?band={{ band.slug }}';
-                var disqus_url = 'http://bands.com.br/?band={{ band.slug }}'; //post permalink
-                // var disqus_title; //post title
-
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function () {
-                    var s = document.createElement('script'); s.async = true;
-                    s.type = 'text/javascript';
-                    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-                }());
-            </script>
-
         </div>
 
 

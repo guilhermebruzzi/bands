@@ -222,9 +222,7 @@ function toggleBand(){
         areaBanda.removeClass('hidden');
         infoBanda.removeClass('hidden');
         timelineBanda.removeClass('invisivel');
-        comentariosBanda.removeClass('invisivel');
         label.addClass('hidden');
-        mostrarComentarios.click(); // Abre o espaço de comentários
 
         if(typeof _gaq != "undefined"){
             _gaq.push(['_trackEvent', 'Band', 'Expandir', 'Banda: ' + bandSlug]);
@@ -233,7 +231,6 @@ function toggleBand(){
         areaBanda.addClass('hidden');
         infoBanda.addClass('hidden');
         timelineBanda.addClass('invisivel');
-        comentariosBanda.addClass('invisivel');
         label.removeClass('hidden');
 
         if(typeof _gaq != "undefined"){
