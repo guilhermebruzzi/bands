@@ -46,7 +46,7 @@ class LastFmTest(BaseTest):
         self.assertEqual(franz.tags_list, [])
         self.assertEqual(franz.similares_slug, [])
 
-        franz_url_photo = "http://userserve-ak.last.fm/serve/252/7149.jpg"
+        franz_url_photo = "http://userserve-ak.last.fm/serve/252/887131.jpg"
 
         self.assertEqual(franz.photo, franz_url_photo)
         self.assertEqual(franz.tags, ["indie", "indie rock", "rock", "alternative", "britpop"])
