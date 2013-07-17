@@ -21,6 +21,7 @@ app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku ac
 carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
 formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
 range_tamanhos = ['Baby Look', 'P', 'M', 'G', 'GG']
+sem_estoque = ''
 
 def __make_response_plain_text__(response_text, type_of_response="text/plain"):
     response = make_response(response_text)
@@ -92,6 +93,8 @@ def novo():
 
         minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city, force_to_include_band=True)
         los_bife_band = get_band(slug="los-bife")
+        los_bife_band.tags_list = ["Rock autodepreciativo", "Rock"]
+        los_bife_band.save()
         minhas_bandas_shows.append((los_bife_band, los_bife_band.shows[:1]))
 
 
@@ -203,7 +206,8 @@ def los_bife():
         range_quantidade=range(2, 10), range_tamanhos=range_tamanhos, produtos_section=produtos_section, dark=dark,
         camisas=[{ "tipo": "amarela", "preco": "20,00" },
                  { "tipo": "vermelha", "preco": "20,00" },
-                 { "tipo": "azul", "preco": "20,00" }])
+                 { "tipo": "azul", "preco": "20,00" }],
+        sem_estoque=sem_estoque)
 
 @app.route('/band/<band_timeline_id>.json', methods=['GET'])
 def get_band_timeline_json(band_timeline_id):

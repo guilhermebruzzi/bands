@@ -2,7 +2,7 @@
 {% import 'venda_produtos.html' as produtos %}
 
 {% block title %}Bands - Los Bife - Produtos{% endblock %}
-
+{% block js_cima %}<script> semEstoque = [{{ sem_estoque|safe }}]; </script>{% endblock %}
 {% block content %}
     <section id="produtos-section" class="produtos-section {% if produtos_section and dark %}produtos-section-dark{% endif %}">
         <div id="area-banda" class="area-banda">
@@ -17,7 +17,7 @@
                     <img class="round-component" src="/static/img/cd-los-bife.jpg">
                     <span class="info-produto">
                         <span class="hidden item-id">1</span>
-                        <span class="nome-produto">CD Los Bife</span>
+                        <span class="nome-produto">CD Super Supérfluo</span>
                         <span class="quantidade-label">quantidade</span>
                         <select class="quantidade">
                             <option value="0" selected="selected">0 cds</option>

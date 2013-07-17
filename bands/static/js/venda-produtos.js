@@ -10,7 +10,14 @@ function isCamisaNaoLosBife(descricao){
     return (descricao.toLowerCase().indexOf("camisa") !== -1 && descricao.toLowerCase().indexOf("los bife") === -1);
 }
 
-function naoTemNoEstoque(itemId){
+function naoTemNoEstoque(descricao){
+    var descricaoUpper = descricao.toUpperCase().trim();
+    for(var descricaoIndex in semEstoque){
+        var descricaoSemEstoqueUpper = semEstoque[descricaoIndex].toUpperCase().trim();
+        if(descricaoUpper == descricaoSemEstoqueUpper){
+            return true;
+        }
+    }
     return false;
 }
 
@@ -38,7 +45,7 @@ function getValorProduto(descricao){
 
 function getProdutoDataSelect(select){
     var quantidade = select.value;
-    var descricao = select.options[select.selectedIndex].text + " Los Bife";
+    var descricao = select.options[select.selectedIndex].text + " Super Supérfluo";
 
     return {
         'descricao': descricao,
@@ -98,7 +105,7 @@ function comprarPagSeguro(evt){
     });
 
     var emailCobranca = $('input[name="email_cobranca"]').val();
-    formPagSeguroHTML = '<input type="hidden" value="' + emailCobranca + '" name="email_cobranca"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
+    formPagSeguroHTML = '<input type="hidden" value="' + emailCobranca + '" name="email_cobranca"> <input type="hidden" value="UTF-8" name="encoding"> <input type="hidden" value="BRL" name="moeda"> <input type="hidden" value="CP" name="tipo">';
 
     var labelProdutos = "";
     var itemId = 1;
@@ -110,8 +117,8 @@ function comprarPagSeguro(evt){
     for(var dataIndex = 0; dataIndex < datas.length; dataIndex++){
         var data = datas[dataIndex];
 
-        if (naoTemNoEstoque(itemId)){
-            mensagemErro = "Por enquanto não temos mais " + descricao + " em estoque, curta a página facebook.com/bandsbr ou faça login aqui no site e lhe avisaremos quando poderão comprar.";
+        if (naoTemNoEstoque(data.descricao)){
+            mensagemErro = "Por enquanto não temos mais " + data.descricao + " em estoque, curta a página facebook.com/bandsbr ou faça login aqui no site e lhe avisaremos quando poderão comprar.";
         }
         else{
             if(isCd(data.descricao)){
