@@ -93,8 +93,6 @@ def novo():
 
         minhas_bandas_shows = get_shows_from_bands(top_bands, 1, city=current_city, force_to_include_band=True)
         los_bife_band = get_band(slug="los-bife")
-        los_bife_band.tags_list = ["Rock autodepreciativo", "Rock"]
-        los_bife_band.save()
         minhas_bandas_shows.append((los_bife_band, los_bife_band.shows[:1]))
 
 
