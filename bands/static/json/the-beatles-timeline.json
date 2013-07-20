@@ -3,7 +3,7 @@
     {
         "headline":"The Beatles",
         "type":"default",
-        "text":"<p></p><h3>Músicas Cadastradas</h3><ul><li><a href='#' class='navegacao-musica navegacao-musica-2'>Please Please Me</a></li><li><a href='#' class='navegacao-musica navegacao-musica-3'>Hey Jude</a></li></ul><h3>História</h3><p>The Beatles foi uma famosa banda de rock britânica formada em Liverpool, 1960, e um dos atos mais comercialmente bem-sucedidos e aclamados da história da música popular. A partir de 1962, o grupo era formado por John Lennon (guitarra rítmica e vocal), Paul McCartney (baixo e vocal), George Harrison (guitarra solo e vocal) e Ringo Starr (bateria e vocal).  Enraizada do skiffle e do rock and roll da década de 1950.</p>",
+        "text":"<p></p><h3>Músicas Cadastradas</h3><ul><li><a href='#' class='navegacao-musica navegacao-musica-2'>Please Please Me</a></li><li><a href='#' class='navegacao-musica navegacao-musica-3'>Hey Jude</a></li><li><a href='#' class='navegacao-musica navegacao-musica-4'>Here Today</a></li></ul><h3>História</h3><p>The Beatles foi uma famosa banda de rock britânica formada em Liverpool, 1960, e um dos atos mais comercialmente bem-sucedidos e aclamados da história da música popular. A partir de 1962, o grupo era formado por John Lennon (guitarra rítmica e vocal), Paul McCartney (baixo e vocal), George Harrison (guitarra solo e vocal) e Ringo Starr (bateria e vocal).  Enraizada do skiffle e do rock and roll da década de 1950.</p>",
         "asset": {
             "media":"http://userserve-ak.last.fm/serve/252/173094.jpg"
         },
@@ -37,6 +37,16 @@
                 "classname":"hey-jude",
                 "asset": {
                     "media":"https://www.youtube.com/watch?v=eDdI7GhZSQA"
+                }
+            },
+            {
+                "startDate":"1982,01,01",
+                "headline":"Lennon/McCartney e Here Today",
+                "text":"<p>A parceria artística entre John Lennon e Paul McCartney é uma das colaborações musicais e culturais mais conhecidas e mais bem sucedidas da história. Entre 1962 e 1969, escreveram e publicaram cerca de 180 canções creditadas, das quais a maioria foi gravada pelos The Beatles e constitui a maior parte do seu catálogo.</p><p>\"Here Today\" é uma música de Paul McCartney do seu álbum Tug of War de 1982. Paul McCartney escreveu essa música para falar do seu relacionamento e amor por John Lennon, que tinha falecido menos de 2 anos antes. Segundo o autor, a música foi composta no formato de conversa imaginária que Paul e John poderiam ter tido. A música foi produzida pelo produtor George Martin que produzia músicas dos Beatles. Mesmo não tendo sido liberado como single, a música alcançou o número 46 no ranking musical Billboard Mainstream Rock.</p><p>McCartney costuma tocar \"Here Today\" ao vivo em alguns de seus shows e ela está presente nos álbuns Back in the World, Back in the U.S., e Good Evening New York City.</p>",
+                "tag":"John Lennon, Paul McCartney, Here Today",
+                "classname":"here-today",
+                "asset": {
+                    "media":"https://www.youtube.com/watch?v=FjwnWU6OsaI"
                 }
             },
             {

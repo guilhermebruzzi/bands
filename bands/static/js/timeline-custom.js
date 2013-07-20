@@ -47,6 +47,11 @@ $(document).ready(function(){
         gaNavegacaoMusica(this);
     });
 
+    $(document).on("click", ".navegacao-musica-4", function(){
+        $('.flag-content')[4].click();
+        gaNavegacaoMusica(this);
+    });
+
     $(".nav-next").find(".date").each(function(){
         var currentDateWithoutYear = $(this).text().substring(0, -5).trim();
         var currentYear = $(this).text().replace(currentDateWithoutYear, "").trim();
