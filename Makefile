@@ -40,6 +40,8 @@ install:
 
 clean:
 	@find . -type f -name "*.pyc" -exec rm -rf {} \;
+	@touch ${root_dir}/tests/coverage.xml ${root_dir}/nosetests.xml ${root_dir}/.coverage
+	@rm ${root_dir}/tests/coverage.xml ${root_dir}/nosetests.xml ${root_dir}/.coverage
 
 kill_run:
 	@ps aux | awk '(make run && $$0 !~ /awk/){ system("kill -9 "$$2) }'
@@ -51,8 +53,8 @@ run: clean
 	@python ${root_dir}/bands/app.py
 
 tests: clean
-	@touch coverage.xml nosetests.xml .coverage
-	@rm coverage.xml nosetests.xml .coverage
+	@touch ${root_dir}/tests/coverage.xml ${root_dir}/nosetests.xml ${root_dir}/.coverage
+	@rm ${root_dir}/tests/coverage.xml ${root_dir}/nosetests.xml ${root_dir}/.coverage
 	@python ${root_dir}/tests/run.py
 
 aceitacao: clean

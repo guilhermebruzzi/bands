@@ -33,7 +33,7 @@ def run_tests():
         parser = OptionParser()
         parser.add_option("-f", "--file", dest="filename", help="Nome dos arquivos para rodar", default=None)
         (parsed, args) = parser.parse_args()
-        params = ["nosetests", "--with-xcoverage", "--with-xunit", "-w", "tests", "--cover-package", "bands", "--match", "(?:^|[\b_\./-])[Tt]est"]
+        params = ["nosetests", "--with-xcoverage", "--with-xunit", "-w", "tests", "--cover-package", "bands.*", "--match", "(?:^|[\b_\./-])[Tt]est"]
         if parsed.filename:
             params.insert(0, "--tests=")
             params.insert(0, parsed.filename)
