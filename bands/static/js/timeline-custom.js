@@ -11,8 +11,9 @@ $(document).ready(function(){
 
     function gaNavegacaoMusica(elm){
         var timelineId = findParentTimelineId(elm);
+        var label = 'Banda: ' + timelineId + ' Texto: ' + $(elm).text();
         if(typeof _gaq != "undefined"){
-            _gaq.push(['_trackEvent', 'Band Timeline', 'Navegacao Musica', 'Banda: ' + timelineId + ' Texto: ' + $(elm).text()]);
+            _gaq.push(['_trackEvent', 'Band Timeline', 'Navegacao Musica', label]);
         }
     }
 
@@ -37,18 +38,19 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on("click", ".navegacao-musica-2", function(){
-        $('.flag-content')[2].click();
-        gaNavegacaoMusica(this);
-    });
+    $(document).on("click", ".navegacao-musica", function(){
+        var index = 1;
+        var classList = $(this).attr('class').split(/\s+/);
+        for(var classIndex in classList){
+            var classItem = classList[classIndex];
+            if(classItem != "navegacao-musica" && classItem.indexOf("navegacao-musica-") !== -1){
+                index = parseInt(classItem.replace("navegacao-musica-", ""));
+                break;
+            }
+        }
 
-    $(document).on("click", ".navegacao-musica-3", function(){
-        $('.flag-content')[3].click();
-        gaNavegacaoMusica(this);
-    });
+        $('.flag-content')[index].click();
 
-    $(document).on("click", ".navegacao-musica-4", function(){
-        $('.flag-content')[4].click();
         gaNavegacaoMusica(this);
     });
 

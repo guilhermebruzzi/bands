@@ -2,7 +2,7 @@
     "timeline": {
         "headline": "Legião Urbana",
         "type": "default",
-        "text": "<h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
+        "text": "<ul><li><a href='#' class='navegacao-musica navegacao-musica-1'>Aborto Elétrico - Química</a></li><li><a href='#' class='navegacao-musica navegacao-musica-8'>Disco \"Legião Urbana\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-9'>Disco \"Dois\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-10'>Disco \"Que País É Este 1978/1987\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-12'>Álbum \"As Quatro Estações\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-13'>Álbum \"V\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-14'>Álbum \"O Descobrimento do Brasil\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-15'>Por Enquanto 1984-1995</a></li><li><a href='#' class='navegacao-musica navegacao-musica-18'>Álbum \"A Tempestade ou O Livro dos Dias\"</a></li><li><a href='#' class='navegacao-musica navegacao-musica-21'>Álbum \"Uma Outra Estação\"</a></li></ul><h3>História</h3><p></p><p>Legião Urbana foi uma banda brasileira de rock surgida em Brasília, Brasil, ativa entre 1982 e 1996. Ao todo, lançaram treze álbuns, somando mais de vinte milhões de discos vendidos. Ainda hoje, é o terceiro maior grupo musical, da gravadora EMI-Odeon, em venda de discos por catálogo, no mundo, com média de duzentas mil cópias por mês. O fim do grupo foi marcado pelo falecimento de seu líder e vocalista, Renato Russo, em 11 de outubro de 1996.</p><p></p>",
         "asset": {
             "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
         },
@@ -279,7 +279,17 @@
                 }
             },
             {
-                "startDate": "2013,06,26",
+                "startDate": "2013,07,18",
+                "headline": "Marca Legião Urbana",
+                "text": "<p>Dado Villa-Lobos e Marcelo Bonfá conquistaram no dia 18/07/2013, no Tribunal de Justiça do Rio de Janeiro, o direito de utilizar a marca Legião Urbana. Os ex-integrantes da banda estavam impedidos de usá-la por determinação dos familiares de Renato Russo.</p><p>Mesmo com a liberação, Dado e Bonfá descartam a possibilidade de alguma volta da Legião Urbana como banda. \"A Legião Urbana éramos o Bonfá, eu e o Renato. E a gente tinha combinado que se saísse um de nós três e entrasse outra pessoa, então não seria mais a Legião Urbana\", disse Dado Villa-Lobos, ex-guitarrista da banda em comunicado enviado à imprensa.</p>",
+                "tag": "Legião Urbana, marca Legião Urbana",
+                "classname": "legiao-urbana-marca",
+                "asset": {
+                    "media": "http://userserve-ak.last.fm/serve/252/52255403.jpg"
+                }
+            },
+            {
+                "startDate": "2013,07,22",
                 "headline": "Contribua",
                 "text": "<p>Clique no boão acima escrito \"Contribua com a timeline\" e escreva os acontecimentos que você mais gosta sobre a banda.</p>",
                 "tag": "Legião Urbana, Contribua",
