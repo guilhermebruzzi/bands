@@ -1,6 +1,6 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
 formPagSeguroHTML = ''
-var frete_total = 10.0;
+var frete_total = 16.0;
 
 function isCd(descricao){
     return (descricao.indexOf("cd") !== -1);
