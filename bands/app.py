@@ -18,7 +18,7 @@ from config import cache
 
 app = get_app() #  Explicitando uma variável app nesse arquivo para o Heroku achar
 
-carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=10.0) # CP é para poder usar o método cliente
+carrinho = Pagseguro(email_cobranca="charnauxguy@gmail.com", tipo='CP', frete=16.0) # CP é para poder usar o método cliente
 formulario_pag_seguro = carrinho.mostra(imprime=False, imgBotao="/static/img/pagseguro.png")
 range_tamanhos = ['Baby Look', 'P', 'M', 'G', 'GG']
 sem_estoque = ''

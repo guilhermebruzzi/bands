@@ -78,7 +78,12 @@ function getProdutoDataInputs(input){
 }
 
 function addItemId(itemId, descricao, valor, quantidade){
-    var inputHtmls = ['<input type="hidden" value="' + itemId + '" name="item_id_' + itemId + '">', '<input type="hidden" value="' + descricao + '" name="item_descr_' + itemId + '">', '<input type="hidden" value="' + quantidade + '" name="item_quant_' + itemId + '">', '<input type="hidden" value="' + valor + '" name="item_valor_' + itemId + '">'];
+    var frete_por_item = 1.0;
+    if (itemId == 1){
+        frete_por_item = frete_total;
+    }
+
+    var inputHtmls = ['<input type="hidden" value="' + itemId + '" name="item_id_' + itemId + '">', '<input type="hidden" value="' + descricao + '" name="item_descr_' + itemId + '">', '<input type="hidden" value="' + quantidade + '" name="item_quant_' + itemId + '">', '<input type="hidden" value="' + valor + '" name="item_valor_' + itemId + '">', '<input type="hidden" name="item_frete_' + itemId + '" value="' + frete_por_item.toFixed(2) + '">'];
     for(var inputHtmlIndex in inputHtmls){
         var inputHtml = inputHtmls[inputHtmlIndex];
         formPagSeguroHTML += " " + inputHtml + " ";
@@ -110,7 +115,6 @@ function comprarPagSeguro(evt){
     var labelProdutos = "";
     var itemId = 1;
     var mensagemErro = null;
-    var quantidadePrimeiroItem = 0;
 
     var validou = datas.length > 0;
 
@@ -123,9 +127,6 @@ function comprarPagSeguro(evt){
         else{
             if(isCd(data.descricao)){
                 addItemId(itemId, data.descricao, data.valor, data.quantidade);
-                if(itemId == 1){
-                    quantidadePrimeiroItem = data.quantidade;
-                }
                 itemId++;
             }
             else{
@@ -134,9 +135,6 @@ function comprarPagSeguro(evt){
                 }
                 else{ // Camisa Los Bife
                     addItemId(itemId, data.descricao, data.valor, data.quantidade);
-                    if(itemId == 1){
-                        quantidadePrimeiroItem = data.quantidade;
-                    }
                     itemId++;
                 }
             }
@@ -149,8 +147,7 @@ function comprarPagSeguro(evt){
     }
 
 
-    var frete_por_item = frete_total / ((quantidadePrimeiroItem == 0) ? 1.0 : quantidadePrimeiroItem);
-    formPagSeguroHTML += '<input type="hidden" name="item_frete_1" value="' + frete_por_item.toFixed(2) + '">';
+
     formPagSeguroHTML += '<input type="image" alt="Pague com PagSeguro - é rápido, grátis e seguro!" name="submit" src="/static/img/pagseguro.png">';
 
     $(this).html(formPagSeguroHTML);
