@@ -1,6 +1,6 @@
 var formPagSeguro = document.querySelector('form[target="pagseguro"]');
 formPagSeguroHTML = ''
-var frete_total = 16.0;
+var frete_total = 0.0;
 
 function isCd(descricao){
     return (descricao.indexOf("cd") !== -1);
@@ -23,7 +23,7 @@ function naoTemNoEstoque(descricao){
 
 function getValorProdutoInput(input){
     var infoProdutoFilhos = input.parentNode.parentNode.parentNode.childNodes;
-    var preco = "2000";
+    var preco = "3500";
     for(var index = 0; index < infoProdutoFilhos.length; index++){
         var info = infoProdutoFilhos[index];
         if(info.classList && info.classList.contains("valor-produto")){
@@ -36,7 +36,7 @@ function getValorProdutoInput(input){
 }
 
 function getValorProduto(descricao){
-    var valor = "2000";
+    var valor = "3500";
     if(isCd(descricao)){
         valor = "1500";
     }
@@ -78,12 +78,14 @@ function getProdutoDataInputs(input){
 }
 
 function addItemId(itemId, descricao, valor, quantidade){
-    var frete_por_item = 1.0;
+    var frete_por_item = 0.0;
     if (itemId == 1){
         frete_por_item = frete_total;
     }
 
-    var inputHtmls = ['<input type="hidden" value="' + itemId + '" name="item_id_' + itemId + '">', '<input type="hidden" value="' + descricao + '" name="item_descr_' + itemId + '">', '<input type="hidden" value="' + quantidade + '" name="item_quant_' + itemId + '">', '<input type="hidden" value="' + valor + '" name="item_valor_' + itemId + '">', '<input type="hidden" name="item_frete_' + itemId + '" value="' + frete_por_item.toFixed(2) + '">'];
+    /* , '<input type="hidden" name="item_frete_' + itemId + '" value="' + frete_por_item.toFixed(2) + '">' */
+
+    var inputHtmls = ['<input type="hidden" value="' + itemId + '" name="item_id_' + itemId + '">', '<input type="hidden" value="' + descricao + '" name="item_descr_' + itemId + '">', '<input type="hidden" value="' + quantidade + '" name="item_quant_' + itemId + '">', '<input type="hidden" value="' + valor + '" name="item_valor_' + itemId + '">'];
     for(var inputHtmlIndex in inputHtmls){
         var inputHtml = inputHtmls[inputHtmlIndex];
         formPagSeguroHTML += " " + inputHtml + " ";

@@ -202,9 +202,9 @@ def los_bife():
     dark = True if request.args.get('dark') else False
     return render_template('venda_los_bife.html', current_user=current_user, formulario_pag_seguro=formulario_pag_seguro,
         range_quantidade=range(2, 10), range_tamanhos=range_tamanhos, produtos_section=produtos_section, dark=dark,
-        camisas=[{ "tipo": "amarela", "preco": "20,00" },
-                 { "tipo": "vermelha", "preco": "20,00" },
-                 { "tipo": "azul", "preco": "20,00" }],
+        camisas=[{ "tipo": "amarela", "preco": "35,00" },
+                 { "tipo": "vermelha", "preco": "35,00" },
+                 { "tipo": "azul", "preco": "35,00" }],
         sem_estoque=sem_estoque)
 
 @app.route('/band/<band_timeline_id>.json', methods=['GET'])

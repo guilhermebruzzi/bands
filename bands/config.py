@@ -121,10 +121,10 @@ BANDAS_CAMISAS = {
         "nome": "Los Bife",
         "slug": "los-bife",
         "camisas": [
-            { "tipo": "amarela", "preco": "20,00" },
-            { "tipo": "vermelha", "preco": "20,00" },
-            { "tipo": "azul", "preco": "20,00" },
-            { "tipo": "verde", "preco": "20,00" },
+            { "tipo": "amarela", "preco": "35,00" },
+            { "tipo": "vermelha", "preco": "35,00" },
+            { "tipo": "azul", "preco": "35,00" },
+            { "tipo": "verde", "preco": "35,00" },
         ]
     },
     "los-hermanos": {
