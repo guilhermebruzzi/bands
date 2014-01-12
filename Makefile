@@ -17,10 +17,10 @@ mongolog:
 
 mongoexport:
 	@rm -rf /tmp/bands/mongodump && mkdir -p /tmp/bands/mongodump
-	@mongoexport -c band -u heroku -p 2ff73e5ccf353f7da162002ef2126623 --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_band_prod.json
-	@mongoexport -c user -u heroku -p 2ff73e5ccf353f7da162002ef2126623 --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_user_prod.json
-	@mongoexport -c location -u heroku -p 2ff73e5ccf353f7da162002ef2126623 --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_location_prod.json
-	@mongoexport -c show -u heroku -p 2ff73e5ccf353f7da162002ef2126623 --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_show_prod.json
+	@mongoexport -c band -u heroku -p 9cK3u3i2_3ybKZQQmdUaNy_3tw-A_Uoe9b6g4iHZ7PF_GIYC_UQzrQrtszRZHL3E2y7PGB1qv6ExRjXiloPJgw --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_band_prod.json
+	@mongoexport -c user -u heroku -p 9cK3u3i2_3ybKZQQmdUaNy_3tw-A_Uoe9b6g4iHZ7PF_GIYC_UQzrQrtszRZHL3E2y7PGB1qv6ExRjXiloPJgw --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_user_prod.json
+	@mongoexport -c location -u heroku -p 9cK3u3i2_3ybKZQQmdUaNy_3tw-A_Uoe9b6g4iHZ7PF_GIYC_UQzrQrtszRZHL3E2y7PGB1qv6ExRjXiloPJgw --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_location_prod.json
+	@mongoexport -c show -u heroku -p 9cK3u3i2_3ybKZQQmdUaNy_3tw-A_Uoe9b6g4iHZ7PF_GIYC_UQzrQrtszRZHL3E2y7PGB1qv6ExRjXiloPJgw --host alex.mongohq.com --port 10095 --db app8798964 -o ${mongodump_dir}/backup_show_prod.json
 
 mongoimportlocal:
 	@mongoimport -c band --host localhost --port 7777 --db bands --file ${mongodump_dir}/backup_band_prod.json
