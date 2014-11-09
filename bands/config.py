@@ -4,7 +4,7 @@ import os
 import sys
 
 from flask import Flask
-from flaskext.oauth import OAuth
+from flask_oauth import OAuth
 from flaskext.mongoengine import MongoEngine
 from flask.ext import assets
 from flask.ext.jasmine import Jasmine
