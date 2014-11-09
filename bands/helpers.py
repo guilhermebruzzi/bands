@@ -71,18 +71,28 @@ def delete_cookie_login(resp):
 def make_login(oauth_token):
     global facebook_module, controllers_module
 
+    print "***INICIO***"
+
     if not facebook_module:
         facebook_module = __import__("facebook")
     if not controllers_module:
         controllers_module = __import__("controllers")
 
+    print "***OAUTH_TOKEN***"
+
     session['oauth_token'] = (oauth_token, '')
     me_data = facebook_module.get_facebook_data(oauth_token)
+
+    print "***CITY***"
 
     city = me_data['location']['name'] if 'location' in me_data and 'name' in me_data['location'] else None
     me_data['city'] = city.split(',')[0] if city and ',' in city else city
 
+    print "***CURRENT_USER***"
+
     session['current_user'] = controllers_module.get_or_create_user(me_data, oauth_token=oauth_token)
+
+    print "***FIM***"
 
 def need_to_be_logged(handler, path="/"):
     def wrapper(*args, **kwargs):
