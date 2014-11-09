@@ -284,7 +284,7 @@ def get_top_bands(max=None, sort=False, normalize=False, maxSize=6):
     return (result, len(bands))
 
 def random_top_bands(max=None, user=None): #  Sorteia bandas baseado na quantidade de votos dela
-    bands = get_all_bands()
+    bands = get_all_bands(limit=100)
     removidos = {}
     bandas = []
     for band in bands:
