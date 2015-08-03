@@ -224,7 +224,7 @@ seta timeline: #ececec com border #ddd8d8
 .minhas-bandas .share {
     display: inline-block;
     position: absolute;
-    right: 100px;
+    right: 200px;
     top: 13px;
     width: 195px;
 }
@@ -233,6 +233,11 @@ seta timeline: #ececec com border #ddd8d8
     position: absolute;
     left: 0px;
     top: 10px;
+}
+
+.share iframe {
+    position: absolute;
+    left: 0;
 }
 
 .share .addthis_button_tweet{
@@ -244,8 +249,9 @@ seta timeline: #ececec com border #ddd8d8
 .share .favoritar-body {
     font-size: 14px;
     position: absolute;
-    right: -5px;
+    right: -100px;
     top: 5px;
+
 }
 
 .share .favoritar-texto{
@@ -584,7 +590,7 @@ section.area-show-home .minhas-bandas ul li a.item-lista-shows span span.data-sh
     }
 
     .minhas-bandas .share {
-        right: 238px;
+        right: 200px;
         top: 102px;
     }
 
